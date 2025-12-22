@@ -4,20 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/COMP3200_Individual_Project.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Refactor">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentation/Full Draft.docx" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/Full Draft.docx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Documentation/Literature Review Draft.docx" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/Literature Review Draft.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/ELM_Defined_Template.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/ELM_Defined_Template.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Research Paper/1 ELM.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Research Paper/Extreme Learning Machine/1 ELM.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Research Paper/2 Extreme learning machines  survey.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Research Paper/Extreme Learning Machine/2 Extreme learning machines  survey.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Research Paper/3 Extreme learning machine and its applications.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Research Paper/Extreme Learning Machine/3 Extreme learning machine and its applications.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Research Paper/4 Regression and classification using extreme learning machine based on.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Research Paper/Extreme Learning Machine/4 Regression and classification using extreme learning machine based on.pdf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,11 +78,25 @@
       <workItem from="1765953768480" duration="931000" />
       <workItem from="1766132120209" duration="636000" />
       <workItem from="1766142237718" duration="642000" />
-      <workItem from="1766142909544" duration="1265000" />
+      <workItem from="1766142909544" duration="1443000" />
+      <workItem from="1766386086622" duration="6885000" />
     </task>
+    <task id="LOCAL-00001" summary="Refactor">
+      <option name="closed" value="true" />
+      <created>1766148653987</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1766148653987</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Refactor" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor" />
   </component>
 </project>
