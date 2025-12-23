@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Draft structure">
-      <change afterPath="$PROJECT_DIR$/Documentation/SubDraft/Literature Review Draft.docx" afterDir="false" />
+    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Update documentation">
       <change beforePath="$PROJECT_DIR$/Documentation/Full Draft.docx" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/Full Draft.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documentation/Literature Review Draft.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentation/SubDraft/Technical Process Draft.docx" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/SubDraft/Technical Process Draft.docx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,12 +22,12 @@
     &quot;assignee&quot;: &quot;youquanneu&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/youquanneu/COMP3200_Individual_Project.git&quot;,
-    &quot;accountId&quot;: &quot;41552347-9bfe-44e9-b610-a0966ef1fa8c&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/youquanneu/COMP3200_Individual_Project.git",
+    "accountId": "2702c425-e9d7-46f1-aed6-6704a17c2006"
   }
-}</component>
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
@@ -55,7 +54,11 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Documentation\SubDraft" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Documentation\SubDraft" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Research Paper\Extreme Learning Machine" />
     </key>
   </component>
@@ -84,7 +87,7 @@
       <workItem from="1766386086622" duration="6994000" />
       <workItem from="1766408541120" duration="2355000" />
       <workItem from="1766470727483" duration="7380000" />
-      <workItem from="1766489696084" duration="3534000" />
+      <workItem from="1766489696084" duration="5161000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor">
       <option name="closed" value="true" />
@@ -110,7 +113,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766412887267</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Update documentation">
+      <option name="closed" value="true" />
+      <created>1766495145393</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1766495145393</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -120,6 +131,7 @@
     <MESSAGE value="Refactor" />
     <MESSAGE value="Draft refine" />
     <MESSAGE value="Draft structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="Draft structure" />
+    <MESSAGE value="Update documentation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update documentation" />
   </component>
 </project>
