@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Draft structure">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Documentation/SubDraft/Literature Review Draft.docx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Documentation/Full Draft.docx" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/Full Draft.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Data_Processing.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Data_Processing.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/ELM_Defined_Template.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/ELM_Defined_Template.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentation/Literature Review Draft.docx" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +45,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "database.data.extractors.current.export.id": "Excel (xlsx)",
     "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/yqn1e23/PycharmProjects/COMP3200_Individual_Project/Documentation/SubDraft",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -84,6 +84,7 @@
       <workItem from="1766386086622" duration="6994000" />
       <workItem from="1766408541120" duration="2355000" />
       <workItem from="1766470727483" duration="7380000" />
+      <workItem from="1766489696084" duration="3534000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor">
       <option name="closed" value="true" />
