@@ -4,16 +4,79 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Update documentation to draft">
+    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Progress Report">
+      <change afterPath="$PROJECT_DIR$/Documentation/Final Report/SubDraft/FR_Methodology_DataPreprocessing.docx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Pipeline/DataPreprocessing.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Research Paper/Background/Gallstone/Artificial Intelligence for Clinical Prediction Exploring Key Domains and Essential Functions.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Research Paper/Background/Gallstone/Asymptomatic Cholelithiasis Is Cholecystectomy Really Needed.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Research Paper/Background/Gallstone/Asymptomatic cholecystitis and its controversial issues in biliary surgery.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Research Paper/Background/Gallstone/Burden of gallstone disease in the United States population Prepandemic rates and trends.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Research Paper/Background/Gallstone/Epidemiologie und Klinik der akuten Cholezystitis.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Research Paper/Background/Gallstone/Epidemiology of Gallbladder Disease Cholelithiasis and Cancer.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Research Paper/Background/Gallstone/Gallstone Disease is Associated with Increased Mortality in the US.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Research Paper/Background/Gallstone/Global Epidemiology of Gallstones in the 21st Century A Systematic Review and Meta-Analysis.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Research Paper/Background/Gallstone/Management of Asymptomatic Cholelithiasis.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Research Paper/Background/Gallstone/Natural history of asymptomatic gallbladder stones in clinic without beds A long-term prognosis over 10 years.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Research Paper/Background/Gallstone/The Treatment of Gallstone Disease.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Research Paper/Lit_Rev/1. ML and Healthcare/A Comprehensive Review on Machine Learning in Healthcare Industry Classification, Restrictions, Opportunities and Challenges.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Research Paper/Lit_Rev/1. ML and Healthcare/Automated Prediction of Liver Disease using Machine Learning (ML) Algorithms.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Research Paper/Lit_Rev/1. ML and Healthcare/Automated machine learning Review of the state-of-the-art and opportunities for healthcare.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Research Paper/Lit_Rev/1. ML and Healthcare/Machine learning-based prediction for incidence of endoscopic retrograde cholangiopancreatography after emergency laparoscopic cholecystectomy.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Research Paper/Lit_Rev/1. ML and Healthcare/Revolutionizing clinical laboratories The impact of artificial intelligence in diagnostics and patient care.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Research Paper/Lit_Rev/2. Imaged Related/A novel YOLOv3-arch model for identifying cholelithiasis and classifying gallstones on CT images.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Research Paper/Lit_Rev/2. Imaged Related/Advancements in Cholelithiasis Diagnosis A Systematic Review of Machine Learning Applications in Imaging Analysis.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Research Paper/Lit_Rev/2. Imaged Related/An artificial intelligent diagnostic system on mobile Android terminals for cholelithiasis by lightweight convolutional neural network.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Research Paper/Lit_Rev/2. Imaged Related/Computer-aided cholelithiasis diagnosis using explainable convolutional neural network.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Research Paper/Lit_Rev/2. Imaged Related/Lightweight deep neural networks for cholelithiasis and cholecystitis detection by point-of-care ultrasound.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Research Paper/Lit_Rev/3. Dataset/Early prediction of gallstone disease with a machine learning-based method from bioimpedance and laboratory data.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Research Paper/Lit_Rev/3. Dataset/Gallstone Classification Using Random Forest Optimized by Sand Cat Swarm Optimization Algorithm with SHAP and DiCE-Based Interpretability.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Research Paper/Lit_Rev/3. Dataset/Machine and deep learning identified metabolites and clinical features associated with gallstone disease.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Research Paper/Lit_Rev/3. Dataset/Using artificial intelligence to predict choledocholithiasis can machine learning models abate the use of MRCP in patients with biliary dysfunction.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Research Paper/Lit_Rev/4. Post/Determination of Malignancy Risk Factors Using Gallstone Data and Comparing Machine Learning Methods to Predict Malignancy.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Research Paper/Lit_Rev/4. Post/Development and validation of a machine learning-based nomogram for preoperative prediction of laparoscopic surgical difficulty in gallstone patients.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Research Paper/Lit_Rev/4. Post/Early prediction of acute gallstone pancreatitis severity  a novel machine learning model based on CT features and open access online prediction platf.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Research Paper/Lit_Rev/4. Post/Machine-learning-derived online prediction models of outcomes for patients with cholelithiasis-induced acute cholangitis.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documentation/Full Draft.docx" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/Full Draft.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Research Paper/Background/Gallstone/Gallstone Formation, Diagnosis, Treatment, and Prevention/1. Title-page_2024_Gallstone-Formation--Diagnosis--Treatment-and-Prevention.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Research Paper/Background/Gallstone/Gallstone Formation, Diagnosis, Treatment, and Prevention/2. Copyright_2024_Gallstone-Formation--Diagnosis--Treatment-and-Prevention.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Research Paper/Background/Gallstone/Gallstone Formation, Diagnosis, Treatment, and Prevention/3. Contents_2024_Gallstone-Formation--Diagnosis--Treatment-and-Prevention.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Research Paper/Background/Gallstone/Gallstone Formation, Diagnosis, Treatment, and Prevention/4. List-of-contributor_2024_Gallstone-Formation--Diagnosis--Treatment-and-Preve.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Research Paper/Background/Gallstone/Gallstone Formation, Diagnosis, Treatment, and Prevention/5. Preface_2024_Gallstone-Formation--Diagnosis--Treatment-and-Prevention.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Research Paper/Background/Gallstone/Gallstone Formation, Diagnosis, Treatment, and Prevention/6. Introduction_2024_Gallstone-Formation--Diagnosis--Treatment-and-Prevention.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Research Paper/Background/Gallstone/Gallstone Formation, Diagnosis, Treatment, and Prevention/Chapter-01---Historical-perspectiv_2024_Gallstone-Formation--Diagnosis--Treat.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Research Paper/Background/Gallstone/Gallstone Formation, Diagnosis, Treatment, and Prevention/Chapter-02---Comparative-study-of-gallston_2024_Gallstone-Formation--Diagnosi.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Research Paper/Background/Gallstone/Gallstone Formation, Diagnosis, Treatment, and Prevention/Chapter-03---Role-of-the-gallbladder-in-o_2024_Gallstone-Formation--Diagnosis.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Research Paper/Background/Gallstone/Gallstone Formation, Diagnosis, Treatment, and Prevention/Chapter-04---Factors-prevailing-for-_2024_Gallstone-Formation--Diagnosis--Tre.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Research Paper/Background/Gallstone/Gallstone Formation, Diagnosis, Treatment, and Prevention/Chapter-05---Role-of-liver-in-gall_2024_Gallstone-Formation--Diagnosis--Treat.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Research Paper/Background/Gallstone/Gallstone Formation, Diagnosis, Treatment, and Prevention/Chapter-06---Molecular-aspect-of-gallston_2024_Gallstone-Formation--Diagnosis.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Research Paper/Background/Gallstone/Gallstone Formation, Diagnosis, Treatment, and Prevention/Chapter-07---Relation-of-the-microflora-_2024_Gallstone-Formation--Diagnosis-.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Research Paper/Background/Gallstone/Gallstone Formation, Diagnosis, Treatment, and Prevention/Chapter-08---Gut-microbial-physiology-_2024_Gallstone-Formation--Diagnosis--T.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Research Paper/Background/Gallstone/Gallstone Formation, Diagnosis, Treatment, and Prevention/Chapter-09---Gallstone--a-factor-for_2024_Gallstone-Formation--Diagnosis--Tre.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Research Paper/Background/Gallstone/Gallstone Formation, Diagnosis, Treatment, and Prevention/Chapter-10---Gallstone--a-lead-facto_2024_Gallstone-Formation--Diagnosis--Tr.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Research Paper/Background/Gallstone/Gallstone Formation, Diagnosis, Treatment, and Prevention/Chapter-11---Diagnostic-tools-f_2024_Gallstone-Formation--Diagnosis--Treatme.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Research Paper/Background/Gallstone/Gallstone Formation, Diagnosis, Treatment, and Prevention/Chapter-12---Role-of-probiotics-in-_2024_Gallstone-Formation--Diagnosis--Tre.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Research Paper/Background/Gallstone/Gallstone Formation, Diagnosis, Treatment, and Prevention/Chapter-13---Chemical-and-herbal-treat_2024_Gallstone-Formation--Diagnosis--.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Research Paper/Background/Gallstone/Gallstone Formation, Diagnosis, Treatment, and Prevention/Chapter-14---The-implication-of-gall-stones-in_2024_Gallstone-Formation--Dia.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Research Paper/Background/Gallstone/Gallstone Formation, Diagnosis, Treatment, and Prevention/Chapter-15---Application-of-computational-approaches-f_2024_Gallstone-Format.pdf" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Jupyter Notebook" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="yqn1e23 &lt;youquanneu3@gmail.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -25,7 +88,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/youquanneu/COMP3200_Individual_Project.git&quot;,
-    &quot;accountId&quot;: &quot;c57d3f62-10bb-4427-b566-73a3fe26427c&quot;
+    &quot;accountId&quot;: &quot;fc2f38e7-7fc3-4920-a576-8eab60e2b014&quot;
   }
 }</component>
   <component name="ProjectColorInfo">{
@@ -36,30 +99,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;ai.playground.ignore.import.keys.banner.in.settings&quot;: &quot;true&quot;,
-    &quot;database.data.extractors.current.export.id&quot;: &quot;Excel (xlsx)&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/yqn1e23/PycharmProjects/COMP3200_Individual_Project/Documentation/SubDraft&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "ai.playground.ignore.import.keys.banner.in.settings": "true",
+    "database.data.extractors.current.export.id": "Excel (xlsx)",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/yqn1e23/PycharmProjects/COMP3200_Individual_Project/Research Paper",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Research Paper" />
+      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Documentation\Final Report" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Documentation\SubDraft" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Research Paper" />
+      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Documentation\Final Report\SubDraft" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Documentation\SubDraft" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Research Paper\Extreme Learning Machine" />
     </key>
@@ -67,8 +134,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-PY-253.29346.142" />
-        <option value="bundled-python-sdk-f2b7a9f6281b-6e1f45a539f7-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-253.29346.142" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-PY-253.29346.308" />
+        <option value="bundled-python-sdk-ca5e2b39c7df-6e1f45a539f7-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-253.29346.308" />
       </set>
     </attachedChunks>
   </component>
@@ -92,6 +159,8 @@
       <workItem from="1766489696084" duration="5161000" />
       <workItem from="1766660394839" duration="1507000" />
       <workItem from="1766726154757" duration="1212000" />
+      <workItem from="1769496252290" duration="2921000" />
+      <workItem from="1769500129867" duration="14839000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor">
       <option name="closed" value="true" />
@@ -141,7 +210,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766664659149</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Progress Report">
+      <option name="closed" value="true" />
+      <created>1769525478467</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1769525478467</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -153,6 +230,8 @@
     <MESSAGE value="Draft structure" />
     <MESSAGE value="Update documentation" />
     <MESSAGE value="Update documentation to draft" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update documentation to draft" />
+    <MESSAGE value="Update some others resources" />
+    <MESSAGE value="Progress Report" />
+    <option name="LAST_COMMIT_MESSAGE" value="Progress Report" />
   </component>
 </project>
