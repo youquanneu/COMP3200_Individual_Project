@@ -124,6 +124,7 @@
       <workItem from="1769500129867" duration="14915000" />
       <workItem from="1769571660912" duration="13234000" />
       <workItem from="1769653136847" duration="17880000" />
+      <workItem from="1770105516789" duration="12335000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor">
       <option name="closed" value="true" />
@@ -214,16 +215,5 @@
     <MESSAGE value="Update articles" />
     <MESSAGE value="Data Analysis" />
     <option name="LAST_COMMIT_MESSAGE" value="Data Analysis" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="jupyter-line">
-          <url>file://$PROJECT_DIR$/Pipeline/DataAnalysis.ipynb</url>
-          <line>1</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
