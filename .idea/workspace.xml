@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Half way of BMI, Obesity recovering">
+    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Finish BMI and Water fixing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/DataAnalysis.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/DataAnalysis.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/FeaturesAnalysis.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/FeaturesAnalysis.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/FeaturesAnalysis2.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipeline/FeaturesAnalysis2.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/FeaturesAnalysis2.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +128,9 @@
       <workItem from="1770105516789" duration="12437000" />
       <workItem from="1770178303442" duration="18749000" />
       <workItem from="1770259953823" duration="6107000" />
-      <workItem from="1770275997862" duration="19022000" />
+      <workItem from="1770275997862" duration="19224000" />
+      <workItem from="1770342403096" duration="8498000" />
+      <workItem from="1770375852139" duration="11409000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor">
       <option name="closed" value="true" />
@@ -228,7 +228,15 @@
       <option name="project" value="LOCAL" />
       <updated>1770209317320</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Finish BMI and Water fixing">
+      <option name="closed" value="true" />
+      <created>1770297336623</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1770297336623</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -246,6 +254,7 @@
     <MESSAGE value="Data Analysis" />
     <MESSAGE value="Modify Data Analysis Sheet" />
     <MESSAGE value="Half way of BMI, Obesity recovering" />
-    <option name="LAST_COMMIT_MESSAGE" value="Half way of BMI, Obesity recovering" />
+    <MESSAGE value="Finish BMI and Water fixing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finish BMI and Water fixing" />
   </component>
 </project>
