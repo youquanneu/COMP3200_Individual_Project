@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Finish BMI and Water fixing">
+    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Code modifying">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pipeline/FeaturesAnalysis2.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/FeaturesAnalysis2.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipeline/FeaturesAnalysis3.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/FeaturesAnalysis3.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,12 +46,12 @@
     &quot;assignee&quot;: &quot;youquanneu&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/youquanneu/COMP3200_Individual_Project.git",
-    "accountId": "47b516a6-9286-4761-a015-70cf786347ef"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/youquanneu/COMP3200_Individual_Project.git&quot;,
+    &quot;accountId&quot;: &quot;47b516a6-9286-4761-a015-70cf786347ef&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
@@ -131,7 +132,8 @@
       <workItem from="1770275997862" duration="19224000" />
       <workItem from="1770342403096" duration="8498000" />
       <workItem from="1770375852139" duration="11409000" />
-      <workItem from="1770453137453" duration="6420000" />
+      <workItem from="1770453137453" duration="6582000" />
+      <workItem from="1770539929179" duration="11278000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor">
       <option name="closed" value="true" />
@@ -237,7 +239,23 @@
       <option name="project" value="LOCAL" />
       <updated>1770297336623</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Code modifying">
+      <option name="closed" value="true" />
+      <created>1770459622238</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1770459622238</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Code modifying">
+      <option name="closed" value="true" />
+      <created>1770459762034</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1770459762034</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -256,6 +274,7 @@
     <MESSAGE value="Modify Data Analysis Sheet" />
     <MESSAGE value="Half way of BMI, Obesity recovering" />
     <MESSAGE value="Finish BMI and Water fixing" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finish BMI and Water fixing" />
+    <MESSAGE value="Code modifying" />
+    <option name="LAST_COMMIT_MESSAGE" value="Code modifying" />
   </component>
 </project>
