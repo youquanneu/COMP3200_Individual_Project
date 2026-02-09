@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Code modifying">
+    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Water and Fat combine together">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pipeline/FeaturesAnalysis2.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/FeaturesAnalysis2.ipynb" afterDir="false" />
     </list>
@@ -133,7 +133,10 @@
       <workItem from="1770375852139" duration="11409000" />
       <workItem from="1770453137453" duration="6582000" />
       <workItem from="1770539929179" duration="11997000" />
-      <workItem from="1770556236447" duration="5530000" />
+      <workItem from="1770556236447" duration="7118000" />
+      <workItem from="1770604290681" duration="629000" />
+      <workItem from="1770626181602" duration="1837000" />
+      <workItem from="1770633003641" duration="3703000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor">
       <option name="closed" value="true" />
@@ -263,7 +266,15 @@
       <option name="project" value="LOCAL" />
       <updated>1770551321003</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Water and Fat combine together">
+      <option name="closed" value="true" />
+      <created>1770561831408</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1770561831408</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -283,6 +294,7 @@
     <MESSAGE value="Half way of BMI, Obesity recovering" />
     <MESSAGE value="Finish BMI and Water fixing" />
     <MESSAGE value="Code modifying" />
-    <option name="LAST_COMMIT_MESSAGE" value="Code modifying" />
+    <MESSAGE value="Water and Fat combine together" />
+    <option name="LAST_COMMIT_MESSAGE" value="Water and Fat combine together" />
   </component>
 </project>
