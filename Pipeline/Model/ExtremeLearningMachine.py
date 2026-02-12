@@ -38,35 +38,31 @@ class ExtremeLearningMachine:
     def apply_hidden_bias(self, hidden_bias):
         self.hiddenBias = hidden_bias
 
-    def fit(self, input_features, target_features):
-        if target_features.ndim == 1:
-            target_features = target_features.reshape(-1, 1)
-        linear_output = input_features @ self.hiddenWeights + self.hiddenBias
-        self.hidden_layer_output = self.activationFunction(linear_output)
-        self.output_weights = np.linalg.pinv(self.hidden_layer_output) @ target_features
-
     def get_output_weights(self):
         return self.output_weights
 
+    def fit(self, input_features, target_features):
+        self.regularized_fit(input_features, target_features, self.regularizationLambda)
     def regularized_fit(self, input_features, target_features, regularization_lambda):
-
         self.regularizationLambda = regularization_lambda
+        if target_features.ndim == 1:
+            target_features = target_features.reshape(-1, 1)
 
         linear_output = input_features @ self.hiddenWeights + self.hiddenBias
-        hidden_layer_output = self.activationFunction(linear_output)
+        self.hidden_layer_output = self.activationFunction(linear_output)
 
-        gram_matrix = hidden_layer_output.T @ hidden_layer_output
+        if regularization_lambda == 0:
+            self.output_weights = np.linalg.pinv(self.hidden_layer_output) @ target_features
 
-        identity_matrix = np.eye(self.hiddenSize)
-
-        ridge_matrix = gram_matrix + (self.regularizationLambda * identity_matrix)
-
-        try:
-            inverse_ridge = np.linalg.inv(ridge_matrix)
-        except np.linalg.LinAlgError:
-            inverse_ridge = np.linalg.pinv(ridge_matrix)
-
-        self.output_weights = inverse_ridge @ hidden_layer_output.T @ target_features
+        else :
+            gram_matrix = self.hidden_layer_output.T @ self.hidden_layer_output
+            identity_matrix = np.eye(self.hiddenSize)
+            ridge_matrix = gram_matrix + (self.regularizationLambda * identity_matrix)
+            try:
+                inverse_ridge = np.linalg.inv(ridge_matrix)
+            except np.linalg.LinAlgError:
+                inverse_ridge = np.linalg.pinv(ridge_matrix)
+            self.output_weights = inverse_ridge @ self.hidden_layer_output.T @ target_features
 
     def predict(self, input_features):
         linear_output = input_features @ self.hiddenWeights + self.hiddenBias
