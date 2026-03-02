@@ -2,7 +2,7 @@ import numpy as np
 
 class ExtremeLearningMachine:
 
-    def __init__(self, features_size, hidden_size, activation_function=np.tanh, regularization_lambda=0.0):
+    def __init__(self, features_size, hidden_size, activation_function, regularization_lambda=0.0):
 
         self.featureSize = features_size
         self.hiddenSize  = hidden_size
@@ -35,7 +35,7 @@ class ExtremeLearningMachine:
     def fit(self, features_data, target_data):
 
         features_data = np.asarray(features_data)
-        target_data = np.asarray(target_data)
+        target_data  = np.asarray(target_data)
 
         if self.hiddenWeights is None:
             self.featureSize = features_data.shape[1]
@@ -50,6 +50,7 @@ class ExtremeLearningMachine:
                 target_data = one_hot
             else:
                 target_data = target_data.reshape(-1, 1)
+
         self.regularized_fit(features_data, target_data, self.regularizationLambda)
 
     def regularized_fit(self, features_data, target_data, regularization_lambda):
@@ -95,36 +96,3 @@ class ExtremeLearningMachine:
 
     def get_output_weights(self):
         return self.outputWeights
-
-
-
-
-    def set_evaluation_metrics(self, features_data, target_data):
-        target_data = np.array(target_data).ravel()
-        def safe_div(n, d):
-            return n / d if d != 0 else 0.0
-
-        prediction = self.predict(features_data).ravel()
-        true_positive  = ((target_data == 1) & (prediction == 1)).sum()
-        true_negative  = ((target_data == 0) & (prediction == 0)).sum()
-        false_negative = ((target_data == 1) & (prediction == 0)).sum()
-        false_positive = ((target_data == 0) & (prediction == 1)).sum()
-
-        self.accuracy    = safe_div((true_positive + true_negative), features_data.shape[0])
-        self.precision   = safe_div(true_positive , (true_positive + false_positive))
-        self.recall      = safe_div(true_positive , (true_positive + false_negative))
-        self.specificity = safe_div(true_negative , (true_negative + false_positive))
-        self.f1_score    = safe_div(2 * (self.precision * self.recall) , (self.precision + self.recall))
-    def get_evaluation_metrics(self):
-        return self.accuracy, self.precision, self.recall, self.specificity, self.f1_score
-
-    def get_accuracy(self):
-        return self.accuracy
-    def get_precision(self):
-        return self.precision
-    def get_recall(self):
-        return self.recall
-    def get_specificity(self):
-        return self.specificity
-    def get_f1_score(self):
-        return self.f1_score
