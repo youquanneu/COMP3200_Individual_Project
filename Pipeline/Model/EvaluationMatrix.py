@@ -58,8 +58,8 @@ class EvaluationMatrix:
         }
 
     @staticmethod
-    def k_fold_metrics(metricsList):
-        df_folds = pd.DataFrame(metricsList)
+    def k_fold_metrics(metrics_list):
+        df_folds = pd.DataFrame(metrics_list)
         summary = df_folds.agg(['mean', 'std', 'min', 'max']).transpose()
 
         final_dict = {}

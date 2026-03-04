@@ -32,6 +32,7 @@
 #         adjust_solution = food_solution + rng.randn(0,self.sigma)
 #
 #     def generate_iterate_neighbour(self,highest_score_solution, current_solution):
+import time
 
 import numpy as np
 import copy
@@ -132,7 +133,7 @@ class ABC_ELM:
 
         # Main Iteration Loop [cite: 260]
         for current_iter in range(1, self.iter_max + 1):
-            print(current_iter , " start")
+            startt = time.time()
 
             # 2. Employed Bees Phase [cite: 246]
             for i in range(self.SN):
@@ -180,7 +181,7 @@ class ABC_ELM:
                     self.fitness[i], _ = self._evaluate_fitness(self.population[i], X_train_np, y_train_np)
                     self.trials[i] = 0
 
-            print(current_iter, " end")
+            print(current_iter, " end : ", time.time() - startt)
 
     def predict(self, X_test):
         if self.best_elm is None:

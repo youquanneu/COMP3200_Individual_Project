@@ -3,7 +3,7 @@ from sklearn.model_selection import train_test_split, StratifiedKFold
 from sklearn.preprocessing import StandardScaler
 
 
-class KFoldEvaluation:
+class DataSplit:
     def __init__(self, random_state: int = 42 , test_size = 0.2 , k_fold:int = 5):
         self.random_state = random_state
         self.test_size = test_size
@@ -18,7 +18,7 @@ class KFoldEvaluation:
         self.k_fold_dataset = None
         self.main_scaler    = None
 
-    def data_spiting(self, x, y):
+    def k_fold_data_spiting(self, x, y):
         x_train, x_test, y_train, y_test = train_test_split(
             x, y,
             test_size= self.test_size,
