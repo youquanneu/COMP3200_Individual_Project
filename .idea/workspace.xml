@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Left Meta Heuristic for model implementation">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Model/ABC_ELM.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Model/ABC_ELM.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Model/EvaluationMatrix.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Model/EvaluationMatrix.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Model/MetaheuristicOptimization.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Process/MetaheuristicOptimization.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Model/ParameterSelection.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Process/ParameterSelection.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipeline/Process/ParameterSelection.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Process/ParameterSelection.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,7 +163,7 @@
       <workItem from="1772529333794" duration="2316000" />
       <workItem from="1772584669797" duration="5974000" />
       <workItem from="1772607700505" duration="14574000" />
-      <workItem from="1772670858843" duration="8442000" />
+      <workItem from="1772670858843" duration="8804000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor">
       <option name="closed" value="true" />
@@ -369,7 +365,15 @@
       <option name="project" value="LOCAL" />
       <updated>1772676152665</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Left Meta Heuristic for model implementation">
+      <option name="closed" value="true" />
+      <created>1772679736178</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1772679736178</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
