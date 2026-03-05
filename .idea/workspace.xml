@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="ABC-ELM following paper">
+    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Left Meta Heuristic for model implementation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Model/EvaluationELM.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Model/EvaluationELM.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipeline/Model/ABC_ELM.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Model/ABC_ELM.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pipeline/Model/EvaluationMatrix.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Model/EvaluationMatrix.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Model/ParameterSelection.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Model/ParameterSelection.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipeline/Model/MetaheuristicOptimization.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Process/MetaheuristicOptimization.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipeline/Model/ParameterSelection.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Process/ParameterSelection.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,11 +97,11 @@
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Documentation\SubDraft" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Pipeline\Process" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Pipeline\Data" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Research Paper" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Documentation\Final Report\SubDraft" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Documentation\SubDraft" />
-      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Research Paper\Extreme Learning Machine" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -166,7 +167,7 @@
       <workItem from="1772529333794" duration="2316000" />
       <workItem from="1772584669797" duration="5974000" />
       <workItem from="1772607700505" duration="14574000" />
-      <workItem from="1772670858843" duration="5038000" />
+      <workItem from="1772670858843" duration="8442000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor">
       <option name="closed" value="true" />
@@ -360,7 +361,15 @@
       <option name="project" value="LOCAL" />
       <updated>1772628772305</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Left Meta Heuristic for model implementation">
+      <option name="closed" value="true" />
+      <created>1772676152665</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1772676152665</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -387,7 +396,8 @@
     <MESSAGE value="Add predefined metaheuristic" />
     <MESSAGE value="Redefined pipeline" />
     <MESSAGE value="ABC-ELM following paper" />
-    <option name="LAST_COMMIT_MESSAGE" value="ABC-ELM following paper" />
+    <MESSAGE value="Left Meta Heuristic for model implementation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Left Meta Heuristic for model implementation" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$EvaluationMatrix.coverage" NAME="EvaluationMatrix Coverage Results" MODIFIED="1772674652013" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Model" />

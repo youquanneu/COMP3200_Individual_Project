@@ -13,10 +13,10 @@ class EvaluationMatrix:
         self.y_pred = np.asarray(y_pred).ravel()
         self.n = len(self.y_true)
 
-        self.TP = sum(1 for a, p in zip(self.y_true, self.y_pred) if a == 1 and p == 1)
-        self.TN = sum(1 for a, p in zip(self.y_true, self.y_pred) if a == 0 and p == 0)
-        self.FP = sum(1 for a, p in zip(self.y_true, self.y_pred) if a == 0 and p == 1)
-        self.FN = sum(1 for a, p in zip(self.y_true, self.y_pred) if a == 1 and p == 0)
+        self.TP = np.sum((self.y_true == 1) & (self.y_pred == 1))
+        self.TN = np.sum((self.y_true == 0) & (self.y_pred == 0))
+        self.FP = np.sum((self.y_true == 0) & (self.y_pred == 1))
+        self.FN = np.sum((self.y_true == 1) & (self.y_pred == 0))
 
         self.accuracy   = safe_divide(self.TP + self.TN, self.n)
         self.precision  = safe_divide(self.TP, self.TP + self.FP)
@@ -28,6 +28,15 @@ class EvaluationMatrix:
         self.bal_accuracy = (self.recall + self.specificity) / 2
         mcc_denominator = math.sqrt((self.TP + self.FP) * (self.TP + self.FN) * (self.TN + self.FP) * (self.TN + self.FN))
         self.mcc        = safe_divide(self.TP * self.TN - self.FP * self.FN, mcc_denominator)
+
+    def get_tp(self):
+        return self.TP
+    def get_tn(self):
+        return self.TN
+    def get_fp(self):
+        return self.FP
+    def get_fn(self):
+        return self.FN
 
     def get_accuracy(self)      : return self.accuracy
     def get_precision(self)     : return self.precision

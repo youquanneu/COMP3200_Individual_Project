@@ -1,37 +1,3 @@
-# import numpy as np
-#
-#
-# class ABC_ELM:
-#
-#     def __init__(self, elm_model, SN=10, max_iter=100, limit=10):
-#         self.elm = elm_model
-#         self.SN = SN  # Number of food sources (employed bees)
-#         self.max_iter = max_iter  # Termination condition
-#         self.limit = limit  # Abandonment limit for scout bees
-#
-#         # D = (d + 1) * L
-#         self.D = (self.elm.featureSize + 1) * self.elm.hiddenSize
-#
-#         # Initialize population within [-1, 1] as specified in literature
-#         self.population = np.random.uniform(-1, 1, (self.SN, self.D))
-#         self.fitness = np.zeros(self.SN)
-#         self.trials = np.zeros(self.SN)
-#
-#         self.best_solution = None
-#         self.best_fitness = -1.0
-#
-#     def apply_food_solution(self, elm_model, food_solution):
-#         weight_size     = elm_model.featureSize * elm_model.hiddenSize
-#         hidden_weights  = food_solution[:weight_size].reshape(elm_model.featureSize, elm_model.hiddenSize)
-#         hidden_bias     = food_solution[weight_size:]
-#
-#         elm_model.apply_hidden_weights(hidden_weights)
-#         elm_model.apply_hidden_bias(hidden_bias)
-#
-#     def generate_random_neighbour(self,food_solution):
-#         adjust_solution = food_solution + rng.randn(0,self.sigma)
-#
-#     def generate_iterate_neighbour(self,highest_score_solution, current_solution):
 import time
 
 import numpy as np
@@ -40,8 +6,10 @@ from ExtremeLearningMachine import ExtremeLearningMachine
 
 
 class ABC_ELM:
-    def __init__(self, feature_size, hidden_size, activation_function, regularization_lambda=0.0,
-                 SN=10, limit=10, iter_max=100, P_initial=0.0, P_final=1.0):
+    def __init__(self,
+                 feature_size, hidden_size, activation_function, regularization_lambda=0.0,
+                 SN=10, limit=10, iter_max=100,
+                 P_initial=0.0, P_final=1.0):
         """
         Implementation of ABC(II)-ELM based on Alshamiri et al. (2018).
         """
