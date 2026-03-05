@@ -91,25 +91,18 @@ class EvaluationMatrix:
         return final_row
     @staticmethod
     def random_seed_metrics(data_frame):
-        avg_cols = [col for col in data_frame.columns if col.startswith('avg_')]
-        clean_df = data_frame[avg_cols]
+        ignore_cols = ['Data_Seed', 'Fold', 'ELM_Seed']
+        metric_cols = [col for col in data_frame.columns if col not in ignore_cols]
+        clean_df = data_frame[metric_cols]
 
         summary_df = clean_df.agg(['mean', 'std', 'min', 'max']).transpose()
 
         flat_results = {}
         for metric, row in summary_df.iterrows():
-            flat_results[f"{metric}_Seed_Mean"] = round(row['mean'], 4)
-            flat_results[f"{metric}_Seed_Std"]  = round(row['std'], 4)
-            flat_results[f"{metric}_Seed_Min"]  = round(row['min'], 4)
-            flat_results[f"{metric}_Seed_Max"]  = round(row['max'], 4)
+            flat_results[f"avg_{metric}_Seed_Mean"] = round(row['mean'], 4)
+            flat_results[f"avg_{metric}_Seed_Std"] = round(row['std'], 4)
+            flat_results[f"avg_{metric}_Seed_Min"] = round(row['min'], 4)
+            flat_results[f"avg_{metric}_Seed_Max"] = round(row['max'], 4)
 
         final_row = pd.DataFrame([flat_results])
-        hidden_size = data_frame['Hidden_Nodes'].iloc[0]
-        activation = data_frame['Activation'].iloc[0]
-        lam_val = data_frame['Lambda_Value'].iloc[0]
-
-        final_row.insert(0, 'Hidden_Nodes', hidden_size)
-        final_row.insert(1, 'Activation', activation)
-        final_row.insert(2, 'Lambda_Value', lam_val)
-
         return final_row
