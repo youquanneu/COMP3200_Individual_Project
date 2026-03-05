@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Modifying code">
+    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Modifying code, left ABC">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Model/EvaluationELM.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Model/EvaluationELM.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Model/EvaluationMatrix.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Model/EvaluationMatrix.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pipeline/Process/MetaheuristicOptimization.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Process/MetaheuristicOptimization.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pipeline/Process/ParameterSelection.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Process/ParameterSelection.ipynb" afterDir="false" />
     </list>
@@ -19,8 +17,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Jupyter Notebook" />
         <option value="Python Script" />
+        <option value="Jupyter Notebook" />
       </list>
     </option>
   </component>
@@ -78,7 +76,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "ai.playground.ignore.import.keys.banner.in.settings": "true",
-    "database.data.extractors.current.export.id": "Comma-separated (CSV)_id",
+    "database.data.extractors.current.export.id": "Excel (xlsx)",
     "git-widget-placeholder": "master",
     "last_opened_file_path": "C:/Users/yqn1e23/PycharmProjects/COMP3200_Individual_Project/Research Paper",
     "node.js.detected.package.eslint": "true",
@@ -168,7 +166,7 @@
       <workItem from="1772529333794" duration="2316000" />
       <workItem from="1772584669797" duration="5974000" />
       <workItem from="1772607700505" duration="14574000" />
-      <workItem from="1772670858843" duration="22849000" />
+      <workItem from="1772670858843" duration="28500000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor">
       <option name="closed" value="true" />
@@ -402,7 +400,15 @@
       <option name="project" value="LOCAL" />
       <updated>1772698860477</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Modifying code, left ABC">
+      <option name="closed" value="true" />
+      <created>1772702032700</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1772702032700</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -432,7 +438,8 @@
     <MESSAGE value="Left Meta Heuristic for model implementation" />
     <MESSAGE value="Left Meta Heuristic for model implementation .2" />
     <MESSAGE value="Modifying code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modifying code" />
+    <MESSAGE value="Modifying code, left ABC" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modifying code, left ABC" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$EvaluationMatrix.coverage" NAME="EvaluationMatrix Coverage Results" MODIFIED="1772700298986" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Model" />
