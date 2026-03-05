@@ -75,9 +75,6 @@ class EvaluationELM:
         agg_results_list = []
 
         for hidden_size in hidden_size_range:
-            print(f"Hidden Node Size: {hidden_size}")
-
-            # Stop discarding the raw data
             raw_res, agg_res = self.ranged_seed_cross_validation(
                 hidden_size=hidden_size
             )
@@ -93,8 +90,6 @@ class EvaluationELM:
         agg_results_list = []
 
         for lambda_value in lambda_range:
-            print(f"Lambda Value: {lambda_value}")
-
             raw_res, agg_res = self.ranged_seed_cross_validation(
                 hidden_size=hidden_size,
                 regularization_lambda=lambda_value
@@ -112,9 +107,6 @@ class EvaluationELM:
         agg_results_list = []
 
         for hidden_size in hidden_size_range:
-            print(f"Hidden Node Size: {hidden_size}")
-
-            # Unpack the two dataframes returned by grid_search_lambda
             raw_res, agg_res = self.grid_search_lambda(
                 hidden_size=hidden_size,
                 lambda_range=lambda_range

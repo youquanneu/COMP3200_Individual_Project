@@ -25,6 +25,9 @@ class EvaluationMatrix:
         self.specificity= safe_divide(self.TN, self.TN + self.FP)
 
         self.f1_score   = safe_divide(2 * self.precision * self.recall, self.precision + self.recall)
+        beta_sq = 4.0
+        self.f2_score   = safe_divide((1 + beta_sq) * self.precision * self.recall,(beta_sq * self.precision) + self.recall)
+
         self.bal_accuracy = (self.recall + self.specificity) / 2
         mcc_denominator = math.sqrt((self.TP + self.FP) * (self.TP + self.FN) * (self.TN + self.FP) * (self.TN + self.FN))
         self.mcc        = safe_divide(self.TP * self.TN - self.FP * self.FN, mcc_denominator)
@@ -44,6 +47,7 @@ class EvaluationMatrix:
     def get_npv(self)           : return self.npv
     def get_specificity(self)   : return self.specificity
     def get_f1_score(self)      : return self.f1_score
+    def get_f2_score(self)      : return self.f2_score
     def get_bal_accuracy(self)  : return self.bal_accuracy
     def get_mcc(self)           : return self.mcc
 
@@ -55,6 +59,7 @@ class EvaluationMatrix:
             "NPV"               : self.get_npv(),
             "Specificity"       : self.get_specificity(),
             "F1-Score"          : self.get_f1_score(),
+            "F2-Score"          : self.f2_score,
             "Balanced Accuracy" : self.get_bal_accuracy(),
             "MCC"               : self.get_mcc()
         }
@@ -89,8 +94,9 @@ class EvaluationMatrix:
         final_row.insert(2,'Lambda_Value',regularization_lambda)
 
         return final_row
+
     @staticmethod
-    def random_seed_metrics(data_frame):
+    def random_seed_metrics(data_frame, kappa=3.0):
         ignore_cols = ['Data_Seed', 'Fold', 'ELM_Seed']
         metric_cols = [col for col in data_frame.columns if col not in ignore_cols]
         clean_df = data_frame[metric_cols]
@@ -103,6 +109,12 @@ class EvaluationMatrix:
             flat_results[f"avg_{metric}_Seed_Std"] = round(row['std'], 4)
             flat_results[f"avg_{metric}_Seed_Min"] = round(row['min'], 4)
             flat_results[f"avg_{metric}_Seed_Max"] = round(row['max'], 4)
+
+        f2_mean = flat_results.get("avg_F2-Score_Seed_Mean", 0)
+        f2_std = flat_results.get("avg_F2-Score_Seed_Std", 0)
+
+        # Calculate Worst-Case Stability Metric
+        flat_results["Clinical_F2_LCB"] = round(f2_mean - (kappa * f2_std), 4)
 
         final_row = pd.DataFrame([flat_results])
         return final_row

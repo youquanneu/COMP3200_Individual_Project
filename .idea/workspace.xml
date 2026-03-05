@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Left Meta Heuristic for model implementation .2">
+    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Modifying code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Model/ABC_ELM.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Model/ABC_ELM.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pipeline/Model/EvaluationELM.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Model/EvaluationELM.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pipeline/Model/EvaluationMatrix.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Model/EvaluationMatrix.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pipeline/Process/MetaheuristicOptimization.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Process/MetaheuristicOptimization.ipynb" afterDir="false" />
@@ -169,7 +168,7 @@
       <workItem from="1772529333794" duration="2316000" />
       <workItem from="1772584669797" duration="5974000" />
       <workItem from="1772607700505" duration="14574000" />
-      <workItem from="1772670858843" duration="19496000" />
+      <workItem from="1772670858843" duration="22849000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor">
       <option name="closed" value="true" />
@@ -395,7 +394,15 @@
       <option name="project" value="LOCAL" />
       <updated>1772692553281</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Modifying code">
+      <option name="closed" value="true" />
+      <created>1772698860477</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1772698860477</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -424,13 +431,14 @@
     <MESSAGE value="ABC-ELM following paper" />
     <MESSAGE value="Left Meta Heuristic for model implementation" />
     <MESSAGE value="Left Meta Heuristic for model implementation .2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Left Meta Heuristic for model implementation .2" />
+    <MESSAGE value="Modifying code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modifying code" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$EvaluationMatrix.coverage" NAME="EvaluationMatrix Coverage Results" MODIFIED="1772697816821" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Model" />
+    <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$EvaluationMatrix.coverage" NAME="EvaluationMatrix Coverage Results" MODIFIED="1772700298986" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Model" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$ExtremeLearningMachine.coverage" NAME="ExtremeLearningMachine Coverage Results" MODIFIED="1772452842941" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Model" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$ABC_ELM.coverage" NAME="ABC_ELM Coverage Results" MODIFIED="1772623748458" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Model" />
-    <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$EvaluationELM.coverage" NAME="EvaluationELM Coverage Results" MODIFIED="1772698292556" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Model" />
+    <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$EvaluationELM.coverage" NAME="EvaluationELM Coverage Results" MODIFIED="1772699599605" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Model" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$DataSplit.coverage" NAME="DataSplit Coverage Results" MODIFIED="1772445500385" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Model" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$ABC_ELM2.coverage" NAME="ABC_ELM2 Coverage Results" MODIFIED="1772693290471" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Model" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$sdf.coverage" NAME="sdf Coverage Results" MODIFIED="1770799329042" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Model" />
