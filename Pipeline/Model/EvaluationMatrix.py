@@ -58,9 +58,9 @@ class EvaluationMatrix:
         }
 
     @staticmethod
-    def k_fold_metrics(metrics_list):
-        df_folds = pd.DataFrame(metrics_list)
-        summary = df_folds.agg(['mean', 'std', 'min', 'max']).transpose()
+    def k_fold_metrics(dataframe,activation_function, hidden_size,regularization_lambda=0.0):
+
+        summary = dataframe.agg(['mean', 'std', 'min', 'max']).transpose()
 
         final_dict = {}
         for metric, row in summary.iterrows():
@@ -69,9 +69,19 @@ class EvaluationMatrix:
             final_dict[f"min_{metric}"] = round(row['min'], 4)
             final_dict[f"max_{metric}"] = round(row['max'], 4)
 
-        return pd.DataFrame([final_dict])
+        final_row = pd.DataFrame([final_dict])
+        final_row.insert(0, 'Hidden_Nodes', hidden_size)
+
+        if hasattr(activation_function, '__name__'):
+            final_row.insert(1, 'Activation', activation_function.__name__)
+        else:
+            final_row.insert(1, 'Activation', 'Unknown')
+
+        final_row.insert(2,'Lambda_Value',regularization_lambda)
+
+        return final_row
     @staticmethod
-    def random_seed_metrics(data_frame, activation_function, hidden_size,regularization_lambda=0):
+    def random_seed_metrics(data_frame):
         avg_cols = [col for col in data_frame.columns if col.startswith('avg_')]
         clean_df = data_frame[avg_cols]
 
@@ -85,14 +95,12 @@ class EvaluationMatrix:
             flat_results[f"{metric}_Seed_Max"]  = round(row['max'], 4)
 
         final_row = pd.DataFrame([flat_results])
+        hidden_size = data_frame['Hidden_Nodes'].iloc[0]
+        activation = data_frame['Activation'].iloc[0]
+        lam_val = data_frame['Lambda_Value'].iloc[0]
 
         final_row.insert(0, 'Hidden_Nodes', hidden_size)
-
-        if hasattr(activation_function, '__name__'):
-            final_row.insert(1, 'Activation', activation_function.__name__)
-        else:
-            final_row.insert(1, 'Activation', 'Unknown')
-
-        final_row.insert(2,'Lambda Value',regularization_lambda)
+        final_row.insert(1, 'Activation', activation)
+        final_row.insert(2, 'Lambda_Value', lam_val)
 
         return final_row

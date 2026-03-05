@@ -43,7 +43,10 @@ class EvaluationELM:
 
         cross_fold_results = pd.DataFrame(results_list)
 
-        return cross_fold_results , EvaluationMatrix.k_fold_metrics(results_list)
+        return cross_fold_results , EvaluationMatrix.k_fold_metrics(cross_fold_results,
+                                                                    activation_function,
+                                                                    hidden_size,
+                                                                    regularization_lambda)
 
 
     @staticmethod
@@ -75,10 +78,7 @@ class EvaluationELM:
 
         random_seed_results = pd.DataFrame(results_list)
 
-        return random_seed_results, EvaluationMatrix.random_seed_metrics(random_seed_results,
-                                                                    activation_function,
-                                                                    hidden_size,
-                                                                    regularization_lambda)
+        return random_seed_results, EvaluationMatrix.random_seed_metrics(random_seed_results)
 
     @staticmethod
     def grid_search_hidden_size(x, y, activation_function,
