@@ -1,31 +1,45 @@
 import time
-
 import numpy as np
 import copy
 
 from Pipeline.Model.ExtremeLearningMachine import ExtremeLearningMachine
 
 
-class ABC_ELM:
+class ABC_ELM2:
     def __init__(self,
                  feature_size, hidden_size, activation_function, regularization_lambda=0.0,
+                 algo_type='algo3', random_seed=None,
                  SN=10, limit=10, iter_max=100,
-                 P_initial=0.0, P_final=1.0):
-        """
-        Implementation of ABC(II)-ELM based on Alshamiri et al. (2018).
-        """
+                 P_initial=0.0, P_final=1.0,
+                 Chg_max=20.0, Chg_min=3.0, sigma_initial=0.8, sigma_final=0.1, nmi=3):
+
         self.d = feature_size
         self.L = hidden_size
-        self.D = (self.d + 1) * self.L  # Total parameters to optimize
+        self.D = (self.d + 1) * self.L
 
         self.activation = activation_function
         self.reg_lambda = regularization_lambda
 
-        self.SN = SN  # Number of food sources/employed bees [cite: 191]
-        self.limit = limit  # Trials before abandoning solution [cite: 253]
-        self.iter_max = iter_max  # Maximum iterations [cite: 235]
-        self.P_initial = P_initial  # Initial copy probability [cite: 232]
-        self.P_final = P_final  # Final copy probability [cite: 232]
+        # Core ABC logic routing
+        self.algo_type = algo_type
+
+        # Localized deterministic RNG (No global side effects)
+        self.rng = np.random.RandomState(random_seed) if random_seed is not None else np.random.RandomState()
+
+        self.SN = SN
+        self.limit = limit
+        self.iter_max = iter_max
+
+        # Algorithm 3 Specifics
+        self.P_initial = P_initial
+        self.P_final = P_final
+
+        # Algorithm 2 Specifics
+        self.Chg_max = Chg_max
+        self.Chg_min = Chg_min
+        self.sigma_initial = sigma_initial
+        self.sigma_final = sigma_final
+        self.nmi = nmi
 
         self.population = []
         self.fitness = np.zeros(self.SN)
@@ -35,64 +49,93 @@ class ABC_ELM:
         self.best_elm = None
 
     def _generate_random_solution(self):
-        # Initial solutions are randomly generated over the range [-1, 1] [cite: 335]
-        return np.random.uniform(-1.0, 1.0, self.D)
+        # Initial solutions are randomly generated over the range [-1, 1]
+        return self.rng.uniform(-1.0, 1.0, self.D)
 
     def _evaluate_fitness(self, S, X, y):
-        # Extract weights and biases from the flattened solution vector
         W = S[:self.d * self.L].reshape(self.d, self.L)
         b = S[self.d * self.L:]
 
-        # Construct ELM and apply the candidate parameters
         elm = ExtremeLearningMachine(self.d, self.L, self.activation, self.reg_lambda)
         elm.apply_hidden_weights(W)
         elm.apply_hidden_bias(b)
 
-        # Compute output weights using MP generalized inverse [cite: 189]
         elm.fit(X, y)
 
-        # Calculate misclassifications
         y_pred = elm.predict(X)
         MC = np.sum(y_pred != np.asarray(y).ravel())
 
-        # Fitness is inversely proportional to misclassifications [cite: 208, 210]
+        # Fitness is inversely proportional to misclassifications
         fitness_val = 1.0 / (1.0 + MC)
         return fitness_val, elm
 
-    def _algorithm_3_neighbor(self, i, current_iter):
+    def _algorithm_2_neighbor(self, i, current_iter):
         """
-        Second neighborhood procedure based on difference between parameters. [cite: 223]
+        First neighborhood procedure inspired by spatial distribution with dynamic variance.
         """
         S_i = self.population[i]
         V_i = np.copy(S_i)
 
-        # Calculate dynamic copy probability [cite: 233]
+        fit_i = self.fitness[i]
+        fit_h = np.max(self.fitness)
+
+        # Intent: Safeguard against division by zero if all fitnesses are 0
+        if fit_h == 0:
+            ChgPerct = self.Chg_max
+        else:
+            ChgPerct = ((fit_h - fit_i) / fit_h) * (self.Chg_max - self.Chg_min) + self.Chg_min
+
+        change_count = int(np.ceil((self.D * ChgPerct) / 100.0))
+        # Ensure at least 1 mutation occurs, but don't exceed dimensions
+        change_count = max(1, min(change_count, self.D))
+
+        # Intent: Shift from exploration (high variance) to exploitation (low variance) over time
+        decay_factor = ((self.iter_max - current_iter) / self.iter_max) ** self.nmi
+        sigma_iter = decay_factor * (self.sigma_initial - self.sigma_final) + self.sigma_final
+
+        indices = self.rng.choice(self.D, size=change_count, replace=False)
+        for j in indices:
+            V_i[j] = S_i[j] + self.rng.normal(0, sigma_iter)
+            V_i[j] = np.clip(V_i[j], -1.0, 1.0)
+
+        return V_i
+
+    def _algorithm_3_neighbor(self, i, current_iter):
+        """
+        Second neighborhood procedure based on cross-solution parameter differences.
+        """
+        S_i = self.population[i]
+        V_i = np.copy(S_i)
+
         P_copy = ((self.P_final - self.P_initial) / self.iter_max) * current_iter + self.P_initial
 
-        # Choose another random solution k != i [cite: 229]
-        k = np.random.choice([idx for idx in range(self.SN) if idx != i])
+        k = self.rng.choice([idx for idx in range(self.SN) if idx != i])
         S_k = self.population[k]
 
         for j in range(self.D):
-            r = np.random.rand()
-            if r >= P_copy:  # [cite: 238]
-                phi = np.random.uniform(-1.0, 1.0)  # [cite: 229]
+            r = self.rng.rand()
+            if r >= P_copy:
+                phi = self.rng.uniform(-1.0, 1.0)
                 V_i[j] = S_i[j] + phi * (S_i[j] - S_k[j])
-                # Boundary constraint handling [cite: 239]
                 V_i[j] = np.clip(V_i[j], -1.0, 1.0)
 
         return V_i
+
+    def _generate_neighbor(self, i, current_iter):
+        # Dynamic Router for Algorithms
+        if self.algo_type == 'algo2':
+            return self._algorithm_2_neighbor(i, current_iter)
+        else:
+            return self._algorithm_3_neighbor(i, current_iter)
 
     def fit(self, X_train, y_train):
         X_train_np = np.asarray(X_train)
         y_train_np = np.asarray(y_train)
 
-        # 1. Initialization Phase [cite: 241]
         for _ in range(self.SN):
             S = self._generate_random_solution()
             self.population.append(S)
 
-        # Evaluate initial population [cite: 245]
         for i in range(self.SN):
             self.fitness[i], elm = self._evaluate_fitness(self.population[i], X_train_np, y_train_np)
             if self.fitness[i] > self.best_fitness:
@@ -100,13 +143,12 @@ class ABC_ELM:
                 self.best_solution = np.copy(self.population[i])
                 self.best_elm = copy.deepcopy(elm)
 
-        # Main Iteration Loop [cite: 260]
         for current_iter in range(1, self.iter_max + 1):
             startt = time.time()
 
-            # 2. Employed Bees Phase [cite: 246]
+            # Employed Bees
             for i in range(self.SN):
-                V_i = self._algorithm_3_neighbor(i, current_iter)
+                V_i = self._generate_neighbor(i, current_iter)
                 fit_v, elm_v = self._evaluate_fitness(V_i, X_train_np, y_train_np)
 
                 if fit_v > self.fitness[i]:
@@ -120,14 +162,14 @@ class ABC_ELM:
                 else:
                     self.trials[i] += 1
 
-            # 3. Onlooker Bees Phase [cite: 247, 248]
-            prob = self.fitness / np.sum(self.fitness)  # [cite: 250]
+            # Onlooker Bees
+            prob = self.fitness / np.sum(self.fitness)
 
             t = 0
             i = 0
             while t < self.SN:
-                if np.random.rand() < prob[i]:
-                    V_i = self._algorithm_3_neighbor(i, current_iter)
+                if self.rng.rand() < prob[i]:
+                    V_i = self._generate_neighbor(i, current_iter)
                     fit_v, elm_v = self._evaluate_fitness(V_i, X_train_np, y_train_np)
 
                     if fit_v > self.fitness[i]:
@@ -143,14 +185,14 @@ class ABC_ELM:
                     t += 1
                 i = (i + 1) % self.SN
 
-            # 4. Scout Bees Phase [cite: 254]
+            # Scout Bees
             for i in range(self.SN):
                 if self.trials[i] >= self.limit:
-                    self.population[i] = self._generate_random_solution()  # [cite: 255]
+                    self.population[i] = self._generate_random_solution()
                     self.fitness[i], _ = self._evaluate_fitness(self.population[i], X_train_np, y_train_np)
                     self.trials[i] = 0
 
-            print(current_iter, " end : ", time.time() - startt)
+            print(f"Iteration {current_iter} end : {time.time() - startt:.4f}s")
 
     def predict(self, X_test):
         if self.best_elm is None:

@@ -4,8 +4,8 @@ import numpy as np
 import pandas as pd
 
 
-def safe_divide(numerator, denominator):
-    return numerator / denominator if denominator > 0 else 0.0
+def safe_divide(numerator: float, denominator: float) -> float:
+    return float(numerator) / float(denominator) if denominator != 0 else 0.0
 
 class EvaluationMatrix:
     def __init__(self, y_true, y_pred):
@@ -18,38 +18,31 @@ class EvaluationMatrix:
         self.FP = np.sum((self.y_true == 0) & (self.y_pred == 1))
         self.FN = np.sum((self.y_true == 1) & (self.y_pred == 0))
 
-        self.accuracy   = safe_divide(self.TP + self.TN, self.n)
-        self.precision  = safe_divide(self.TP, self.TP + self.FP)
-        self.recall     = safe_divide(self.TP, self.TP + self.FN)
-        self.npv        = safe_divide(self.TN, self.TN + self.FN)
-        self.specificity= safe_divide(self.TN, self.TN + self.FP)
+    def get_tp(self): return self.TP
+    def get_tn(self): return self.TN
+    def get_fp(self): return self.FP
+    def get_fn(self): return self.FN
 
-        self.f1_score   = safe_divide(2 * self.precision * self.recall, self.precision + self.recall)
+    def get_accuracy(self)      : return safe_divide(self.TP + self.TN, self.n)
+    def get_precision(self)     : return safe_divide(self.TP, self.TP + self.FP)
+    def get_recall(self)        : return safe_divide(self.TP, self.TP + self.FN)
+    def get_npv(self)           : return safe_divide(self.TN, self.TN + self.FN)
+    def get_specificity(self)   : return safe_divide(self.TN, self.TN + self.FP)
+    def get_bal_accuracy(self)  : return (self.get_recall() + self.get_specificity()) / 2
+    def get_f1_score(self)      :
+        precision = self.get_precision()
+        recall = self.get_recall()
+        return safe_divide(2 * precision * recall, precision + recall)
+    def get_f2_score(self)      :
         beta_sq = 4.0
-        self.f2_score   = safe_divide((1 + beta_sq) * self.precision * self.recall,(beta_sq * self.precision) + self.recall)
-
-        self.bal_accuracy = (self.recall + self.specificity) / 2
-        mcc_denominator = math.sqrt((self.TP + self.FP) * (self.TP + self.FN) * (self.TN + self.FP) * (self.TN + self.FN))
-        self.mcc        = safe_divide(self.TP * self.TN - self.FP * self.FN, mcc_denominator)
-
-    def get_tp(self):
-        return self.TP
-    def get_tn(self):
-        return self.TN
-    def get_fp(self):
-        return self.FP
-    def get_fn(self):
-        return self.FN
-
-    def get_accuracy(self)      : return self.accuracy
-    def get_precision(self)     : return self.precision
-    def get_recall(self)        : return self.recall
-    def get_npv(self)           : return self.npv
-    def get_specificity(self)   : return self.specificity
-    def get_f1_score(self)      : return self.f1_score
-    def get_f2_score(self)      : return self.f2_score
-    def get_bal_accuracy(self)  : return self.bal_accuracy
-    def get_mcc(self)           : return self.mcc
+        precision = self.get_precision()
+        recall = self.get_recall()
+        return safe_divide((1 + beta_sq) * precision * recall,
+                                    (beta_sq * precision) + recall)
+    def get_mcc(self)           :
+        mcc_denominator = math.sqrt(
+            (self.TP + self.FP) * (self.TP + self.FN) * (self.TN + self.FP) * (self.TN + self.FN))
+        return safe_divide(self.TP * self.TN - self.FP * self.FN, mcc_denominator)
 
     def get_all_metrics(self):
         return {
@@ -59,7 +52,7 @@ class EvaluationMatrix:
             "NPV"               : self.get_npv(),
             "Specificity"       : self.get_specificity(),
             "F1-Score"          : self.get_f1_score(),
-            "F2-Score"          : self.f2_score,
+            "F2-Score"          : self.get_f2_score(),
             "Balanced Accuracy" : self.get_bal_accuracy(),
             "MCC"               : self.get_mcc()
         }
