@@ -1,5 +1,7 @@
 import numpy as np
 
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
 class ExtremeLearningMachine:
 
     def __init__(self, features_size, hidden_size, activation_function, regularization_lambda=0.0):
@@ -61,7 +63,6 @@ class ExtremeLearningMachine:
         linear_output = features_data @ self.hiddenWeights + self.hiddenBias
         self.hiddenLayerOutput = self.activationFunction(linear_output)
         sample_size = features_data.shape[0]
-
         if regularization_lambda == 0:
             self.outputWeights = np.linalg.pinv(self.hiddenLayerOutput) @ target_data
 

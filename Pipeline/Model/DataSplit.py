@@ -1,6 +1,6 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split, StratifiedKFold
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import MinMaxScaler
 
 
 class DataSplit:
@@ -30,7 +30,7 @@ class DataSplit:
         x_train = x_train.reset_index(drop=True)
         y_train = y_train.reset_index(drop=True)
 
-        self.main_scaler = StandardScaler()
+        self.main_scaler = MinMaxScaler()
         self.x_train_scaled = pd.DataFrame(self.main_scaler.fit_transform(x_train), columns=x.columns)
         self.x_test_scaled  = pd.DataFrame(self.main_scaler.transform(x_test), columns=x.columns)
 
@@ -45,7 +45,7 @@ class DataSplit:
         for fold_idx, (train_idx, val_idx) in enumerate(kf.split(x_train, y_train)):
             x_train_fold_raw = x_train.iloc[train_idx]
             x_val_fold_raw   = x_train.iloc[val_idx]
-            fold_scaler      = StandardScaler()
+            fold_scaler      = MinMaxScaler()
 
             x_train_fold_scaled = pd.DataFrame(fold_scaler.fit_transform(x_train_fold_raw),columns=x.columns)
             x_val_fold_scaled   = pd.DataFrame(fold_scaler.transform(x_val_fold_raw),columns=x.columns)
@@ -58,4 +58,4 @@ class DataSplit:
                 'scaler': fold_scaler
             }
 
-        return self.x_test,self.y_test,self.k_fold_dataset
+        return self.x_test_scaled,self.y_test,self.k_fold_dataset

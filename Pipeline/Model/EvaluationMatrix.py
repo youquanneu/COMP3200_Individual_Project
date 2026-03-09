@@ -2,6 +2,7 @@ import math
 
 import numpy as np
 import pandas as pd
+from scipy import stats
 
 
 def safe_divide(numerator: float, denominator: float) -> float:
@@ -65,32 +66,13 @@ class EvaluationMatrix:
         }
 
     @staticmethod
-    def k_fold_metrics(dataframe,activation_function, hidden_size,regularization_lambda=0.0):
-
-        summary = dataframe.agg(['mean', 'std', 'min', 'max']).transpose()
-
-        final_dict = {}
-        for metric, row in summary.iterrows():
-            final_dict[f"avg_{metric}"] = round(row['mean'], 4)
-            final_dict[f"std_{metric}"] = round(row['std'], 4)
-            final_dict[f"min_{metric}"] = round(row['min'], 4)
-            final_dict[f"max_{metric}"] = round(row['max'], 4)
-
-        final_row = pd.DataFrame([final_dict])
-        final_row.insert(0, 'Hidden_Nodes', hidden_size)
-
-        if hasattr(activation_function, '__name__'):
-            final_row.insert(1, 'Activation', activation_function.__name__)
-        else:
-            final_row.insert(1, 'Activation', 'Unknown')
-
-        final_row.insert(2,'Lambda_Value',regularization_lambda)
-
-        return final_row
-
+    def combination_evaluation(data_frame):
+        elm_seed_evaluation     = EvaluationMatrix.elm_seed_evaluation(data_frame)
+        data_seed_evaluation    = EvaluationMatrix.data_seed_evaluation(data_frame)
+        return elm_seed_evaluation,data_seed_evaluation
     @staticmethod
     def random_seed_metrics(data_frame, kappa=3.0):
-        ignore_cols = ['Data_Seed', 'Fold', 'ELM_Seed']
+        ignore_cols = ['Hidden_Nodes', 'Activation_Function', 'Lambda_Value','Data_Seed', 'Fold', 'ELM_Seed']
         metric_cols = [col for col in data_frame.columns if col not in ignore_cols]
         clean_df = data_frame[metric_cols]
 
@@ -103,11 +85,34 @@ class EvaluationMatrix:
             flat_results[f"avg_{metric}_Seed_Min"] = round(row['min'], 4)
             flat_results[f"avg_{metric}_Seed_Max"] = round(row['max'], 4)
 
-        f2_mean = flat_results.get("avg_F2-Score_Seed_Mean", 0)
-        f2_std = flat_results.get("avg_F2-Score_Seed_Std", 0)
-
-        # Calculate Worst-Case Stability Metric
-        flat_results["Clinical_F2_LCB"] = round(f2_mean - (kappa * f2_std), 4)
-
         final_row = pd.DataFrame([flat_results])
         return final_row
+
+    @staticmethod
+    def _aggregate_by_seed(data_frame, seed_col):
+        """
+        Core logic for seed evaluation.
+        Consolidated to prevent logic drift between different seed types.
+        """
+        model_columns = ['Hidden_Nodes', 'Activation_Function', 'Lambda_Value']
+
+        # Group by model columns and the dynamically passed seed column
+        grouped_df = data_frame.groupby(model_columns + [seed_col]).mean(numeric_only=True).reset_index()
+
+        # Note: We safely ignore ALL seed tracking columns regardless of which one we are grouping by
+        ignore_cols = ['Data_Seed', 'Fold', 'ELM_Seed'] + model_columns
+        metric_cols = [col for col in grouped_df.columns if col not in ignore_cols]
+
+        summary_df = grouped_df.groupby(model_columns)[metric_cols].agg(['mean', 'std', 'min', 'max'])
+
+        # Flatten the MultiIndex columns for clean pipeline extraction
+        summary_df.columns = ['_'.join(col).strip() for col in summary_df.columns.values]
+        return summary_df.reset_index()
+
+    @staticmethod
+    def elm_seed_evaluation(data_frame):
+        return EvaluationMatrix._aggregate_by_seed(data_frame, 'ELM_Seed')
+
+    @staticmethod
+    def data_seed_evaluation(data_frame):
+        return EvaluationMatrix._aggregate_by_seed(data_frame, 'Data_Seed')

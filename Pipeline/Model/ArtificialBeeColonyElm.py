@@ -89,7 +89,7 @@ class ArtificialBeeColonyElm:
             "Specificity"   : evaluation.get_specificity,
             "F1-Score"      : evaluation.get_f1_score,
             "F2-Score"      : evaluation.get_f2_score,
-            "Balanced Accuracy": evaluation.get_bal_accuracy,
+            "Bal Accuracy"  : evaluation.get_bal_accuracy,
             "MCC"           : evaluation.get_mcc
         }
 
