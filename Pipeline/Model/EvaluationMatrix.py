@@ -156,7 +156,7 @@ class EvaluationMatrix:
         summary_df = grouped_df.groupby(model_columns)[metric_cols].agg(['mean', 'std', 'min', 'max'])
 
         # Flatten the MultiIndex columns for clean pipeline extraction
-        summary_df.columns = ['_'.join(col).strip() for col in summary_df.columns.values]
+        summary_df.columns = ['_'.join(col).strip() for col in summary_df.columns]
         return summary_df.reset_index()
 
     @staticmethod

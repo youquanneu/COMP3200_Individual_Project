@@ -137,14 +137,21 @@ class EvaluationELM:
 
     @staticmethod
     def extract_top_results(dataframe: pd.DataFrame,
-                            metric_col: str = 'avg_F2-Score_Seed_Mean',
+                            base_metric_name: str = 'avg_F2-Score_Seed',
+                            punish_coefficient: float = 1.96,
                             top_k: int = 5) -> pd.DataFrame:
-        if metric_col not in dataframe.columns:
-            logging.error(f"Missing Column: '{metric_col}' not found in DataFrame.")
+        """
+        Ranks results by a base metric using the formula: (Base_Mean) - (C * Base_Std).
+        """
+        mean_col = f"{base_metric_name}_Mean"
+        std_col = f"{base_metric_name}_Std"
+
+        if mean_col not in dataframe.columns or std_col not in dataframe.columns:
+            logging.error(f"Missing Columns: '{mean_col}' or '{std_col}' not found.")
             return pd.DataFrame()
 
         if dataframe.empty:
-            logging.info("Empty DataFrame provided to extract_top_results.")
             return dataframe
+        adjusted_score = dataframe[mean_col] - (punish_coefficient * dataframe[std_col].fillna(0))
 
-        return dataframe.nlargest(top_k, columns=metric_col)
+        return dataframe.assign(rank_score=adjusted_score).nlargest(top_k, columns='rank_score')
