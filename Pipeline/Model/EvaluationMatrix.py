@@ -13,13 +13,14 @@ class EvaluationMatrix:
         self.raw_y_true = np.asarray(y_true).ravel()
         self.raw_y_pred = np.asarray(y_pred).ravel()
 
-        if self.raw_y_true.shape[0] == 0 | self.raw_y_pred.shape[0] == 0:
+        if self.raw_y_true.shape[0] == 0 or self.raw_y_pred.shape[0] == 0:
             raise ValueError("Input arrays cannot be empty.")
+
         elif self.raw_y_true.shape[0] != self.raw_y_pred.shape[0]:
             raise ValueError(f"Length mismatch: y_true({len(self.raw_y_true)}) != y_pred({len(self.raw_y_pred)})")
 
-        self.classes = np.unique(np.concatenate((self.raw_y_true, self.raw_y_pred)))
-        self.is_multiclass = ( len(np.unique(y_true)) > 2 ) | ( len(np.unique(y_pred)) > 2 )
+        self.classes = np.unique(np.concatenate([self.raw_y_true, self.raw_y_pred]))
+        self.is_multiclass = ( len(np.unique(y_true)) > 2 ) or ( len(np.unique(y_pred)) > 2 )
         self.n = len(self.raw_y_true)
 
         if not self.is_multiclass:
@@ -43,7 +44,7 @@ class EvaluationMatrix:
                 fn = np.sum((self.y_true == c) & (self.y_pred != c))
                 self.overall_metrics[c] = {'TP': tp, 'TN': tn, 'FP': fp, 'FN': fn}
 
-    def _calc_metric(self, metric_func):
+    def calculate_metric(self, metric_func):
         if not self.is_multiclass:
             return metric_func(self.TP, self.TN, self.FP, self.FN)
         else:
@@ -54,26 +55,26 @@ class EvaluationMatrix:
         return np.sum(self.y_true == self.y_pred) / self.n
 
     def get_precision(self):
-        return self._calc_metric(lambda tp, tn, fp, fn: safe_divide(tp, tp + fp))
+        return self.calculate_metric(lambda tp, tn, fp, fn: safe_divide(tp, tp + fp))
 
     def get_recall(self):
-        return self._calc_metric(lambda tp, tn, fp, fn: safe_divide(tp, tp + fn))
+        return self.calculate_metric(lambda tp, tn, fp, fn: safe_divide(tp, tp + fn))
 
     def get_npv(self):
-        return self._calc_metric(lambda tp, tn, fp, fn: safe_divide(tn, tn + fn))
+        return self.calculate_metric(lambda tp, tn, fp, fn: safe_divide(tn, tn + fn))
 
     def get_specificity(self):
-        return self._calc_metric(lambda tp, tn, fp, fn: safe_divide(tn, tn + fp))
+        return self.calculate_metric(lambda tp, tn, fp, fn: safe_divide(tn, tn + fp))
 
     def get_bal_accuracy(self):
         return (self.get_recall() + self.get_specificity()) / 2
 
     def get_f1_score(self):
-        return self._calc_metric(lambda tp, tn, fp, fn: safe_divide(2 * tp, 2 * tp + fp + fn))
+        return self.calculate_metric(lambda tp, tn, fp, fn: safe_divide(2 * tp, 2 * tp + fp + fn))
 
     def get_f2_score(self):
         beta_sq = 4.0
-        return self._calc_metric(
+        return self.calculate_metric(
             lambda tp, tn, fp, fn: safe_divide((1 + beta_sq) * tp, (1 + beta_sq) * tp + beta_sq * fn + fp)
         )
 
@@ -81,7 +82,7 @@ class EvaluationMatrix:
         def mcc_calc(tp, tn, fp, fn):
             denominator = math.sqrt((tp + fp) * (tp + fn) * (tn + fp) * (tn + fn))
             return safe_divide(tp * tn - fp * fn, denominator)
-        return self._calc_metric(mcc_calc)
+        return self.calculate_metric(mcc_calc)
 
     def get_all_metrics(self):
         return {
@@ -138,7 +139,7 @@ class EvaluationMatrix:
         return final_row
 
     @staticmethod
-    def _aggregate_by_seed(data_frame, seed_col):
+    def aggregate_by_seed(data_frame, seed_col):
         """
         Core logic for seed evaluation.
         Consolidated to prevent logic drift between different seed types.
@@ -160,8 +161,8 @@ class EvaluationMatrix:
 
     @staticmethod
     def elm_seed_evaluation(data_frame):
-        return EvaluationMatrix._aggregate_by_seed(data_frame, 'ELM_Seed')
+        return EvaluationMatrix.aggregate_by_seed(data_frame, 'ELM_Seed')
 
     @staticmethod
     def data_seed_evaluation(data_frame):
-        return EvaluationMatrix._aggregate_by_seed(data_frame, 'Data_Seed')
+        return EvaluationMatrix.aggregate_by_seed(data_frame, 'Data_Seed')

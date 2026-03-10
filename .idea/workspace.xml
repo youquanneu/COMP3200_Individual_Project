@@ -5,19 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Basic are done, left Metaheuristic">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dataset/JSON/full_model_configs.json" beforeDir="false" afterPath="$PROJECT_DIR$/Dataset/JSON/full_model_configs.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Data/GallstoneDataSet.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Model/GallstoneDataSet.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Model/ABC_ELM.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Model/CrossValidationDataSplit.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Model/CrossValidationDataSplit.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Model/EvaluationELM.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Model/EvaluationELM.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pipeline/Model/EvaluationMatrix.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Model/EvaluationMatrix.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Model/ExtremeLearningMachine.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Model/ExtremeLearningMachine.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Process/ABC_Optimization.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Process/ELM_Evaluation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Process/ELM_Evaluation.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Process/Grid_Evaluation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Process/Grid_Evaluation.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Process/MetaheuristicOptimization.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Process/Parameter_Testing.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Process/Parameter_Testing.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -191,7 +179,7 @@
       <workItem from="1773031785620" duration="16770000" />
       <workItem from="1773056623412" duration="8894000" />
       <workItem from="1773104259448" duration="3034000" />
-      <workItem from="1773116077142" duration="10547000" />
+      <workItem from="1773116077142" duration="10738000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor">
       <option name="closed" value="true" />
@@ -473,7 +461,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773106829138</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Basic are done, left Metaheuristic">
+      <option name="closed" value="true" />
+      <created>1773139633258</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1773139633258</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
