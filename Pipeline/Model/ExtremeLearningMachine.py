@@ -6,13 +6,13 @@ def sigmoid(x):
 # def relu(x)
 class ExtremeLearningMachine:
 
-    def __init__(self, features_size, hidden_size, activation_function, regularization_lambda=0.0, distribution="uniform"):
+    def __init__(self, features_size, hidden_size,
+                 activation_function, regularization_lambda=0.0):
 
         self.featureSize = features_size
         self.hiddenSize  = hidden_size
         self.activationFunction   = activation_function
         self.regularizationLambda = regularization_lambda
-        self.distribution         = distribution
 
         self.hiddenWeights  = None
         self.hiddenBias     = None
@@ -21,16 +21,14 @@ class ExtremeLearningMachine:
         self.outputWeights      = None
 
     def initialize_random_weights(self, scale= 1.0 , random_seed=None):
+
         if random_seed is not None:
             rng = np.random.RandomState(random_seed)
         else:
             rng = np.random
-        if self.distribution == "uniform":
-            self.hiddenWeights  = rng.rand(self.featureSize, self.hiddenSize) * scale
-            self.hiddenBias     = rng.rand(self.hiddenSize) * scale
-        else:
-            self.hiddenWeights  = rng.randn(self.featureSize, self.hiddenSize) * scale
-            self.hiddenBias     = rng.randn(self.hiddenSize) * scale
+
+        self.hiddenWeights  = (rng.rand(self.featureSize, self.hiddenSize) * 2 - 1) * scale
+        self.hiddenBias     = (rng.rand(self.hiddenSize) * 2 - 1) * scale
 
     def apply_activation_function(self, activation_function):
         self.activationFunction = activation_function
@@ -44,7 +42,7 @@ class ExtremeLearningMachine:
     def fit(self, features_data, target_data):
 
         features_data = np.asarray(features_data)
-        target_data  = np.asarray(target_data)
+        target_data   = np.asarray(target_data)
 
         if self.hiddenWeights is None:
             self.featureSize = features_data.shape[1]
@@ -68,6 +66,7 @@ class ExtremeLearningMachine:
         self.regularized_fit(features_data, target_data, self.regularizationLambda)
 
     def regularized_fit(self, features_data, target_data, regularization_lambda):
+
         self.regularizationLambda = regularization_lambda
         if target_data.ndim == 1:
             target_data = target_data.reshape(-1, 1)
@@ -75,10 +74,12 @@ class ExtremeLearningMachine:
         linear_output = features_data @ self.hiddenWeights + self.hiddenBias
         self.hiddenLayerOutput = self.activationFunction(linear_output)
         sample_size = features_data.shape[0]
+
         if regularization_lambda == 0:
             self.outputWeights = np.linalg.pinv(self.hiddenLayerOutput) @ target_data
 
         else :
+
             if sample_size > self.hiddenSize :
                 gram_matrix     = self.hiddenLayerOutput.T @ self.hiddenLayerOutput
                 penalize_matrix = self.regularizationLambda * np.eye(self.hiddenSize)
@@ -88,6 +89,7 @@ class ExtremeLearningMachine:
                 except np.linalg.LinAlgError:
                     inverse_ridge  = np.linalg.pinv(ridge_matrix)
                 self.outputWeights = inverse_ridge @ self.hiddenLayerOutput.T @ target_data
+
             else:
                 gram_matrix     = self.hiddenLayerOutput @ self.hiddenLayerOutput.T
                 penalize_matrix = self.regularizationLambda * np.eye(sample_size)
@@ -99,9 +101,11 @@ class ExtremeLearningMachine:
                 self.outputWeights = self.hiddenLayerOutput.T @ inverse_ridge @ target_data
 
     def predict(self, features_data):
+
         linear_output = features_data @ self.hiddenWeights + self.hiddenBias
         hidden_layer_output = self.activationFunction(linear_output)
         raw_output = hidden_layer_output @ self.outputWeights
+
         if raw_output.shape[1] == 1:
             return np.where(raw_output > 0, 1, -1).ravel()
         else:

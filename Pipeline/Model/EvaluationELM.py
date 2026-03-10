@@ -13,11 +13,13 @@ class EvaluationELM:
                  data_split_state_range=range(40, 61),
                  test_size=0.2,
                  k_fold=5):
+
         self.x = x
         self.y = y
         self.activation_function = activation_function
 
         self.elm_initial_state_range = elm_initial_state_range
+
         self.data_split_state_range  = data_split_state_range
         self.test_size = test_size
         self.k_fold = k_fold
@@ -77,7 +79,7 @@ class EvaluationELM:
 
                 metrics = {
                     'Hidden_Nodes'          : hidden_size,
-                    'Activation_Function'   : self.activation_function.__name__,
+                    'Activation'            : self.activation_function.__name__,
                     'Lambda_Value'          : regularization_lambda,
                     'Data_Seed'             : data_seed,
                     'Fold'                  : fold_idx,
@@ -138,20 +140,28 @@ class EvaluationELM:
     @staticmethod
     def extract_top_results(dataframe: pd.DataFrame,
                             base_metric_name: str = 'avg_F2-Score_Seed',
-                            punish_coefficient: float = 1.96,
+                            punish_coefficient: float = 1.0,
                             top_k: int = 5) -> pd.DataFrame:
         """
-        Ranks results by a base metric using the formula: (Base_Mean) - (C * Base_Std).
+        Ranks results using robust Lower Confidence Bound (LCB) with Standard Error.
+        Formula: Mean - (Coefficient * Standard_Error)
         """
         mean_col = f"{base_metric_name}_Mean"
-        std_col = f"{base_metric_name}_Std"
+        sem_col = f"{base_metric_name}_SEM"  # 使用我们刚刚加入的真实标准误
 
-        if mean_col not in dataframe.columns or std_col not in dataframe.columns:
-            logging.error(f"Missing Columns: '{mean_col}' or '{std_col}' not found.")
+        # 如果旧数据没有 SEM 列，回退到 Std（为了兼容你之前的 CSV）
+        if sem_col not in dataframe.columns:
+            logging.warning(f"Column '{sem_col}' not found. Falling back to naive Standard Deviation.")
+            sem_col = f"{base_metric_name}_Std"
+
+        if mean_col not in dataframe.columns or sem_col not in dataframe.columns:
+            logging.error(f"Missing Columns for ranking evaluation.")
             return pd.DataFrame()
 
         if dataframe.empty:
             return dataframe
-        adjusted_score = dataframe[mean_col] - (punish_coefficient * dataframe[std_col].fillna(0))
+
+        # 严谨的 LCB 计算：均值 - 惩罚系数 * 标准误
+        adjusted_score = dataframe[mean_col] - (punish_coefficient * dataframe[sem_col].fillna(0))
 
         return dataframe.assign(rank_score=adjusted_score).nlargest(top_k, columns='rank_score')

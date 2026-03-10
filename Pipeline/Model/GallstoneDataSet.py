@@ -17,7 +17,7 @@ class GallstoneDataSet:
         self.main_scaler    = None
 
     def fetch_data_path_1(self):
-        file_path = '../../Dataset/UCI_Gallstone_Dataset.csv'
+        file_path = '../../Dataset/Dataset.csv'
         target_col = ['Gallstone Status']
         df = pd.read_csv(file_path)
 

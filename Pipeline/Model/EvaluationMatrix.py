@@ -122,47 +122,74 @@ class EvaluationMatrix:
         return elm_seed_evaluation,data_seed_evaluation
     @staticmethod
     def random_seed_metrics(data_frame):
-        ignore_cols = ['Hidden_Nodes', 'Activation_Function', 'Lambda_Value','Data_Seed', 'Fold', 'ELM_Seed']
-        metric_cols = [col for col in data_frame.columns if col not in ignore_cols]
-        clean_df = data_frame[metric_cols]
+        """
+                修复版：采用层级聚合（Hierarchical Aggregation）计算严谨的均值与标准误 (SEM)
+                """
+        ignore_cols = ['Hidden_Nodes', 'Activation', 'Lambda_Value']
+        metric_cols = [col for col in data_frame.columns if
+                       col not in (ignore_cols + ['Data_Seed', 'Fold', 'ELM_Seed'])]
 
-        summary_df = clean_df.agg(['mean', 'std', 'min', 'max']).transpose()
+        # 步骤 1: 消除 ELM_Seed 带来的随机网络方差 (在相同折和数据种子下取平均)
+        fold_level_means = data_frame.groupby(['Data_Seed', 'Fold'])[metric_cols].mean().reset_index()
+
+        # 步骤 2: 消除 Fold 带来的交叉验证方差 (在相同数据种子下取平均)
+        seed_level_means = fold_level_means.groupby(['Data_Seed'])[metric_cols].mean().reset_index()
+
+        # 步骤 3: 最终计算独立 Data_Seed 之间的全局均值与真实标准差
+        n_independent_seeds = len(seed_level_means)
+        final_mean = seed_level_means[metric_cols].mean()
+        final_std = seed_level_means[metric_cols].std()  # 独立的真实标准差
+
+        # 步骤 4: 计算标准误 Standard Error of the Mean (SEM) = std / sqrt(n)
+        final_sem = final_std / math.sqrt(n_independent_seeds) if n_independent_seeds > 1 else 0.0
 
         flat_results = {}
-        for metric, row in summary_df.iterrows():
-            flat_results[f"avg_{metric}_Seed_Mean"] = round(row['mean'], 4)
-            flat_results[f"avg_{metric}_Seed_Std"] = round(row['std'], 4)
-            flat_results[f"avg_{metric}_Seed_Min"] = round(row['min'], 4)
-            flat_results[f"avg_{metric}_Seed_Max"] = round(row['max'], 4)
+        for metric in metric_cols:
+            flat_results[f"avg_{metric}_Seed_Mean"] = round(final_mean[metric], 4)
+            flat_results[f"avg_{metric}_Seed_Std"] = round(final_std[metric], 4)
+            flat_results[f"avg_{metric}_Seed_SEM"] = round(final_sem[metric] if n_independent_seeds > 1 else 0.0, 4)
+
+            # 为了向后兼容原代码，保留极值（使用扁平化数据的绝对极值）
+            flat_results[f"avg_{metric}_Seed_Min"] = round(data_frame[metric].min(), 4)
+            flat_results[f"avg_{metric}_Seed_Max"] = round(data_frame[metric].max(), 4)
 
         final_row = pd.DataFrame([flat_results])
         return final_row
 
     @staticmethod
-    def aggregate_by_seed(data_frame, seed_col):
+    def isolate_variance(data_frame, isolate_target):
         """
-        Core logic for seed evaluation.
-        Consolidated to prevent logic drift between different seed types.
-        """
-        model_columns = ['Hidden_Nodes', 'Activation_Function', 'Lambda_Value']
+            Computes isolated variance using mathematically rigorous variance pooling
+            rather than averaging standard deviations.
+            """
+        model_columns = ['Hidden_Nodes', 'Activation', 'Lambda_Value']
 
-        # Group by model columns and the dynamically passed seed column
-        grouped_df = data_frame.groupby(model_columns + [seed_col]).mean(numeric_only=True).reset_index()
+        if isolate_target == 'ELM_Seed':
+            control_vars = ['Data_Seed', 'Fold']
+        elif isolate_target == 'Data_Seed':
+            control_vars = ['ELM_Seed']
+        else:
+            raise ValueError("isolate_target must be 'ELM_Seed' or 'Data_Seed'")
 
-        # Note: We safely ignore ALL seed tracking columns regardless of which one we are grouping by
         ignore_cols = ['Data_Seed', 'Fold', 'ELM_Seed'] + model_columns
-        metric_cols = [col for col in grouped_df.columns if col not in ignore_cols]
+        metric_cols = [col for col in data_frame.columns if col not in ignore_cols]
 
-        summary_df = grouped_df.groupby(model_columns)[metric_cols].agg(['mean', 'std', 'min', 'max'])
+        # Step 1: Compute Variance (not Std Dev) across the isolated target
+        isolated_var = data_frame.groupby(model_columns + control_vars)[metric_cols].var()
 
-        # Flatten the MultiIndex columns for clean pipeline extraction
-        summary_df.columns = ['_'.join(col).strip() for col in summary_df.columns]
-        return summary_df.reset_index()
+        # Step 2: Compute the Mean of Variances (Expected Variance)
+        mean_of_var = isolated_var.groupby(model_columns).mean()
+
+        # Step 3: Transform back to standard deviation (Pooled Std Dev)
+        pooled_std = np.sqrt(mean_of_var)
+        pooled_std.columns = [f"{col}_Pooled_{isolate_target}_Std" for col in pooled_std.columns]
+
+        return pooled_std.round(4).reset_index()
 
     @staticmethod
     def elm_seed_evaluation(data_frame):
-        return EvaluationMatrix.aggregate_by_seed(data_frame, 'ELM_Seed')
+        return EvaluationMatrix.isolate_variance(data_frame, 'ELM_Seed')
 
     @staticmethod
     def data_seed_evaluation(data_frame):
-        return EvaluationMatrix.aggregate_by_seed(data_frame, 'Data_Seed')
+        return EvaluationMatrix.isolate_variance(data_frame, 'Data_Seed')
