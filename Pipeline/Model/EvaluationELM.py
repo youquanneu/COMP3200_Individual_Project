@@ -2,7 +2,7 @@ import logging
 
 import pandas as pd
 
-from Pipeline.Model.DataSplit import DataSplit
+from Pipeline.Model.CrossValidationDataSplit import CrossValidationDataSplit
 from Pipeline.Model.EvaluationMatrix import EvaluationMatrix
 from Pipeline.Model.ExtremeLearningMachine import ExtremeLearningMachine
 
@@ -34,8 +34,8 @@ class EvaluationELM:
 
         for data_seed in self.data_split_state_range:
 
-            splitter = DataSplit(random_state=data_seed, test_size=self.test_size, k_fold=self.k_fold)
-            x_test, y_test, folds = splitter.k_fold_data_spiting(self.x, self.y)
+            splitter = CrossValidationDataSplit(random_state=data_seed, test_size=self.test_size, k_fold=self.k_fold)
+            folds = splitter.k_fold_data_spiting(self.x, self.y)
 
             for fold_idx in range(self.k_fold):
                 fold = folds[fold_idx]
