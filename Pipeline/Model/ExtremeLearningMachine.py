@@ -2,14 +2,17 @@ import numpy as np
 
 def sigmoid(x):
     return 1 / (1 + np.exp(-x))
+
+# def relu(x)
 class ExtremeLearningMachine:
 
-    def __init__(self, features_size, hidden_size, activation_function, regularization_lambda=0.0):
+    def __init__(self, features_size, hidden_size, activation_function, regularization_lambda=0.0, distribution="uniform"):
 
         self.featureSize = features_size
         self.hiddenSize  = hidden_size
         self.activationFunction   = activation_function
         self.regularizationLambda = regularization_lambda
+        self.distribution         = distribution
 
         self.hiddenWeights  = None
         self.hiddenBias     = None
@@ -17,13 +20,17 @@ class ExtremeLearningMachine:
         self.hiddenLayerOutput  = None
         self.outputWeights      = None
 
-    def initialize_random_weights(self, scale=1.0, random_seed=None):
+    def initialize_random_weights(self, scale= 1.0 , random_seed=None):
         if random_seed is not None:
             rng = np.random.RandomState(random_seed)
         else:
             rng = np.random
-        self.hiddenWeights  = rng.randn(self.featureSize, self.hiddenSize) * scale
-        self.hiddenBias     = rng.randn(self.hiddenSize) * scale
+        if self.distribution == "uniform":
+            self.hiddenWeights  = rng.rand(self.featureSize, self.hiddenSize) * scale
+            self.hiddenBias     = rng.rand(self.hiddenSize) * scale
+        else:
+            self.hiddenWeights  = rng.randn(self.featureSize, self.hiddenSize) * scale
+            self.hiddenBias     = rng.randn(self.hiddenSize) * scale
 
     def apply_activation_function(self, activation_function):
         self.activationFunction = activation_function
@@ -43,15 +50,20 @@ class ExtremeLearningMachine:
             self.featureSize = features_data.shape[1]
             self.initialize_random_weights()
 
+        if target_data.ndim == 2 and target_data.shape[1] == 1:
+            target_data = target_data.ravel()
+
         if target_data.ndim == 1:
             unique_classes = np.unique(target_data)
             if len(unique_classes) > 2:
                 num_classes = len(unique_classes)
-                one_hot = np.zeros((target_data.size, num_classes))
-                one_hot[np.arange(target_data.size), target_data] = 1
+                one_hot     = np.full((target_data.size, num_classes), -1.0)
+                one_hot[np.arange(target_data.size), target_data] = 1.0
                 target_data = one_hot
             else:
-                target_data = target_data.reshape(-1, 1)
+                target_data = target_data.astype(float).reshape(-1, 1)
+                lower_class = np.min(unique_classes)
+                target_data = np.where(target_data == lower_class, -1.0, 1.0)
 
         self.regularized_fit(features_data, target_data, self.regularizationLambda)
 
@@ -91,7 +103,7 @@ class ExtremeLearningMachine:
         hidden_layer_output = self.activationFunction(linear_output)
         raw_output = hidden_layer_output @ self.outputWeights
         if raw_output.shape[1] == 1:
-            return (raw_output > 0.5).astype(int).ravel()
+            return np.where(raw_output > 0, 1, -1).ravel()
         else:
             return np.argmax(raw_output, axis=1)
 

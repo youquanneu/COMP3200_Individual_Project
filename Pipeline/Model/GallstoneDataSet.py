@@ -9,12 +9,12 @@ class GallstoneDataSet:
         self.test_size = test_size
         self.random_state = random_state
 
-        self.x_train = None
+        self.x_train        = None
         self.x_train_scaled = None
-        self.y_train = None
-        self.x_test_scaled = None
-        self.y_test = None
-        self.main_scaler = None
+        self.y_train        = None
+        self.x_test_scaled  = None
+        self.y_test         = None
+        self.main_scaler    = None
 
     def fetch_data_path_1(self):
         file_path = '../../Dataset/UCI_Gallstone_Dataset.csv'

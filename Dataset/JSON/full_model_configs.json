@@ -9,24 +9,12 @@
         "Model_Types": "Best_Lambda",
         "Hidden_Nodes": 58,
         "Activation": "sigmoid",
-        "Lambda_Value": 0.64
+        "Lambda_Value": 0.8
     },
     {
         "Model_Types": "Best_Size_and_Lambda",
         "Hidden_Nodes": 58,
         "Activation": "sigmoid",
-        "Lambda_Value": 0.64
-    },
-    {
-        "Model_Types": "Grid_Combination",
-        "Hidden_Nodes": 58,
-        "Activation": "sigmoid",
-        "Lambda_Value": 0.6666666666666666
-    },
-    {
-        "Model_Types": "Grid_Optimization",
-        "Hidden_Nodes": 45,
-        "Activation": "sigmoid",
-        "Lambda_Value": 0.5
+        "Lambda_Value": 0.8
     }
 ]

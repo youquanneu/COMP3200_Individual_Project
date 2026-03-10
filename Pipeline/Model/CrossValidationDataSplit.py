@@ -5,8 +5,8 @@ from sklearn.preprocessing import MinMaxScaler
 
 class CrossValidationDataSplit:
     def __init__(self, random_state: int = 42 ,  k_fold:int = 5):
-        self.random_state = random_state
-        self.k_fold = k_fold
+        self.random_state   = random_state
+        self.k_fold         = k_fold
 
         self.k_fold_dataset = None
         self.main_scaler    = None
@@ -14,9 +14,9 @@ class CrossValidationDataSplit:
     def k_fold_data_spiting(self, x_train, y_train):
 
         kf = StratifiedKFold(
-            n_splits=self.k_fold,
-            shuffle=True,
-            random_state=self.random_state
+            n_splits        = self.k_fold,
+            shuffle         = True,
+            random_state    = self.random_state
         )
 
         self.k_fold_dataset = {}
@@ -30,11 +30,11 @@ class CrossValidationDataSplit:
             x_val_fold_scaled   = pd.DataFrame(fold_scaler.transform(x_val_fold_raw),columns=x_train.columns)
 
             self.k_fold_dataset[fold_idx] = {
-                'X_train_fold': x_train_fold_scaled,
-                'X_val_fold': x_val_fold_scaled,
-                'y_train_fold': y_train.iloc[train_idx].reset_index(drop=True),
-                'y_val_fold': y_train.iloc[val_idx].reset_index(drop=True),
-                'scaler': fold_scaler
+                'X_train_fold'  : x_train_fold_scaled,
+                'X_val_fold'    : x_val_fold_scaled,
+                'y_train_fold'  : y_train.iloc[train_idx].reset_index(drop=True),
+                'y_val_fold'    : y_train.iloc[val_idx].reset_index(drop=True),
+                'scaler'        : fold_scaler
             }
 
         return self.k_fold_dataset

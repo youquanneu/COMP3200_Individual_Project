@@ -17,8 +17,8 @@ class EvaluationELM:
         self.y = y
         self.activation_function = activation_function
 
-        self.elm_initial_state_range  = elm_initial_state_range
-        self.data_split_state_range = data_split_state_range
+        self.elm_initial_state_range = elm_initial_state_range
+        self.data_split_state_range  = data_split_state_range
         self.test_size = test_size
         self.k_fold = k_fold
 
@@ -34,7 +34,7 @@ class EvaluationELM:
 
         for data_seed in self.data_split_state_range:
 
-            splitter = CrossValidationDataSplit(random_state=data_seed, test_size=self.test_size, k_fold=self.k_fold)
+            splitter = CrossValidationDataSplit(random_state = data_seed, k_fold = self.k_fold)
             folds = splitter.k_fold_data_spiting(self.x, self.y)
 
             for fold_idx in range(self.k_fold):
@@ -99,7 +99,7 @@ class EvaluationELM:
 
         for hidden_size in hidden_size_range:
             raw_res, agg_res = self.ranged_seed_cross_validation(
-                hidden_size=hidden_size
+                hidden_size  = hidden_size
             )
             raw_results_list.append(raw_res)
             agg_results_list.append(agg_res)
@@ -112,8 +112,8 @@ class EvaluationELM:
 
         for lambda_value in lambda_range:
             raw_res, agg_res = self.ranged_seed_cross_validation(
-                hidden_size=hidden_size,
-                regularization_lambda=lambda_value
+                hidden_size = hidden_size,
+                regularization_lambda   = lambda_value
             )
 
             raw_results_list.append(raw_res)
@@ -127,8 +127,8 @@ class EvaluationELM:
 
         for hidden_size in hidden_size_range:
             raw_res, agg_res = self.grid_search_lambda(
-                hidden_size=hidden_size,
-                lambda_range=lambda_range
+                hidden_size  = hidden_size,
+                lambda_range = lambda_range
             )
             raw_results_list.append(raw_res)
             agg_results_list.append(agg_res)
