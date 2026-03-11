@@ -2,12 +2,13 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
 
+from Pipeline.Global.GlobalSetting import GlobalSetting
 
 class GallstoneDataSet:
-    def __init__(self,test_size = 0.2 ,random_state = 42):
+    def __init__(self):
 
-        self.test_size = test_size
-        self.random_state = random_state
+        self.test_size      = GlobalSetting.test_set_size
+        self.random_state   = GlobalSetting.data_split_seed
 
         self.x_train        = None
         self.x_train_scaled = None
@@ -25,9 +26,9 @@ class GallstoneDataSet:
         y = df[target_col]
         x_train, x_test, y_train, y_test = train_test_split(
             x, y,
-            test_size=self.test_size,
-            random_state=self.random_state,
-            stratify=y)
+            test_size       = self.test_size,
+            random_state    = self.random_state,
+            stratify        = y)
 
         x_test = x_test.reset_index(drop=True)
         self.y_test = y_test.reset_index(drop=True)

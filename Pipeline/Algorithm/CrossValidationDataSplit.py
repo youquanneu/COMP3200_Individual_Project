@@ -4,7 +4,7 @@ from sklearn.preprocessing import MinMaxScaler
 
 
 class CrossValidationDataSplit:
-    def __init__(self, random_state: int = 42 ,  k_fold:int = 5):
+    def __init__(self, random_state: int = 42 ,  k_fold : int = 5):
         self.random_state   = random_state
         self.k_fold         = k_fold
 

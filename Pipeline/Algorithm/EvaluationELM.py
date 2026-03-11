@@ -2,16 +2,15 @@ import logging
 
 import pandas as pd
 
-from Pipeline.Model.CrossValidationDataSplit import CrossValidationDataSplit
-from Pipeline.Model.EvaluationMatrix import EvaluationMatrix
-from Pipeline.Model.ExtremeLearningMachine import ExtremeLearningMachine
+from Pipeline.Algorithm.CrossValidationDataSplit import CrossValidationDataSplit
+from Pipeline.Algorithm.EvaluationMatrix import EvaluationMatrix
+from Pipeline.Algorithm.ExtremeLearningMachine import ExtremeLearningMachine
 
 logger = logging.getLogger(__name__)
 class EvaluationELM:
     def __init__(self , x, y,activation_function,
                  elm_initial_state_range=range(40, 61),
                  data_split_state_range=range(40, 61),
-                 test_size=0.2,
                  k_fold=5):
 
         self.x = x
@@ -21,7 +20,6 @@ class EvaluationELM:
         self.elm_initial_state_range = elm_initial_state_range
 
         self.data_split_state_range  = data_split_state_range
-        self.test_size = test_size
         self.k_fold = k_fold
 
 

@@ -1,10 +1,9 @@
-import copy
 import time
 
 import numpy as np
 
-from Pipeline.Model.EvaluationMatrix import EvaluationMatrix
-from Pipeline.Model.ExtremeLearningMachine import ExtremeLearningMachine
+from Pipeline.Algorithm.EvaluationMatrix import EvaluationMatrix
+from Pipeline.Algorithm.ExtremeLearningMachine import ExtremeLearningMachine
 
 
 class ArtificialBeeColonyElm:
@@ -52,6 +51,8 @@ class ArtificialBeeColonyElm:
         # Algo 3 parameter
         self.initial_probability = initial_probability
         self.final_probability   = final_probability
+
+        self.convergence_curve = []
 
     def init_algo2(self, max_change = 20.0, min_change = 3.0,
                    initial_sigma = 0.8, final_sigma = 0.1,
@@ -113,9 +114,8 @@ class ArtificialBeeColonyElm:
         elm.fit(x_train, y_train)
 
         y_pred  = elm.predict(x_train)
-        fitness = self.get_fitness(y_train,y_pred)
 
-        return fitness , elm
+        return self.get_fitness(y_train,y_pred)
     def neighboring_s_algo_2(self, index, current_iteration):
 
         solution_s_idx = self.population[index]
@@ -161,7 +161,7 @@ class ArtificialBeeColonyElm:
         return solution_v_idx
 
     def neighbour_iteration(self, index, solution_v_idx, x_train, y_train):
-        v_idx_result, v_idx_elm = self.evaluation_fitness(solution_v_idx, x_train, y_train)
+        v_idx_result = self.evaluation_fitness(solution_v_idx, x_train, y_train)
         if v_idx_result > self.fitness[index]:
             self.population[index] = solution_v_idx
             self.fitness[index] = v_idx_result
@@ -169,7 +169,6 @@ class ArtificialBeeColonyElm:
             if v_idx_result > self.best_fitness:
                 self.best_fitness = v_idx_result
                 self.best_solution = np.copy(solution_v_idx)
-                self.best_elm = copy.deepcopy(v_idx_elm)
         else:
             self.trials[index] += 1
 
@@ -178,11 +177,10 @@ class ArtificialBeeColonyElm:
             self.population.append(self.generate_random_solution())
 
         for index in range(self.solution_size):
-            self.fitness[index], elm = self.evaluation_fitness(self.population[index], x_train, y_train)
+            self.fitness[index] = self.evaluation_fitness(self.population[index], x_train, y_train)
             if self.fitness[index] > self.best_fitness:
                 self.best_fitness = self.fitness[index]
                 self.best_solution = np.copy(self.population[index])
-                self.best_elm = copy.deepcopy(elm)
     def employer_bee(self,current_iteration, x_train , y_train):
         for index in range(self.solution_size):
             solution_v_idx = self.neighboring_s_algo_2(index, current_iteration) \
@@ -210,12 +208,11 @@ class ArtificialBeeColonyElm:
         for index in range(self.solution_size):
             if self.trials[index] >= self.trial_limit:
                 self.population[index] = self.generate_random_solution()
-                self.fitness[index], elm = self.evaluation_fitness(self.population[index],x_train,y_train)
+                self.fitness[index] = self.evaluation_fitness(self.population[index],x_train,y_train)
                 self.trials[index]  =   0
-                if self.fitness[index] > self.best_fitness:
-                    self.best_fitness = self.fitness[index]
-                    self.best_solution = np.copy(self.population[index])
-                    self.best_elm = copy.deepcopy(elm)
+                if self.fitness[index]  > self.best_fitness:
+                    self.best_fitness   = self.fitness[index]
+                    self.best_solution  = np.copy(self.population[index])
 
     def fit(self,x_train , y_train):
         x_train = np.asarray(x_train)
@@ -230,7 +227,22 @@ class ArtificialBeeColonyElm:
             self.onlooker_bee(current_iteration, x_train, y_train)
             self.scout_bee(x_train, y_train)
 
+            self.convergence_curve.append(self.best_fitness)
+
             print(f"Iteration {current_iteration} end : {time.time() - start_time:.4f}s")
+
+        self.train_best_model(x_train, y_train)
+
+    def train_best_model(self,x_train,y_train):
+        weight_boundary = self.feature_size * self.hidden_size
+        hidden_weight = self.best_solution[:weight_boundary].reshape(self.feature_size, self.hidden_size)
+        hidden_bias = self.best_solution[weight_boundary:]
+
+        self.best_elm = ExtremeLearningMachine(self.feature_size, self.hidden_size,
+                                               self.activationFunction, self.regularizationLambda)
+        self.best_elm.apply_hidden_weights(hidden_weight)
+        self.best_elm.apply_hidden_bias(hidden_bias)
+        self.best_elm.fit(x_train, y_train)
 
     def predict(self, x_test):
         if self.best_elm is None:
