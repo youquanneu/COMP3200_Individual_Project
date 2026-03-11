@@ -5,12 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Restructure">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Algorithm/ArtificialBeeColonyElmCV.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Algorithm/ArtificialBeeColonyElmCV.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Optimization/ABC_ELM_Opt.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Optimization/ABC_ELM_Optimization.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Process/ELM_Evaluation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Model/ELM_Evaluation.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Process/Grid_Evaluation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Model/Grid_Evaluation.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Process/Parameter_Testing.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Model/Parameter_Testing.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dataset/Body_Water_Dataset.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Dataset/Body_Water_Dataset.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dataset/DTC_R.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Dataset/DTC_R.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dataset/Dataset.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Dataset/Dataset.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dataset/JSON/full_model_configs.json" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/JSON/full_model_configs.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dataset/Record/combination_record.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Record/combination_record.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dataset/Record/hidden_size_record.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Record/hidden_size_record.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dataset/Record/lambda_record.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Record/lambda_record.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dataset/Record/optimization_record.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Record/optimization_record.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dataset/Record/size_lambda_record.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Record/size_lambda_record.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dataset/UCI_Gallstone_Dataset.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Dataset/UCI_Gallstone_Dataset.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipeline/Data/DataAnalysis.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Data/DataAnalysis.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipeline/Data/DataPreprocessing.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Data/DataPreprocessing.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipeline/Data/FeaturesAnalysis.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Data/FeaturesAnalysis.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipeline/Data/FeaturesAnalysis2.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Data/FeaturesAnalysis2.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipeline/Data/FeaturesAnalysis4.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Data/FeaturesAnalysis4.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipeline/Global/GallstoneDataSet.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Global/GallstoneDataSet.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipeline/Global/GlobalSetting.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Global/GlobalSetting.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -189,7 +200,7 @@
       <workItem from="1773116077142" duration="19631000" />
       <workItem from="1773190507244" duration="10252000" />
       <workItem from="1773208992980" duration="8396000" />
-      <workItem from="1773223260162" duration="5551000" />
+      <workItem from="1773223260162" duration="6059000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor">
       <option name="closed" value="true" />
@@ -511,7 +522,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773223209122</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="Restructure">
+      <option name="closed" value="true" />
+      <created>1773230470088</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1773230470088</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

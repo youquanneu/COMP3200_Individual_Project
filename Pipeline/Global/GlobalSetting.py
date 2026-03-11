@@ -4,7 +4,7 @@ import numpy as np
 
 class GlobalSetting:
 
-    dataset_dir = '../../Dataset/'
+    dataset_dir = '../../Storage/'
     record_dir  = os.path.join(dataset_dir, 'Record')
     json_dir    = os.path.join(dataset_dir, 'JSON')
     config_file = os.path.join(json_dir, 'full_model_configs.json')
