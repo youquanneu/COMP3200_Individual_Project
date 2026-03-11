@@ -41,7 +41,6 @@ class ArtificialBeeColonyElmCV(ArtificialBeeColonyElm):
 
         # 1. Evaluate generalization using K-Fold Validation
         for fold_idx in range(self.k_fold):
-            print("fold:",fold_idx)
             fold = self.internal_folds[fold_idx]
             x_tr   , y_tr    = fold['X_train_fold'] , fold['y_train_fold']
             x_val  , y_val   = fold['X_val_fold']   , fold['y_val_fold']

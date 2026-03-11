@@ -4,24 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment=".......">
+    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Restructure">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dataset/JSON/full_model_configs.json" beforeDir="false" afterPath="$PROJECT_DIR$/Dataset/JSON/full_model_configs.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dataset/Record/combination_record.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Dataset/Record/combination_record.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dataset/Record/lambda_record.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Dataset/Record/lambda_record.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dataset/Record/optimization_record.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Dataset/Record/optimization_record.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dataset/Record/size_lambda_record.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Dataset/Record/size_lambda_record.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Data/FeaturesAnalysis.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Data/FeaturesAnalysis.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Data/FeaturesAnalysis2.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Data/FeaturesAnalysis2.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Model/ArtificialBeeColonyElm.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Algorithm/ArtificialBeeColonyElm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Model/CrossValidationDataSplit.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Algorithm/CrossValidationDataSplit.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Model/EvaluationELM.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Algorithm/EvaluationELM.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Model/EvaluationMatrix.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Algorithm/EvaluationMatrix.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Model/ExtremeLearningMachine.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Algorithm/ExtremeLearningMachine.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Model/GallstoneDataSet.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Global/GallstoneDataSet.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Process/ELM_Evaluation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Process/ELM_Evaluation.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Process/Grid_Evaluation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Process/Grid_Evaluation.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Process/Parameter_Testing.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Process/Parameter_Testing.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipeline/Algorithm/ArtificialBeeColonyElmCV.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Algorithm/ArtificialBeeColonyElmCV.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipeline/Optimization/ABC_ELM_Opt.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Optimization/ABC_ELM_Optimization.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipeline/Process/ELM_Evaluation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Model/ELM_Evaluation.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipeline/Process/Grid_Evaluation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Model/Grid_Evaluation.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipeline/Process/Parameter_Testing.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Model/Parameter_Testing.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,8 +20,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Jupyter Notebook" />
         <option value="Python Script" />
+        <option value="Jupyter Notebook" />
       </list>
     </option>
   </component>
@@ -78,38 +67,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Python.ABC_ELM.executor&quot;: &quot;Run&quot;,
-    &quot;Python.ABC_ELM2.executor&quot;: &quot;Run&quot;,
-    &quot;Python.ArtificialBeeColonyElm.executor&quot;: &quot;Run&quot;,
-    &quot;Python.ArtificialBeeColonyElmCV.executor&quot;: &quot;Run&quot;,
-    &quot;Python.CrossValidationDataSplit.executor&quot;: &quot;Run&quot;,
-    &quot;Python.DataSplit.executor&quot;: &quot;Run&quot;,
-    &quot;Python.EvaluationELM.executor&quot;: &quot;Run&quot;,
-    &quot;Python.EvaluationMatrix.executor&quot;: &quot;Run&quot;,
-    &quot;Python.ExtremeLearningMachine.executor&quot;: &quot;Run&quot;,
-    &quot;Python.GallstoneDataSet.executor&quot;: &quot;Run&quot;,
-    &quot;Python.sdf.executor&quot;: &quot;Run&quot;,
-    &quot;Python.teest.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;ai.playground.ignore.import.keys.banner.in.settings&quot;: &quot;true&quot;,
-    &quot;database.data.extractors.current.export.id&quot;: &quot;Excel (xlsx)&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/yqn1e23/PycharmProjects/COMP3200_Individual_Project/Pipeline/Model&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.ABC_ELM.executor": "Run",
+    "Python.ABC_ELM2.executor": "Run",
+    "Python.ArtificialBeeColonyElm.executor": "Run",
+    "Python.ArtificialBeeColonyElmCV.executor": "Run",
+    "Python.CrossValidationDataSplit.executor": "Run",
+    "Python.DataSplit.executor": "Run",
+    "Python.EvaluationELM.executor": "Run",
+    "Python.EvaluationMatrix.executor": "Run",
+    "Python.ExtremeLearningMachine.executor": "Run",
+    "Python.GallstoneDataSet.executor": "Run",
+    "Python.sdf.executor": "Run",
+    "Python.teest.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "ai.playground.ignore.import.keys.banner.in.settings": "true",
+    "database.data.extractors.current.export.id": "CSV-Groovy.csv.groovy",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/yqn1e23/PycharmProjects/COMP3200_Individual_Project/Pipeline/Model",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Pipeline\Model" />
@@ -199,7 +188,8 @@
       <workItem from="1773104259448" duration="3034000" />
       <workItem from="1773116077142" duration="19631000" />
       <workItem from="1773190507244" duration="10252000" />
-      <workItem from="1773208992980" duration="8339000" />
+      <workItem from="1773208992980" duration="8396000" />
+      <workItem from="1773223260162" duration="5551000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor">
       <option name="closed" value="true" />
@@ -513,7 +503,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773148907067</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="Restructure">
+      <option name="closed" value="true" />
+      <created>1773223209122</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1773223209122</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -531,7 +529,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Update documentation" />
     <MESSAGE value="Update documentation to draft" />
     <MESSAGE value="Update some others resources" />
     <MESSAGE value="Progress Report" />
@@ -556,7 +553,8 @@
     <MESSAGE value="Data leakage of train test needed to be solved" />
     <MESSAGE value="Basic are done, left Metaheuristic" />
     <MESSAGE value="......." />
-    <option name="LAST_COMMIT_MESSAGE" value="......." />
+    <MESSAGE value="Restructure" />
+    <option name="LAST_COMMIT_MESSAGE" value="Restructure" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$EvaluationMatrix.coverage" NAME="EvaluationMatrix Coverage Results" MODIFIED="1773148516648" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Model" />
