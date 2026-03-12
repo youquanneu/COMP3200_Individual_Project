@@ -12,7 +12,7 @@ def abc_testing(abc_model,x_train, y_train , x_test , y_test):
     convergence_history = {}
     scout_history = {}
 
-    for seed in GlobalSetting.elm_initial_state_range:
+    for seed in GlobalSetting.abc_testing_state_range:
 
         start_time = time.time()
         print(f"Seed {seed} start\n")

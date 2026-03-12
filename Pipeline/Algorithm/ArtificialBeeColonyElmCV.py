@@ -1,4 +1,5 @@
 import numpy as np
+from sklearn.preprocessing import MinMaxScaler
 
 from Pipeline.Algorithm.ArtificialBeeColonyElm import ArtificialBeeColonyElm
 from Pipeline.Algorithm.CrossValidationDataSplit import CrossValidationDataSplit
@@ -22,12 +23,14 @@ class ArtificialBeeColonyElmCV(ArtificialBeeColonyElm):
                          initial_probability, final_probability
                          )
 
-
         self.full_x_train = None
         self.full_y_train = None
 
-        self.k_fold         = None
-        self.internal_folds = None
+        self.k_fold                 = None
+        self.internal_folds         = None
+        self.penalty_coefficient    = None
+
+        self.global_scaler = None
 
     def evaluation_fitness(self, solution, x_train, y_train):
         # Note: x_train and y_train are intentionally ignored.
@@ -56,12 +59,40 @@ class ArtificialBeeColonyElmCV(ArtificialBeeColonyElm):
             fold_fitness.append(self.get_fitness(y_val, y_pred))
 
         # The true fitness is the average validation score across all folds
+        mean_fitness = float(np.mean(fold_fitness))
+        std_fitness  = float(np.std(fold_fitness))
 
-        return np.mean(fold_fitness)
+        penalized_fitness = mean_fitness - (self.penalty_coefficient * std_fitness)
 
-    def fit(self, x_train, y_train, data_seed = 42, cv_folds = 5):
+        final_fitness = max(1e-8, penalized_fitness)
+
+        return final_fitness
+
+    def fit(self, x_train, y_train, cv_folds = 5, penalty_coefficient = 1.0):
         self.k_fold = cv_folds
-        splitter = CrossValidationDataSplit(random_state = data_seed, k_fold = self.k_fold)
+        self.penalty_coefficient = penalty_coefficient
+        splitter = CrossValidationDataSplit(k_fold = self.k_fold)
         self.internal_folds = splitter.k_fold_data_spiting(x_train, y_train)
 
         super().fit(x_train, y_train)
+
+    def train_best_model(self, x_train, y_train):
+
+        x_train_np = np.asarray(x_train)
+
+        self.global_scaler = MinMaxScaler()
+
+        x_train_scaled = self.global_scaler.fit_transform(x_train_np)
+
+        super().train_best_model(x_train_scaled, y_train)
+
+    def predict(self, x_test):
+
+        if self.global_scaler is None:
+            raise ValueError("Model must be fitted before prediction.")
+
+        x_test_np = np.asarray(x_test)
+
+        x_test_scaled = self.global_scaler.transform(x_test_np)
+
+        return super().predict(x_test_scaled)

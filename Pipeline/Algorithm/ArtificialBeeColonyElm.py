@@ -53,6 +53,7 @@ class ArtificialBeeColonyElm:
         self.final_probability   = final_probability
 
         self.convergence_curve = []
+        self.scout_trigger_history = []
 
     def init_random_state(self,random_state):
         self.random_state = np.random.RandomState(random_state)

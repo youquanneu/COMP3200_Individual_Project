@@ -7,14 +7,18 @@ from Pipeline.Global.GlobalSetting import GlobalSetting
 class GallstoneDataSet:
     def __init__(self):
 
+
         self.test_size      = GlobalSetting.test_set_size
         self.random_state   = GlobalSetting.data_split_seed
 
         self.x_train        = None
         self.x_train_scaled = None
         self.y_train        = None
+
+        self.x_test         = None
         self.x_test_scaled  = None
         self.y_test         = None
+
         self.main_scaler    = None
 
     def fetch_data_path_1(self):
@@ -30,7 +34,7 @@ class GallstoneDataSet:
             random_state    = self.random_state,
             stratify        = y)
 
-        x_test = x_test.reset_index(drop=True)
+        self.x_test = x_test.reset_index(drop=True)
         self.y_test = y_test.reset_index(drop=True)
         self.x_train = x_train.reset_index(drop=True)
         self.y_train = y_train.reset_index(drop=True)

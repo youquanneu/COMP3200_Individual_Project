@@ -12,11 +12,12 @@ class GlobalSetting:
     config_file = os.path.join(json_dir, 'full_model_configs.json')
 
 
-    hidden_size_explore_range   = range(1, 100)
-    lambda_value_explore_range  = 2.0 ** np.arange(-25, 25)
+    hidden_size_explore_range   = range(41, 46)
+    lambda_value_explore_range  = 2.0 ** np.arange(-15, -10)
 
-    elm_initial_state_range     = range(101, 131)
-    data_split_state_range      = range(1, 11)
+    elm_initial_state_range     = range(101, 106)
+    elm_testing_state_range     = range(81,86)
+    abc_testing_state_range     = range(21,26)
 
     test_set_size       = 0.2
     data_split_seed     = 42

@@ -51,8 +51,11 @@ class ExtremeLearningMachine:
             unique_classes = np.unique(target_data)
             if len(unique_classes) > 2:
                 num_classes = len(unique_classes)
-                one_hot     = np.full((target_data.size, num_classes), -1.0)
-                one_hot[np.arange(target_data.size), target_data] = 1.0
+                one_hot = np.full((target_data.size, num_classes), -1.0)
+                class_mapping = {val: idx for idx, val in enumerate(unique_classes)}
+                mapped_targets = np.vectorize(class_mapping.get)(target_data)
+
+                one_hot[np.arange(target_data.size), mapped_targets] = 1.0
                 target_data = one_hot
             else:
                 target_data = target_data.astype(float).reshape(-1, 1)
