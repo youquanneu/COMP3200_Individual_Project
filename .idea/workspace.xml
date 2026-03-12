@@ -4,23 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Wait for running">
-      <change afterPath="$PROJECT_DIR$/Pipeline/Optimization/ABC_ELM_Best_Hidden_Nodes.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pipeline/Optimization/ABC_ELM_Best_Hidden_Nodes_CV.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Algorithm/EvaluationELM.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Model/EvaluationELM.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Global/GlobalSetting.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Global/GlobalSetting.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Global/Plotting.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Global/Plotting.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Model/ELM_Evaluation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Model/ELM_Evaluation.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Model/Grid_Evaluation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Model/Grid_Evaluation.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Model/Parameter_Testing.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Model/Parameter_Testing.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Optimization/ABC_ELM_Hidden_Size.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Optimization/ABC_ELM_Hidden_Size_CV.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Optimization/ABC_ELM_Opt_Hidden_Size.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Optimization/ABC_RELM_Optimization.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/ABC_Telemetry_Best_Hidden_Nodes_CV_F1-Score.png" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Figure/ABC_Telemetry_Best_Hidden_Nodes_CV_F1-Score.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/ABC_Telemetry_Best_Hidden_Nodes_F1-Score.png" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Figure/ABC_Telemetry_Best_Hidden_Nodes_F1-Score.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/JSON/full_model_configs.json" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/JSON/full_model_configs.json" afterDir="false" />
+    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Upload graphs">
       <change beforePath="$PROJECT_DIR$/Storage/Record/combination_record.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Record/combination_record.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Storage/Record/hidden_size_record.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Record/hidden_size_record.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Storage/Record/lambda_record.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Record/lambda_record.csv" afterDir="false" />
@@ -208,7 +192,7 @@
       <workItem from="1773190507244" duration="10252000" />
       <workItem from="1773208992980" duration="8396000" />
       <workItem from="1773223260162" duration="6146000" />
-      <workItem from="1773276563339" duration="37448000" />
+      <workItem from="1773276563339" duration="37776000" />
     </task>
     <task id="LOCAL-00001" summary="Refactor">
       <option name="closed" value="true" />
@@ -578,7 +562,31 @@
       <option name="project" value="LOCAL" />
       <updated>1773302844839</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="Results, things to be done : &#10;1. ABC parameter tuning.&#10;2. Can try to include lambda inside solution, allow ABC to adjust">
+      <option name="closed" value="true" />
+      <created>1773319303341</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1773319303341</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Upload result">
+      <option name="closed" value="true" />
+      <created>1773319432720</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1773319432720</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Upload graphs">
+      <option name="closed" value="true" />
+      <created>1773319469295</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1773319469295</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -596,11 +604,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Data Analysis" />
-    <MESSAGE value="Modify Data Analysis Sheet" />
-    <MESSAGE value="Half way of BMI, Obesity recovering" />
-    <MESSAGE value="Finish BMI and Water fixing" />
-    <MESSAGE value="Code modifying" />
     <MESSAGE value="Water and Fat combine together" />
     <MESSAGE value="Modified" />
     <MESSAGE value="Modified TBW and TFC" />
@@ -621,7 +624,12 @@
     <MESSAGE value="ABC Testing Start" />
     <MESSAGE value="Grid search setting" />
     <MESSAGE value="Wait for running" />
-    <option name="LAST_COMMIT_MESSAGE" value="Wait for running" />
+    <MESSAGE value="Results, things to be done : &#10;1. ABC parameter tuning.&#10;2. Can try to include lambda inside solution, allow ABC to adjust" />
+    <MESSAGE value="Upload records" />
+    <MESSAGE value="Upload result" />
+    <MESSAGE value="Upload records of gridsearch" />
+    <MESSAGE value="Upload graphs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Upload graphs" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$EvaluationMatrix.coverage" NAME="EvaluationMatrix Coverage Results" MODIFIED="1773148516648" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Model" />
