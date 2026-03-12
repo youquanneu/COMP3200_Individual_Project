@@ -12,12 +12,12 @@ class GlobalSetting:
     config_file = os.path.join(json_dir, 'full_model_configs.json')
 
 
-    hidden_size_explore_range   = range(41, 46)
-    lambda_value_explore_range  = 2.0 ** np.arange(-15, -10)
+    hidden_size_explore_range   = range(1, 71)
+    lambda_value_explore_range  = 2.0 ** np.arange(-25, 3)
 
-    elm_initial_state_range     = range(101, 106)
-    elm_testing_state_range     = range(81,86)
-    abc_testing_state_range     = range(21,26)
+    elm_initial_state_range     = range(101, 131)
+    elm_testing_state_range     = range(71,101)
+    abc_testing_state_range     = range(41,71)
 
     test_set_size       = 0.2
     data_split_seed     = 42
@@ -25,8 +25,8 @@ class GlobalSetting:
     evaluation_function = 'F1-Score'
 
     solution_size = 10
-    trial_limit   = 10
-    max_iteration = 20
+    trial_limit   = 20
+    max_iteration = 100
     @staticmethod
     def sigmoid(x):
         return 1 / (1 + np.exp(-x))

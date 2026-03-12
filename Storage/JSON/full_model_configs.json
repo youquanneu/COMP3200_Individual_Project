@@ -1,32 +1,32 @@
 [
     {
         "Model_Types": "Best_Hidden_Nodes",
-        "Hidden_Nodes": 44,
+        "Hidden_Nodes": 40,
         "Activation": "sigmoid",
         "Lambda_Value": 0.0
     },
     {
         "Model_Types": "Best_Lambda",
-        "Hidden_Nodes": 44,
+        "Hidden_Nodes": 40,
         "Activation": "sigmoid",
-        "Lambda_Value": 0.0001220703125
+        "Lambda_Value": 0.03125
     },
     {
         "Model_Types": "Best_Size_and_Lambda",
-        "Hidden_Nodes": 44,
+        "Hidden_Nodes": 49,
         "Activation": "sigmoid",
-        "Lambda_Value": 0.0001220703125
+        "Lambda_Value": 0.0625
     },
     {
         "Model_Types": "Grid_Combination",
-        "Hidden_Nodes": 44,
+        "Hidden_Nodes": 64,
         "Activation": "sigmoid",
-        "Lambda_Value": 0.0001220703125
+        "Lambda_Value": 0.0625
     },
     {
         "Model_Types": "Grid_Optimization",
-        "Hidden_Nodes": 28,
+        "Hidden_Nodes": 32,
         "Activation": "sigmoid",
-        "Lambda_Value": 0.012579115212475327
+        "Lambda_Value": 0.05408789293239541
     }
 ]
