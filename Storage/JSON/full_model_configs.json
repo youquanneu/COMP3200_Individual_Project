@@ -9,13 +9,13 @@
         "Model_Types": "Best_Lambda",
         "Hidden_Nodes": 58,
         "Activation": "sigmoid",
-        "Lambda_Value": 0.00390625
+        "Lambda_Value": 0.125
     },
     {
         "Model_Types": "Best_Size_and_Lambda",
-        "Hidden_Nodes": 58,
+        "Hidden_Nodes": 57,
         "Activation": "sigmoid",
-        "Lambda_Value": 0.00390625
+        "Lambda_Value": 0.25
     },
     {
         "Model_Types": "Grid_Combination",

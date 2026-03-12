@@ -54,6 +54,8 @@ class ArtificialBeeColonyElm:
 
         self.convergence_curve = []
 
+    def init_random_state(self,random_state):
+        self.random_state = np.random.RandomState(random_state)
     def init_algo2(self, max_change = 20.0, min_change = 3.0,
                    initial_sigma = 0.8, final_sigma = 0.1,
                    nmi = 3):
@@ -205,18 +207,32 @@ class ArtificialBeeColonyElm:
             index = (index+1)%self.solution_size
 
     def scout_bee(self,x_train,y_train):
+        trigger_count = 0
         for index in range(self.solution_size):
             if self.trials[index] >= self.trial_limit:
                 self.population[index] = self.generate_random_solution()
                 self.fitness[index] = self.evaluation_fitness(self.population[index],x_train,y_train)
                 self.trials[index]  =   0
+                trigger_count +=1
                 if self.fitness[index]  > self.best_fitness:
                     self.best_fitness   = self.fitness[index]
                     self.best_solution  = np.copy(self.population[index])
+        return trigger_count
 
     def fit(self,x_train , y_train):
         x_train = np.asarray(x_train)
         y_train = np.asarray(y_train)
+
+        self.population = []
+        self.fitness = np.zeros(self.solution_size)
+        self.trials = np.zeros(self.solution_size)
+
+        self.best_fitness = -np.inf
+        self.best_solution = None
+        self.best_elm = None
+
+        self.convergence_curve = []
+        self.scout_trigger_history = []
 
         self.initialize_bee_colony(x_train, y_train)
 
@@ -225,11 +241,13 @@ class ArtificialBeeColonyElm:
 
             self.employer_bee(current_iteration,x_train,y_train)
             self.onlooker_bee(current_iteration, x_train, y_train)
-            self.scout_bee(x_train, y_train)
+
+            scout_count = self.scout_bee(x_train, y_train)
 
             self.convergence_curve.append(self.best_fitness)
+            self.scout_trigger_history.append(scout_count)
 
-            print(f"Iteration {current_iteration} end : {time.time() - start_time:.4f}s")
+            print(f"Iteration {current_iteration} end : {time.time() - start_time:.4f}s | Scout Triggers: {scout_count}")
 
         self.train_best_model(x_train, y_train)
 

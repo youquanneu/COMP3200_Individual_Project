@@ -5,6 +5,7 @@ import pandas as pd
 from Pipeline.Algorithm.CrossValidationDataSplit import CrossValidationDataSplit
 from Pipeline.Algorithm.EvaluationMatrix import EvaluationMatrix
 from Pipeline.Algorithm.ExtremeLearningMachine import ExtremeLearningMachine
+from Pipeline.Global.GlobalSetting import GlobalSetting
 
 logger = logging.getLogger(__name__)
 class EvaluationELM:
@@ -137,13 +138,17 @@ class EvaluationELM:
 
     @staticmethod
     def extract_top_results(dataframe: pd.DataFrame,
-                            base_metric_name: str = 'avg_F2-Score_Seed',
+                            base_metric_name: str = None,
                             punish_coefficient: float = 1.0,
                             top_k: int = 5) -> pd.DataFrame:
         """
         Ranks results using robust Lower Confidence Bound (LCB) with Standard Error.
         Formula: Mean - (Coefficient * Standard_Error)
         """
+
+        if base_metric_name is None:
+            base_metric_name = f"avg_{GlobalSetting.evaluation_function}_Seed"
+
         mean_col = f"{base_metric_name}_Mean"
         sem_col = f"{base_metric_name}_SEM"  # 使用我们刚刚加入的真实标准误
 
@@ -159,7 +164,11 @@ class EvaluationELM:
         if dataframe.empty:
             return dataframe
 
-        # 严谨的 LCB 计算：均值 - 惩罚系数 * 标准误
-        adjusted_score = dataframe[mean_col] - (punish_coefficient * dataframe[sem_col].fillna(0))
+        # Calculate max SEM, but fallback to 0.0 (or a designated high penalty value) if the entire column is NaN
+        max_sem = dataframe[sem_col].max()
+        fallback_penalty = max_sem if pd.notna(max_sem) else 0.0
+
+        # Rigorous LCB calculation
+        adjusted_score = dataframe[mean_col] - (punish_coefficient * dataframe[sem_col].fillna(fallback_penalty))
 
         return dataframe.assign(rank_score=adjusted_score).nlargest(top_k, columns='rank_score')

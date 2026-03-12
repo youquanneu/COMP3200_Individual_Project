@@ -7,6 +7,8 @@ class GlobalSetting:
     dataset_dir = '../../Storage/'
     record_dir  = os.path.join(dataset_dir, 'Record')
     json_dir    = os.path.join(dataset_dir, 'JSON')
+    figure_dir  = os.path.join(dataset_dir, 'Figure')
+
     config_file = os.path.join(json_dir, 'full_model_configs.json')
 
 
@@ -19,6 +21,11 @@ class GlobalSetting:
     test_set_size       = 0.2
     data_split_seed     = 42
 
+    evaluation_function = 'F1-Score'
+
+    solution_size = 10
+    trial_limit   = 10
+    max_iteration = 20
     @staticmethod
     def sigmoid(x):
         return 1 / (1 + np.exp(-x))
@@ -96,3 +103,9 @@ class GlobalSetting:
         df.to_csv(file_path, index=False)
 
         print(f"[I/O Trace] Record exported successfully: {file_path}")
+
+    @classmethod
+    def get_figure_dir(cls):
+        """Safely fetches or creates the Figure directory"""
+        os.makedirs(cls.figure_dir, exist_ok=True)
+        return cls.figure_dir
