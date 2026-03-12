@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Upload graphs">
+    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Grid Search Records too big, would not be uploaded">
       <change beforePath="$PROJECT_DIR$/Storage/Record/combination_record.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Record/combination_record.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Storage/Record/hidden_size_record.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Record/hidden_size_record.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Storage/Record/lambda_record.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Record/lambda_record.csv" afterDir="false" />
@@ -192,15 +192,7 @@
       <workItem from="1773190507244" duration="10252000" />
       <workItem from="1773208992980" duration="8396000" />
       <workItem from="1773223260162" duration="6146000" />
-      <workItem from="1773276563339" duration="37776000" />
-    </task>
-    <task id="LOCAL-00001" summary="Refactor">
-      <option name="closed" value="true" />
-      <created>1766148653987</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1766148653987</updated>
+      <workItem from="1773276563339" duration="38146000" />
     </task>
     <task id="LOCAL-00002" summary="Draft refine">
       <option name="closed" value="true" />
@@ -586,7 +578,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773319469295</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="Grid Search Records too big, would not be uploaded">
+      <option name="closed" value="true" />
+      <created>1773319564195</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1773319564195</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -604,7 +604,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Water and Fat combine together" />
     <MESSAGE value="Modified" />
     <MESSAGE value="Modified TBW and TFC" />
     <MESSAGE value="Model implement" />
@@ -629,7 +628,8 @@
     <MESSAGE value="Upload result" />
     <MESSAGE value="Upload records of gridsearch" />
     <MESSAGE value="Upload graphs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Upload graphs" />
+    <MESSAGE value="Grid Search Records too big, would not be uploaded" />
+    <option name="LAST_COMMIT_MESSAGE" value="Grid Search Records too big, would not be uploaded" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$EvaluationMatrix.coverage" NAME="EvaluationMatrix Coverage Results" MODIFIED="1773148516648" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Model" />
