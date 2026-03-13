@@ -3,7 +3,7 @@ import time
 
 import pandas as pd
 
-from Pipeline.Algorithm.EvaluationMatrix import EvaluationMatrix
+from Pipeline.Methodology.EvaluationMatrix import EvaluationMatrix
 from Pipeline.Global.GlobalSetting import GlobalSetting
 
 logger = logging.getLogger(__name__)

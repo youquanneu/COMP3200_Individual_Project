@@ -2,6 +2,8 @@ import pandas as pd
 from sklearn.model_selection import StratifiedKFold
 from sklearn.preprocessing import MinMaxScaler
 
+from Pipeline.Global.GlobalSetting import GlobalSetting
+
 
 class CrossValidationDataSplit:
     def __init__(self, k_fold : int = 5):
@@ -14,7 +16,8 @@ class CrossValidationDataSplit:
 
         kf = StratifiedKFold(
             n_splits        = self.k_fold,
-            shuffle         = False
+            shuffle         = True,
+            random_state    = GlobalSetting.data_shuffle_seed
         )
 
         self.k_fold_dataset = {}

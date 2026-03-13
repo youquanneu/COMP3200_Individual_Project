@@ -1,7 +1,6 @@
 import math
 
 import numpy as np
-import pandas as pd
 
 
 def safe_divide(numerator: float, denominator: float) -> float:
@@ -114,38 +113,3 @@ class EvaluationMatrix:
             "Counts": counts,
             "Metrics": rounded_metrics
         }
-
-    @staticmethod
-    def random_seed_metrics(data_frame):
-        """
-        Calculates variance exclusively based on the K-Fold averages.
-        This isolates the structural stability of the ELM initialization.
-        """
-        # Exclude metadata columns from the math
-        ignore_cols = ['Hidden_Nodes', 'Activation', 'Lambda_Value', 'Fold', 'ELM_Seed']
-        metric_cols = [col for col in data_frame.columns if col not in ignore_cols]
-
-        # STEP 1: Calculate the K-Fold Average for each independent ELM_Seed
-        # This collapses the fold variance and gives the expected performance of the network.
-        k_fold_averages = data_frame.groupby(['ELM_Seed'])[metric_cols].mean().reset_index()
-
-        # STEP 2: Calculate variance based ONLY on those K-Fold averages
-        n_seeds = len(k_fold_averages)
-        final_mean = k_fold_averages[metric_cols].mean()
-        final_std = k_fold_averages[metric_cols].std()
-
-        # Standard Error of the Mean (SEM)
-        final_sem = final_std / math.sqrt(n_seeds) if n_seeds > 1 else 0.0
-
-        flat_results = {}
-        for metric in metric_cols:
-            flat_results[f"avg_{metric}_Seed_Mean"] = round(final_mean[metric], 4)
-            flat_results[f"avg_{metric}_Seed_Std"] = round(final_std[metric], 4)
-            flat_results[f"avg_{metric}_Seed_SEM"] = round(final_sem[metric] if n_seeds > 1 else 0.0, 4)
-
-            # Note: Min and Max are now based on the K-fold averages,
-            # representing the "Worst Expected Initialization" and "Best Expected Initialization"
-            flat_results[f"avg_{metric}_Seed_Min"] = round(k_fold_averages[metric].min(), 4)
-            flat_results[f"avg_{metric}_Seed_Max"] = round(k_fold_averages[metric].max(), 4)
-
-        return pd.DataFrame([flat_results])

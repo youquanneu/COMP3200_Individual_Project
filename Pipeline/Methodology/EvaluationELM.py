@@ -1,30 +1,34 @@
 import logging
+import math
 
 import pandas as pd
 
-from Pipeline.Algorithm.CrossValidationDataSplit import CrossValidationDataSplit
-from Pipeline.Algorithm.EvaluationMatrix import EvaluationMatrix
+from Pipeline.Methodology.CrossValidationDataSplit import CrossValidationDataSplit
+from Pipeline.Methodology.EvaluationMatrix import EvaluationMatrix
 from Pipeline.Algorithm.ExtremeLearningMachine import ExtremeLearningMachine
 from Pipeline.Global.GlobalSetting import GlobalSetting
 
 logger = logging.getLogger(__name__)
 class EvaluationELM:
-    def __init__(self, x_train , y_train, activation_function,
-                 elm_initial_state_range=range(40, 61),
-                 k_fold=5):
+    def __init__(self, x_train, y_train,
+                 activation_function,
+                 elm_init_seed_range = None,
+                 k_fold = 5):
 
         self.x_train = x_train
         self.y_train = y_train
         self.activation_function = activation_function
 
-        self.elm_initial_state_range = elm_initial_state_range
+        self.elm_init_seed_range = GlobalSetting.elm_initial_state_range \
+            if elm_init_seed_range is None else elm_init_seed_range
 
-        self.k_fold = k_fold
+        self.k_fold = GlobalSetting.data_cv_fold \
+            if k_fold is None else k_fold
 
 
     def ranged_seed_cross_validation(self,
-                                     hidden_size=None,
-                                     regularization_lambda=0.0):
+                                     hidden_size = None,
+                                     regularization_lambda = 0.0):
 
         if hidden_size is None:
             hidden_size = self.x_train.shape[1]
@@ -46,7 +50,7 @@ class EvaluationELM:
             global_results_accumulator.extend(fold_result)
 
         raw_results_df = pd.DataFrame(global_results_accumulator)
-        final_metrics = EvaluationMatrix.random_seed_metrics(raw_results_df)
+        final_metrics = self.random_seed_metrics(raw_results_df)
 
         final_metrics.insert(0, 'Hidden_Nodes', hidden_size)
         final_metrics.insert(1, 'Activation', self.activation_function.__name__)
@@ -59,7 +63,7 @@ class EvaluationELM:
                                fold_idx):
         fold_results = []
 
-        for elm_seed in self.elm_initial_state_range:
+        for elm_seed in self.elm_init_seed_range:
             try:
                 elm = ExtremeLearningMachine(
                     features_size           = x_tr.shape[1],
@@ -135,7 +139,7 @@ class EvaluationELM:
     @staticmethod
     def extract_top_results(dataframe: pd.DataFrame,
                             base_metric_name: str = None,
-                            punish_coefficient: float = 1.0,
+                            punish_coefficient: float = None,
                             top_k: int = 5) -> pd.DataFrame:
         """
         Ranks results using robust Lower Confidence Bound (LCB).
@@ -146,6 +150,9 @@ class EvaluationELM:
         """
         if base_metric_name is None:
             base_metric_name = f"avg_{GlobalSetting.evaluation_function}_Seed"
+
+        if punish_coefficient is None:
+            punish_coefficient = GlobalSetting.seed_punish_coefficient
 
         mean_col = f"{base_metric_name}_Mean"
         sem_col = f"{base_metric_name}_SEM"
@@ -173,3 +180,38 @@ class EvaluationELM:
         adjusted_score = dataframe[mean_col] - (punish_coefficient * dataframe[sem_col].fillna(fallback_penalty))
 
         return dataframe.assign(rank_score=adjusted_score).nlargest(top_k, columns='rank_score')
+
+    @staticmethod
+    def random_seed_metrics(data_frame):
+        """
+        Calculates variance exclusively based on the K-Fold averages.
+        This isolates the structural stability of the ELM initialization.
+        """
+        # Exclude metadata columns from the math
+        ignore_cols = ['Hidden_Nodes', 'Activation', 'Lambda_Value', 'Fold', 'ELM_Seed']
+        metric_cols = [col for col in data_frame.columns if col not in ignore_cols]
+
+        # STEP 1: Calculate the K-Fold Average for each independent ELM_Seed
+        # This collapses the fold variance and gives the expected performance of the network.
+        k_fold_averages = data_frame.groupby(['ELM_Seed'])[metric_cols].mean().reset_index()
+
+        # STEP 2: Calculate variance based ONLY on those K-Fold averages
+        n_seeds = len(k_fold_averages)
+        final_mean = k_fold_averages[metric_cols].mean()
+        final_std = k_fold_averages[metric_cols].std()
+
+        # Standard Error of the Mean (SEM)
+        final_sem = final_std / math.sqrt(n_seeds) if n_seeds > 1 else 0.0
+
+        flat_results = {}
+        for metric in metric_cols:
+            flat_results[f"avg_{metric}_Seed_Mean"] = round(final_mean[metric], 8)
+            flat_results[f"avg_{metric}_Seed_Std"] = round(final_std[metric], 8)
+            flat_results[f"avg_{metric}_Seed_SEM"] = round(final_sem[metric] if n_seeds > 1 else 0.0, 8)
+
+            # Note: Min and Max are now based on the K-fold averages,
+            # representing the "Worst Expected Initialization" and "Best Expected Initialization"
+            flat_results[f"avg_{metric}_Seed_Min"] = round(k_fold_averages[metric].min(), 8)
+            flat_results[f"avg_{metric}_Seed_Max"] = round(k_fold_averages[metric].max(), 8)
+
+        return pd.DataFrame([flat_results])

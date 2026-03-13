@@ -3,7 +3,7 @@ import time
 
 import numpy as np
 
-from Pipeline.Algorithm.EvaluationMatrix import EvaluationMatrix
+from Pipeline.Methodology.EvaluationMatrix import EvaluationMatrix
 from Pipeline.Algorithm.ExtremeLearningMachine import ExtremeLearningMachine
 
 logger = logging.getLogger(__name__)
