@@ -37,7 +37,8 @@ class EvaluationABCELM:
             for trial_limit in self.trial_limit_range:
                 for solution_size in self.solution_size_range:
                     for seed in self.abc_init_seed_range:
-                        print(f"Max Iter: {max_iter} | Trial: {trial_limit} | Size: {solution_size} | Seed: {seed}")
+                        status = f"Swarm Search -> Max Iter: {max_iter} | Trial Limit: {trial_limit} | Pop Size: {solution_size} | Seed: {seed}      "
+                        print(f"\r{status}", end="", flush=True)
                         abc_model_tested = ArtificialBeeColonyElmCV(
                             features_size       = self.x_train.shape[1]             ,
                             hidden_size         = hidden_size                       ,

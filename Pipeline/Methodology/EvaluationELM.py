@@ -1,5 +1,6 @@
 import logging
 import math
+from datetime import datetime
 
 import pandas as pd
 
@@ -64,6 +65,10 @@ class EvaluationELM:
         fold_results = []
 
         for elm_seed in self.elm_init_seed_range:
+
+            status = f"Running -> Nodes: {hidden_size} | Lambda: {regularization_lambda} | Fold: {fold_idx + 1}/{self.k_fold} | ELM Seed: {elm_seed}      "
+            print(f"\r{status}", end="", flush=True)
+
             try:
                 elm = ExtremeLearningMachine(
                     features_size           = x_tr.shape[1],
@@ -89,9 +94,9 @@ class EvaluationELM:
                 fold_results.append(metrics)
 
             except Exception as e:
-                logger.error(f"Failed at Fold {fold_idx}, ELM Seed {elm_seed}: {e}")
+                # Add a newline (\n) before the error so it doesn't overwrite the progress text
+                print(f"\n    [!] ERROR: Failed at Fold {fold_idx + 1}, ELM Seed {elm_seed}: {e}")
                 continue
-
         return fold_results
 
     def grid_search_hidden_size(self, hidden_size_range):
