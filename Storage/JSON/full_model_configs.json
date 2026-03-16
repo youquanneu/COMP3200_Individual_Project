@@ -19,14 +19,14 @@
     },
     {
         "Model_Types": "Grid_Combination",
-        "Hidden_Nodes": 64,
+        "Hidden_Nodes": 93,
         "Activation": "sigmoid",
         "Lambda_Value": 0.0625
     },
     {
         "Model_Types": "Grid_Optimization",
-        "Hidden_Nodes": 32,
+        "Hidden_Nodes": 37,
         "Activation": "sigmoid",
-        "Lambda_Value": 0.05408789293239541
+        "Lambda_Value": 0.07788656582264938
     }
 ]

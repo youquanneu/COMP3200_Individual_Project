@@ -35,8 +35,8 @@ class GlobalSetting:
 
     evaluation_function = 'F1-Score'
 
-    solution_size = 50
-    trial_limit   = 20
+    solution_size = 80
+    trial_limit   = 50
     max_iteration = 100
     @staticmethod
     def sigmoid(x):

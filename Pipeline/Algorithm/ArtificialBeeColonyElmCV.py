@@ -34,8 +34,6 @@ class ArtificialBeeColonyElmCV(ArtificialBeeColonyElm):
         self.global_scaler = None
 
     def evaluation_fitness(self, solution, x_train, y_train):
-        # Note: x_train and y_train are intentionally ignored.
-        # Overridden to use self.internal_folds for CV evaluation.
 
         weight_boundary = self.feature_size * self.hidden_size
         hidden_weight = solution[:weight_boundary].reshape(self.feature_size, self.hidden_size)

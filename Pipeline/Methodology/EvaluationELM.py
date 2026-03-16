@@ -66,8 +66,9 @@ class EvaluationELM:
 
         for elm_seed in self.elm_init_seed_range:
 
-            status = f"Running -> Nodes: {hidden_size} | Lambda: {regularization_lambda} | Fold: {fold_idx + 1}/{self.k_fold} | ELM Seed: {elm_seed}      "
-            print(f"\r{status}", end="", flush=True)
+            status = f"Running -> Nodes: {hidden_size:<3} | Lambda: {regularization_lambda:<8.10f} | Fold: {fold_idx + 1:<2}/{self.k_fold:<2} | ELM Seed: {elm_seed:<4}"
+
+            print(f"\r{status:<80}")
 
             try:
                 elm = ExtremeLearningMachine(

@@ -1,4 +1,3 @@
-import logging
 import time
 
 import numpy as np
@@ -6,7 +5,6 @@ import numpy as np
 from Pipeline.Methodology.EvaluationMatrix import EvaluationMatrix
 from Pipeline.Algorithm.ExtremeLearningMachine import ExtremeLearningMachine
 
-logger = logging.getLogger(__name__)
 class ArtificialBeeColonyElm:
     def __init__(self, features_size, hidden_size,
                  activation_function, regularization_lambda = 0.0,
@@ -238,7 +236,7 @@ class ArtificialBeeColonyElm:
 
         self.initialize_bee_colony(x_train, y_train)
 
-        logger.info(f"Starting ABC Training for {self.max_iteration} iterations.")
+        print(f"\nABC Training for {self.max_iteration} iterations.")
 
         for current_iteration in range(1, self.max_iteration + 1):
             start_time = time.time()
@@ -251,7 +249,7 @@ class ArtificialBeeColonyElm:
             self.convergence_curve.append(self.best_fitness)
             self.scout_trigger_history.append(scout_count)
 
-            logger.info(
+            print(
                 f"Iteration {current_iteration:03d} complete | "
                 f"Duration: {time.time() - start_time:.4f}s | "
                 f"Scout Triggers: {scout_count} | "
@@ -262,8 +260,8 @@ class ArtificialBeeColonyElm:
 
     def train_best_model(self,x_train,y_train):
         weight_boundary = self.feature_size * self.hidden_size
-        hidden_weight = self.best_solution[:weight_boundary].reshape(self.feature_size, self.hidden_size)
-        hidden_bias = self.best_solution[weight_boundary:]
+        hidden_weight   = self.best_solution[:weight_boundary].reshape(self.feature_size, self.hidden_size)
+        hidden_bias     = self.best_solution[weight_boundary:]
 
         self.best_elm = ExtremeLearningMachine(self.feature_size, self.hidden_size,
                                                self.activationFunction, self.regularizationLambda)
