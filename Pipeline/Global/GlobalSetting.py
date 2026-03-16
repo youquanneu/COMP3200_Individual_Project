@@ -11,15 +11,19 @@ class GlobalSetting:
 
     config_file = os.path.join(json_dir, 'full_model_configs.json')
 
-
+    elm_initial_state_range     = range(161, 191)
     hidden_size_explore_range   = range(1, 101)
     lambda_value_explore_range  = 2.0 ** np.arange(-25, 3)
 
-    elm_initial_state_range     = range(161,191)
+    abc_elm_init_state_range    = range(161,191)
+    solution_size_explore_range = [5 * i for i in range(1, 11)]
+    trial_limit_explore_range   = [5 * i for i in range(1, 11)]
+    max_iteration_explore_range = [10 * i for i in range(1, 11)]
+
     seed_punish_coefficient     = 1.0
 
     elm_testing_state_range     = range(131,161)
-    abc_testing_state_range     = range(101,131)
+    abc_testing_state_range     = range(131,161)
     cv_punish_coefficient       = 1.0
 
 
