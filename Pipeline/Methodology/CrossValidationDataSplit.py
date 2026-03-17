@@ -28,8 +28,8 @@ class CrossValidationDataSplit:
 
             fold_scaler      = MinMaxScaler()
 
-            x_train_fold_scaled = pd.DataFrame(fold_scaler.fit_transform(x_train_fold_raw),columns=x_train.columns)
-            x_val_fold_scaled   = pd.DataFrame(fold_scaler.transform(x_val_fold_raw),columns=x_train.columns)
+            x_train_fold_scaled = pd.DataFrame(fold_scaler.fit_transform(x_train_fold_raw.values),columns=x_train.columns)
+            x_val_fold_scaled   = pd.DataFrame(fold_scaler.transform(x_val_fold_raw.values),columns=x_train.columns)
 
             self.k_fold_dataset[fold_idx] = {
                 'X_train_fold'  : x_train_fold_scaled,

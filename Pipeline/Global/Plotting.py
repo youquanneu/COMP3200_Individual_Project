@@ -59,14 +59,19 @@ class Plotting:
             # === NEW: The Global Dashboard Title ===
             fig.suptitle(f'ABC-ELM Telemetry | {experiment_name}', y=0.98, fontsize=18, fontweight='bold')
 
-            iterations = np.arange(1, len(convergence_df) + 1)
+            if fitness_metric == "MCC":
+                plot_convergence_df = (convergence_df * 2.0) - 1.0
+            else:
+                plot_convergence_df = convergence_df.copy()
+
+            iterations = np.arange(1, len(plot_convergence_df) + 1)
 
             # --- TOP PLOT: Convergence Trend ---
-            for seed_col in convergence_df.columns:
-                ax1.plot(iterations, convergence_df[seed_col],
+            for seed_col in plot_convergence_df.columns:
+                ax1.plot(iterations, plot_convergence_df[seed_col],
                          linestyle=':', linewidth=1, alpha=0.75)
 
-            mean_fitness = convergence_df.mean(axis=1)
+            mean_fitness = plot_convergence_df.mean(axis=1)
             ax1.plot(iterations, mean_fitness,
                      color='#D62728', linewidth=3.5, label='Average Convergence')
 
@@ -100,7 +105,7 @@ class Plotting:
                          fontweight='bold', fontsize=11)
 
 
-            ax1.set_ylim(0.7, 0.9)
+            ax1.set_ylim(top=1.0)
 
             # DOWNGRADED: Now just a subplot label, not the main title
             ax1.set_title('Phase 1: Convergence Trajectory', pad=15)

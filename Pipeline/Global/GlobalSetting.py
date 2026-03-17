@@ -1,6 +1,8 @@
 import json
 import os
 import numpy as np
+import pandas as pd
+
 
 class GlobalSetting:
 
@@ -28,9 +30,13 @@ class GlobalSetting:
 
     evaluation_function = 'MCC'
 
-    solution_size = 80
-    trial_limit   = 50
-    max_iteration = 120
+    solution_size = 10
+    trial_limit = 2
+    max_iteration = 3
+
+    # solution_size = 80
+    # trial_limit   = 50
+    # max_iteration = 100
     @staticmethod
     def sigmoid(x):
         return 1 / (1 + np.exp(-x))
@@ -108,6 +114,23 @@ class GlobalSetting:
         df.to_csv(file_path, index=False)
 
         print(f"[I/O Trace] Record exported successfully: {file_path}")
+
+    @classmethod
+    def get_dataframe_from_record(cls, filename):
+        """Fetches a saved CSV record and returns it as a Pandas DataFrame."""
+        if not filename.endswith('.csv'):
+            filename += '.csv'
+
+        target_dir = cls.get_record_dir()
+        file_path = os.path.join(target_dir, filename)
+
+        if not os.path.exists(file_path):
+            raise FileNotFoundError(f"Critical Error: The record '{file_path}' does not exist.")
+
+        df = pd.read_csv(file_path)
+        print(f"[I/O Trace] Record imported successfully: {file_path}")
+
+        return df
 
     @classmethod
     def get_figure_dir(cls):
