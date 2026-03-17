@@ -15,15 +15,8 @@ class GlobalSetting:
     hidden_size_explore_range   = range(1, 101)
     lambda_value_explore_range  = 2.0 ** np.arange(-25, 3)
 
-    abc_elm_init_state_range    = range(161,191)
-    solution_size_explore_range = [5 * i for i in range(1, 11)]
-    trial_limit_explore_range   = [5 * i for i in range(1, 11)]
-    max_iteration_explore_range = [10 * i for i in range(1, 11)]
-
     seed_punish_coefficient     = 1.0
 
-    elm_testing_state_range     = range(131,161)
-    abc_testing_state_range     = range(131,161)
     cv_punish_coefficient       = 1.0
 
 
@@ -33,11 +26,11 @@ class GlobalSetting:
     data_cv_fold        = 5
     data_shuffle_seed   = 42
 
-    evaluation_function = 'F1-Score'
+    evaluation_function = 'MCC'
 
     solution_size = 80
     trial_limit   = 50
-    max_iteration = 100
+    max_iteration = 120
     @staticmethod
     def sigmoid(x):
         return 1 / (1 + np.exp(-x))

@@ -2,13 +2,14 @@ import time
 
 import numpy as np
 
+from Pipeline.Global.GlobalSetting import GlobalSetting
 from Pipeline.Methodology.EvaluationMatrix import EvaluationMatrix
 from Pipeline.Algorithm.ExtremeLearningMachine import ExtremeLearningMachine
 
 class ArtificialBeeColonyElm:
     def __init__(self, features_size, hidden_size,
                  activation_function, regularization_lambda = 0.0,
-                 random_state = None, fitness_function = 'Accuracy',
+                 random_state = None, fitness_function = None,
                  solution_size = 10, trial_limit = 10, max_iteration = 100,
                  max_change=20.0, min_change=3.0, initial_sigma=0.8, final_sigma=0.1, nmi=3,
                  initial_probability=0.0, final_probability=1.0
@@ -23,7 +24,7 @@ class ArtificialBeeColonyElm:
 
         self.random_state   = np.random.RandomState(random_state) if random_state is not None else np.random.RandomState()
 
-        self.fitness_function = fitness_function
+        self.fitness_function = GlobalSetting.evaluation_function if fitness_function is None else fitness_function
 
         self.solution_size  = solution_size
         self.trial_limit    = trial_limit
@@ -236,8 +237,6 @@ class ArtificialBeeColonyElm:
 
         self.initialize_bee_colony(x_train, y_train)
 
-        print(f"\nABC Training for {self.max_iteration} iterations.")
-
         for current_iteration in range(1, self.max_iteration + 1):
             start_time = time.time()
 
@@ -250,12 +249,13 @@ class ArtificialBeeColonyElm:
             self.scout_trigger_history.append(scout_count)
 
             print(
-                f"Iteration {current_iteration:03d} complete | "
+                f"\rIteration {current_iteration:03d} complete | "
                 f"Duration: {time.time() - start_time:.4f}s | "
                 f"Scout Triggers: {scout_count} | "
-                f"Best Fitness: {self.best_fitness:.6f}"
+                f"Best Fitness: {self.best_fitness:.6f}",
+                end="", flush=True
             )
-
+        print()
         self.train_best_model(x_train, y_train)
 
     def train_best_model(self,x_train,y_train):

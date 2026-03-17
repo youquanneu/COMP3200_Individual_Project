@@ -23,8 +23,9 @@ class ExtremeLearningMachine:
         else:
             rng = np.random
 
-        self.hiddenWeights  = (rng.rand(self.featureSize, self.hiddenSize) * 2 - 1) * scale
-        self.hiddenBias     = (rng.rand(self.hiddenSize) * 2 - 1) * scale
+        self.hiddenWeights  = rng.uniform(low=-scale, high=scale, size=(self.featureSize, self.hiddenSize))
+        self.hiddenBias     = rng.uniform(low=-scale, high=scale, size=self.hiddenSize)
+
 
     def apply_activation_function(self, activation_function):
         self.activationFunction = activation_function

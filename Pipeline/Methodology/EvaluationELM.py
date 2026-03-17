@@ -1,6 +1,5 @@
 import logging
 import math
-from datetime import datetime
 
 import pandas as pd
 
@@ -65,10 +64,6 @@ class EvaluationELM:
         fold_results = []
 
         for elm_seed in self.elm_init_seed_range:
-
-            status = f"Running -> Nodes: {hidden_size:<3} | Lambda: {regularization_lambda:<8.10f} | Fold: {fold_idx + 1:<2}/{self.k_fold:<2} | ELM Seed: {elm_seed:<4}"
-
-            print(f"\r{status:<80}")
 
             try:
                 elm = ExtremeLearningMachine(

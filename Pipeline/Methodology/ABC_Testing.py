@@ -10,7 +10,7 @@ def abc_testing(abc_model,x_train, y_train , x_test , y_test):
     scout_history = {}
 
     for seed in GlobalSetting.elm_initial_state_range:
-        print(f"\rRunning simulation for Seed: {seed}...".ljust(80), end="", flush=True)
+        print(f"\nRunning simulation for Seed: {seed}...", flush=True)
 
         abc_model_tested = abc_model
         abc_model_tested.init_random_state(seed)
