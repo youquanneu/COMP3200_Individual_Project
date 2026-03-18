@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Cross seed cross data split result wait for running">
+    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="ABC_RELM_TEST_Result">
+      <change beforePath="$PROJECT_DIR$/Pipeline/Global/GlobalSetting.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Global/GlobalSetting.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pipeline/Optimization Testing/ABC_RELM_Test_Fold_0.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Optimization Testing/ABC_RELM_Test_Fold_0.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pipeline/Optimization Testing/ABC_RELM_Test_Fold_1.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Optimization Testing/ABC_RELM_Test_Fold_1.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pipeline/Optimization Testing/ABC_RELM_Test_Fold_2.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Optimization Testing/ABC_RELM_Test_Fold_2.ipynb" afterDir="false" />
@@ -207,23 +208,7 @@
       <workItem from="1773728315498" duration="334000" />
       <workItem from="1773728668800" duration="3636000" />
       <workItem from="1773734410322" duration="18009000" />
-      <workItem from="1773791388856" duration="5275000" />
-    </task>
-    <task id="LOCAL-00010" summary="Modify Data Analysis Sheet">
-      <option name="closed" value="true" />
-      <created>1770118009883</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1770118009883</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Modify Data Analysis Sheet">
-      <option name="closed" value="true" />
-      <created>1770186841512</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1770186841512</updated>
+      <workItem from="1773791388856" duration="5663000" />
     </task>
     <task id="LOCAL-00012" summary="Half way of BMI, Obesity recovering">
       <option name="closed" value="true" />
@@ -601,7 +586,23 @@
       <option name="project" value="LOCAL" />
       <updated>1773795583641</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="ABC_RELM_TEST_Result">
+      <option name="closed" value="true" />
+      <created>1773803520120</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1773803520120</updated>
+    </task>
+    <task id="LOCAL-00060" summary="ABC_RELM_TEST_Result">
+      <option name="closed" value="true" />
+      <created>1773803600306</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1773803600306</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -619,7 +620,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Left Meta Heuristic for model implementation" />
     <MESSAGE value="Left Meta Heuristic for model implementation .2" />
     <MESSAGE value="Modifying code" />
     <MESSAGE value="Modifying code, left ABC" />
@@ -644,7 +644,8 @@
     <MESSAGE value="Add evaluation of ABC iter parameter&#10; &#10;- Things to be done : &#10;1. Rerun the whole process after the restructure&#10;2. Hyperparameter tuning : Solution size, trial limit, max iter&#10;3. Write report&#10;4. Hyperparameter deep tuning : algo_2 , algo_3 parameter&#10;&#10;- Things can be explored : &#10;1. Make ABC-RELM with lambda inside solution" />
     <MESSAGE value="..." />
     <MESSAGE value="Cross seed cross data split result wait for running" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cross seed cross data split result wait for running" />
+    <MESSAGE value="ABC_RELM_TEST_Result" />
+    <option name="LAST_COMMIT_MESSAGE" value="ABC_RELM_TEST_Result" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$EvaluationMatrix.coverage" NAME="EvaluationMatrix Coverage Results" MODIFIED="1773148516648" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Model" />
@@ -655,7 +656,7 @@
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$DataSplit.coverage" NAME="DataSplit Coverage Results" MODIFIED="1773060532885" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Model" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$ABC_Testing.coverage" NAME="ABC_Testing Coverage Results" MODIFIED="1773795552358" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Methodology" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$ABC_ELM2.coverage" NAME="ABC_ELM2 Coverage Results" MODIFIED="1772693290471" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Model" />
-    <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$GlobalSetting.coverage" NAME="GlobalSetting Coverage Results" MODIFIED="1773794280842" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Global" />
+    <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$GlobalSetting.coverage" NAME="GlobalSetting Coverage Results" MODIFIED="1773803633033" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Global" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$Plotting.coverage" NAME="Plotting Coverage Results" MODIFIED="1773742222776" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Global" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$sdf.coverage" NAME="sdf Coverage Results" MODIFIED="1770799329042" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Model" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$teest.coverage" NAME="teest Coverage Results" MODIFIED="1773294209791" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Optimization" />

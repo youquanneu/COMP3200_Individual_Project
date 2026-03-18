@@ -30,13 +30,9 @@ class GlobalSetting:
 
     evaluation_function = 'MCC'
 
-    solution_size = 40
-    trial_limit = 25
+    solution_size = 80
+    trial_limit   = 50
     max_iteration = 100
-
-    # solution_size = 80
-    # trial_limit   = 50
-    # max_iteration = 100
     @staticmethod
     def sigmoid(x):
         return 1 / (1 + np.exp(-x))
