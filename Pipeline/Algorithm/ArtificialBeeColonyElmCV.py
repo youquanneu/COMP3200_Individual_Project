@@ -36,8 +36,8 @@ class ArtificialBeeColonyElmCV(ArtificialBeeColonyElm):
     def evaluation_fitness(self, solution, x_train, y_train):
 
         weight_boundary = self.feature_size * self.hidden_size
-        hidden_weight = solution[:weight_boundary].reshape(self.feature_size, self.hidden_size)
-        hidden_bias = solution[weight_boundary:]
+        hidden_weight   = solution[:weight_boundary].reshape(self.feature_size, self.hidden_size)
+        hidden_bias     = solution[weight_boundary:]
 
         fold_fitness = []
 

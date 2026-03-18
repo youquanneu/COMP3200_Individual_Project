@@ -14,8 +14,8 @@ class ArtificialBeeColonyElmCVEnsemble(ArtificialBeeColonyElmCV):
     def train_best_model(self, x_train, y_train):
         # 1. Extract the optimal hidden structure discovered by the ABC swarm
         weight_boundary = self.feature_size * self.hidden_size
-        hidden_weight = self.best_solution[:weight_boundary].reshape(self.feature_size, self.hidden_size)
-        hidden_bias = self.best_solution[weight_boundary:]
+        hidden_weight   = self.best_solution[:weight_boundary].reshape(self.feature_size, self.hidden_size)
+        hidden_bias     = self.best_solution[weight_boundary:]
 
         self.ensemble_models = []
 

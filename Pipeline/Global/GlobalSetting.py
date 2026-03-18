@@ -30,9 +30,9 @@ class GlobalSetting:
 
     evaluation_function = 'MCC'
 
-    solution_size = 10
-    trial_limit = 2
-    max_iteration = 3
+    solution_size = 40
+    trial_limit = 25
+    max_iteration = 100
 
     # solution_size = 80
     # trial_limit   = 50
