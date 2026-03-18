@@ -19,7 +19,7 @@ class EvaluationELM:
         self.y_train = y_train
         self.activation_function = activation_function
 
-        self.elm_init_seed_range = GlobalSetting.elm_initial_state_range \
+        self.elm_init_seed_range = GlobalSetting.initial_seed_range \
             if elm_init_seed_range is None else elm_init_seed_range
 
         self.k_fold = GlobalSetting.data_cv_fold \

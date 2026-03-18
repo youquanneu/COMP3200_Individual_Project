@@ -22,6 +22,7 @@ class ArtificialBeeColonyElm:
         self.activationFunction     = activation_function
         self.regularizationLambda   = regularization_lambda
 
+        self.preset_random_seed    = None
         self.random_state   = np.random.RandomState(random_state) if random_state is not None else np.random.RandomState()
 
         self.fitness_function = GlobalSetting.evaluation_function if fitness_function is None else fitness_function
@@ -56,6 +57,7 @@ class ArtificialBeeColonyElm:
         self.scout_trigger_history = []
 
     def init_random_state(self,random_state):
+        self.preset_random_seed = random_state
         self.random_state = np.random.RandomState(random_state)
     def init_algo2(self, max_change = 20.0, min_change = 3.0,
                    initial_sigma = 0.8, final_sigma = 0.1,
@@ -192,7 +194,7 @@ class ArtificialBeeColonyElm:
             self.neighbour_iteration(index, solution_v_idx, x_train, y_train)
 
     def onlooker_bee(self,current_iteration,x_train,y_train):
-        probability = self.fitness/ np.sum(self.fitness)
+        probability = self.fitness/ np.sum(self.fitness + 1e-20)
         trial = 0
         index = 0
         while trial < self.solution_size:
@@ -247,15 +249,14 @@ class ArtificialBeeColonyElm:
 
             self.convergence_curve.append(self.best_fitness)
             self.scout_trigger_history.append(scout_count)
-
             print(
-                f"\rIteration {current_iteration:03d} complete | "
+                f"\rSeed {self.preset_random_seed}  | "
+                f"Iteration {current_iteration:03d} complete | "
                 f"Duration: {time.time() - start_time:.4f}s | "
                 f"Scout Triggers: {scout_count} | "
                 f"Best Fitness: {self.best_fitness:.6f}",
                 end="", flush=True
             )
-        print()
         self.train_best_model(x_train, y_train)
 
     def train_best_model(self,x_train,y_train):

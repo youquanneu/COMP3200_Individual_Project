@@ -13,11 +13,12 @@ class GlobalSetting:
 
     config_file = os.path.join(json_dir, 'full_model_configs.json')
 
-    elm_initial_state_range     = range(161, 191)
+    initial_seed_range          = range(101, 131)
+    elm_initial_state_range     = range(101, 131)
     hidden_size_explore_range   = range(1, 101)
     lambda_value_explore_range  = 2.0 ** np.arange(-25, 3)
 
-    seed_punish_coefficient     = 1.0
+    seed_punish_coefficient     = 1.96
 
     cv_punish_coefficient       = 1.0
 
@@ -30,9 +31,9 @@ class GlobalSetting:
 
     evaluation_function = 'MCC'
 
-    solution_size = 80
-    trial_limit   = 50
-    max_iteration = 100
+    solution_size = 5
+    trial_limit   = 5
+    max_iteration = 20
     @staticmethod
     def sigmoid(x):
         return 1 / (1 + np.exp(-x))
@@ -118,7 +119,7 @@ class GlobalSetting:
             filename += '.csv'
 
         target_dir = cls.get_record_dir()
-        file_path = os.path.join(target_dir, filename)
+        file_path = str(os.path.join(target_dir, filename))
 
         if not os.path.exists(file_path):
             raise FileNotFoundError(f"Critical Error: The record '{file_path}' does not exist.")

@@ -26,8 +26,12 @@ class GallstoneDataSet:
 
         self.fold_split = []
 
-    def fetch_data_path_1(self):
+    def fetch_data_path_0(self):
         self.file_path = '../../Storage/Dataset/Dataset.csv'
+        self.target_col = ['Gallstone Status']
+
+    def fetch_data_path_1(self):
+        self.file_path = '../../Storage/Dataset/UCI_Gallstone_Dataset.csv'
         self.target_col = ['Gallstone Status']
 
     def normal_data_split(self):

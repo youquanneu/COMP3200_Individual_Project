@@ -7,6 +7,7 @@ from Pipeline.Algorithm.ArtificialBeeColonyElm import ArtificialBeeColonyElm
 from Pipeline.Algorithm.ArtificialBeeColonyElmCV import ArtificialBeeColonyElmCV
 from Pipeline.Algorithm.ArtificialBeeColonyElmCVEnsemble import ArtificialBeeColonyElmCVEnsemble
 from Pipeline.Global.GallstoneDataSet import GallstoneDataSet
+from Pipeline.Global.Plotting import Plotting
 from Pipeline.Methodology.EvaluationMatrix import EvaluationMatrix
 from Pipeline.Global.GlobalSetting import GlobalSetting
 
@@ -16,20 +17,31 @@ def abc_testing(abc_model,x_train, y_train , x_test , y_test):
     convergence_history = {}
     scout_history = {}
 
-    for seed in GlobalSetting.elm_initial_state_range:
-        print(f"\nRunning simulation for Seed: {seed}...", flush=True)
+    for seed in GlobalSetting.initial_seed_range:
 
         abc_model_tested = abc_model
         abc_model_tested.init_random_state(seed)
         abc_model_tested.fit(x_train, y_train)
 
-        convergence_history[seed] = abc_model_tested.convergence_curve
+        raw_curve = abc_model_tested.convergence_curve
+        if abc_model_tested.fitness_function == "MCC":
+            raw_curve = [(val * 2.0) - 1.0 for val in raw_curve]
+        convergence_history[seed] = raw_curve
+
         scout_history[seed] = abc_model_tested.scout_trigger_history
 
         y_pred = abc_model_tested.predict(x_test)
 
         eval_metrics = EvaluationMatrix(y_true= y_test, y_pred=y_pred).get_all_metrics()
-        eval_metrics['ABC_Seed'] = seed
+        eval_metrics['Seed'] = seed
+
+        eval_metrics['Hidden_Nodes'] = int(abc_model_tested.hidden_size)
+        eval_metrics['Lambda_Value'] = float(abc_model_tested.regularizationLambda)
+        eval_metrics['Activation']   = 'sigmoid'
+
+        eval_metrics['Solution_Size']   = abc_model_tested.solution_size
+        eval_metrics['Trial_Limit']     = abc_model_tested.trial_limit
+        eval_metrics['Max_Iter']        = abc_model_tested.max_iteration
 
         monte_carlo_results.append(eval_metrics)
 
@@ -37,7 +49,7 @@ def abc_testing(abc_model,x_train, y_train , x_test , y_test):
 
 
 def cv_fold_testing(model_name, config, fold_id):
-    print(f"--- Initializing {model_name} on Fold {fold_id} ---")
+    # print(f"--- Initializing {model_name} on Fold {fold_id} ---")
 
     gallstone_dataset = GallstoneDataSet()
     gallstone_dataset.fetch_data_path_1()
@@ -53,7 +65,7 @@ def cv_fold_testing(model_name, config, fold_id):
 
     features_size = x_train.shape[1]
 
-    print(f"[Data] Fold {fold_id} loaded. Training samples: {len(x_train)}, Testing samples: {len(x_test)}")
+    # print(f"[Data] Fold {fold_id} loaded. Training samples: {len(x_train)}, Testing samples: {len(x_test)}")
 
     best_lambda_config = GlobalSetting.get_config_by_type(config)
     best_lambda_hidden_size = best_lambda_config["Hidden_Nodes"] if best_lambda_config else None
@@ -74,9 +86,9 @@ def cv_fold_testing(model_name, config, fold_id):
     # Instantiate the ABC Swarm with the injected configurations
     abc_model = selected_model_class(
         features_size       = features_size,
-        hidden_size         = best_lambda_hidden_size,
+        hidden_size         = best_lambda_hidden_size ,
         activation_function = GlobalSetting.sigmoid,
-        regularization_lambda=best_lambda_lambda_value,
+        regularization_lambda= best_lambda_lambda_value,
         fitness_function    = GlobalSetting.evaluation_function,
         solution_size       = GlobalSetting.solution_size,
         trial_limit         = GlobalSetting.trial_limit,
@@ -84,6 +96,7 @@ def cv_fold_testing(model_name, config, fold_id):
     )
 
     abc_model.employed_bee_apply_algo3()
+    abc_model.init_algo3(initial_probability=0.1,final_probability=0.9)
     abc_model.onlooker_bee_apply_algo2()
 
     start_time = time.time()
@@ -95,10 +108,22 @@ def cv_fold_testing(model_name, config, fold_id):
     )
 
     duration = time.time() - start_time
-    print(f"\n[Execution] Fold {fold_id} completed in {duration:.2f} seconds.")
+    # print(f"\n[Execution] Fold {fold_id} completed in {duration:.2f} seconds.")
 
-    GlobalSetting.save_dataframe_to_record(results_df    , f"{config}_ABC_{model_name}_Fold_{fold_id}_Results.csv")
-    GlobalSetting.save_dataframe_to_record(convergence_df, f"{config}_ABC_{model_name}_Fold_{fold_id}_Convergence.csv")
-    GlobalSetting.save_dataframe_to_record(scout_df      , f"{config}_ABC_{model_name}_Fold_{fold_id}_Scout_History.csv")
+    results_df['Fold_ID'] = fold_id
+
+    cols_to_keep = [
+        'Fold_ID', 'Accuracy', 'Precision', 'Recall', 'NPV', 'Specificity',
+        'F1-Score', 'F2-Score', 'Bal Accuracy', 'MCC', 'Seed'
+    ]
+
+    results_df = results_df[cols_to_keep]
+
+    GlobalSetting.save_dataframe_to_record(results_df    , f"ABC_{model_name}_{config}_Fold_{fold_id}_Results.csv")
+    GlobalSetting.save_dataframe_to_record(convergence_df, f"ABC_{model_name}_{config}_Fold_{fold_id}_Convergence.csv")
+    GlobalSetting.save_dataframe_to_record(scout_df      , f"ABC_{model_name}_{config}_Fold_{fold_id}_Scout_History.csv")
+
+    Plotting.plot_abc_dashboard(convergence_df, scout_df, f"ABC_{model_name}_{config}_Fold_{fold_id}", results_df=results_df,
+                                is_final_record=True)
 
     return results_df, convergence_df , scout_df
