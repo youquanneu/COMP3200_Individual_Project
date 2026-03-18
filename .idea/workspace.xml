@@ -5,17 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Cross seed cross data split result wait for running">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Algorithm/ArtificialBeeColonyElmCV.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Algorithm/ArtificialBeeColonyElmCV.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Algorithm/ArtificialBeeColonyElmCVEnsemble.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Algorithm/ArtificialBeeColonyElmCVEnsemble.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Global/GlobalSetting.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Global/GlobalSetting.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Methodology/ABC_Testing.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Methodology/ABC_Testing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Optimization Testing/ABC_RELM_CV_Test_Fold_0.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Optimization Testing/ABC_RELM_CV_Test_Fold_1.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Optimization Testing/ABC_RELM_CV_Test_Fold_2.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Optimization Testing/ABC_RELM_CV_Test_Fold_3.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Optimization Testing/ABC_RELM_CV_Test_Fold_4.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Optimization Testing/Organize Of Result.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Optimization Testing CV Ensemble/Organize Of Result.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipeline/Optimization Testing/ABC_RELM_Test_Fold_0.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Optimization Testing/ABC_RELM_Test_Fold_0.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipeline/Optimization Testing/ABC_RELM_Test_Fold_1.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Optimization Testing/ABC_RELM_Test_Fold_1.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipeline/Optimization Testing/ABC_RELM_Test_Fold_2.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Optimization Testing/ABC_RELM_Test_Fold_2.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipeline/Optimization Testing/ABC_RELM_Test_Fold_3.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Optimization Testing/ABC_RELM_Test_Fold_3.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipeline/Optimization Testing/ABC_RELM_Test_Fold_4.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Optimization Testing/ABC_RELM_Test_Fold_4.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -213,15 +207,7 @@
       <workItem from="1773728315498" duration="334000" />
       <workItem from="1773728668800" duration="3636000" />
       <workItem from="1773734410322" duration="18009000" />
-      <workItem from="1773791388856" duration="4112000" />
-    </task>
-    <task id="LOCAL-00009" summary="Data Analysis">
-      <option name="closed" value="true" />
-      <created>1769594599783</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1769594599783</updated>
+      <workItem from="1773791388856" duration="5275000" />
     </task>
     <task id="LOCAL-00010" summary="Modify Data Analysis Sheet">
       <option name="closed" value="true" />
@@ -607,7 +593,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773753373519</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="Cross seed cross data split result wait for running">
+      <option name="closed" value="true" />
+      <created>1773795583641</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1773795583641</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -659,7 +653,7 @@
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$GallstoneDataSet.coverage" NAME="GallstoneDataSet Coverage Results" MODIFIED="1773748998096" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Global" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$EvaluationELM.coverage" NAME="EvaluationELM Coverage Results" MODIFIED="1773729394230" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Methodology" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$DataSplit.coverage" NAME="DataSplit Coverage Results" MODIFIED="1773060532885" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Model" />
-    <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$ABC_Testing.coverage" NAME="ABC_Testing Coverage Results" MODIFIED="1773794287877" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Methodology" />
+    <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$ABC_Testing.coverage" NAME="ABC_Testing Coverage Results" MODIFIED="1773795552358" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Methodology" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$ABC_ELM2.coverage" NAME="ABC_ELM2 Coverage Results" MODIFIED="1772693290471" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Model" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$GlobalSetting.coverage" NAME="GlobalSetting Coverage Results" MODIFIED="1773794280842" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Global" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$Plotting.coverage" NAME="Plotting Coverage Results" MODIFIED="1773742222776" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Global" />
