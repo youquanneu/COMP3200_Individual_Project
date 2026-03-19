@@ -262,7 +262,7 @@ class ArtificialBeeColonyElm:
                     self.best_solution  = np.copy(self.population[index])
         return trigger_count
 
-    def fit(self,x_train , y_train):
+    def fit(self, x_train , y_train):
         x_train = np.asarray(x_train)
         y_train = np.asarray(y_train)
 

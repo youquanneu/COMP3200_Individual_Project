@@ -135,3 +135,67 @@ class Plotting:
                 print(f"[I/O Trace] Figure exported successfully: {file_path}")
 
             plt.show()
+
+    @classmethod
+    def plot_train_val_curve(cls, convergence_curve, val_fitness_curve,
+                             experiment_name: str,
+                             final_test_result: float = None,
+                             fitness_metric: str = None,
+                             is_final_record: bool = False):
+        """
+        Plots the Best Fitness (Training) against Validation Fitness over iterations,
+        with an optional horizontal line for the final unseen Test Result.
+        """
+        cls._apply_seaborn_theme()
+
+        if fitness_metric is None:
+            fitness_metric = GlobalSetting.evaluation_function
+
+        with plt.rc_context(cls.rc_params_standard):
+            fig, ax = plt.subplots(figsize=(12, 6), facecolor='white')
+
+            fig.suptitle(f'ABC-ELM Generalization Tracking | {experiment_name}', y=0.98, fontsize=16, fontweight='bold')
+
+            # Ensure inputs are numpy arrays for plotting
+            train_curve = np.array(convergence_curve)
+            val_curve = np.array(val_fitness_curve)
+            iterations = np.arange(1, len(train_curve) + 1)
+
+            # 1. Plot Training Convergence (Best Fitness)
+            ax.plot(iterations, train_curve, color='#1f77b4', linewidth=2.5, label='Training Best Fitness')
+
+            # 2. Plot Validation Fitness
+            if len(val_curve) > 0:
+                ax.plot(iterations, val_curve, color='#ff7f0e', linewidth=2.5, linestyle='-',
+                        label='Validation Fitness')
+
+            # 3. Plot Final Test Result (Straight Line)
+            if final_test_result is not None:
+                ax.axhline(y=final_test_result, color='#2ca02c', linestyle='--', linewidth=2.5,
+                           label=f'Final Test Result ({final_test_result:.4f})')
+
+                # Annotate the test line slightly above the line on the right side
+                ax.text(x=iterations[-1], y=final_test_result,
+                        s=f' Test: {final_test_result:.3f}',
+                        color='#1b5e20', va='bottom', ha='right', fontweight='bold', fontsize=11)
+
+            ax.set_title('Training vs. Validation Trajectory', pad=15)
+            ax.set_xlabel('Iteration / Bee Cycle')
+            ax.set_ylabel(f'Fitness ({fitness_metric})')
+
+            ax.xaxis.set_major_locator(MaxNLocator(nbins=10, integer=True))
+            ax.grid(axis='y', linestyle='--', alpha=0.4)
+            ax.legend(loc='lower right', framealpha=0.9, edgecolor='gray')
+
+            plt.tight_layout()
+
+            # I/O Handling for saving the artifact
+            if is_final_record:
+                target_dir = GlobalSetting.get_figure_dir()
+                safe_filename = experiment_name.replace(" ", "_").replace(":", "").replace("/", "-")
+                file_path = os.path.join(target_dir, f"ABC_TrainVal_{safe_filename}_{fitness_metric}.png")
+
+                plt.savefig(file_path, dpi=300, bbox_inches='tight', facecolor=fig.get_facecolor())
+                print(f"[I/O Trace] Figure exported successfully: {file_path}")
+
+            plt.show()

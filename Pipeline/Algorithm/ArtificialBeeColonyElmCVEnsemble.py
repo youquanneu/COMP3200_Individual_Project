@@ -69,3 +69,26 @@ class ArtificialBeeColonyElmCVEnsemble(ArtificialBeeColonyElmCV):
         majority_votes, _ = mode(all_predictions_matrix, axis=0, keepdims=False)
 
         return majority_votes.ravel()
+
+    def get_validation_fitness(self, solution, x_train, y_train):
+
+        all_val_predictions = []
+
+        for fold_idx in range(self.k_fold):
+            fold = self.internal_folds[fold_idx]
+            x_tr, y_tr = fold['X_train_fold'], fold['y_train_fold']
+            fold_scaler = fold['scaler']
+
+            elm = self.build_elm_by_solution(solution, x_tr, y_tr)
+
+            x_val_scaled = fold_scaler.transform(self.x_val)
+
+            fold_predictions = elm.predict(x_val_scaled)
+            all_val_predictions.append(fold_predictions)
+
+        all_predictions_matrix = np.array(all_val_predictions)
+
+        majority_votes, _ = mode(all_predictions_matrix, axis=0, keepdims=False)
+        ensemble_predictions = majority_votes.ravel()
+
+        return  self.get_fitness(self.y_val, ensemble_predictions)
