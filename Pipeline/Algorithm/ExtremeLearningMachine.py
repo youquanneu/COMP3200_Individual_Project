@@ -2,8 +2,12 @@ import numpy as np
 
 class ExtremeLearningMachine:
 
-    def __init__(self, features_size, hidden_size,
-                 activation_function, regularization_lambda=0.0):
+    def __init__(self,
+                 features_size,
+                 hidden_size,
+                 activation_function,
+                 regularization_lambda = 0.0
+                 ):
 
         self.featureSize = features_size
         self.hiddenSize  = hidden_size
@@ -16,7 +20,9 @@ class ExtremeLearningMachine:
         self.hiddenLayerOutput  = None
         self.outputWeights      = None
 
-    def initialize_random_weights(self, scale= 1.0 , random_seed=None):
+    def initialize_random_weights(self,
+                                  scale = 1.0,
+                                  random_seed = None):
 
         if random_seed is not None:
             rng = np.random.RandomState(random_seed)
@@ -25,7 +31,6 @@ class ExtremeLearningMachine:
 
         self.hiddenWeights  = rng.uniform(low=-scale, high=scale, size=(self.featureSize, self.hiddenSize))
         self.hiddenBias     = rng.uniform(low=-scale, high=scale, size=self.hiddenSize)
-
 
     def apply_activation_function(self, activation_function):
         self.activationFunction = activation_function

@@ -34,6 +34,12 @@ class GallstoneDataSet:
         self.file_path = '../../Storage/Dataset/UCI_Gallstone_Dataset.csv'
         self.target_col = ['Gallstone Status']
 
+    def full_dataset(self):
+        df = pd.read_csv(self.file_path)
+        x = df.drop(self.target_col, axis=1)
+        y = df[self.target_col]
+        return x , y
+
     def normal_data_split(self):
         df = pd.read_csv(self.file_path)
 

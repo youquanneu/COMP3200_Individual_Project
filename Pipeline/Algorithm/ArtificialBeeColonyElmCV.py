@@ -33,38 +33,55 @@ class ArtificialBeeColonyElmCV(ArtificialBeeColonyElm):
 
         self.global_scaler = None
 
-    def evaluation_fitness(self, solution, x_train, y_train):
-
-        weight_boundary = self.feature_size * self.hidden_size
-        hidden_weight   = solution[:weight_boundary].reshape(self.feature_size, self.hidden_size)
-        hidden_bias     = solution[weight_boundary:]
+    def get_evaluation_fitness(self, solution, x_train, y_train):
 
         fold_fitness = []
 
-        # 1. Evaluate generalization using K-Fold Validation
         for fold_idx in range(self.k_fold):
+
             fold = self.internal_folds[fold_idx]
             x_tr   , y_tr    = fold['X_train_fold'] , fold['y_train_fold']
             x_val  , y_val   = fold['X_val_fold']   , fold['y_val_fold']
 
-            elm = ExtremeLearningMachine(self.feature_size, self.hidden_size,
-                                         self.activationFunction, self.regularizationLambda)
-            elm.apply_hidden_weights(hidden_weight)
-            elm.apply_hidden_bias(hidden_bias)
+            elm = self.build_elm_by_solution(solution, x_tr, y_tr)
 
-            # Fit on internal fold train, predict on internal fold val
-            elm.fit(x_tr, y_tr)
             y_pred = elm.predict(x_val.values)
             fold_fitness.append(self.get_fitness(y_val, y_pred))
 
-        # The true fitness is the average validation score across all folds
         mean_fitness = float(np.mean(fold_fitness))
         std_fitness  = float(np.std(fold_fitness))
 
         penalized_fitness = mean_fitness - (self.penalty_coefficient * std_fitness)
 
         final_fitness = max(1e-8, penalized_fitness)
+
         return final_fitness
+
+    def get_validation_fitness(self, solution, x_train, y_train):
+
+        fold_val_fitness = []
+
+        for fold_idx in range(self.k_fold):
+
+            fold = self.internal_folds[fold_idx]
+            x_tr, y_tr  = fold['X_train_fold'], fold['y_train_fold']
+            fold_scaler = fold['scaler']
+
+            elm = self.build_elm_by_solution(solution, x_tr, y_tr)
+
+            x_val_scaled = fold_scaler.transform(self.x_val)
+
+            y_pred = elm.predict(x_val_scaled)
+            fold_val_fitness.append(self.get_fitness(self.y_val, y_pred))
+
+        mean_val_fitness = float(np.mean(fold_val_fitness))
+        std_val_fitness  = float(np.std(fold_val_fitness))
+
+        penalized_val_fitness = mean_val_fitness - (self.penalty_coefficient * std_val_fitness)
+
+        final_val_fitness = max(1e-8, penalized_val_fitness)
+
+        return final_val_fitness
 
     def fit(self, x_train, y_train, cv_folds = 5, penalty_coefficient = None):
 
@@ -97,4 +114,3 @@ class ArtificialBeeColonyElmCV(ArtificialBeeColonyElm):
         x_test_scaled = self.global_scaler.transform(x_test_np)
 
         return super().predict(x_test_scaled)
-

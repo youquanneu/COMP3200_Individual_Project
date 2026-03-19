@@ -23,10 +23,7 @@ def abc_testing(abc_model,x_train, y_train , x_test , y_test):
         abc_model_tested.init_random_state(seed)
         abc_model_tested.fit(x_train, y_train)
 
-        raw_curve = abc_model_tested.convergence_curve
-        if abc_model_tested.fitness_function == "MCC":
-            raw_curve = [(val * 2.0) - 1.0 for val in raw_curve]
-        convergence_history[seed] = raw_curve
+        convergence_history[seed] = abc_model_tested.convergence_curve
 
         scout_history[seed] = abc_model_tested.scout_trigger_history
 
@@ -49,7 +46,6 @@ def abc_testing(abc_model,x_train, y_train , x_test , y_test):
 
 
 def cv_fold_testing(model_name, config, fold_id):
-    # print(f"--- Initializing {model_name} on Fold {fold_id} ---")
 
     gallstone_dataset = GallstoneDataSet()
     gallstone_dataset.fetch_data_path_1()
