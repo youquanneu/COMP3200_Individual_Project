@@ -13,18 +13,18 @@ class GlobalSetting:
 
     config_file = os.path.join(json_dir, 'full_model_configs.json')
 
-    initial_seed_range          = range(101, 131)
     elm_initial_state_range     = range(101, 131)
-    hidden_size_explore_range   = range(1, 101)
-    lambda_value_explore_range  = 2.0 ** np.arange(-25, 3)
+    hidden_size_explore_range   = range(11, 101)
 
-    seed_punish_coefficient     = 1.96
-
-    cv_punish_coefficient       = 1.0
-
+    lambda_upper_bound  = 2
+    lambda_lower_bound  = -25
+    lambda_base_value   = 2.0
+    lambda_explore_range  = lambda_base_value ** np.arange(lambda_lower_bound, lambda_upper_bound + 1)
+    lambda_search_range   = lambda_base_value ** np.arange(lambda_lower_bound, lambda_upper_bound + 0.5, 0.5)
 
     test_set_size       = 0.2
     data_split_seed     = 42
+    cv_punish_coe       = 1.0
 
     data_cv_fold        = 5
     data_shuffle_seed   = 42
@@ -34,6 +34,14 @@ class GlobalSetting:
     solution_size = 80
     trial_limit   = 40
     max_iteration = 100
+
+    model_test_seed = 42
+
+    seed_test_range = range(101, 131)
+    seed_punish_coe = 1.96
+    data_test_split = 5
+
+
     @staticmethod
     def sigmoid(x):
         return 1 / (1 + np.exp(-x))

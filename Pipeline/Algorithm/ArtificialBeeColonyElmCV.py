@@ -4,11 +4,10 @@ from sklearn.preprocessing import MinMaxScaler
 from Pipeline.Algorithm.ArtificialBeeColonyElm import ArtificialBeeColonyElm
 from Pipeline.Global.GlobalSetting import GlobalSetting
 from Pipeline.Methodology.CrossValidationDataSplit import CrossValidationDataSplit
-from Pipeline.Algorithm.ExtremeLearningMachine import ExtremeLearningMachine
 
 
 class ArtificialBeeColonyElmCV(ArtificialBeeColonyElm):
-    def __init__(self, features_size, hidden_size,
+    def __init__(self, feature_size, hidden_size,
                  activation_function, regularization_lambda=0.0,
                  random_state=None, fitness_function= None,
                  solution_size = 10, trial_limit = 10, max_iteration = 100,
@@ -16,7 +15,7 @@ class ArtificialBeeColonyElmCV(ArtificialBeeColonyElm):
                  initial_probability = 0.0, final_probability = 1.0
                  ):
 
-        super().__init__(features_size, hidden_size,
+        super().__init__(feature_size, hidden_size,
                          activation_function, regularization_lambda,
                          random_state, fitness_function,
                          solution_size, trial_limit, max_iteration,
@@ -86,7 +85,7 @@ class ArtificialBeeColonyElmCV(ArtificialBeeColonyElm):
     def fit(self, x_train, y_train, cv_folds = 5, penalty_coefficient = None):
 
         self.k_fold = cv_folds
-        self.penalty_coefficient = GlobalSetting.cv_punish_coefficient \
+        self.penalty_coefficient = GlobalSetting.cv_punish_coe \
             if penalty_coefficient is None else penalty_coefficient
 
         splitter = CrossValidationDataSplit(k_fold = self.k_fold)

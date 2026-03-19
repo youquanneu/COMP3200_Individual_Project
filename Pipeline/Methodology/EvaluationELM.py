@@ -19,7 +19,7 @@ class EvaluationELM:
         self.y_train = y_train
         self.activation_function = activation_function
 
-        self.elm_init_seed_range = GlobalSetting.initial_seed_range \
+        self.elm_init_seed_range = GlobalSetting.seed_test_range \
             if elm_init_seed_range is None else elm_init_seed_range
 
         self.k_fold = GlobalSetting.data_cv_fold \
@@ -34,7 +34,6 @@ class EvaluationELM:
             hidden_size = self.x_train.shape[1]
 
         global_results_accumulator = []
-
 
         splitter = CrossValidationDataSplit(k_fold = self.k_fold)
         folds = splitter.k_fold_data_spiting(self.x_train, self.y_train)
@@ -153,7 +152,7 @@ class EvaluationELM:
             base_metric_name = f"avg_{GlobalSetting.evaluation_function}_Seed"
 
         if punish_coefficient is None:
-            punish_coefficient = GlobalSetting.seed_punish_coefficient
+            punish_coefficient = GlobalSetting.seed_punish_coe
 
         mean_col = f"{base_metric_name}_Mean"
         sem_col = f"{base_metric_name}_SEM"

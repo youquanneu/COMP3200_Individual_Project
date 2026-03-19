@@ -7,7 +7,7 @@ from Pipeline.Methodology.EvaluationMatrix import EvaluationMatrix
 from Pipeline.Algorithm.ExtremeLearningMachine import ExtremeLearningMachine
 
 class ArtificialBeeColonyElm:
-    def __init__(self, features_size, hidden_size,
+    def __init__(self, feature_size, hidden_size,
                  activation_function, regularization_lambda = 0.0,
                  random_state = None, fitness_function = None,
                  solution_size = 10, trial_limit = 10, max_iteration = 100,
@@ -15,12 +15,12 @@ class ArtificialBeeColonyElm:
                  initial_probability=0.0, final_probability=1.0
                  ):
 
-        self.feature_size = features_size
+        self.feature_size = feature_size
         self.hidden_size  = hidden_size
-        self.D = (self.feature_size + 1) * self.hidden_size
+        self.solution_dimension = (self.feature_size + 1) * self.hidden_size
 
-        self.activationFunction     = activation_function
-        self.regularizationLambda   = regularization_lambda
+        self.activation_function     = activation_function
+        self.regularization_lambda   = regularization_lambda
 
         self.preset_random_seed    = None
         self.random_state   = np.random.RandomState(random_state) if random_state is not None else np.random.RandomState()
@@ -31,8 +31,8 @@ class ArtificialBeeColonyElm:
         self.trial_limit    = trial_limit
         self.max_iteration  = max_iteration
 
-        self.employed_bee_algo_type_is_2 = True
-        self.onlooker_bee_algo_type_is_2 = True
+        self.use_algo2_for_employed_bee = True
+        self.use_algo2_for_onlooker_bee = True
 
         self.population = []
         self.fitness    = np.zeros(self.solution_size)
@@ -78,18 +78,18 @@ class ArtificialBeeColonyElm:
         self.final_probability      = final_probability
 
     def employed_bee_apply_algo2(self):
-        self.employed_bee_algo_type_is_2 = True
+        self.use_algo2_for_employed_bee = True
     def employed_bee_apply_algo3(self):
-        self.employed_bee_algo_type_is_2 = False
+        self.use_algo2_for_employed_bee = False
     def onlooker_bee_apply_algo2(self):
-        self.onlooker_bee_algo_type_is_2 = True
+        self.use_algo2_for_onlooker_bee = True
     def onlooker_bee_apply_algo3(self):
-        self.onlooker_bee_algo_type_is_2 = False
+        self.use_algo2_for_onlooker_bee = False
     def apply_validation_dataset(self, x_val, y_val):
         self.x_val = np.asarray(x_val)
         self.y_val = np.asarray(y_val)
     def generate_random_solution(self):
-        return self.random_state.uniform(-1.0,1.0,self.D)
+        return self.random_state.uniform(-1.0, 1.0, self.solution_dimension)
 
     def get_fitness(self, y_true, y_pred):
         evaluation = EvaluationMatrix(y_true, y_pred)
@@ -121,7 +121,7 @@ class ArtificialBeeColonyElm:
         hidden_bias     = solution[weight_boundary:]
 
         elm = ExtremeLearningMachine(self.feature_size, self.hidden_size,
-                                     self.activationFunction, self.regularizationLambda)
+                                     self.activation_function, self.regularization_lambda)
         elm.apply_hidden_weights(hidden_weight)
         elm.apply_hidden_bias(hidden_bias)
 
@@ -150,13 +150,13 @@ class ArtificialBeeColonyElm:
             change_percentage = (((fitness_best - fitness_idx) / fitness_best)
                                  *(self.max_change - self.min_change) + self.min_change)
 
-        change_count = int(np.ceil( (self.D * change_percentage) / 100 ))
-        change_count = max(1 , min(change_count,self.D ))
+        change_count = int(np.ceil((self.solution_dimension * change_percentage) / 100))
+        change_count = max(1, min(change_count, self.solution_dimension))
 
         decay_factor    = ((self.max_iteration - current_iteration) / self.max_iteration ) ** self.non_linear_modulation_index
         sigma_iteration = decay_factor * (self.initial_sigma - self.final_sigma) + self.final_sigma
 
-        indexes = self.random_state.choice(self.D , size = change_count , replace = False)
+        indexes = self.random_state.choice(self.solution_dimension, size = change_count, replace = False)
 
         """ Academic algorithm """
         # for j in indexes:
@@ -192,8 +192,8 @@ class ArtificialBeeColonyElm:
             k += 1
         solution_k_random = self.population[k]
 
-        r_array = self.random_state.rand(self.D)
-        phi_array = self.random_state.uniform(-1.0, 1.0, size=self.D)
+        r_array = self.random_state.rand(self.solution_dimension)
+        phi_array = self.random_state.uniform(-1.0, 1.0, size=self.solution_dimension)
 
         mutation_step = phi_array * (solution_s_idx - solution_k_random)
 
@@ -226,10 +226,10 @@ class ArtificialBeeColonyElm:
             if self.fitness[index] > self.best_fitness:
                 self.best_fitness = self.fitness[index]
                 self.best_solution = np.copy(self.population[index])
-    def employer_bee(self,current_iteration, x_train , y_train):
+    def employed_bee(self, current_iteration, x_train, y_train):
         for index in range(self.solution_size):
             solution_v_idx = self.neighboring_s_algo_2(index, current_iteration) \
-                if self.employed_bee_algo_type_is_2 \
+                if self.use_algo2_for_employed_bee \
                 else self.neighboring_s_algo_3(index, current_iteration)
             self.neighbour_iteration(index, solution_v_idx, x_train, y_train)
 
@@ -240,7 +240,7 @@ class ArtificialBeeColonyElm:
         while trial < self.solution_size:
             if self.random_state.rand() < probability[index]:
                 solution_v_idx = self.neighboring_s_algo_2(index, current_iteration)\
-                    if self.onlooker_bee_algo_type_is_2 \
+                    if self.use_algo2_for_onlooker_bee \
                     else self.neighboring_s_algo_3(index, current_iteration)
 
                 self.neighbour_iteration(index , solution_v_idx, x_train, y_train)
@@ -270,20 +270,20 @@ class ArtificialBeeColonyElm:
         self.fitness = np.zeros(self.solution_size)
         self.trials = np.zeros(self.solution_size)
 
-        self.best_fitness = -np.inf
-        self.best_solution = None
-        self.best_elm = None
+        self.best_fitness   = -np.inf
+        self.best_solution  = None
+        self.best_elm       = None
 
-        self.convergence_curve = []
-        self.scout_trigger_history = []
-        self.val_fitness_curve = []
+        self.convergence_curve      = []
+        self.scout_trigger_history  = []
+        self.val_fitness_curve      = []
 
         self.initialize_bee_colony(x_train, y_train)
 
         for current_iteration in range(1, self.max_iteration + 1):
             start_time = time.time()
 
-            self.employer_bee(current_iteration,x_train,y_train)
+            self.employed_bee(current_iteration, x_train, y_train)
             self.onlooker_bee(current_iteration, x_train, y_train)
 
             scout_count = self.scout_bee(x_train, y_train)
@@ -321,7 +321,7 @@ class ArtificialBeeColonyElm:
         hidden_bias     = self.best_solution[weight_boundary:]
 
         self.best_elm = ExtremeLearningMachine(self.feature_size, self.hidden_size,
-                                               self.activationFunction, self.regularizationLambda)
+                                               self.activation_function, self.regularization_lambda)
         self.best_elm.apply_hidden_weights(hidden_weight)
         self.best_elm.apply_hidden_bias(hidden_bias)
         self.best_elm.fit(x_train, y_train)

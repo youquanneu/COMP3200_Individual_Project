@@ -32,7 +32,7 @@ class ArtificialBeeColonyElmCVEnsemble(ArtificialBeeColonyElmCV):
             # Instantiate a fold-specific ELM
             fold_elm = ExtremeLearningMachine(
                 self.feature_size, self.hidden_size,
-                self.activationFunction, self.regularizationLambda
+                self.activation_function, self.regularization_lambda
             )
 
             # Lock in the swarm's optimized hidden weights

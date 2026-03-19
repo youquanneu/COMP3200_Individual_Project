@@ -17,7 +17,7 @@ def abc_testing(abc_model,x_train, y_train , x_test , y_test):
     convergence_history = {}
     scout_history = {}
 
-    for seed in GlobalSetting.initial_seed_range:
+    for seed in GlobalSetting.seed_test_range:
 
         abc_model_tested = abc_model
         abc_model_tested.init_random_state(seed)
@@ -33,7 +33,7 @@ def abc_testing(abc_model,x_train, y_train , x_test , y_test):
         eval_metrics['Seed'] = seed
 
         eval_metrics['Hidden_Nodes'] = int(abc_model_tested.hidden_size)
-        eval_metrics['Lambda_Value'] = float(abc_model_tested.regularizationLambda)
+        eval_metrics['Lambda_Value'] = float(abc_model_tested.regularization_lambda)
         eval_metrics['Activation']   = 'sigmoid'
 
         eval_metrics['Solution_Size']   = abc_model_tested.solution_size
