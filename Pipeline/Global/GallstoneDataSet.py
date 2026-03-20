@@ -13,6 +13,8 @@ class GallstoneDataSet:
         self.file_path  = None
         self.target_col = None
 
+        self.splits = None
+
         self.x_train        = None
         self.x_train_scaled = None
         self.y_train        = None
@@ -63,8 +65,8 @@ class GallstoneDataSet:
 
     def cross_validate_test(self, n_splits = None):
 
-        splits = GlobalSetting.data_test_split if n_splits is None else n_splits
-        skf = StratifiedKFold(n_splits=splits,
+        self.splits = GlobalSetting.data_test_split if n_splits is None else n_splits
+        skf = StratifiedKFold(n_splits=self.splits,
                               shuffle=True,
                               random_state = GlobalSetting.data_split_seed
                               )

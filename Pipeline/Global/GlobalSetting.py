@@ -13,7 +13,7 @@ class GlobalSetting:
 
     config_file = os.path.join(json_dir, 'full_model_configs.json')
 
-    elm_initial_state_range     = range(101, 131)
+    elm_initial_state_range     = range(131, 161)
     hidden_size_explore_range   = range(11, 101)
 
     lambda_upper_bound  = 2

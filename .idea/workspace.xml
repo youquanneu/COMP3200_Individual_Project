@@ -5,13 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="modifying">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/COMP3200_Individual_Project.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Algorithm/ArtificialBeeColonyElm.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Algorithm/ArtificialBeeColonyElm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Algorithm/ArtificialBeeColonyElmCV.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Algorithm/ArtificialBeeColonyElmCV.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Algorithm/ArtificialBeeColonyElmCVEnsemble.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Algorithm/ArtificialBeeColonyElmCVEnsemble.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Global/Plotting.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Global/Plotting.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Pipeline/Model/ELM_Parameter_Evaluation.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipeline/Global/GallstoneDataSet.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Global/GallstoneDataSet.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipeline/Global/GlobalSetting.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Global/GlobalSetting.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipeline/Model/ABC_ELM_CV_Ensemble_Trace_10.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Model/ABC_ELM_CV_Ensemble_Trace_10.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pipeline/Model/ABC_ELM_Trace.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Model/ABC_ELM_Trace.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipeline/Model/ELM_Evaluation.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipeline/Model/Grid_Evaluation.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/JSON/full_model_configs.json" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/JSON/full_model_configs.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +104,7 @@
     "ai.playground.ignore.import.keys.banner.in.settings": "true",
     "database.data.extractors.current.export.id": "CSV-Groovy.csv.groovy",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/yqn1e23/PycharmProjects/COMP3200_Individual_Project_Restore/Pipeline/Model",
+    "last_opened_file_path": "C:/Users/yqn1e23/PycharmProjects/COMP3200_Individual_Project/Pipeline/Model",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -115,11 +116,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Pipeline\Model" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project_Restore\Pipeline\Model" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project_Restore\Pipeline\Algorithm" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project_Restore\Pipeline\Optimization Testing CV Ensemble" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Pipeline\Optimization Testing CV Ensemble" />
-      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Pipeline\Optimization Testing CV" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project_Restore\Pipeline\Model" />
@@ -219,6 +220,7 @@
       <workItem from="1773843616698" duration="382000" />
       <workItem from="1773881628473" duration="26247000" />
       <workItem from="1773915420001" duration="7343000" />
+      <workItem from="1773968968914" duration="5441000" />
     </task>
     <task id="LOCAL-00018" summary="Modified">
       <option name="closed" value="true" />
@@ -670,12 +672,12 @@
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$ABC_ELM.coverage" NAME="ABC_ELM Coverage Results" MODIFIED="1772623748458" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Model" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project_Restore$EvaluationMatrix.coverage" NAME="EvaluationMatrix Coverage Results" MODIFIED="1773913493640" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Methodology" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$EvaluationMatrix.coverage" NAME="EvaluationMatrix Coverage Results" MODIFIED="1773148516648" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Model" />
-    <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$GallstoneDataSet.coverage" NAME="GallstoneDataSet Coverage Results" MODIFIED="1773832280540" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Global" />
+    <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$GallstoneDataSet.coverage" NAME="GallstoneDataSet Coverage Results" MODIFIED="1773971238769" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Global" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project_Restore$ArtificialBeeColonyElm.coverage" NAME="ArtificialBeeColonyElm Coverage Results" MODIFIED="1773913583743" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Algorithm" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project_Restore$ArtificialBeeColonyElmCVEnsemble.coverage" NAME="ArtificialBeeColonyElmCVEnsemble Coverage Results" MODIFIED="1773918480701" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Algorithm" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$ABC_Testing.coverage" NAME="ABC_Testing Coverage Results" MODIFIED="1773831350774" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Methodology" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project_Restore$GlobalSetting.coverage" NAME="GlobalSetting Coverage Results" MODIFIED="1773912589144" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Global" />
-    <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$GlobalSetting.coverage" NAME="GlobalSetting Coverage Results" MODIFIED="1773832043290" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Global" />
+    <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$GlobalSetting.coverage" NAME="GlobalSetting Coverage Results" MODIFIED="1773969174016" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Global" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project_Restore$Plotting.coverage" NAME="Plotting Coverage Results" MODIFIED="1773843873262" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Global" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$Plotting.coverage" NAME="Plotting Coverage Results" MODIFIED="1773742222776" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Global" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$sdf.coverage" NAME="sdf Coverage Results" MODIFIED="1770799329042" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Model" />
