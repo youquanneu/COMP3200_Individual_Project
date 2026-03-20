@@ -1,5 +1,3 @@
-import time
-
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 
@@ -48,7 +46,7 @@ def abc_testing(abc_model,x_train, y_train , x_test , y_test):
 def cv_fold_testing(model_name, config, fold_id):
 
     gallstone_dataset = GallstoneDataSet()
-    gallstone_dataset.fetch_data_path_1()
+    gallstone_dataset.fetch_data_path_0()
     gallstone_dataset.cross_validate_test(5)
 
     x_train, y_train, x_test, y_test = gallstone_dataset.fold_split[fold_id]
@@ -61,13 +59,10 @@ def cv_fold_testing(model_name, config, fold_id):
 
     features_size = x_train.shape[1]
 
-    # print(f"[Data] Fold {fold_id} loaded. Training samples: {len(x_train)}, Testing samples: {len(x_test)}")
-
     best_lambda_config = GlobalSetting.get_config_by_type(config)
     best_lambda_hidden_size = best_lambda_config["Hidden_Nodes"] if best_lambda_config else None
     best_lambda_lambda_value = best_lambda_config["Lambda_Value"] if best_lambda_config else None
 
-    # Map the command-line argument to the actual Class
     model_registry = {
         "RELM"              : ArtificialBeeColonyElm,
         "RELM_CV"           : ArtificialBeeColonyElmCV,
@@ -79,9 +74,8 @@ def cv_fold_testing(model_name, config, fold_id):
 
     selected_model_class = model_registry[model_name]
 
-    # Instantiate the ABC Swarm with the injected configurations
     abc_model = selected_model_class(
-        features_size       = features_size,
+        feature_size       = features_size,
         hidden_size         = best_lambda_hidden_size ,
         activation_function = GlobalSetting.sigmoid,
         regularization_lambda= best_lambda_lambda_value,
@@ -95,16 +89,11 @@ def cv_fold_testing(model_name, config, fold_id):
     abc_model.init_algo3(initial_probability=0.1,final_probability=0.9)
     abc_model.onlooker_bee_apply_algo2()
 
-    start_time = time.time()
-
     results_df, convergence_df, scout_df = abc_testing(
         abc_model,
         x_train, y_train,
         x_test, y_test
     )
-
-    duration = time.time() - start_time
-    # print(f"\n[Execution] Fold {fold_id} completed in {duration:.2f} seconds.")
 
     results_df['Fold_ID'] = fold_id
 
@@ -123,3 +112,99 @@ def cv_fold_testing(model_name, config, fold_id):
                                 is_final_record=True)
 
     return results_df, convergence_df , scout_df
+
+
+
+def cross_seed_testing(model_class,
+                       model_name   : str,
+                       model_types  : str   = 'Grid_Optimization',
+                       cv_folds     : int   = 5,
+                       is_abc_opt   : bool  = True,
+                       abc_cv_fold  : int   = None,
+                       data_scaling : bool  = False,
+                       force_h_size : int   = None,
+                       force_lambda : float = None):
+
+    gallstone_dataset = GallstoneDataSet()
+    gallstone_dataset.fetch_data_path_0()
+    gallstone_dataset.cross_validate_test(cv_folds)
+
+    feature_size = gallstone_dataset.x.shape[1]
+
+    model_configs = GlobalSetting.get_model_configs()
+    config = next((item for item in model_configs if item.get('Model_Types') == model_types), model_configs[0])
+    hidden_size = force_h_size if force_h_size is not None else config.get('Hidden_Nodes',feature_size)
+    lambda_value = force_lambda if force_lambda is not None else config.get('Lambda_Value', 0.0)
+    activation_func = config['Activation']
+
+    data_split = gallstone_dataset.scaled_fold_split if data_scaling else gallstone_dataset.fold_split
+
+    convergence_result, scout_history, testing_results = [], [], []
+
+    for fold_idx, (x_train, y_train, x_test, y_test) in enumerate(data_split):
+        for seed in GlobalSetting.seed_test_range:
+            if is_abc_opt:
+                model = model_class(
+                    feature_size        = feature_size,
+                    hidden_size         = hidden_size,
+                    regularization_lambda= lambda_value,
+                    activation_function = activation_func,
+                    fitness_function    = GlobalSetting.evaluation_function,
+                    solution_size       = GlobalSetting.solution_size,
+                    trial_limit         = GlobalSetting.trial_limit,
+                    max_iteration       = GlobalSetting.max_iteration
+                )
+                model.employed_bee_apply_algo3()
+                model.onlooker_bee_apply_algo2()
+                model.init_random_state(seed)
+            else:
+                model = model_class(
+                    features_size           = feature_size,
+                    hidden_size             = hidden_size,
+                    activation_function     = activation_func,
+                    regularization_lambda   = lambda_value
+                )
+                model.initialize_random_weights(random_seed=seed)
+
+            if abc_cv_fold is None:
+                model.fit(x_train, y_train)
+            else:
+                model.fit(x_train, y_train, cv_folds = abc_cv_fold)
+
+            y_pred  = model.predict(x_test)
+            evaluation = EvaluationMatrix(y_test, y_pred)
+            metrics = evaluation.get_all_metrics()
+
+            base_metadata = {
+                "Model_Type"    : model_name,
+                "Hidden_Nodes"  : hidden_size,
+                "Lambda_Value"  : lambda_value,
+                "Activation"    : activation_func.__name__,
+                "Fold_ID"       : fold_idx,
+                "Seed"          : seed
+            }
+            testing_results.append({**base_metadata, **metrics})
+
+            if is_abc_opt:
+                convergence_result.extend([{**base_metadata, "Iteration": i + 1, "Fitness": f} for i, f in
+                                           enumerate(model.convergence_curve)])
+                scout_history.extend([{**base_metadata, "Iteration": i + 1, "Scout_Triggers": s} for i, s in
+                                      enumerate(model.scout_trigger_history)])
+
+
+    cols_to_keep = ['Model_Type', 'Hidden_Nodes', 'Lambda_Value', 'Activation', 'Fold_ID', 'Seed', 'Accuracy',
+                    'Precision', 'Recall', 'NPV', 'Specificity', 'F1-Score', 'F2-Score', 'Bal Accuracy', 'MCC']
+    df_testing = pd.DataFrame(testing_results)[cols_to_keep].sort_values(by=['Fold_ID', 'Seed'])
+
+    print()
+    GlobalSetting.save_dataframe_to_record(df_testing, f"{model_name}_Results.csv")
+
+    if is_abc_opt:
+        df_convergence = pd.DataFrame(convergence_result)
+        df_scout_history = pd.DataFrame(scout_history)
+        GlobalSetting.save_dataframe_to_record(df_convergence,f"{model_name}_Convergence.csv")
+        GlobalSetting.save_dataframe_to_record(df_scout_history,f"{model_name}_Scout_History.csv")
+
+        return df_testing , df_convergence , df_scout_history
+
+    return df_testing

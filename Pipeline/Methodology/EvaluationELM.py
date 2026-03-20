@@ -89,7 +89,6 @@ class EvaluationELM:
                 fold_results.append(metrics)
 
             except Exception as e:
-                # Add a newline (\n) before the error so it doesn't overwrite the progress text
                 print(f"\n    [!] ERROR: Failed at Fold {fold_idx + 1}, ELM Seed {elm_seed}: {e}")
                 continue
         return fold_results
