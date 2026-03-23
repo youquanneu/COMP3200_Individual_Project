@@ -22,7 +22,7 @@ class ArtificialBeeColonyElm:
         self.activation_function     = activation_function
         self.regularization_lambda   = regularization_lambda
 
-        self.preset_random_seed    = None
+        self.preset_random_seed    = random_state if random_state is not None else None
         self.random_state   = np.random.RandomState(random_state) if random_state is not None else np.random.RandomState()
 
         self.fitness_function = GlobalSetting.evaluation_function if fitness_function is None else fitness_function
@@ -60,7 +60,7 @@ class ArtificialBeeColonyElm:
         self.x_val = None
         self.y_val = None
 
-    def init_random_state(self,random_state):
+    def init_random_state(self , random_state):
         self.preset_random_seed = random_state
         self.random_state = np.random.RandomState(random_state)
 

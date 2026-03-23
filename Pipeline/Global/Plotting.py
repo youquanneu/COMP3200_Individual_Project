@@ -1,4 +1,5 @@
 import os
+from contextlib import contextmanager
 
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -31,171 +32,208 @@ class Plotting:
     }
 
     @classmethod
-    def _apply_seaborn_theme(cls):
-        """Internal helper to apply Seaborn base layer."""
+    @contextmanager
+    def _style_context(cls):
+        """Yields a unified styling context for all plots."""
         sns.set_theme(**cls.seaborn_theme)
+        with plt.rc_context(cls.rc_params_standard):
+            yield
 
     @classmethod
-    def plot_abc_dashboard(cls, convergence_df: pd.DataFrame,
-                           scout_df: pd.DataFrame,
-                           experiment_name: str,
-                           results_df: pd.DataFrame = None,
-                           fitness_metric: str = None,
-                           is_final_record = False):
-        """
-        Generates a standardized telemetry dashboard.
-        Uses rc_context to prevent global matplotlib state pollution.
-        """
-        cls._apply_seaborn_theme()
+    def _format_standard_axes(cls, ax, title=None, xlabel=None, ylabel=None):
+        """Applies standard commercial styling to an axis."""
+        if title: ax.set_title(title, pad=15)
+        if xlabel: ax.set_xlabel(xlabel)
+        if ylabel: ax.set_ylabel(ylabel)
 
-        if fitness_metric is None:
-            fitness_metric = GlobalSetting.evaluation_function
+        ax.xaxis.set_major_locator(MaxNLocator(nbins=10, integer=True))
+        ax.grid(axis='y', linestyle='--', alpha=0.4)
 
-        with plt.rc_context(cls.rc_params_standard):
+        # Only draw legend if labels exist
+        if ax.get_legend_handles_labels()[0]:
+            ax.legend(loc='lower right', framealpha=0.9, edgecolor='gray')
+
+    @classmethod
+    def _get_metric(cls, metric: str) -> str:
+        """Helper to resolve the fitness metric."""
+        return metric if metric is not None else GlobalSetting.evaluation_function
+
+    @classmethod
+    def plot_abc_dashboard(cls, convergence_df: pd.DataFrame, scout_df: pd.DataFrame,
+                           experiment_name: str, results_df: pd.DataFrame = None,
+                           fitness_metric: str = None, is_final_record=False):
+
+        metric = cls._get_metric(fitness_metric)
+
+        with cls._style_context():
             fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(16, 16),
                                            gridspec_kw={'height_ratios': [6, 1]},
                                            facecolor='white')
-
-            # === NEW: The Global Dashboard Title ===
             fig.suptitle(f'ABC-ELM Telemetry | {experiment_name}', y=0.98, fontsize=18, fontweight='bold')
-
             iterations = np.arange(1, len(convergence_df) + 1)
 
-            # --- TOP PLOT: Convergence Trend ---
+            # Ax1: Convergence
             for seed_col in convergence_df.columns:
-                ax1.plot(iterations, convergence_df[seed_col],
-                         linestyle=':', linewidth=1, alpha=0.75)
+                ax1.plot(iterations, convergence_df[seed_col], linestyle=':', linewidth=1, alpha=0.75)
+            ax1.plot(iterations, convergence_df.mean(axis=1), color='#D62728', linewidth=3.5,
+                     label='Average Convergence')
 
-            mean_fitness = convergence_df.mean(axis=1)
-            ax1.plot(iterations, mean_fitness,
-                     color='#D62728', linewidth=3.5, label='Average Convergence')
-
-            # === Testing Result Channel with Explicit Std Value ===
-            if results_df is not None and fitness_metric in results_df.columns:
-                test_mean = results_df[fitness_metric].mean()
-                test_std = results_df[fitness_metric].std()
-
-                # 1. Plot Mean Line
+            if results_df is not None and metric in results_df.columns:
+                test_mean, test_std = results_df[metric].mean(), results_df[metric].std()
                 ax1.axhline(y=test_mean, color='#2ca02c', linestyle='--', linewidth=2.5,
                             label=f'Final Test Mean ({test_mean:.4f})')
-
-                # 2. Plot shaded region and EXPLICITLY state the standard deviation in the legend
-                ax1.axhspan(ymin=test_mean - test_std, ymax=test_mean + test_std,
-                            color='#2ca02c', alpha=0.15,
-                            label=f'Test Variance ($\pm 1\sigma$, $\sigma={test_std:.4f}$)')
-
-                last_x = iterations[-1]
-
-                # 3. Update annotations to clarify both the bound and the std step
-                ax1.text(x=last_x, y=test_mean + test_std,
-                         s=f'+1 $\sigma$ bound ({test_mean + test_std:.3f})',
-                         color='#1b5e20',
-                         va='bottom', ha='right',
-                         fontweight='bold', fontsize=11)
-
-                ax1.text(x=last_x, y=test_mean - test_std,
-                         s=f'-1 $\sigma$ bound ({test_mean - test_std:.3f})',
-                         color='#1b5e20',
-                         va='top', ha='right',
-                         fontweight='bold', fontsize=11)
-
+                ax1.axhspan(ymin=test_mean - test_std, ymax=test_mean + test_std, color='#2ca02c', alpha=0.15,
+                            label=f'Test Variance (± 1σ, σ={test_std:.4f})')
+                ax1.text(x=iterations[-1], y=test_mean + test_std, s=f'+1 σ bound ({test_mean + test_std:.3f})',
+                         color='#1b5e20', va='bottom', ha='right', fontweight='bold', fontsize=11)
+                ax1.text(x=iterations[-1], y=test_mean - test_std, s=f'-1 σ bound ({test_mean - test_std:.3f})',
+                         color='#1b5e20', va='top', ha='right', fontweight='bold', fontsize=11)
 
             ax1.set_ylim(top=1.0)
+            ax1.grid(axis='x', visible=False)  # Override standard x-grid
+            cls._format_standard_axes(ax1, title='Phase 1: Convergence Trajectory', ylabel=f'Fitness ({metric})')
 
-            # DOWNGRADED: Now just a subplot label, not the main title
-            ax1.set_title('Phase 1: Convergence Trajectory', pad=15)
-            ax1.set_ylabel(f'Fitness ({fitness_metric})')
-
-            ax1.grid(axis='y', linestyle='--', alpha=0.4)
-            ax1.grid(axis='x', visible=False)
-
-            ax1.legend(loc='lower right', framealpha=0.9, edgecolor='gray')
-
-            # --- BOTTOM PLOT: Scout Deployments ---
-            total_scouts = scout_df.sum(axis=1)
-            ax2.bar(iterations, total_scouts, color='#1f77b4', alpha=0.8, edgecolor='black')
-
-            # DOWNGRADED: Subplot label
-            ax2.set_title('Phase 2: Scout Bee Interventions', pad=15)
-            ax2.set_xlabel('Iteration / Bee Cycle')
-            ax2.set_ylabel('Total Triggers')
-
-            ax2.xaxis.set_major_locator(MaxNLocator(nbins=10, integer=True))
-            ax2.grid(axis='y', linestyle='--', alpha=0.4)
+            # Ax2: Scouts
+            ax2.bar(iterations, scout_df.sum(axis=1), color='#1f77b4', alpha=0.8, edgecolor='black')
+            cls._format_standard_axes(ax2, title='Phase 2: Scout Bee Interventions', xlabel='Iteration / Bee Cycle',
+                                      ylabel='Total Triggers')
 
             plt.tight_layout()
             fig.subplots_adjust(top=0.90, hspace=0.35)
 
             if is_final_record:
-                target_dir = GlobalSetting.get_figure_dir()
-                safe_filename = experiment_name.replace(" ", "_").replace(":", "").replace("/", "-")
-                file_path = os.path.join(target_dir, f"ABC_Telemetry_{safe_filename}_{fitness_metric}.png")
-
-                plt.savefig(file_path, dpi=300, bbox_inches='tight', facecolor=fig.get_facecolor())
-                print(f"[I/O Trace] Figure exported successfully: {file_path}")
-
+                cls._save_figure(fig, "ABC_Telemetry", experiment_name, metric)
             plt.show()
 
     @classmethod
-    def plot_train_val_curve(cls, convergence_curve, val_fitness_curve,
-                             experiment_name: str,
-                             final_test_result: float = None,
-                             fitness_metric: str = None,
-                             is_final_record: bool = False):
+    def plot_cv_grid(cls,
+                     all_train_curves   : list,
+                     all_val_curves     : list,
+                     all_test_scores    : list,
+                     experiment_name    : str,
+                     fitness_metric     : str = None,
+                     is_final_record    : bool = False):
         """
-        Plots the Best Fitness (Training) against Validation Fitness over iterations,
-        with an optional horizontal line for the final unseen Test Result.
+        Orchestrates the plotting of individual CV folds and their aggregate.
+        Delegates rendering to isolated private methods.
         """
-        cls._apply_seaborn_theme()
 
         if fitness_metric is None:
             fitness_metric = GlobalSetting.evaluation_function
 
-        with plt.rc_context(cls.rc_params_standard):
-            fig, ax = plt.subplots(figsize=(12, 6), facecolor='white')
+        with cls._style_context():
+            # 1. Plot Individual Folds
+            for idx in range(len(all_train_curves)):
+                cls._plot_single_fold(
+                    all_train_curves[idx] ,
+                    all_val_curves[idx],
+                    all_test_scores[idx],
+                    idx, experiment_name,
+                    fitness_metric,
+                    is_final_record
+                )
 
-            fig.suptitle(f'ABC-ELM Generalization Tracking | {experiment_name}', y=0.98, fontsize=16, fontweight='bold')
+            # 2. Plot Aggregate Mean ± STD
+            cls._plot_cv_aggregate(
+                all_train_curves,
+                all_val_curves,
+                all_test_scores,
+                experiment_name,
+                fitness_metric,
+                is_final_record
+            )
 
-            # Ensure inputs are numpy arrays for plotting
-            train_curve = np.array(convergence_curve)
-            val_curve = np.array(val_fitness_curve)
-            iterations = np.arange(1, len(train_curve) + 1)
+    @classmethod
+    def _plot_single_fold(cls,
+                          train_curve,
+                          val_curve,
+                          test_score,
+                          fold_idx,
+                          experiment_name,
+                          fitness_metric,
+                          is_final_record):
+        """Internal helper to render and save a single CV fold figure."""
+        fig, ax = plt.subplots(figsize=(12, 6), facecolor='white')
+        iterations = np.arange(1, len(train_curve) + 1)
 
-            # 1. Plot Training Convergence (Best Fitness)
-            ax.plot(iterations, train_curve, color='#1f77b4', linewidth=2.5, label='Training Best Fitness')
+        ax.plot(iterations, np.array(train_curve), color='#1f77b4', linewidth=2.5, label='Best Fitness')
 
-            # 2. Plot Validation Fitness
-            if len(val_curve) > 0:
-                ax.plot(iterations, val_curve, color='#ff7f0e', linewidth=2.5, linestyle='-',
-                        label='Validation Fitness')
+        if len(val_curve) > 0:
+            ax.plot(iterations, np.array(val_curve), color='#ff7f0e', linewidth=2.5, label='Val Fitness')
 
-            # 3. Plot Final Test Result (Straight Line)
-            if final_test_result is not None:
-                ax.axhline(y=final_test_result, color='#2ca02c', linestyle='--', linewidth=2.5,
-                           label=f'Final Test Result ({final_test_result:.4f})')
+        if test_score is not None:
+            ax.axhline(y = test_score, color='#2ca02c', linestyle='--', linewidth=2.5, label=f'Test ({test_score:.5f})')
 
-                # Annotate the test line slightly above the line on the right side
-                ax.text(x=iterations[-1], y=final_test_result,
-                        s=f' Test: {final_test_result:.3f}',
-                        color='#1b5e20', va='bottom', ha='right', fontweight='bold', fontsize=11)
+        ax.set_title(f'{experiment_name} | Fold {fold_idx + 1}', pad=15, fontsize=16, fontweight='bold')
+        ax.set_xlabel('Iterations', fontweight='bold')
+        ax.set_ylabel(f'Fitness ({fitness_metric})', fontweight='bold')
 
-            ax.set_title('Training vs. Validation Trajectory', pad=15)
-            ax.set_xlabel('Iteration / Bee Cycle')
-            ax.set_ylabel(f'Fitness ({fitness_metric})')
+        ax.xaxis.set_major_locator(MaxNLocator(nbins=10, integer=True))
+        ax.grid(axis='y', linestyle='--', alpha=0.4)
+        ax.legend(loc='lower right', framealpha=0.9, edgecolor='gray')
 
-            ax.xaxis.set_major_locator(MaxNLocator(nbins=10, integer=True))
-            ax.grid(axis='y', linestyle='--', alpha=0.4)
-            ax.legend(loc='lower right', framealpha=0.9, edgecolor='gray')
+        plt.tight_layout()
 
-            plt.tight_layout()
+        if is_final_record:
+            cls._save_figure(fig, f"ABC_CV_Fold_{fold_idx + 1}", experiment_name, fitness_metric)
+        plt.show()
 
-            # I/O Handling for saving the artifact
-            if is_final_record:
-                target_dir = GlobalSetting.get_figure_dir()
-                safe_filename = experiment_name.replace(" ", "_").replace(":", "").replace("/", "-")
-                file_path = os.path.join(target_dir, f"ABC_TrainVal_{safe_filename}_{fitness_metric}.png")
+    @classmethod
+    def _plot_cv_aggregate(cls,
+                           train_curves,
+                           val_curves,
+                           test_scores,
+                           experiment_name,
+                           fitness_metric,
+                           is_final_record):
+        """Internal helper to calculate statistics and render the aggregate summary figure."""
+        fig, agg_ax = plt.subplots(figsize=(12, 7), facecolor='white')
 
-                plt.savefig(file_path, dpi=300, bbox_inches='tight', facecolor=fig.get_facecolor())
-                print(f"[I/O Trace] Figure exported successfully: {file_path}")
+        # Matrix conversions
+        train_matrix, val_matrix = np.array(train_curves), np.array(val_curves)
 
-            plt.show()
+        # Statistics
+        mean_train, std_train = np.mean(train_matrix, axis=0), np.std(train_matrix, axis=0)
+        mean_val, std_val = np.mean(val_matrix, axis=0), np.std(val_matrix, axis=0)
+
+        valid_scores = [s for s in test_scores if s is not None]
+        mean_test = np.mean(valid_scores) if valid_scores else 0
+        std_test = np.std(valid_scores) if valid_scores else 0
+
+        iterations = np.arange(1, len(mean_train) + 1)
+
+        # Rendering
+        agg_ax.plot(iterations, mean_train, label='Best Fitness (Mean)', color='#1f77b4', linewidth=3.0)
+        agg_ax.fill_between(iterations, mean_train - std_train, mean_train + std_train, color='#1f77b4', alpha=0.2)
+
+        agg_ax.plot(iterations, mean_val, label='Validation Fitness (Mean)', color='#ff7f0e', linewidth=3.0)
+        agg_ax.fill_between(iterations, mean_val - std_val, mean_val + std_val, color='#ff7f0e', alpha=0.2)
+
+        if valid_scores:
+            agg_ax.axhline(y=mean_test, color='#2ca02c', linestyle='--', linewidth=3.0,
+                           label=f'Test Result ({mean_test:.5f} ± {std_test:.5f})')
+            agg_ax.fill_between(iterations, mean_test - std_test, mean_test + std_test, color='#2ca02c', alpha=0.1)
+
+        agg_ax.set_title(f'{experiment_name} | Aggregate: Mean ± STD', pad=15, fontsize=16, fontweight='bold',
+                         color='#D62728')
+        agg_ax.set_xlabel('Iterations', fontweight='bold')
+        agg_ax.set_ylabel(f'Fitness ({fitness_metric})', fontweight='bold')
+        agg_ax.xaxis.set_major_locator(MaxNLocator(nbins=10, integer=True))
+        agg_ax.grid(axis='y', linestyle='--', alpha=0.4)
+        agg_ax.legend(loc='lower right', framealpha=0.9, edgecolor='gray', fontsize=11)
+
+        plt.tight_layout()
+
+        if is_final_record:
+            cls._save_figure(fig, "CV_Aggregate", experiment_name, fitness_metric)
+        plt.show()
+
+    @classmethod
+    def _save_figure(cls, fig, prefix: str, experiment_name: str, fitness_metric: str):
+        """Internal helper to isolate I/O operations from plotting logic."""
+        target_dir = GlobalSetting.get_figure_dir()
+        safe_filename = experiment_name.replace(" ", "_").replace(":", "").replace("/", "-")
+        file_path = os.path.join(target_dir, f"{prefix}_{safe_filename}_{fitness_metric}.png")
+
+        plt.savefig(file_path, dpi=300, bbox_inches='tight', facecolor=fig.get_facecolor())
+        print(f"[I/O Trace] Figure exported successfully: {file_path}")
