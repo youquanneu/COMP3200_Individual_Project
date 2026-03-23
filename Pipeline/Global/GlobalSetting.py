@@ -31,18 +31,18 @@ class GlobalSetting:
 
     evaluation_function = 'MCC'
 
-    solution_size = 5
-    trial_limit   = 2
-    max_iteration = 10
+    solution_size = 10
+    trial_limit   = 5
+    max_iteration = 20
 
     model_test_seed = 42
 
     abc_trace_seed   = 40
     abc_trace_h_size = 34
     abc_trace_lambda = 0.125
-    abc_trace_s_size = 100
-    abc_trace_t_size = 60
-    abc_trace_m_size = 1000
+    abc_trace_s_size = 10
+    abc_trace_t_size = 10
+    abc_trace_m_size = 100
 
     seed_test_range = range(101, 131)
     seed_punish_coe = 1.96

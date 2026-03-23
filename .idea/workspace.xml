@@ -5,26 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="...">
-      <change afterPath="$PROJECT_DIR$/Pipeline/Testing_Model ( Cross Seed )/ABC_CVEnsemble_ELM_CS_Testing.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pipeline/Testing_Model ( Cross Seed )/ABC_CVEnsemble_RELM_CS_Testing.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pipeline/Testing_Model ( Cross Seed )/ABC_CV_ELM_CS_Testing.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pipeline/Testing_Model ( Cross Seed )/ABC_CV_RELM_CS_Testing.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pipeline/Testing_Model ( Cross Seed )/ABC_ELM_CS_Testing.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pipeline/Testing_Model ( Cross Seed )/ABC_RELM_CS_Testing.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Algorithm/ExtremeLearningMachine.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Algorithm/ExtremeLearningMachine.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pipeline/Global/GlobalSetting.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Global/GlobalSetting.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Methodology/ABC_Testing.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Methodology/ABC_Testing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Model/ABC_ELM_CV_10F_Ensemble_Trace(CV).ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Model/ABC_ELM_CV_10F_Ensemble_Trace(CV).ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Testing ( Cross Seed )/ABC_CVEnsemble_10F_RELM_CS_Testing.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Testing_Model ( Cross Seed )/ABC_CVEnsemble_10F_RELM_CS_Testing.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Testing ( Cross Seed )/ABC_CVEnsemble_ELM_CS_Testing.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Testing ( Cross Seed )/ABC_CVEnsemble_RELM_CS_Testing.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Testing ( Cross Seed )/ABC_CV_ELM_CS_Testing.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Testing ( Cross Seed )/ABC_CV_RELM_CS_Testing.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Testing ( Cross Seed )/ABC_ELM_CS_Testing.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Testing ( Cross Seed )/ABC_RELM_CS_Testing.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Testing ( Cross Seed )/ELM_Parameter_CS_Testing.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Testing_Model ( Cross Seed )/ELM_Parameter_CS_Testing.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Testing ( Cross Seed )/Organize Of Result.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Testing_Model ( Cross Seed )/Organize Of Result.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipeline/Optimization Cross Algo/ABC_RELM_Best_Optimization_CV1.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipeline/Optimization Cross Algo/ABC_RELM_Best_Optimization_CV2.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipeline/Optimization Cross Algo/ABC_RELM_Best_Optimization_CV3.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipeline/Optimization Cross Algo/ABC_RELM_Best_Optimization_CV4.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipeline/Result/SingleSeedModel.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Result/SingleSeedModel.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipeline/Testing_Model ( Cross Seed )/ABC_CVEnsemble_10F_RELM_CS_Testing.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Testing_Model ( Cross Seed )/ABC_CVEnsemble_10F_RELM_CS_Testing.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipeline/Testing_Model ( Cross Seed )/Organize Of Result.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Result/Organize Of Result.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,8 +27,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Jupyter Notebook" />
         <option value="Python Script" />
+        <option value="Jupyter Notebook" />
       </list>
     </option>
   </component>
@@ -136,10 +125,10 @@
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project_Restore\Pipeline\Algorithm" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Pipeline\Result" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Pipeline\Testing ( Cross Seed )" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Pipeline\Testing ( Cross Seed )\ELM" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Pipeline\Testing ( Cross Seed )\RELM" />
-      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Pipeline\Result" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Pipeline\Model" />
     </key>
   </component>
@@ -236,15 +225,7 @@
       <workItem from="1773968968914" duration="5805000" />
       <workItem from="1773979152230" duration="15797000" />
       <workItem from="1774242589639" duration="14627000" />
-      <workItem from="1774263930272" duration="3309000" />
-    </task>
-    <task id="LOCAL-00021" summary="Add predefined metaheuristic">
-      <option name="closed" value="true" />
-      <created>1772114930437</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1772114930437</updated>
+      <workItem from="1774263930272" duration="7692000" />
     </task>
     <task id="LOCAL-00022" summary="Redefined pipeline">
       <option name="closed" value="true" />
@@ -630,7 +611,15 @@
       <option name="project" value="LOCAL" />
       <updated>1774254674081</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="...">
+      <option name="closed" value="true" />
+      <created>1774270483340</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1774270483340</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -694,7 +683,7 @@
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project_Restore$ArtificialBeeColonyElmCVEnsemble.coverage" NAME="ArtificialBeeColonyElmCVEnsemble Coverage Results" MODIFIED="1773918480701" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Algorithm" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project_Restore$GlobalSetting.coverage" NAME="GlobalSetting Coverage Results" MODIFIED="1773912589144" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Global" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$ABC_Testing.coverage" NAME="ABC_Testing Coverage Results" MODIFIED="1774265238666" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Methodology" />
-    <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$GlobalSetting.coverage" NAME="GlobalSetting Coverage Results" MODIFIED="1774256598177" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Global" />
+    <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$GlobalSetting.coverage" NAME="GlobalSetting Coverage Results" MODIFIED="1774274137012" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Global" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project_Restore$Plotting.coverage" NAME="Plotting Coverage Results" MODIFIED="1773843873262" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Global" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$Plotting.coverage" NAME="Plotting Coverage Results" MODIFIED="1774248995536" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Global" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$sdf.coverage" NAME="sdf Coverage Results" MODIFIED="1770799329042" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Model" />
