@@ -6,7 +6,8 @@ class ExtremeLearningMachine:
                  features_size,
                  hidden_size,
                  activation_function,
-                 regularization_lambda = 0.0
+                 regularization_lambda = 0.0,
+                 random_seed  = None,
                  ):
 
         self.featureSize = features_size
@@ -14,11 +15,15 @@ class ExtremeLearningMachine:
         self.activationFunction   = activation_function
         self.regularizationLambda = regularization_lambda
 
+        self.randomSeed     = random_seed
         self.hiddenWeights  = None
         self.hiddenBias     = None
 
         self.hiddenLayerOutput  = None
         self.outputWeights      = None
+
+    def initialize_random_seed(self, random_seed = None):
+        self.randomSeed     = random_seed if random_seed is not None else None
 
     def initialize_random_weights(self,
                                   scale = 1.0,
@@ -28,7 +33,6 @@ class ExtremeLearningMachine:
             rng = np.random.RandomState(random_seed)
         else:
             rng = np.random
-
         self.hiddenWeights  = rng.uniform(low=-scale, high=scale, size=(self.featureSize, self.hiddenSize))
         self.hiddenBias     = rng.uniform(low=-scale, high=scale, size=self.hiddenSize)
 
