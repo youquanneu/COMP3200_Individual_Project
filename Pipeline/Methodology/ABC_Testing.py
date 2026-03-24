@@ -9,7 +9,7 @@ def cross_seed_testing(model_class,
                        expr_name    : str,
                        model_types  : str   = 'Grid_Optimization',
                        cv_folds     : int   = 5,
-                       is_abc_opt   : bool  = True,
+                       is_abc_opt   : bool  = False,
                        mod_cv_fold  : int   = None,
                        data_scaling : bool  = False,
                        force_h_size : int   = None,
@@ -25,7 +25,8 @@ def cross_seed_testing(model_class,
 
     model_configs = GlobalSetting.get_model_configs()
     config = next((item for item in model_configs if item.get('Model_Types') == model_types), model_configs[0])
-    hidden_size = force_h_size if force_h_size is not None else config.get('Hidden_Nodes',feature_size)
+
+    hidden_size  = force_h_size if force_h_size is not None else config.get('Hidden_Nodes',feature_size)
     lambda_value = force_lambda if force_lambda is not None else config.get('Lambda_Value', 0.0)
     activation_func = config['Activation']
 
@@ -48,7 +49,7 @@ def cross_seed_testing(model_class,
             if mod_cv_fold is None:
                 model.fit(x_train, y_train)
             else:
-                model.fit(x_train, y_train, cv_folds = mod_cv_fold)
+                model.fit(x_train, y_train, cv_folds = mod_cv_fold )
 
             y_pred  = model.predict(x_test)
             evaluation = EvaluationMatrix(y_test, y_pred)
@@ -100,14 +101,14 @@ def generate_model(model_class,
                    onlooker_bee_algo3 = False):
     if is_abc_opt:
         model = model_class(
-            feature_size=feature_size,
-            hidden_size=hidden_size,
-            regularization_lambda=lambda_value,
-            activation_function=activation_func,
-            fitness_function=GlobalSetting.evaluation_function,
-            solution_size=GlobalSetting.solution_size,
-            trial_limit=GlobalSetting.trial_limit,
-            max_iteration=GlobalSetting.max_iteration
+            feature_size            = feature_size,
+            hidden_size             = hidden_size,
+            regularization_lambda   = lambda_value,
+            activation_function     = activation_func,
+            fitness_function        = GlobalSetting.evaluation_function,
+            solution_size           = GlobalSetting.solution_size,
+            trial_limit             = GlobalSetting.trial_limit,
+            max_iteration           = GlobalSetting.max_iteration
         )
         if employed_bee_algo3:
             model.employed_bee_apply_algo3()
@@ -120,13 +121,14 @@ def generate_model(model_class,
             model.onlooker_bee_apply_algo2()
 
         model.init_random_state(seed)
+
     else:
         model = model_class(
-            features_size=feature_size,
-            hidden_size=hidden_size,
-            activation_function=activation_func,
-            regularization_lambda=lambda_value
+            features_size           = feature_size,
+            hidden_size             = hidden_size,
+            activation_function     = activation_func,
+            regularization_lambda   = lambda_value
         )
-        model.initialize_random_weights(random_seed=seed)
+        model.initialize_random_weights( random_seed = seed )
 
     return model

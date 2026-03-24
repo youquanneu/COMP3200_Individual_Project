@@ -28,9 +28,10 @@ class ExtremeLearningMachine:
     def initialize_random_weights(self,
                                   scale = 1.0,
                                   random_seed = None):
-
         if random_seed is not None:
             rng = np.random.RandomState(random_seed)
+        elif self.randomSeed is not None :
+            rng = np.random.RandomState(self.randomSeed)
         else:
             rng = np.random
         self.hiddenWeights  = rng.uniform(low=-scale, high=scale, size=(self.featureSize, self.hiddenSize))
