@@ -19,8 +19,8 @@ class ExtremeLearningMachineCVEnsemble(ExtremeLearningMachine):
         splitter = CrossValidationDataSplit( k_fold = self.k_fold)
         self.internal_folds = splitter.k_fold_data_spiting(x_train, y_train)
 
-        self.featureSize = np.asarray(x_train).shape[1]
-        self.initialize_random_weights(random_seed=self.randomSeed)
+        self.feature_size = np.asarray(x_train).shape[1]
+        self.initialize_random_weights(random_seed=self.random_seed)
 
         for fold_idx in range(self.k_fold):
             fold = self.internal_folds[fold_idx]
@@ -29,13 +29,13 @@ class ExtremeLearningMachineCVEnsemble(ExtremeLearningMachine):
             fold_scaler = fold['scaler']
 
             fold_elm = ExtremeLearningMachine(
-                features_size           = self.featureSize,
-                hidden_size             = self.hiddenSize,
-                activation_function     = self.activationFunction,
-                regularization_lambda   = self.regularizationLambda
+                feature_size            = self.feature_size,
+                hidden_size             = self.hidden_size,
+                activation_function     = self.activation_function,
+                regularization_lambda   = self.regularization_lambda
             )
-            fold_elm.apply_hidden_weights(self.hiddenWeights)
-            fold_elm.apply_hidden_bias(self.hiddenBias)
+            fold_elm.apply_hidden_weights(self.hidden_weights)
+            fold_elm.apply_hidden_bias(self.hidden_bias)
 
             # Fit calculates ONLY the output weights (beta) based on this fold's data variance
             fold_elm.fit(x_tr, y_tr)

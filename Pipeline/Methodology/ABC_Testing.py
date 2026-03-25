@@ -7,6 +7,7 @@ from Pipeline.Global.GlobalSetting import GlobalSetting
 
 def cross_seed_testing(model_class,
                        expr_name    : str,
+                       use_raw_data : bool  = False,
                        model_types  : str   = 'Grid_Optimization',
                        cv_folds     : int   = 5,
                        is_abc_opt   : bool  = False,
@@ -16,9 +17,16 @@ def cross_seed_testing(model_class,
                        force_lambda : float = None,
                        employed_bee_algo3   = False,
                        onlooker_bee_algo3   = False):
+    prefix = "raw_" if use_raw_data else "cleaned_"
+    expr_name = f"{prefix}{expr_name}"
 
     gallstone_dataset = GallstoneDataSet()
-    gallstone_dataset.fetch_data_path_0()
+
+    if use_raw_data :
+        gallstone_dataset.fetch_raw_data_path()
+    else:
+        gallstone_dataset.fetch_cleaned_data_path()
+
     gallstone_dataset.cross_validate_test(cv_folds)
 
     feature_size = gallstone_dataset.x.shape[1]

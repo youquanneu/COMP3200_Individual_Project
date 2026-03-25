@@ -32,13 +32,13 @@ class GallstoneDataSet:
         df = pd.read_csv(self.file_path)
         self.x = df.drop(self.target_col, axis=1)
         self.y = df[self.target_col]
-    def fetch_data_path_0(self):
+    def fetch_cleaned_data_path(self):
         self.__init__()
-        self.file_path = '../../Storage/Dataset/Full_Clean_Dataset.csv'
+        self.file_path = '../../Storage/Dataset/Cleaned_Gallstone_Dataset.csv'
         self.target_col = ['Gallstone Status']
         self.apply_data()
 
-    def fetch_data_path_1(self):
+    def fetch_raw_data_path(self):
         self.__init__()
         self.file_path = '../../Storage/Dataset/UCI_Gallstone_Dataset.csv'
         self.target_col = ['Gallstone Status']

@@ -66,7 +66,7 @@ class EvaluationELM:
 
             try:
                 elm = ExtremeLearningMachine(
-                    features_size           = x_tr.shape[1],
+                    feature_size= x_tr.shape[1],
                     hidden_size             = hidden_size,
                     activation_function     = self.activation_function,
                     regularization_lambda   = regularization_lambda
