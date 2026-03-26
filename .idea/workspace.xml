@@ -4,14 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Need to run trace (Modify code)">
-      <change beforePath="$PROJECT_DIR$/Result/1. Trajectory Trace (Max Iter)/ABC_RELM_CV_Iter_10.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Result/1. Trajectory Trace (Max Iter)/ABC_RELM_CV_Iter_10.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Result/1. Trajectory Trace (Max Iter)/ABC_RELM_CV_Iter_100.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Result/1. Trajectory Trace (Max Iter)/ABC_RELM_CV_Iter_100.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Result/1. Trajectory Trace (Max Iter)/ABC_RELM_CV_Iter_120.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Result/1. Trajectory Trace (Max Iter)/ABC_RELM_CV_Iter_120.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Result/1. Trajectory Trace (Max Iter)/ABC_RELM_CV_Iter_150.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Result/1. Trajectory Trace (Max Iter)/ABC_RELM_CV_Iter_150.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Result/1. Trajectory Trace (Max Iter)/ABC_RELM_CV_Iter_25.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Result/1. Trajectory Trace (Max Iter)/ABC_RELM_CV_Iter_25.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Result/1. Trajectory Trace (Max Iter)/ABC_RELM_CV_Iter_250.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Result/1. Trajectory Trace (Max Iter)/ABC_RELM_CV_Iter_250.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Result/1. Trajectory Trace (Max Iter)/ABC_RELM_CV_Iter_50.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Result/1. Trajectory Trace (Max Iter)/ABC_RELM_CV_Iter_50.ipynb" afterDir="false" />
+    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="run trace">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Result/2. Trajectory Trace (Solutions and Trials)/ABC_RELM_CV_10S_10T.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Result/2. Trajectory Trace (Solutions and Trials)/ABC_RELM_CV_10S_10T.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Result/2. Trajectory Trace (Solutions and Trials)/ABC_RELM_CV_20S_10T.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Result/2. Trajectory Trace (Solutions and Trials)/ABC_RELM_CV_20S_10T.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Result/2. Trajectory Trace (Solutions and Trials)/ABC_RELM_CV_30S_10T.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Result/2. Trajectory Trace (Solutions and Trials)/ABC_RELM_CV_30S_10T.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Result/2. Trajectory Trace (Solutions and Trials)/ABC_RELM_CV_30S_20T.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Result/2. Trajectory Trace (Solutions and Trials)/ABC_RELM_CV_30S_20T.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Result/2. Trajectory Trace (Solutions and Trials)/ABC_RELM_CV_50S_20T.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Result/2. Trajectory Trace (Solutions and Trials)/ABC_RELM_CV_50S_20T.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Result/2. Trajectory Trace (Solutions and Trials)/ABC_RELM_CV_50S_50T.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Result/2. Trajectory Trace (Solutions and Trials)/ABC_RELM_CV_50S_50T.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Figure/CV_Aggregate_ABC-RELM_CV_20S_10T_MCC.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Figure/CV_Aggregate_ABC-RELM_CV_30S_10T_MCC.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,45 +77,45 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.ABC_ELM.executor": "Run",
-    "Python.ABC_ELM2.executor": "Run",
-    "Python.ABC_Testing.executor": "Run",
-    "Python.ArtificialBeeColonyElm.executor": "Run",
-    "Python.ArtificialBeeColonyElmCV.executor": "Run",
-    "Python.ArtificialBeeColonyElmCVEnsemble.executor": "Debug",
-    "Python.ArtificialBeeColonyElmCVEnsembleRectifyVersion.executor": "Run",
-    "Python.CrossValidationDataSplit.executor": "Run",
-    "Python.DataSplit.executor": "Run",
-    "Python.EvaluationABCELM.executor": "Run",
-    "Python.EvaluationELM.executor": "Run",
-    "Python.EvaluationMatrix.executor": "Run",
-    "Python.ExtremeLearningMachine.executor": "Run",
-    "Python.ExtremeLearningMachineCVEnsemble.executor": "Run",
-    "Python.GallstoneDataSet.executor": "Run",
-    "Python.GlobalSetting.executor": "Run",
-    "Python.Plotting.executor": "Run",
-    "Python.sdf.executor": "Run",
-    "Python.teest.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "ai.playground.ignore.import.keys.banner.in.settings": "true",
-    "database.data.extractors.current.export.id": "CSV-Groovy.csv.groovy",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/yqn1e23/PycharmProjects/COMP3200_Individual_Project/Result/2. Trajectory Trace (Solutions and Trials)",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.ABC_ELM.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ABC_ELM2.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ABC_Testing.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ArtificialBeeColonyElm.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ArtificialBeeColonyElmCV.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ArtificialBeeColonyElmCVEnsemble.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.ArtificialBeeColonyElmCVEnsembleRectifyVersion.executor&quot;: &quot;Run&quot;,
+    &quot;Python.CrossValidationDataSplit.executor&quot;: &quot;Run&quot;,
+    &quot;Python.DataSplit.executor&quot;: &quot;Run&quot;,
+    &quot;Python.EvaluationABCELM.executor&quot;: &quot;Run&quot;,
+    &quot;Python.EvaluationELM.executor&quot;: &quot;Run&quot;,
+    &quot;Python.EvaluationMatrix.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ExtremeLearningMachine.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ExtremeLearningMachineCVEnsemble.executor&quot;: &quot;Run&quot;,
+    &quot;Python.GallstoneDataSet.executor&quot;: &quot;Run&quot;,
+    &quot;Python.GlobalSetting.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Plotting.executor&quot;: &quot;Run&quot;,
+    &quot;Python.sdf.executor&quot;: &quot;Run&quot;,
+    &quot;Python.teest.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;ai.playground.ignore.import.keys.banner.in.settings&quot;: &quot;true&quot;,
+    &quot;database.data.extractors.current.export.id&quot;: &quot;CSV-Groovy.csv.groovy&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/yqn1e23/PycharmProjects/COMP3200_Individual_Project/Result/2. Trajectory Trace (Solutions and Trials)&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Result\2. Trajectory Trace (Solutions and Trials)" />
@@ -123,11 +125,11 @@
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Pipeline\Testing_Model ( Cross Seed )" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Storage\Figure\Max Iter Trace" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Documentation" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Storage" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Storage\Record" />
-      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Pipeline\Result" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -229,47 +231,8 @@
       <workItem from="1774407123709" duration="16030000" />
       <workItem from="1774439735895" duration="336000" />
       <workItem from="1774498155251" duration="22223000" />
-      <workItem from="1774524300001" duration="4464000" />
-    </task>
-    <task id="LOCAL-00030" summary="Modifying code, left ABC">
-      <option name="closed" value="true" />
-      <created>1772702032700</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1772702032700</updated>
-    </task>
-    <task id="LOCAL-00031" summary="Modifying code, left ABC">
-      <option name="closed" value="true" />
-      <created>1772711668964</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1772711668964</updated>
-    </task>
-    <task id="LOCAL-00032" summary="Modifying ABC">
-      <option name="closed" value="true" />
-      <created>1772800589976</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1772800589976</updated>
-    </task>
-    <task id="LOCAL-00033" summary="Modifying ABC">
-      <option name="closed" value="true" />
-      <created>1772800595547</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1772800595547</updated>
-    </task>
-    <task id="LOCAL-00034" summary="Data leakage of train test needed to be solved">
-      <option name="closed" value="true" />
-      <created>1773065593743</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1773065593743</updated>
+      <workItem from="1774524300001" duration="4700000" />
+      <workItem from="1774529089983" duration="1544000" />
     </task>
     <task id="LOCAL-00035" summary="Basic are done, left Metaheuristic">
       <option name="closed" value="true" />
@@ -623,7 +586,47 @@
       <option name="project" value="LOCAL" />
       <updated>1774526551850</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="run trace">
+      <option name="closed" value="true" />
+      <created>1774529029860</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1774529029860</updated>
+    </task>
+    <task id="LOCAL-00080" summary="run trace">
+      <option name="closed" value="true" />
+      <created>1774529058240</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1774529058240</updated>
+    </task>
+    <task id="LOCAL-00081" summary="run trace">
+      <option name="closed" value="true" />
+      <created>1774529061296</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1774529061296</updated>
+    </task>
+    <task id="LOCAL-00082" summary="run trace">
+      <option name="closed" value="true" />
+      <created>1774529062005</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1774529062005</updated>
+    </task>
+    <task id="LOCAL-00083" summary="run trace">
+      <option name="closed" value="true" />
+      <created>1774529062564</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1774529062564</updated>
+    </task>
+    <option name="localTasksCounter" value="84" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -641,7 +644,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Wait for running" />
     <MESSAGE value="Results, things to be done : &#10;1. ABC parameter tuning.&#10;2. Can try to include lambda inside solution, allow ABC to adjust" />
     <MESSAGE value="Upload records" />
     <MESSAGE value="Upload result" />
@@ -666,7 +668,8 @@
     <MESSAGE value="...Modifying Trace" />
     <MESSAGE value="Need to run trace" />
     <MESSAGE value="Need to run trace (Modify code)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Need to run trace (Modify code)" />
+    <MESSAGE value="run trace" />
+    <option name="LAST_COMMIT_MESSAGE" value="run trace" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$ArtificialBeeColonyElmCVEnsemble.coverage" NAME="ArtificialBeeColonyElmCVEnsemble Coverage Results" MODIFIED="1773795158205" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Algorithm" />
