@@ -4,21 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="...Modifying Trace">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Global/GlobalSetting.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Global/GlobalSetting.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Global/Plotting.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Global/Plotting.py" afterDir="false" />
+    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Need to run trace (Modify code)">
       <change beforePath="$PROJECT_DIR$/Result/1. Trajectory Trace (Max Iter)/ABC_RELM_CV_Iter_10.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Result/1. Trajectory Trace (Max Iter)/ABC_RELM_CV_Iter_10.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Result/1. Trajectory Trace (Max Iter)/ABC_RELM_CV_Iter_100.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Result/1. Trajectory Trace (Max Iter)/ABC_RELM_CV_Iter_100.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Result/1. Trajectory Trace (Max Iter)/ABC_RELM_CV_Iter_1000.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Result/1. Trajectory Trace (Max Iter)/ABC_RELM_CV_Iter_1000.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Result/1. Trajectory Trace (Max Iter)/ABC_RELM_CV_Iter_120.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Result/1. Trajectory Trace (Max Iter)/ABC_RELM_CV_Iter_120.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Result/1. Trajectory Trace (Max Iter)/ABC_RELM_CV_Iter_150.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Result/1. Trajectory Trace (Max Iter)/ABC_RELM_CV_Iter_150.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Result/1. Trajectory Trace (Max Iter)/ABC_RELM_CV_Iter_25.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Result/1. Trajectory Trace (Max Iter)/ABC_RELM_CV_Iter_25.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Result/1. Trajectory Trace (Max Iter)/ABC_RELM_CV_Iter_250.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Result/1. Trajectory Trace (Max Iter)/ABC_RELM_CV_Iter_250.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Result/1. Trajectory Trace (Max Iter)/ABC_RELM_CV_Iter_50.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Result/1. Trajectory Trace (Max Iter)/ABC_RELM_CV_Iter_50.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Result/1. Trajectory Trace (Max Iter)/ABC_RELM_CV_Iter_500.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Result/1. Trajectory Trace (Max Iter)/ABC_RELM_CV_Iter_500.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Result/2. Trajectory Trace (Algo)/ABC_RELM_CV_Algo_2_2.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Result/3. Trajectory Trace (Algo)/ABC_RELM_CV_Algo_2_2.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Result/2. Trajectory Trace (Algo)/ABC_RELM_CV_Algo_2_3.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Result/3. Trajectory Trace (Algo)/ABC_RELM_CV_Algo_2_3.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Result/2. Trajectory Trace (Algo)/ABC_RELM_CV_Algo_3_2.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Result/3. Trajectory Trace (Algo)/ABC_RELM_CV_Algo_3_2.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Result/2. Trajectory Trace (Algo)/ABC_RELM_CV_Algo_3_3.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Result/3. Trajectory Trace (Algo)/ABC_RELM_CV_Algo_3_3.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -236,23 +229,7 @@
       <workItem from="1774407123709" duration="16030000" />
       <workItem from="1774439735895" duration="336000" />
       <workItem from="1774498155251" duration="22223000" />
-      <workItem from="1774524300001" duration="1998000" />
-    </task>
-    <task id="LOCAL-00028" summary="Left Meta Heuristic for model implementation .2">
-      <option name="closed" value="true" />
-      <created>1772692553281</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1772692553281</updated>
-    </task>
-    <task id="LOCAL-00029" summary="Modifying code">
-      <option name="closed" value="true" />
-      <created>1772698860477</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1772698860477</updated>
+      <workItem from="1774524300001" duration="4464000" />
     </task>
     <task id="LOCAL-00030" summary="Modifying code, left ABC">
       <option name="closed" value="true" />
@@ -630,7 +607,23 @@
       <option name="project" value="LOCAL" />
       <updated>1774510105690</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="Need to run trace">
+      <option name="closed" value="true" />
+      <created>1774526390523</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1774526390523</updated>
+    </task>
+    <task id="LOCAL-00078" summary="Need to run trace (Modify code)">
+      <option name="closed" value="true" />
+      <created>1774526551850</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1774526551850</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -648,8 +641,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="ABC Testing Start" />
-    <MESSAGE value="Grid search setting" />
     <MESSAGE value="Wait for running" />
     <MESSAGE value="Results, things to be done : &#10;1. ABC parameter tuning.&#10;2. Can try to include lambda inside solution, allow ABC to adjust" />
     <MESSAGE value="Upload records" />
@@ -673,7 +664,9 @@
     <MESSAGE value="Testing Result" />
     <MESSAGE value="..." />
     <MESSAGE value="...Modifying Trace" />
-    <option name="LAST_COMMIT_MESSAGE" value="...Modifying Trace" />
+    <MESSAGE value="Need to run trace" />
+    <MESSAGE value="Need to run trace (Modify code)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Need to run trace (Modify code)" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$ArtificialBeeColonyElmCVEnsemble.coverage" NAME="ArtificialBeeColonyElmCVEnsemble Coverage Results" MODIFIED="1773795158205" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Algorithm" />
@@ -694,7 +687,7 @@
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project_Restore$ArtificialBeeColonyElmCVEnsemble.coverage" NAME="ArtificialBeeColonyElmCVEnsemble Coverage Results" MODIFIED="1773918480701" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Algorithm" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project_Restore$GlobalSetting.coverage" NAME="GlobalSetting Coverage Results" MODIFIED="1773912589144" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Global" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$ABC_Testing.coverage" NAME="ABC_Testing Coverage Results" MODIFIED="1774437457452" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Methodology" />
-    <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$GlobalSetting.coverage" NAME="GlobalSetting Coverage Results" MODIFIED="1774510032295" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Global" />
+    <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$GlobalSetting.coverage" NAME="GlobalSetting Coverage Results" MODIFIED="1774526352433" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Global" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project_Restore$Plotting.coverage" NAME="Plotting Coverage Results" MODIFIED="1773843873262" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Global" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$Plotting.coverage" NAME="Plotting Coverage Results" MODIFIED="1774513042490" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Global" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$sdf.coverage" NAME="sdf Coverage Results" MODIFIED="1770799329042" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Model" />
