@@ -37,12 +37,19 @@ class GlobalSetting:
 
     model_test_seed = 42
 
+    """ ABC Trace parameter """
+    # Fix seed and elm parameter for abc trace
     abc_trace_seed   = 40
     abc_trace_h_size = 30
     abc_trace_lambda = 0.0625
+    # Fix solution size and trial limit for max iteration trace
     abc_trace_s_size = 80
     abc_trace_t_size = 50
-    abc_trace_m_size = 100
+    # Fix max iteration for solution size and trial limit trace
+    abc_trace_m_size = 150
+    # Final solution size and trial limit for algorithm trace
+    abc_final_solution_size = None
+    abc_final_trial_limit = None
 
     seed_test_range = range(101, 131)
     seed_punish_coe = 1.96

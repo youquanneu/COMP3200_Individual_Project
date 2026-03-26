@@ -112,7 +112,8 @@ class Plotting:
                      all_test_scores    : list,
                      experiment_name    : str,
                      fitness_metric     : str = None,
-                     is_final_record    : bool = False):
+                     is_final_record    : bool = False,
+                     save_fold_record   : bool = False):
         """
         Orchestrates the plotting of individual CV folds and their aggregate.
         Delegates rendering to isolated private methods.
@@ -134,7 +135,8 @@ class Plotting:
                     total_folds,
                     experiment_name,
                     fitness_metric,
-                    is_final_record
+                    is_final_record,
+                    save_fold_record
                 )
 
             # 2. Plot Aggregate Mean ± STD
@@ -157,7 +159,8 @@ class Plotting:
                           total_folds,
                           experiment_name,
                           fitness_metric,
-                          is_final_record):
+                          is_final_record,
+                          save_fold_record):
         """Internal helper to render and save a single CV fold figure."""
         fig, ax = plt.subplots(figsize=(12, 6), facecolor='white')
         iterations = np.arange(1, len(train_curve) + 1)
@@ -182,8 +185,8 @@ class Plotting:
 
         plt.tight_layout()
 
-        if is_final_record:
-            cls._save_figure(fig, f"ABC_CV_Fold_{fold_idx + 1}", experiment_name, fitness_metric)
+        if is_final_record & save_fold_record:
+            cls._save_figure(fig, f"Fold_{fold_idx + 1}", experiment_name, fitness_metric)
         plt.show()
 
     @classmethod
