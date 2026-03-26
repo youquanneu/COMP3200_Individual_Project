@@ -38,10 +38,10 @@ class GlobalSetting:
     model_test_seed = 42
 
     abc_trace_seed   = 40
-    abc_trace_h_size = 34
-    abc_trace_lambda = 0.125
-    abc_trace_s_size = 10
-    abc_trace_t_size = 10
+    abc_trace_h_size = 30
+    abc_trace_lambda = 0.0625
+    abc_trace_s_size = 80
+    abc_trace_t_size = 50
     abc_trace_m_size = 100
 
     seed_test_range = range(101, 131)

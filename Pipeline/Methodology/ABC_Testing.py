@@ -27,7 +27,7 @@ def cross_seed_testing(model_class,
     else:
         gallstone_dataset.fetch_cleaned_data_path()
 
-    gallstone_dataset.cross_validate_test(cv_folds)
+    gallstone_dataset.cross_validate_split(cv_folds)
 
     feature_size = gallstone_dataset.x.shape[1]
 

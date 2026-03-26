@@ -63,7 +63,7 @@ class GallstoneDataSet:
         self.x_train_scaled = pd.DataFrame(self.main_scaler.fit_transform(x_train), columns=self.x.columns)
         self.x_test_scaled  = pd.DataFrame(self.main_scaler.transform(x_test), columns=self.x.columns)
 
-    def cross_validate_test(self, n_splits = None):
+    def cross_validate_split(self, n_splits = None):
 
         self.splits = GlobalSetting.data_test_split if n_splits is None else n_splits
         skf = StratifiedKFold(n_splits=self.splits,

@@ -121,6 +121,8 @@ class Plotting:
         if fitness_metric is None:
             fitness_metric = GlobalSetting.evaluation_function
 
+        total_folds = len(all_train_curves)
+
         with cls._style_context():
             # 1. Plot Individual Folds
             for idx in range(len(all_train_curves)):
@@ -128,7 +130,9 @@ class Plotting:
                     all_train_curves[idx] ,
                     all_val_curves[idx],
                     all_test_scores[idx],
-                    idx, experiment_name,
+                    idx,
+                    total_folds,
+                    experiment_name,
                     fitness_metric,
                     is_final_record
                 )
@@ -138,6 +142,7 @@ class Plotting:
                 all_train_curves,
                 all_val_curves,
                 all_test_scores,
+                total_folds,
                 experiment_name,
                 fitness_metric,
                 is_final_record
@@ -149,6 +154,7 @@ class Plotting:
                           val_curve,
                           test_score,
                           fold_idx,
+                          total_folds,
                           experiment_name,
                           fitness_metric,
                           is_final_record):
@@ -156,15 +162,17 @@ class Plotting:
         fig, ax = plt.subplots(figsize=(12, 6), facecolor='white')
         iterations = np.arange(1, len(train_curve) + 1)
 
-        ax.plot(iterations, np.array(train_curve), color='#1f77b4', linewidth=2.5, label='Best Fitness')
+        final_train_fitness = train_curve[-1]
+        ax.plot(iterations, np.array(train_curve), color='#1f77b4', linewidth=2.5, label=f'Best Fitness ({final_train_fitness:.5f})')
 
         if len(val_curve) > 0:
-            ax.plot(iterations, np.array(val_curve), color='#ff7f0e', linewidth=2.5, label='Val Fitness')
+            final_val_fitness = val_curve[-1]
+            ax.plot(iterations, np.array(val_curve), color='#ff7f0e', linewidth=2.5, label=f'Val Fitness ({final_val_fitness:.5f})')
 
         if test_score is not None:
             ax.axhline(y = test_score, color='#2ca02c', linestyle='--', linewidth=2.5, label=f'Test ({test_score:.5f})')
 
-        ax.set_title(f'{experiment_name} | Fold {fold_idx + 1}', pad=15, fontsize=16, fontweight='bold')
+        ax.set_title(f'{experiment_name} | Trace : Fold {fold_idx + 1}/{total_folds}', pad=15, fontsize=16, fontweight='bold')
         ax.set_xlabel('Iterations', fontweight='bold')
         ax.set_ylabel(f'Fitness ({fitness_metric})', fontweight='bold')
 
@@ -183,6 +191,7 @@ class Plotting:
                            train_curves,
                            val_curves,
                            test_scores,
+                           total_folds,
                            experiment_name,
                            fitness_metric,
                            is_final_record):
@@ -202,11 +211,15 @@ class Plotting:
 
         iterations = np.arange(1, len(mean_train) + 1)
 
+        final_mean_train = mean_train[-1]
+        final_std_train = std_train[-1]
+        final_mean_val = mean_val[-1]
+        final_std_val = std_val[-1]
         # Rendering
-        agg_ax.plot(iterations, mean_train, label='Best Fitness (Mean)', color='#1f77b4', linewidth=3.0)
+        agg_ax.plot(iterations, mean_train, label=f'Best Fitness ({final_mean_train:.5f} ± {final_std_train:.5f})', color='#1f77b4', linewidth=3.0)
         agg_ax.fill_between(iterations, mean_train - std_train, mean_train + std_train, color='#1f77b4', alpha=0.2)
 
-        agg_ax.plot(iterations, mean_val, label='Validation Fitness (Mean)', color='#ff7f0e', linewidth=3.0)
+        agg_ax.plot(iterations, mean_val, label=f'Validation Fitness ({final_mean_val:.5f} ± {final_std_val:.5f})', color='#ff7f0e', linewidth=3.0)
         agg_ax.fill_between(iterations, mean_val - std_val, mean_val + std_val, color='#ff7f0e', alpha=0.2)
 
         if valid_scores:
@@ -214,8 +227,7 @@ class Plotting:
                            label=f'Test Result ({mean_test:.5f} ± {std_test:.5f})')
             agg_ax.fill_between(iterations, mean_test - std_test, mean_test + std_test, color='#2ca02c', alpha=0.1)
 
-        agg_ax.set_title(f'{experiment_name} | Aggregate: Mean ± STD', pad=15, fontsize=16, fontweight='bold',
-                         color='#D62728')
+        agg_ax.set_title(f'{experiment_name} | {total_folds} Aggregate', pad=15, fontsize=16, fontweight='bold')
         agg_ax.set_xlabel('Iterations', fontweight='bold')
         agg_ax.set_ylabel(f'Fitness ({fitness_metric})', fontweight='bold')
         agg_ax.xaxis.set_major_locator(MaxNLocator(nbins=10, integer=True))

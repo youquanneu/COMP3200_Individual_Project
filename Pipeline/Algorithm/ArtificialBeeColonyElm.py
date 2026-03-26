@@ -11,8 +11,8 @@ class ArtificialBeeColonyElm:
                  activation_function, regularization_lambda = 0.0,
                  random_state = None, fitness_function = None,
                  solution_size = 10, trial_limit = 10, max_iteration = 100,
-                 max_change=20.0, min_change=3.0, initial_sigma=0.8, final_sigma=0.1, nmi=3,
-                 initial_probability=0.0, final_probability=1.0
+                 max_change = 20.0, min_change = 3.0, initial_sigma = 0.8, final_sigma = 0.1, nmi = 3,
+                 initial_probability = 0.0, final_probability = 1.0
                  ):
 
         self.feature_size = feature_size
@@ -88,6 +88,9 @@ class ArtificialBeeColonyElm:
     def apply_validation_dataset(self, x_val, y_val):
         self.x_val = np.asarray(x_val)
         self.y_val = np.asarray(y_val)
+    def remove_validation_set(self):
+        self.x_val = None
+        self.y_val = None
     def generate_random_solution(self):
         return self.random_state.uniform(-1.0, 1.0, self.solution_dimension)
 
