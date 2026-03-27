@@ -1,4 +1,5 @@
 import pandas as pd
+from sklearn.model_selection import train_test_split
 
 from Pipeline.Global.GallstoneDataSet import GallstoneDataSet
 from Pipeline.Methodology.EvaluationMatrix import EvaluationMatrix
@@ -85,7 +86,7 @@ def cross_seed_testing(model_class,
     df_testing = pd.DataFrame(testing_results)[cols_to_keep].sort_values(by=['Fold_ID', 'Seed'])
 
     print()
-    GlobalSetting.save_dataframe_to_record(df_testing, f"{expr_name}_Results.csv")
+    GlobalSetting.save_dataframe_to_record(df_testing, f"Test History/{expr_name}_Results.csv")
 
     if is_abc_opt:
         df_convergence = pd.DataFrame(convergence_result)
@@ -140,3 +141,85 @@ def generate_model(model_class,
         model.initialize_random_weights( random_seed = seed )
 
     return model
+
+
+def evaluate_abc_parameters(model_class,
+                            expr_name       : str,
+                            solution_size   : int,
+                            trial_limit     : int,
+                            max_iteration   : int,
+                            use_raw_data    : bool  = False,
+                            cv_folds        : int   = 5,
+                            employed_bee_algo3      = False,
+                            onlooker_bee_algo3      = False) -> pd.DataFrame:
+
+    prefix = "raw_" if use_raw_data else "cleaned_"
+    expr_name = f"{prefix}{expr_name}"
+
+    gallstone_dataset = GallstoneDataSet()
+    if use_raw_data:
+        gallstone_dataset.fetch_raw_data_path()
+    else:
+        gallstone_dataset.fetch_cleaned_data_path()
+
+    gallstone_dataset.cross_validate_split(cv_folds)
+
+    history_records = []
+    trace_metric = GlobalSetting.evaluation_function
+
+    for fold_idx in range(gallstone_dataset.splits):
+        x_train, y_train, x_test, y_test = gallstone_dataset.fold_split[fold_idx]
+
+        x_tr, x_val, y_tr, y_val = train_test_split(
+            x_train, y_train,
+            test_size   = GlobalSetting.test_set_size,
+            random_state= GlobalSetting.data_split_seed,
+            stratify    = y_train
+        )
+
+        for random_seed in GlobalSetting.elm_initial_state_range:
+
+            abc_model = model_class(
+                feature_size            = x_tr.shape[1],
+                hidden_size             = GlobalSetting.abc_trace_h_size,
+                activation_function     = GlobalSetting.sigmoid,
+                regularization_lambda   = GlobalSetting.abc_trace_lambda,
+                fitness_function        = trace_metric,
+                random_state            = random_seed,
+                solution_size           = solution_size,
+                trial_limit             = trial_limit,
+                max_iteration           = max_iteration
+            )
+            if employed_bee_algo3:
+                abc_model.employed_bee_apply_algo3()
+            else:
+                abc_model.employed_bee_apply_algo2()
+
+            if onlooker_bee_algo3:
+                abc_model.onlooker_bee_apply_algo3()
+            else:
+                abc_model.onlooker_bee_apply_algo2()
+
+            abc_model.apply_validation_dataset(x_val, y_val)
+            abc_model.fit(x_tr, y_tr)
+
+            train_curve = abc_model.convergence_curve
+            val_curve   = abc_model.val_fitness_curve
+            scout_curve = abc_model.scout_trigger_history
+
+            for iter_idx in range(abc_model.max_iteration):
+                history_records.append({
+                    "Fold_ID": fold_idx,
+                    "Seed": random_seed,
+                    "Iteration": iter_idx + 1,
+                    "Train_Fitness": train_curve[iter_idx],
+                    "Val_Fitness": val_curve[iter_idx] if len(val_curve) > iter_idx else None,
+                    "Trace_Metric": trace_metric,
+                    "Scout_Triggers": scout_curve[iter_idx]
+                })
+
+    train_val_records = pd.DataFrame(history_records)
+
+    GlobalSetting.save_dataframe_to_record(train_val_records, f"Trace History/{expr_name}_Trace.csv")
+
+    return train_val_records

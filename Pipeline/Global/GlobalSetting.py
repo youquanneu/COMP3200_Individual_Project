@@ -31,8 +31,8 @@ class GlobalSetting:
 
     evaluation_function = 'MCC'
 
-    solution_size = 80
-    trial_limit   = 50
+    solution_size = 50
+    trial_limit   = 20
     max_iteration = 100
 
     model_test_seed = 42
@@ -42,14 +42,6 @@ class GlobalSetting:
     abc_trace_seed   = 40
     abc_trace_h_size = 30
     abc_trace_lambda = 0.0625
-    # Fix solution size and trial limit for max iteration trace
-    abc_trace_s_size = 80
-    abc_trace_t_size = 50
-    # Fix max iteration for solution size and trial limit trace
-    abc_final_trace_m = 150
-    # Final solution size and trial limit for algorithm trace
-    abc_final_trace_s = None
-    abc_final_trace_t = None
 
     seed_test_range = range(101, 131)
     seed_punish_coe = 1.96

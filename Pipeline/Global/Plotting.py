@@ -59,6 +59,16 @@ class Plotting:
         return metric if metric is not None else GlobalSetting.evaluation_function
 
     @classmethod
+    def _save_figure(cls, fig, prefix: str, experiment_name: str, fitness_metric: str):
+        """Internal helper to isolate I/O operations from plotting logic."""
+        target_dir = GlobalSetting.get_figure_dir()
+        safe_filename = experiment_name.replace(" ", "_").replace(":", "").replace("/", "-")
+        file_path = os.path.join(target_dir, f"{prefix}_{safe_filename}_{fitness_metric}.png")
+
+        plt.savefig(file_path, dpi=300, bbox_inches='tight', facecolor=fig.get_facecolor())
+        print(f"[I/O Trace] Figure exported successfully: {file_path}")
+
+    @classmethod
     def plot_abc_dashboard(cls, convergence_df: pd.DataFrame, scout_df: pd.DataFrame,
                            experiment_name: str, results_df: pd.DataFrame = None,
                            fitness_metric: str = None, is_final_record=False):
@@ -244,11 +254,65 @@ class Plotting:
         plt.show()
 
     @classmethod
-    def _save_figure(cls, fig, prefix: str, experiment_name: str, fitness_metric: str):
-        """Internal helper to isolate I/O operations from plotting logic."""
-        target_dir = GlobalSetting.get_figure_dir()
-        safe_filename = experiment_name.replace(" ", "_").replace(":", "").replace("/", "-")
-        file_path = os.path.join(target_dir, f"{prefix}_{safe_filename}_{fitness_metric}.png")
+    def plot_rigorous_convergence(cls,
+                                  df_trace_history: pd.DataFrame,
+                                  experiment_name: str,
+                                  is_final_record: bool = False):
 
-        plt.savefig(file_path, dpi=300, bbox_inches='tight', facecolor=fig.get_facecolor())
-        print(f"[I/O Trace] Figure exported successfully: {file_path}")
+        metric_name = df_trace_history['Trace_Metric'].iloc[0] \
+            if 'Trace_Metric' in df_trace_history.columns else GlobalSetting.evaluation_function
+
+        df_seed_agg = df_trace_history.groupby(['Fold_ID', 'Iteration']).agg(
+            Train_Fit_Mean_by_Seed=('Train_Fitness', 'mean'),
+            Val_Fit_Mean_by_Seed=('Val_Fitness', 'mean')
+        ).reset_index()
+
+
+        df_global_eval = df_seed_agg.groupby('Iteration').agg(
+            Global_Train_Mean=('Train_Fit_Mean_by_Seed', 'mean'),
+            Global_Train_Std=('Train_Fit_Mean_by_Seed', 'std'),
+            Global_Val_Mean=('Val_Fit_Mean_by_Seed', 'mean'),
+            Global_Val_Std=('Val_Fit_Mean_by_Seed', 'std')
+        ).reset_index()
+
+        iters = df_global_eval['Iteration']
+
+        final_train_mean = df_global_eval['Global_Train_Mean'].iloc[-1]
+        final_train_std = df_global_eval['Global_Train_Std'].iloc[-1]
+        final_val_mean = df_global_eval['Global_Val_Mean'].iloc[-1]
+        final_val_std = df_global_eval['Global_Val_Std'].iloc[-1]
+
+        with cls._style_context():
+            fig, ax = plt.subplots(figsize=(10, 6), dpi=150)
+
+            ax.plot(iters, df_global_eval['Global_Train_Mean'],
+                    label=f'Train Expectation ({final_train_mean:.5f} ± {final_train_std:.5f})',
+                    color='#1f77b4', linewidth=2.5)
+            ax.fill_between(iters,
+                            df_global_eval['Global_Train_Mean'] - df_global_eval['Global_Train_Std'],
+                            df_global_eval['Global_Train_Mean'] + df_global_eval['Global_Train_Std'],
+                            color='#1f77b4', alpha=0.15, linewidth=0)
+
+            ax.plot(iters, df_global_eval['Global_Val_Mean'],
+                    label=f'Validation Expectation ({final_val_mean:.5f} ± {final_val_std:.5f})',
+                    color='#ff7f0e', linewidth=2.5)
+            ax.fill_between(iters,
+                            df_global_eval['Global_Val_Mean'] - df_global_eval['Global_Val_Std'],
+                            df_global_eval['Global_Val_Mean'] + df_global_eval['Global_Val_Std'],
+                            color='#ff7f0e', alpha=0.15, linewidth=0)
+
+            ax.set_title(f'{experiment_name} | Convergence Map', pad=15)
+            ax.set_xlabel('Iterations')
+            ax.set_ylabel(f'Evaluation Metric: {metric_name}')
+
+            ax.xaxis.set_major_locator(MaxNLocator(integer=True))
+
+            ax.grid(axis='y', linestyle='--', alpha=0.4)
+            ax.legend(loc='lower right', framealpha=0.9, edgecolor='gray', fontsize=11)
+
+            plt.tight_layout()
+
+            if is_final_record:
+                cls._save_figure(fig, "Tuning Tracing/", experiment_name, metric_name)
+
+            plt.show()
