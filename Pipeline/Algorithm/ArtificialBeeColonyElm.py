@@ -237,7 +237,11 @@ class ArtificialBeeColonyElm:
             self.neighbour_iteration(index, solution_v_idx, x_train, y_train)
 
     def onlooker_bee(self,current_iteration,x_train,y_train):
-        probability = self.fitness/ np.sum(self.fitness + 1e-20)
+        max_fit = np.max(self.fitness)
+        if max_fit == 0:
+            probability = np.ones(self.solution_size)
+        else:
+            probability = (0.9 * (self.fitness / max_fit)) + 0.1
         trial = 0
         index = 0
         while trial < self.solution_size:
