@@ -286,7 +286,7 @@ class Plotting:
             fig, ax = plt.subplots(figsize=(10, 6), dpi=150)
 
             ax.plot(iters, df_global_eval['Global_Train_Mean'],
-                    label=f'Train Expectation ({final_train_mean:.5f} ± {final_train_std:.5f})',
+                    label=f'Training Trace ({final_train_mean:.5f} ± {final_train_std:.5f})',
                     color='#1f77b4', linewidth=2.5)
             ax.fill_between(iters,
                             df_global_eval['Global_Train_Mean'] - df_global_eval['Global_Train_Std'],
@@ -294,14 +294,14 @@ class Plotting:
                             color='#1f77b4', alpha=0.15, linewidth=0)
 
             ax.plot(iters, df_global_eval['Global_Val_Mean'],
-                    label=f'Validation Expectation ({final_val_mean:.5f} ± {final_val_std:.5f})',
+                    label=f'Validation Trace ({final_val_mean:.5f} ± {final_val_std:.5f})',
                     color='#ff7f0e', linewidth=2.5)
             ax.fill_between(iters,
                             df_global_eval['Global_Val_Mean'] - df_global_eval['Global_Val_Std'],
                             df_global_eval['Global_Val_Mean'] + df_global_eval['Global_Val_Std'],
                             color='#ff7f0e', alpha=0.15, linewidth=0)
 
-            ax.set_title(f'{experiment_name} | Convergence Map', pad=15)
+            ax.set_title(f'{experiment_name}', pad=15)
             ax.set_xlabel('Iterations')
             ax.set_ylabel(f'Evaluation Metric: {metric_name}')
 

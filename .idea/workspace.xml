@@ -6,13 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Prevent 0 in probability">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Algorithm/ArtificialBeeColonyElm.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Algorithm/ArtificialBeeColonyElm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Methodology/ABC_Testing.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Methodology/ABC_Testing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Tuning Tracing/_ABC_Convergence_Trace_10SN_5TL_100MI_MCC.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Tuning Tracing/_ABC_Convergence_Trace_10SN_5TL_50MI_MCC.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_10SN_5TL_100MI_Trace.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_10SN_5TL_50MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_10S_100MI.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_10S_100MI.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_10S_150MI.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_10S_150MI.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_10S_250MI.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_10S_250MI.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_10S_50MI.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_10S_50MI.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,12 +53,12 @@
     &quot;assignee&quot;: &quot;youquanneu&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/youquanneu/COMP3200_Individual_Project.git&quot;,
-    &quot;accountId&quot;: &quot;6a4bc477-d024-4efe-80e7-8463830734d8&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/youquanneu/COMP3200_Individual_Project.git",
+    "accountId": "27ee367d-47c5-4ae9-8519-73f86fa139cf"
   }
-}</component>
+}]]></component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -76,45 +73,45 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.ABC_ELM.executor": "Run",
-    "Python.ABC_ELM2.executor": "Run",
-    "Python.ABC_Testing.executor": "Run",
-    "Python.ArtificialBeeColonyElm.executor": "Run",
-    "Python.ArtificialBeeColonyElmCV.executor": "Run",
-    "Python.ArtificialBeeColonyElmCVEnsemble.executor": "Debug",
-    "Python.ArtificialBeeColonyElmCVEnsembleRectifyVersion.executor": "Run",
-    "Python.CrossValidationDataSplit.executor": "Run",
-    "Python.DataSplit.executor": "Run",
-    "Python.EvaluationABCELM.executor": "Run",
-    "Python.EvaluationELM.executor": "Run",
-    "Python.EvaluationMatrix.executor": "Run",
-    "Python.ExtremeLearningMachine.executor": "Run",
-    "Python.ExtremeLearningMachineCVEnsemble.executor": "Run",
-    "Python.GallstoneDataSet.executor": "Run",
-    "Python.GlobalSetting.executor": "Run",
-    "Python.Plotting.executor": "Run",
-    "Python.sdf.executor": "Run",
-    "Python.teest.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "ai.playground.ignore.import.keys.banner.in.settings": "true",
-    "database.data.extractors.current.export.id": "CSV-Groovy.csv.groovy",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/yqn1e23/PycharmProjects/COMP3200_Individual_Project/Trace/ABC Convergence Trace (Algorithms)",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.ABC_ELM.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ABC_ELM2.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ABC_Testing.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ArtificialBeeColonyElm.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ArtificialBeeColonyElmCV.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ArtificialBeeColonyElmCVEnsemble.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.ArtificialBeeColonyElmCVEnsembleRectifyVersion.executor&quot;: &quot;Run&quot;,
+    &quot;Python.CrossValidationDataSplit.executor&quot;: &quot;Run&quot;,
+    &quot;Python.DataSplit.executor&quot;: &quot;Run&quot;,
+    &quot;Python.EvaluationABCELM.executor&quot;: &quot;Run&quot;,
+    &quot;Python.EvaluationELM.executor&quot;: &quot;Run&quot;,
+    &quot;Python.EvaluationMatrix.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ExtremeLearningMachine.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ExtremeLearningMachineCVEnsemble.executor&quot;: &quot;Run&quot;,
+    &quot;Python.GallstoneDataSet.executor&quot;: &quot;Run&quot;,
+    &quot;Python.GlobalSetting.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Plotting.executor&quot;: &quot;Run&quot;,
+    &quot;Python.sdf.executor&quot;: &quot;Run&quot;,
+    &quot;Python.teest.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;ai.playground.ignore.import.keys.banner.in.settings&quot;: &quot;true&quot;,
+    &quot;database.data.extractors.current.export.id&quot;: &quot;CSV-Groovy.csv.groovy&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/yqn1e23/PycharmProjects/COMP3200_Individual_Project/Trace/ABC Convergence Trace (Algorithms)&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Trace\ABC Convergence Trace (Algorithms)" />
@@ -233,6 +230,7 @@
       <workItem from="1774524300001" duration="4700000" />
       <workItem from="1774529089983" duration="1638000" />
       <workItem from="1774576101011" duration="17271000" />
+      <workItem from="1774599234712" duration="1651000" />
     </task>
     <task id="LOCAL-00040" summary="Restructure">
       <option name="closed" value="true" />
