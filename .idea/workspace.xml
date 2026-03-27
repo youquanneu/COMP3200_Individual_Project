@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Run trace">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_10S_1000MI.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_10S_1000MI.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_10S_500MI.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_10S_500MI.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_20S_100MI.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_20S_100MI.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_20S_150MI.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_20S_150MI.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_20S_250MI.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_20S_250MI.ipynb" afterDir="false" />
-    </list>
+    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Run trace." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -231,15 +224,7 @@
       <workItem from="1774524300001" duration="4700000" />
       <workItem from="1774529089983" duration="1638000" />
       <workItem from="1774576101011" duration="17271000" />
-      <workItem from="1774599234712" duration="8699000" />
-    </task>
-    <task id="LOCAL-00044" summary="Grid search setting">
-      <option name="closed" value="true" />
-      <created>1773284516910</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1773284516910</updated>
+      <workItem from="1774599234712" duration="13195000" />
     </task>
     <task id="LOCAL-00045" summary="Wait for running">
       <option name="closed" value="true" />
@@ -625,7 +610,15 @@
       <option name="project" value="LOCAL" />
       <updated>1774603093755</updated>
     </task>
-    <option name="localTasksCounter" value="93" />
+    <task id="LOCAL-00093" summary="Run trace.">
+      <option name="closed" value="true" />
+      <created>1774613771945</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1774613771945</updated>
+    </task>
+    <option name="localTasksCounter" value="94" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -643,7 +636,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Grid Search Records too big, would not be uploaded" />
     <MESSAGE value="Grid Search Records too big, would not be uploaded, move to gitignore" />
     <MESSAGE value="Parameter Tuning Try" />
     <MESSAGE value="Restructure dir and some model code.&#10; &#10;- Things to be done : &#10;1. Rerun the whole process after the restructure&#10;2. Hyperparameter tuning : Solution size, trial limit, max iter&#10;3. Write report&#10;4. Hyperparameter deep tuning : algo_2 , algo_3 parameter&#10;&#10;- Things can be explored : &#10;1. Make ABC-RELM with lambda inside solution" />
@@ -668,7 +660,8 @@
     <MESSAGE value="Prevent 0 in probability" />
     <MESSAGE value="Reruning" />
     <MESSAGE value="Run trace" />
-    <option name="LAST_COMMIT_MESSAGE" value="Run trace" />
+    <MESSAGE value="Run trace." />
+    <option name="LAST_COMMIT_MESSAGE" value="Run trace." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$ArtificialBeeColonyElmCVEnsemble.coverage" NAME="ArtificialBeeColonyElmCVEnsemble Coverage Results" MODIFIED="1773795158205" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Algorithm" />
