@@ -1,3 +1,5 @@
+import time
+
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
@@ -18,6 +20,7 @@ def cross_seed_testing(model_class,
                        force_lambda : float = None,
                        employed_bee_algo3   = False,
                        onlooker_bee_algo3   = False):
+
     prefix = "raw_" if use_raw_data else "cleaned_"
     expr_name = f"{prefix}{expr_name}"
 
@@ -44,6 +47,10 @@ def cross_seed_testing(model_class,
     convergence_result, scout_history, testing_results = [], [], []
 
     for fold_idx, (x_train, y_train, x_test, y_test) in enumerate(data_split):
+
+        print(f"\nTesting - Fold {fold_idx}")
+        fold_start_time = time.time()
+
         for seed in GlobalSetting.seed_test_range:
             model = generate_model(model_class,
                                    feature_size,
@@ -80,6 +87,9 @@ def cross_seed_testing(model_class,
                 scout_history.extend([{**base_metadata, "Iteration": i + 1, "Scout_Triggers": s} for i, s in
                                       enumerate(model.scout_trigger_history)])
 
+        fold_end_time = time.time()
+        fold_duration = fold_end_time - fold_start_time
+        print(f"\n\nTesting - Fold {fold_idx} Completed in {fold_duration:.4f}")
 
     cols_to_keep = ['Model_Type', 'Hidden_Nodes', 'Lambda_Value', 'Activation', 'Fold_ID', 'Seed', 'Accuracy',
                     'Precision', 'Recall', 'NPV', 'Specificity', 'F1-Score', 'F2-Score', 'Bal Accuracy', 'MCC']
@@ -168,6 +178,10 @@ def evaluate_abc_parameters(model_class,
     trace_metric = GlobalSetting.evaluation_function
 
     for fold_idx in range(gallstone_dataset.splits):
+
+        print(f"\nTracing - Fold {fold_idx}")
+        fold_start_time = time.time()
+
         x_train, y_train, x_test, y_test = gallstone_dataset.fold_split[fold_idx]
 
         x_tr, x_val, y_tr, y_val = train_test_split(
@@ -217,6 +231,10 @@ def evaluate_abc_parameters(model_class,
                     "Trace_Metric": trace_metric,
                     "Scout_Triggers": scout_curve[iter_idx]
                 })
+
+        fold_end_time = time.time()
+        fold_duration = fold_end_time - fold_start_time
+        print(f"\n\nTracing - Fold {fold_idx} Completed in {fold_duration:.4f}")
 
     train_val_records = pd.DataFrame(history_records)
 

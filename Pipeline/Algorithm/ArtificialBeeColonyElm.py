@@ -118,6 +118,7 @@ class ArtificialBeeColonyElm:
 
         return fitness_value
 
+
     def build_elm_by_solution(self, solution, x_train, y_train):
         weight_boundary = self.feature_size * self.hidden_size
         hidden_weight   = solution[:weight_boundary].reshape(self.feature_size, self.hidden_size)
@@ -130,15 +131,20 @@ class ArtificialBeeColonyElm:
 
         elm.fit(x_train, y_train)
         return elm
+
+
     def get_evaluation_fitness(self, solution, x_train, y_train):
         elm = self.build_elm_by_solution(solution, x_train, y_train)
         y_pred = elm.predict(x_train)
         return self.get_fitness(y_train, y_pred)
 
+
     def get_validation_fitness(self, solution, x_train, y_train):
         elm = self.build_elm_by_solution(solution, x_train, y_train)
         y_val_pred = elm.predict(self.x_val)
         return self.get_fitness(self.y_val, y_val_pred)
+
+
     def neighboring_s_algo_2(self, index, current_iteration):
 
         solution_s_idx = self.population[index]
@@ -171,6 +177,7 @@ class ArtificialBeeColonyElm:
         solution_v_idx[indexes] = np.clip(solution_s_idx[indexes] + noise, -1.0, 1.0)
 
         return solution_v_idx
+
 
     def neighboring_s_algo_3(self, index, current_iteration):
         solution_s_idx = self.population[index]
@@ -208,6 +215,7 @@ class ArtificialBeeColonyElm:
 
         return solution_v_idx
 
+
     def neighbour_iteration(self, index, solution_v_idx, x_train, y_train):
         v_idx_result = self.get_evaluation_fitness(solution_v_idx, x_train, y_train)
         if v_idx_result > self.fitness[index]:
@@ -220,6 +228,7 @@ class ArtificialBeeColonyElm:
         else:
             self.trials[index] += 1
 
+
     def initialize_bee_colony(self, x_train , y_train):
         for _ in range(self.solution_size):
             self.population.append(self.generate_random_solution())
@@ -229,6 +238,8 @@ class ArtificialBeeColonyElm:
             if self.fitness[index] > self.best_fitness:
                 self.best_fitness = self.fitness[index]
                 self.best_solution = np.copy(self.population[index])
+
+
     def employed_bee(self, current_iteration, x_train, y_train):
         for index in range(self.solution_size):
             solution_v_idx = self.neighboring_s_algo_2(index, current_iteration) \
@@ -236,12 +247,13 @@ class ArtificialBeeColonyElm:
                 else self.neighboring_s_algo_3(index, current_iteration)
             self.neighbour_iteration(index, solution_v_idx, x_train, y_train)
 
+
     def onlooker_bee(self,current_iteration,x_train,y_train):
         max_fit = np.max(self.fitness)
         if max_fit == 0:
             probability = np.ones(self.solution_size)
         else:
-            probability = (0.9 * (self.fitness / max_fit)) + 0.1
+            probability = (0.95 * (self.fitness / max_fit)) + 0.05
         trial = 0
         index = 0
         while trial < self.solution_size:
@@ -256,6 +268,7 @@ class ArtificialBeeColonyElm:
 
             index = (index+1)%self.solution_size
 
+
     def scout_bee(self,x_train,y_train):
         trigger_count = 0
         for index in range(self.solution_size):
@@ -268,6 +281,7 @@ class ArtificialBeeColonyElm:
                     self.best_fitness   = self.fitness[index]
                     self.best_solution  = np.copy(self.population[index])
         return trigger_count
+
 
     def fit(self, x_train , y_train):
         x_train = np.asarray(x_train)
@@ -303,16 +317,16 @@ class ArtificialBeeColonyElm:
                 current_val_fitness = self.get_validation_fitness(self.best_solution, x_train, y_train)
                 self.val_fitness_curve.append(current_val_fitness)
                 val_print_str = f" | Val Fitness: {current_val_fitness:.6f}"
-
-            print(
-                f"\rSeed {self.preset_random_seed}  | "
-                f"Iteration {current_iteration:03d} complete | "
-                f"Duration: {time.time() - start_time:.4f}s | "
-                f"Scout Triggers: {scout_count} | "
-                f"Best Fitness: {self.best_fitness:.6f}"
-                f"{val_print_str}",
-                end="", flush=True
-            )
+            if current_iteration % 5 == 0:
+                print(
+                    f"\rSeed {self.preset_random_seed}  | "
+                    f"Iteration {current_iteration:03d} complete | "
+                    f"Duration: {time.time() - start_time:.4f}s | "
+                    f"Scout Triggers: {scout_count} | "
+                    f"Best Fitness: {self.best_fitness:.6f}"
+                    f"{val_print_str}",
+                    end="", flush=True
+                )
 
         """ Inverse function which revert the MCC record to be true value """
         if self.fitness_function == "MCC":
@@ -321,6 +335,7 @@ class ArtificialBeeColonyElm:
             self.val_fitness_curve = np.array(self.val_fitness_curve) * 2.0 - 1.0
 
         self.train_best_model(x_train, y_train)
+
 
     def train_best_model(self,x_train,y_train):
         weight_boundary = self.feature_size * self.hidden_size
@@ -332,6 +347,7 @@ class ArtificialBeeColonyElm:
         self.best_elm.apply_hidden_weights(hidden_weight)
         self.best_elm.apply_hidden_bias(hidden_bias)
         self.best_elm.fit(x_train, y_train)
+
 
     def predict(self, x_test):
         if self.best_elm is None:
