@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Rectify">
-      <change beforePath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_100S_250MI.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_100S_250MI.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_80S_150MI.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_80S_150MI.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_80S_250MI.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_80S_250MI.ipynb" afterDir="false" />
-    </list>
+    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Run Trace" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -230,47 +226,7 @@
       <workItem from="1774576101011" duration="17271000" />
       <workItem from="1774599234712" duration="13303000" />
       <workItem from="1774838897052" duration="517000" />
-      <workItem from="1774839763047" duration="12581000" />
-    </task>
-    <task id="LOCAL-00048" summary="Upload result">
-      <option name="closed" value="true" />
-      <created>1773319432720</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1773319432720</updated>
-    </task>
-    <task id="LOCAL-00049" summary="Upload graphs">
-      <option name="closed" value="true" />
-      <created>1773319469295</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1773319469295</updated>
-    </task>
-    <task id="LOCAL-00050" summary="Grid Search Records too big, would not be uploaded">
-      <option name="closed" value="true" />
-      <created>1773319564195</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1773319564195</updated>
-    </task>
-    <task id="LOCAL-00051" summary="Grid Search Records too big, would not be uploaded, move to gitignore">
-      <option name="closed" value="true" />
-      <created>1773320133948</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1773320133948</updated>
-    </task>
-    <task id="LOCAL-00052" summary="Parameter Tuning Try">
-      <option name="closed" value="true" />
-      <created>1773361969681</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1773361969681</updated>
+      <workItem from="1774839763047" duration="12642000" />
     </task>
     <task id="LOCAL-00053" summary="Restructure dir and some model code.&#10; &#10;- Things to be done : &#10;1. Rerun the whole process after the restructure&#10;2. Hyperparameter tuning : Solution size, trial limit, max iter&#10;3. Write report&#10;4. Hyperparameter deep tuning : algo_2 , algo_3 parameter&#10;&#10;- Things can be explored : &#10;1. Make ABC-RELM with lambda inside solution">
       <option name="closed" value="true" />
@@ -624,7 +580,47 @@
       <option name="project" value="LOCAL" />
       <updated>1774849902669</updated>
     </task>
-    <option name="localTasksCounter" value="97" />
+    <task id="LOCAL-00097" summary="Run Trace">
+      <option name="closed" value="true" />
+      <created>1774865411632</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1774865411632</updated>
+    </task>
+    <task id="LOCAL-00098" summary="Run Trace">
+      <option name="closed" value="true" />
+      <created>1774865425282</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1774865425282</updated>
+    </task>
+    <task id="LOCAL-00099" summary="Run Trace">
+      <option name="closed" value="true" />
+      <created>1774865449362</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1774865449362</updated>
+    </task>
+    <task id="LOCAL-00100" summary="Run Trace">
+      <option name="closed" value="true" />
+      <created>1774865450052</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1774865450052</updated>
+    </task>
+    <task id="LOCAL-00101" summary="Run Trace">
+      <option name="closed" value="true" />
+      <created>1774865450712</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1774865450712</updated>
+    </task>
+    <option name="localTasksCounter" value="102" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -642,7 +638,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Restructure dir and some model code.&#10; &#10;- Things to be done : &#10;1. Rerun the whole process after the restructure&#10;2. Hyperparameter tuning : Solution size, trial limit, max iter&#10;3. Write report&#10;4. Hyperparameter deep tuning : algo_2 , algo_3 parameter&#10;&#10;- Things can be explored : &#10;1. Make ABC-RELM with lambda inside solution" />
     <MESSAGE value="Add evaluation of ABC iter parameter&#10; &#10;- Things to be done : &#10;1. Rerun the whole process after the restructure&#10;2. Hyperparameter tuning : Solution size, trial limit, max iter&#10;3. Write report&#10;4. Hyperparameter deep tuning : algo_2 , algo_3 parameter&#10;&#10;- Things can be explored : &#10;1. Make ABC-RELM with lambda inside solution" />
     <MESSAGE value="Cross seed cross data split result wait for running" />
     <MESSAGE value="ABC_RELM_TEST_Result" />
@@ -667,7 +662,8 @@
     <MESSAGE value="Run trace." />
     <MESSAGE value="Run trace.50SN" />
     <MESSAGE value="Rectify" />
-    <option name="LAST_COMMIT_MESSAGE" value="Rectify" />
+    <MESSAGE value="Run Trace" />
+    <option name="LAST_COMMIT_MESSAGE" value="Run Trace" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$ArtificialBeeColonyElmCVEnsemble.coverage" NAME="ArtificialBeeColonyElmCVEnsemble Coverage Results" MODIFIED="1773795158205" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Algorithm" />
