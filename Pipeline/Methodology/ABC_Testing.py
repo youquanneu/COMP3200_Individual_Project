@@ -71,14 +71,31 @@ def cross_seed_testing(model_class,
             evaluation = EvaluationMatrix(y_test, y_pred)
             metrics = evaluation.get_all_metrics()
 
+            if is_abc_opt:
+                solution_size   = model.solution_size
+                trial_limit     = model.trial_limit
+                max_iteration   = model.max_iteration
+            else :
+                solution_size = None
+                trial_limit = None
+                max_iteration = None
+
             base_metadata = {
-                "Model_Type"    : expr_name,
-                "Hidden_Nodes"  : hidden_size,
-                "Lambda_Value"  : lambda_value,
-                "Activation"    : activation_func.__name__,
-                "Fold_ID"       : fold_idx,
-                "Seed"          : seed
+                "Model_Type": expr_name,
+                "Is_ABC_Opt": is_abc_opt,
+                "Data_Scaled": data_scaling,
+                "Hidden_Nodes": hidden_size,
+                "Lambda_Value": lambda_value,
+                "Activation": activation_func.__name__,
+                "Solution_Size": solution_size,
+                "Trial_Limit": trial_limit,
+                "Max_Iteration": max_iteration,
+                "Emp_Algo3": employed_bee_algo3 if is_abc_opt else None,
+                "Onl_Algo3": onlooker_bee_algo3 if is_abc_opt else None,
+                "Fold_ID": fold_idx,
+                "Seed": seed
             }
+
             testing_results.append({**base_metadata, **metrics})
 
             if is_abc_opt:
@@ -91,9 +108,18 @@ def cross_seed_testing(model_class,
         fold_duration = fold_end_time - fold_start_time
         print(f"\n\nTesting - Fold {fold_idx} Completed in {fold_duration:.4f}")
 
-    cols_to_keep = ['Model_Type', 'Hidden_Nodes', 'Lambda_Value', 'Activation', 'Fold_ID', 'Seed', 'Accuracy',
-                    'Precision', 'Recall', 'NPV', 'Specificity', 'F1-Score', 'F2-Score', 'Bal Accuracy', 'MCC']
-    df_testing = pd.DataFrame(testing_results)[cols_to_keep].sort_values(by=['Fold_ID', 'Seed'])
+    df_testing_raw = pd.DataFrame(testing_results)
+
+    # 我们把新加的超参数列也放进预期列表里
+    expected_cols = [
+        'Model_Type', 'Is_ABC_Opt', 'Data_Scaled', 'Hidden_Nodes', 'Lambda_Value', 'Activation',
+        'Solution_Size', 'Trial_Limit', 'Max_Iteration', 'Emp_Algo3', 'Onl_Algo3', 'Fold_ID', 'Seed',
+        'Accuracy', 'Precision', 'Recall', 'NPV', 'Specificity', 'F1-Score', 'F2-Score', 'Bal Accuracy', 'MCC'
+    ]
+    # 动态保留真实存在的列，防止 KeyError
+    actual_cols = [col for col in expected_cols if col in df_testing_raw.columns]
+
+    df_testing = df_testing_raw[actual_cols].sort_values(by=['Fold_ID', 'Seed'])
 
     print()
     GlobalSetting.save_dataframe_to_record(df_testing, f"Test History/{expr_name}_Results.csv")
@@ -101,8 +127,8 @@ def cross_seed_testing(model_class,
     if is_abc_opt:
         df_convergence = pd.DataFrame(convergence_result)
         df_scout_history = pd.DataFrame(scout_history)
-        GlobalSetting.save_dataframe_to_record(df_convergence,f"{expr_name}_Convergence.csv")
-        GlobalSetting.save_dataframe_to_record(df_scout_history,f"{expr_name}_Scout_History.csv")
+        GlobalSetting.save_dataframe_to_record(df_convergence,f"Test History/{expr_name}_Convergence.csv")
+        GlobalSetting.save_dataframe_to_record(df_scout_history,f"Test History/{expr_name}_Scout_History.csv")
 
         return df_testing , df_convergence , df_scout_history
 
@@ -223,12 +249,20 @@ def evaluate_abc_parameters(model_class,
 
             for iter_idx in range(abc_model.max_iteration):
                 history_records.append({
-                    "Fold_ID": fold_idx,
-                    "Seed": random_seed,
-                    "Iteration": iter_idx + 1,
-                    "Train_Fitness": train_curve[iter_idx],
-                    "Val_Fitness": val_curve[iter_idx] if len(val_curve) > iter_idx else None,
-                    "Trace_Metric": trace_metric,
+                    # Model Configs
+                    "Solution_Size" : solution_size,
+                    "Trial_Limit"   : trial_limit,
+                    "Max_Iteration" : max_iteration,
+                    "Employed_Algo3": employed_bee_algo3,
+                    "Onlooker_Algo3": onlooker_bee_algo3,
+                    # Trace Configs
+                    "Fold_ID"       : fold_idx,
+                    "Seed"          : random_seed,
+                    "Iteration"     : iter_idx + 1,
+                    # Trace Target
+                    "Train_Fitness" : train_curve[iter_idx],
+                    "Val_Fitness"   : val_curve[iter_idx] if len(val_curve) > iter_idx else None,
+                    "Trace_Metric"  : trace_metric,
                     "Scout_Triggers": scout_curve[iter_idx]
                 })
 
