@@ -4,7 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Run Trace" />
+    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Modify record">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Figure/Tuning Tracing/_ABC_Convergence_Trace_10SN_5TL_100MI_MCC.png" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Figure/Tuning Tracing/_ABC_Convergence_Trace_10SN_5TL_100MI_MCC.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Figure/Tuning Tracing/_ABC_Convergence_Trace_10SN_5TL_150MI_MCC.png" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Figure/Tuning Tracing/_ABC_Convergence_Trace_10SN_5TL_150MI_MCC.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Figure/Tuning Tracing/_ABC_Convergence_Trace_10SN_5TL_250MI_MCC.png" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Figure/Tuning Tracing/_ABC_Convergence_Trace_10SN_5TL_250MI_MCC.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Figure/Tuning Tracing/_ABC_Convergence_Trace_10SN_5TL_500MI_MCC.png" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Figure/Tuning Tracing/_ABC_Convergence_Trace_10SN_5TL_500MI_MCC.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Figure/Tuning Tracing/_ABC_Convergence_Trace_10SN_5TL_50MI_MCC.png" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Figure/Tuning Tracing/_ABC_Convergence_Trace_10SN_5TL_50MI_MCC.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_10SN_5TL_1000MI_Trace.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_10SN_5TL_1000MI_Trace.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_10SN_5TL_100MI_Trace.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_10SN_5TL_100MI_Trace.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_10SN_5TL_150MI_Trace.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_10SN_5TL_150MI_Trace.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_10SN_5TL_250MI_Trace.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_10SN_5TL_250MI_Trace.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_10SN_5TL_500MI_Trace.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_10SN_5TL_500MI_Trace.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_10SN_5TL_50MI_Trace.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_10SN_5TL_50MI_Trace.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_100S_150MI.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_80S_100MI.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_80S_100MI.ipynb" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -47,12 +62,12 @@
     &quot;assignee&quot;: &quot;youquanneu&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/youquanneu/COMP3200_Individual_Project.git",
-    "accountId": "27ee367d-47c5-4ae9-8519-73f86fa139cf"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/youquanneu/COMP3200_Individual_Project.git&quot;,
+    &quot;accountId&quot;: &quot;6a4bc477-d024-4efe-80e7-8463830734d8&quot;
   }
-}]]></component>
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -96,7 +111,7 @@
     &quot;ai.playground.ignore.import.keys.banner.in.settings&quot;: &quot;true&quot;,
     &quot;database.data.extractors.current.export.id&quot;: &quot;CSV-Groovy.csv.groovy&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/yqn1e23/PycharmProjects/COMP3200_Individual_Project/Trace/ABC Convergence Trace (Algorithms)&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/yqn1e23/PycharmProjects/COMP3200_Individual_Project/Trace/ABC Convergence Trace (Parameter)&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -108,8 +123,8 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Trace\ABC Convergence Trace (Algorithms)" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Trace\ABC Convergence Trace (Parameter)" />
+      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Trace\ABC Convergence Trace (Algorithms)" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Result\2. Trajectory Trace (Solutions and Trials)" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Result\1. Trajectory Trace (Max Iter)" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Storage\Figure" />
@@ -226,7 +241,47 @@
       <workItem from="1774576101011" duration="17271000" />
       <workItem from="1774599234712" duration="13303000" />
       <workItem from="1774838897052" duration="517000" />
-      <workItem from="1774839763047" duration="12642000" />
+      <workItem from="1774839438087" duration="13598000" />
+    </task>
+    <task id="LOCAL-00048" summary="Upload result">
+      <option name="closed" value="true" />
+      <created>1773319432720</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1773319432720</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Upload graphs">
+      <option name="closed" value="true" />
+      <created>1773319469295</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1773319469295</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Grid Search Records too big, would not be uploaded">
+      <option name="closed" value="true" />
+      <created>1773319564195</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1773319564195</updated>
+    </task>
+    <task id="LOCAL-00051" summary="Grid Search Records too big, would not be uploaded, move to gitignore">
+      <option name="closed" value="true" />
+      <created>1773320133948</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1773320133948</updated>
+    </task>
+    <task id="LOCAL-00052" summary="Parameter Tuning Try">
+      <option name="closed" value="true" />
+      <created>1773361969681</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1773361969681</updated>
     </task>
     <task id="LOCAL-00053" summary="Restructure dir and some model code.&#10; &#10;- Things to be done : &#10;1. Rerun the whole process after the restructure&#10;2. Hyperparameter tuning : Solution size, trial limit, max iter&#10;3. Write report&#10;4. Hyperparameter deep tuning : algo_2 , algo_3 parameter&#10;&#10;- Things can be explored : &#10;1. Make ABC-RELM with lambda inside solution">
       <option name="closed" value="true" />
@@ -572,55 +627,15 @@
       <option name="project" value="LOCAL" />
       <updated>1774618318496</updated>
     </task>
-    <task id="LOCAL-00096" summary="Rectify">
+    <task id="LOCAL-00096" summary="Modify record">
       <option name="closed" value="true" />
-      <created>1774849902669</created>
+      <created>1774839716122</created>
       <option name="number" value="00096" />
       <option name="presentableId" value="LOCAL-00096" />
       <option name="project" value="LOCAL" />
-      <updated>1774849902669</updated>
+      <updated>1774839716122</updated>
     </task>
-    <task id="LOCAL-00097" summary="Run Trace">
-      <option name="closed" value="true" />
-      <created>1774865411632</created>
-      <option name="number" value="00097" />
-      <option name="presentableId" value="LOCAL-00097" />
-      <option name="project" value="LOCAL" />
-      <updated>1774865411632</updated>
-    </task>
-    <task id="LOCAL-00098" summary="Run Trace">
-      <option name="closed" value="true" />
-      <created>1774865425282</created>
-      <option name="number" value="00098" />
-      <option name="presentableId" value="LOCAL-00098" />
-      <option name="project" value="LOCAL" />
-      <updated>1774865425282</updated>
-    </task>
-    <task id="LOCAL-00099" summary="Run Trace">
-      <option name="closed" value="true" />
-      <created>1774865449362</created>
-      <option name="number" value="00099" />
-      <option name="presentableId" value="LOCAL-00099" />
-      <option name="project" value="LOCAL" />
-      <updated>1774865449362</updated>
-    </task>
-    <task id="LOCAL-00100" summary="Run Trace">
-      <option name="closed" value="true" />
-      <created>1774865450052</created>
-      <option name="number" value="00100" />
-      <option name="presentableId" value="LOCAL-00100" />
-      <option name="project" value="LOCAL" />
-      <updated>1774865450052</updated>
-    </task>
-    <task id="LOCAL-00101" summary="Run Trace">
-      <option name="closed" value="true" />
-      <created>1774865450712</created>
-      <option name="number" value="00101" />
-      <option name="presentableId" value="LOCAL-00101" />
-      <option name="project" value="LOCAL" />
-      <updated>1774865450712</updated>
-    </task>
-    <option name="localTasksCounter" value="102" />
+    <option name="localTasksCounter" value="97" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -638,6 +653,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="Restructure dir and some model code.&#10; &#10;- Things to be done : &#10;1. Rerun the whole process after the restructure&#10;2. Hyperparameter tuning : Solution size, trial limit, max iter&#10;3. Write report&#10;4. Hyperparameter deep tuning : algo_2 , algo_3 parameter&#10;&#10;- Things can be explored : &#10;1. Make ABC-RELM with lambda inside solution" />
     <MESSAGE value="Add evaluation of ABC iter parameter&#10; &#10;- Things to be done : &#10;1. Rerun the whole process after the restructure&#10;2. Hyperparameter tuning : Solution size, trial limit, max iter&#10;3. Write report&#10;4. Hyperparameter deep tuning : algo_2 , algo_3 parameter&#10;&#10;- Things can be explored : &#10;1. Make ABC-RELM with lambda inside solution" />
     <MESSAGE value="Cross seed cross data split result wait for running" />
     <MESSAGE value="ABC_RELM_TEST_Result" />
@@ -661,9 +677,8 @@
     <MESSAGE value="Run trace" />
     <MESSAGE value="Run trace." />
     <MESSAGE value="Run trace.50SN" />
-    <MESSAGE value="Rectify" />
-    <MESSAGE value="Run Trace" />
-    <option name="LAST_COMMIT_MESSAGE" value="Run Trace" />
+    <MESSAGE value="Modify record" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modify record" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$ArtificialBeeColonyElmCVEnsemble.coverage" NAME="ArtificialBeeColonyElmCVEnsemble Coverage Results" MODIFIED="1773795158205" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Algorithm" />
