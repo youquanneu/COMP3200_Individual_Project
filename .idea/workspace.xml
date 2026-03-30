@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Run trace.50SN">
-      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_20SN_10TL_100MI_Trace.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_20SN_10TL_100MI_Trace.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_20S_100MI.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_20S_100MI.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_20S_150MI.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_20S_150MI.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_20S_250MI.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_20S_250MI.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_20S_500MI.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_20S_500MI.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_50S_100MI.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_50S_100MI.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_50S_150MI.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_50S_150MI.ipynb" afterDir="false" />
+    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Rectify">
+      <change beforePath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_100S_250MI.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_100S_250MI.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_80S_150MI.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_80S_150MI.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_80S_250MI.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_80S_250MI.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -234,15 +230,7 @@
       <workItem from="1774576101011" duration="17271000" />
       <workItem from="1774599234712" duration="13303000" />
       <workItem from="1774838897052" duration="517000" />
-      <workItem from="1774839763047" duration="4106000" />
-    </task>
-    <task id="LOCAL-00047" summary="Results, things to be done : &#10;1. ABC parameter tuning.&#10;2. Can try to include lambda inside solution, allow ABC to adjust">
-      <option name="closed" value="true" />
-      <created>1773319303341</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1773319303341</updated>
+      <workItem from="1774839763047" duration="12581000" />
     </task>
     <task id="LOCAL-00048" summary="Upload result">
       <option name="closed" value="true" />
@@ -628,7 +616,15 @@
       <option name="project" value="LOCAL" />
       <updated>1774618318496</updated>
     </task>
-    <option name="localTasksCounter" value="96" />
+    <task id="LOCAL-00096" summary="Rectify">
+      <option name="closed" value="true" />
+      <created>1774849902669</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1774849902669</updated>
+    </task>
+    <option name="localTasksCounter" value="97" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -646,7 +642,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Parameter Tuning Try" />
     <MESSAGE value="Restructure dir and some model code.&#10; &#10;- Things to be done : &#10;1. Rerun the whole process after the restructure&#10;2. Hyperparameter tuning : Solution size, trial limit, max iter&#10;3. Write report&#10;4. Hyperparameter deep tuning : algo_2 , algo_3 parameter&#10;&#10;- Things can be explored : &#10;1. Make ABC-RELM with lambda inside solution" />
     <MESSAGE value="Add evaluation of ABC iter parameter&#10; &#10;- Things to be done : &#10;1. Rerun the whole process after the restructure&#10;2. Hyperparameter tuning : Solution size, trial limit, max iter&#10;3. Write report&#10;4. Hyperparameter deep tuning : algo_2 , algo_3 parameter&#10;&#10;- Things can be explored : &#10;1. Make ABC-RELM with lambda inside solution" />
     <MESSAGE value="Cross seed cross data split result wait for running" />
@@ -671,7 +666,8 @@
     <MESSAGE value="Run trace" />
     <MESSAGE value="Run trace." />
     <MESSAGE value="Run trace.50SN" />
-    <option name="LAST_COMMIT_MESSAGE" value="Run trace.50SN" />
+    <MESSAGE value="Rectify" />
+    <option name="LAST_COMMIT_MESSAGE" value="Rectify" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$ArtificialBeeColonyElmCVEnsemble.coverage" NAME="ArtificialBeeColonyElmCVEnsemble Coverage Results" MODIFIED="1773795158205" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Algorithm" />
