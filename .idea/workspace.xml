@@ -5,19 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Modify record">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Tuning Tracing/_ABC_Convergence_Trace_10SN_5TL_100MI_MCC.png" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Figure/Tuning Tracing/_ABC_Convergence_Trace_10SN_5TL_100MI_MCC.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Tuning Tracing/_ABC_Convergence_Trace_10SN_5TL_150MI_MCC.png" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Figure/Tuning Tracing/_ABC_Convergence_Trace_10SN_5TL_150MI_MCC.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Tuning Tracing/_ABC_Convergence_Trace_10SN_5TL_250MI_MCC.png" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Figure/Tuning Tracing/_ABC_Convergence_Trace_10SN_5TL_250MI_MCC.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Tuning Tracing/_ABC_Convergence_Trace_10SN_5TL_500MI_MCC.png" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Figure/Tuning Tracing/_ABC_Convergence_Trace_10SN_5TL_500MI_MCC.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Tuning Tracing/_ABC_Convergence_Trace_10SN_5TL_50MI_MCC.png" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Figure/Tuning Tracing/_ABC_Convergence_Trace_10SN_5TL_50MI_MCC.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_10SN_5TL_1000MI_Trace.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_10SN_5TL_1000MI_Trace.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_10SN_5TL_100MI_Trace.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_10SN_5TL_100MI_Trace.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_10SN_5TL_150MI_Trace.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_10SN_5TL_150MI_Trace.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_10SN_5TL_250MI_Trace.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_10SN_5TL_250MI_Trace.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_10SN_5TL_500MI_Trace.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_10SN_5TL_500MI_Trace.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_10SN_5TL_50MI_Trace.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_10SN_5TL_50MI_Trace.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_100S_150MI.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Figure/Tuning Tracing/_ABC_Convergence_Trace_80SN_40TL_100MI_MCC.png" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Figure/Tuning Tracing/_ABC_Convergence_Trace_80SN_40TL_100MI_MCC.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_100S_100MI.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_50S_500MI.ipynb" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_80S_100MI.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_80S_100MI.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -62,12 +52,12 @@
     &quot;assignee&quot;: &quot;youquanneu&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/youquanneu/COMP3200_Individual_Project.git&quot;,
-    &quot;accountId&quot;: &quot;6a4bc477-d024-4efe-80e7-8463830734d8&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/youquanneu/COMP3200_Individual_Project.git",
+    "accountId": "27ee367d-47c5-4ae9-8519-73f86fa139cf"
   }
-}</component>
+}]]></component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -242,6 +232,7 @@
       <workItem from="1774599234712" duration="13303000" />
       <workItem from="1774838897052" duration="517000" />
       <workItem from="1774839438087" duration="13598000" />
+      <workItem from="1774865871983" duration="9793000" />
     </task>
     <task id="LOCAL-00048" summary="Upload result">
       <option name="closed" value="true" />
