@@ -18,6 +18,9 @@ def cross_seed_testing(model_class,
                        data_scaling : bool  = False,
                        force_h_size : int   = None,
                        force_lambda : float = None,
+                       force_sn     : int   = None,
+                       force_tl     : int   = None,
+                       force_mi     : int   = None,
                        employed_bee_algo3   = False,
                        onlooker_bee_algo3   = False):
 
@@ -42,6 +45,9 @@ def cross_seed_testing(model_class,
     lambda_value = force_lambda if force_lambda is not None else config.get('Lambda_Value', 0.0)
     activation_func = config['Activation']
 
+    if force_tl is None and force_sn is not None:
+        force_tl = force_sn // 2
+
     data_split = gallstone_dataset.scaled_fold_split if data_scaling else gallstone_dataset.fold_split
 
     convergence_result, scout_history, testing_results = [], [], []
@@ -59,6 +65,9 @@ def cross_seed_testing(model_class,
                                    is_abc_opt,
                                    activation_func,
                                    seed,
+                                   force_sn,
+                                   force_tl,
+                                   force_mi,
                                    employed_bee_algo3,
                                    onlooker_bee_algo3)
 
@@ -76,24 +85,24 @@ def cross_seed_testing(model_class,
                 trial_limit     = model.trial_limit
                 max_iteration   = model.max_iteration
             else :
-                solution_size = None
-                trial_limit = None
-                max_iteration = None
+                solution_size   = None
+                trial_limit     = None
+                max_iteration   = None
 
             base_metadata = {
-                "Model_Type": expr_name,
-                "Is_ABC_Opt": is_abc_opt,
-                "Data_Scaled": data_scaling,
-                "Hidden_Nodes": hidden_size,
-                "Lambda_Value": lambda_value,
-                "Activation": activation_func.__name__,
-                "Solution_Size": solution_size,
-                "Trial_Limit": trial_limit,
-                "Max_Iteration": max_iteration,
-                "Emp_Algo3": employed_bee_algo3 if is_abc_opt else None,
-                "Onl_Algo3": onlooker_bee_algo3 if is_abc_opt else None,
-                "Fold_ID": fold_idx,
-                "Seed": seed
+                "Model_Type"    : expr_name,
+                "Is_ABC_Opt"    : is_abc_opt,
+                "Data_Scaled"   : data_scaling,
+                "Hidden_Nodes"  : hidden_size,
+                "Lambda_Value"  : lambda_value,
+                "Activation"    : activation_func.__name__,
+                "Solution_Size" : solution_size,
+                "Trial_Limit"   : trial_limit,
+                "Max_Iteration" : max_iteration,
+                "Emp_Algo3"     : employed_bee_algo3,
+                "Onl_Algo3"     : onlooker_bee_algo3,
+                "Fold_ID"       : fold_idx,
+                "Seed"          : seed
             }
 
             testing_results.append({**base_metadata, **metrics})
@@ -110,13 +119,12 @@ def cross_seed_testing(model_class,
 
     df_testing_raw = pd.DataFrame(testing_results)
 
-    # 我们把新加的超参数列也放进预期列表里
     expected_cols = [
         'Model_Type', 'Is_ABC_Opt', 'Data_Scaled', 'Hidden_Nodes', 'Lambda_Value', 'Activation',
         'Solution_Size', 'Trial_Limit', 'Max_Iteration', 'Emp_Algo3', 'Onl_Algo3', 'Fold_ID', 'Seed',
         'Accuracy', 'Precision', 'Recall', 'NPV', 'Specificity', 'F1-Score', 'F2-Score', 'Bal Accuracy', 'MCC'
     ]
-    # 动态保留真实存在的列，防止 KeyError
+
     actual_cols = [col for col in expected_cols if col in df_testing_raw.columns]
 
     df_testing = df_testing_raw[actual_cols].sort_values(by=['Fold_ID', 'Seed'])
@@ -127,8 +135,8 @@ def cross_seed_testing(model_class,
     if is_abc_opt:
         df_convergence = pd.DataFrame(convergence_result)
         df_scout_history = pd.DataFrame(scout_history)
-        GlobalSetting.save_dataframe_to_record(df_convergence,f"Test History/{expr_name}_Convergence.csv")
-        GlobalSetting.save_dataframe_to_record(df_scout_history,f"Test History/{expr_name}_Scout_History.csv")
+        GlobalSetting.save_dataframe_to_record(df_convergence,f"Test Convergence History/{expr_name}_Convergence.csv")
+        GlobalSetting.save_dataframe_to_record(df_scout_history,f"Test Scout History/{expr_name}_Scout_History.csv")
 
         return df_testing , df_convergence , df_scout_history
 
@@ -142,6 +150,9 @@ def generate_model(model_class,
                    is_abc_opt,
                    activation_func,
                    seed,
+                   force_sn,
+                   force_tl,
+                   force_mi,
                    employed_bee_algo3 = False,
                    onlooker_bee_algo3 = False):
     if is_abc_opt:
@@ -151,9 +162,9 @@ def generate_model(model_class,
             regularization_lambda   = lambda_value,
             activation_function     = activation_func,
             fitness_function        = GlobalSetting.evaluation_function,
-            solution_size           = GlobalSetting.solution_size,
-            trial_limit             = GlobalSetting.trial_limit,
-            max_iteration           = GlobalSetting.max_iteration
+            solution_size           = force_sn if force_sn is not None else GlobalSetting.solution_size,
+            trial_limit             = force_tl if force_tl is not None else GlobalSetting.trial_limit,
+            max_iteration           = force_mi if force_mi is not None else GlobalSetting.max_iteration
         )
         if employed_bee_algo3:
             model.employed_bee_apply_algo3()
@@ -169,7 +180,7 @@ def generate_model(model_class,
 
     else:
         model = model_class(
-            features_size           = feature_size,
+            feature_size            = feature_size,
             hidden_size             = hidden_size,
             activation_function     = activation_func,
             regularization_lambda   = lambda_value

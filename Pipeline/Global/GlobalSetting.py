@@ -31,9 +31,9 @@ class GlobalSetting:
 
     evaluation_function = 'MCC'
 
-    solution_size = 50
-    trial_limit   = 20
-    max_iteration = 100
+    solution_size = 100
+    trial_limit   = 50
+    max_iteration = 150
 
     model_test_seed = 42
 
