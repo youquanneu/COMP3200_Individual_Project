@@ -5,10 +5,79 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="record">
+      <change afterPath="$PROJECT_DIR$/Trace/ELM Parameter Evaluation/ELM_Parameter_Evaluation.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_100S_100MI.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_100S_100MI.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_100S_150MI.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_100S_150MI.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_50S_250MI.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_50S_250MI.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipeline/Global/GlobalSetting.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Global/GlobalSetting.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipeline/Result/ELM_Parameter_Evaluation.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipeline/Result/Organize Of Result.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipeline/Result/SingleSeedModel.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipeline/Testing_Model ( Cross Seed )/ABC_CV_RELM_CS_Testing.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Figure/Tuning Tracing/_ABC_Convergence_Trace_100SN_50TL_100MI_MCC.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Figure/Tuning Tracing/_ABC_Convergence_Trace_100SN_50TL_120MI_MCC.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Figure/Tuning Tracing/_ABC_Convergence_Trace_100SN_50TL_150MI_MCC.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Figure/Tuning Tracing/_ABC_Convergence_Trace_100SN_50TL_250MI_MCC.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Figure/Tuning Tracing/_ABC_Convergence_Trace_10SN_5TL_1000MI_MCC.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Figure/Tuning Tracing/_ABC_Convergence_Trace_10SN_5TL_100MI_MCC.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Figure/Tuning Tracing/_ABC_Convergence_Trace_10SN_5TL_150MI_MCC.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Figure/Tuning Tracing/_ABC_Convergence_Trace_10SN_5TL_250MI_MCC.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Figure/Tuning Tracing/_ABC_Convergence_Trace_10SN_5TL_500MI_MCC.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Figure/Tuning Tracing/_ABC_Convergence_Trace_20SN_10TL_100MI_MCC.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Figure/Tuning Tracing/_ABC_Convergence_Trace_20SN_10TL_150MI_MCC.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Figure/Tuning Tracing/_ABC_Convergence_Trace_20SN_10TL_250MI_MCC.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Figure/Tuning Tracing/_ABC_Convergence_Trace_20SN_10TL_500MI_MCC.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Figure/Tuning Tracing/_ABC_Convergence_Trace_50SN_25TL_100MI_MCC.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Figure/Tuning Tracing/_ABC_Convergence_Trace_50SN_25TL_150MI_MCC.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Figure/Tuning Tracing/_ABC_Convergence_Trace_50SN_25TL_250MI_MCC.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Figure/Tuning Tracing/_ABC_Convergence_Trace_80SN_40TL_100MI_MCC.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Figure/Tuning Tracing/_ABC_Convergence_Trace_80SN_40TL_150MI_MCC.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Figure/Tuning Tracing/_ABC_Convergence_Trace_80SN_40TL_250MI_MCC.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/JSON/full_model_configs.json" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/JSON/full_model_configs.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/666.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Test Convergence History/cleaned_ABC_CV_RELM_Algo_2_2_20SN_100MI_Convergence.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Test Convergence History/cleaned_ABC_RELM_Algo_2_2_20SN_100MI_Convergence.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Test History/cleaned_ABC_CV_RELM_Algo_2_2_20SN_100MI_Results.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Test History/cleaned_ABC_RELM_Algo_2_2_20SN_100MI_Results.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Test History/cleaned_Best_Hidden_Nodes_Results.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Test History/cleaned_Best_Lambda_Results.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Test History/cleaned_Best_Size_and_Lambda_Results.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Test History/cleaned_Ensemble_Best_Hidden_Nodes_Results.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Test History/cleaned_Ensemble_Best_Lambda_Results.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Test History/cleaned_Ensemble_Best_Size_and_Lambda_Results.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Test History/cleaned_Ensemble_Grid_Combination_Results.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Test History/cleaned_Ensemble_Grid_Optimization_Results.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Test History/cleaned_Grid_Combination_Results.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Test History/cleaned_Grid_Optimization_Results.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Test Scout History/cleaned_ABC_CV_RELM_Algo_2_2_20SN_100MI_Scout_History.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Test Scout History/cleaned_ABC_RELM_Algo_2_2_20SN_100MI_Scout_History.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_100SN_50TL_100MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_100SN_50TL_150MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_100SN_50TL_250MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_10SN_5TL_1000MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_10SN_5TL_100MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_10SN_5TL_150MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_10SN_5TL_250MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_10SN_5TL_500MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_10SN_5TL_50MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_20SN_10TL_100MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_20SN_10TL_150MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_20SN_10TL_250MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_20SN_10TL_500MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_50SN_25TL_100MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_50SN_25TL_150MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_80SN_40TL_100MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_80SN_40TL_150MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_80SN_40TL_250MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_Algo_2_2_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_Algo_2_3_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_Algo_3_2_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_Algo_3_3_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/dataset agg.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/ABC_Model/ABC_CV_RELM_CS_Testing_20SN.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Test/ABC_Model/ABC_CV_RELM_CS_Testing_20SN.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/ABC_Model/ABC_RELM_CS_Testing_20SN.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Test/ABC_Model/ABC_RELM_CS_Testing_20SN.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/ELM_Model/ELM_Ensemble_Parameter_CS_Testing.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Test/ELM_Model/ELM_Ensemble_Parameter_CS_Testing.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/ELM_Model/ELM_Parameter_CS_Testing.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Test/ELM_Model/ELM_Parameter_CS_Testing.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_10S_50MI.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Parameter)/ABC_Trace_10S_50MI.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,12 +121,12 @@
     &quot;assignee&quot;: &quot;youquanneu&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/youquanneu/COMP3200_Individual_Project.git&quot;,
-    &quot;accountId&quot;: &quot;27ee367d-47c5-4ae9-8519-73f86fa139cf&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/youquanneu/COMP3200_Individual_Project.git",
+    "accountId": "6a4bc477-d024-4efe-80e7-8463830734d8"
   }
-}</component>
+}]]></component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -101,7 +170,7 @@
     &quot;ai.playground.ignore.import.keys.banner.in.settings&quot;: &quot;true&quot;,
     &quot;database.data.extractors.current.export.id&quot;: &quot;CSV-Groovy.csv.groovy&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/yqn1e23/PycharmProjects/COMP3200_Individual_Project/Trace/ABC Convergence Trace (Parameter)&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/yqn1e23/PycharmProjects/COMP3200_Individual_Project/Test/ABC_Model&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -113,18 +182,18 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Test\ABC_Model" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Trace\ABC Convergence Trace (Parameter)" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Trace\ABC Convergence Trace (Algorithms)" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Result\2. Trajectory Trace (Solutions and Trials)" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Result\1. Trajectory Trace (Max Iter)" />
-      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Storage\Figure" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Trace\ELM Parameter Evaluation" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Storage\Figure\Tuning Tracing" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Storage\Figure\Solutions and Trials Trace" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Storage\Figure\Max Iter Trace" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project" />
-      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Documentation" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -235,6 +304,8 @@
       <workItem from="1774865871983" duration="9793000" />
       <workItem from="1774921201801" duration="126000" />
       <workItem from="1774921366574" duration="2617000" />
+      <workItem from="1774955126367" duration="2103000" />
+      <workItem from="1775012901810" duration="3337000" />
     </task>
     <task id="LOCAL-00049" summary="Upload graphs">
       <option name="closed" value="true" />
@@ -692,12 +763,12 @@
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project_Restore$ArtificialBeeColonyElmCVEnsemble.coverage" NAME="ArtificialBeeColonyElmCVEnsemble Coverage Results" MODIFIED="1773918480701" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Algorithm" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project_Restore$GlobalSetting.coverage" NAME="GlobalSetting Coverage Results" MODIFIED="1773912589144" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Global" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$ABC_Testing.coverage" NAME="ABC_Testing Coverage Results" MODIFIED="1774598956723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Methodology" />
-    <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$GlobalSetting.coverage" NAME="GlobalSetting Coverage Results" MODIFIED="1774586289595" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Global" />
+    <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$GlobalSetting.coverage" NAME="GlobalSetting Coverage Results" MODIFIED="1775012997349" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Global" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project_Restore$Plotting.coverage" NAME="Plotting Coverage Results" MODIFIED="1773843873262" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Global" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$Plotting.coverage" NAME="Plotting Coverage Results" MODIFIED="1774601217748" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Global" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$sdf.coverage" NAME="sdf Coverage Results" MODIFIED="1770799329042" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Model" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project_Restore$ArtificialBeeColonyElmCV.coverage" NAME="ArtificialBeeColonyElmCV Coverage Results" MODIFIED="1773919955865" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Algorithm" />
-    <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$ExtremeLearningMachine.coverage" NAME="ExtremeLearningMachine Coverage Results" MODIFIED="1774437613680" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Algorithm" />
+    <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$ExtremeLearningMachine.coverage" NAME="ExtremeLearningMachine Coverage Results" MODIFIED="1775014112202" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Algorithm" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$CrossValidationDataSplit.coverage" NAME="CrossValidationDataSplit Coverage Results" MODIFIED="1773741282694" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Methodology" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project_Restore$ArtificialBeeColonyElmCVEnsembleRectifyVersion.coverage" NAME="ArtificialBeeColonyElmCVEnsembleRectifyVersion Coverage Results" MODIFIED="1773919800205" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Algorithm" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$ArtificialBeeColonyElm.coverage" NAME="ArtificialBeeColonyElm Coverage Results" MODIFIED="1774598514724" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Algorithm" />

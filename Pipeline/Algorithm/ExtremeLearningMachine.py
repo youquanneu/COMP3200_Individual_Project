@@ -117,7 +117,7 @@ class ExtremeLearningMachine:
         raw_output = hidden_layer_output @ self.output_weights
 
         if raw_output.shape[1] == 1:
-            return np.where(raw_output > 0, 1, -1).ravel()
+            return np.where(raw_output >= 0, 1, -1).ravel()
         else:
             return np.argmax(raw_output, axis=1)
 
