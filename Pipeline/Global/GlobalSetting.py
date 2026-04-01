@@ -1,12 +1,14 @@
 import json
 import os
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
 
 
 class GlobalSetting:
-
-    dataset_dir = '../../Storage/'
+    BASE_DIR    = Path(__file__).resolve().parents[2]
+    dataset_dir = os.path.join(BASE_DIR, 'Storage')
     record_dir  = os.path.join(dataset_dir, 'Record')
     json_dir    = os.path.join(dataset_dir, 'JSON')
     figure_dir  = os.path.join(dataset_dir, 'Figure')
