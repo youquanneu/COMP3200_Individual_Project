@@ -41,12 +41,11 @@ class GlobalSetting:
 
     """ ABC Trace parameter """
     # Fix seed and elm parameter for abc trace
-    abc_trace_seed   = 40
     abc_trace_h_size = 35
-    abc_trace_lambda = 0.0625
+    abc_trace_lambda = 0.125
 
     seed_test_range = range(101, 131)
-    seed_punish_coe = 1.96
+    seed_punish_coe = 2.58
     data_test_split = 5
 
     @staticmethod

@@ -134,21 +134,42 @@ class EvaluationELM:
             agg_results_list.append(agg_res)
 
         return pd.concat(raw_results_list, ignore_index=True), pd.concat(agg_results_list, ignore_index=True)
+    @staticmethod
+    def random_seed_metrics(data_frame):
+        ignore_cols = ['Hidden_Nodes', 'Activation', 'Lambda_Value', 'Fold', 'ELM_Seed']
+        metric_cols = [col for col in data_frame.columns if col not in ignore_cols]
+
+        grouped_by_seed = data_frame.groupby(['ELM_Seed'])[metric_cols]
+        fold_means = grouped_by_seed.mean()
+        fold_stds = grouped_by_seed.std().fillna(0.0)
+
+        seed_lcb = fold_means - fold_stds
+
+        n_seeds = len(seed_lcb)
+        final_mean = seed_lcb.mean()
+        final_std = seed_lcb.std().fillna(0.0)
+
+        final_sem = final_std / math.sqrt(n_seeds) if n_seeds > 1 else 0.0
+
+        flat_results = {}
+        for metric in metric_cols:
+            flat_results[f"lcb_{metric}_Seed_Mean"] = round(final_mean[metric], 8)
+            flat_results[f"lcb_{metric}_Seed_Std"] = round(final_std[metric], 8)
+            flat_results[f"lcb_{metric}_Seed_SEM"] = round(final_sem[metric] if n_seeds > 1 else 0.0, 8)
+
+            flat_results[f"lcb_{metric}_Seed_Min"] = round(seed_lcb[metric].min(), 8)
+            flat_results[f"lcb_{metric}_Seed_Max"] = round(seed_lcb[metric].max(), 8)
+
+        return pd.DataFrame([flat_results])
 
     @staticmethod
     def extract_top_results(dataframe: pd.DataFrame,
                             base_metric_name: str = None,
                             punish_coefficient: float = None,
                             top_k: int = 5) -> pd.DataFrame:
-        """
-        Ranks results using robust Lower Confidence Bound (LCB).
-        [Epistemological Shift] Variance (SEM) now strictly measures ELM structural
-        stability across initializations, as data folds are deterministic.
 
-        Formula: Mean - (Coefficient * Standard_Error)
-        """
         if base_metric_name is None:
-            base_metric_name = f"avg_{GlobalSetting.evaluation_function}_Seed"
+            base_metric_name = f"lcb_{GlobalSetting.evaluation_function}_Seed"
 
         if punish_coefficient is None:
             punish_coefficient = GlobalSetting.seed_punish_coe
@@ -156,12 +177,10 @@ class EvaluationELM:
         mean_col = f"{base_metric_name}_Mean"
         sem_col = f"{base_metric_name}_SEM"
 
-        # Validation: Ensure upstream deterministic aggregations exist
         if mean_col not in dataframe.columns:
             logging.error(f"Critical: Mean column '{mean_col}' missing from aggregated DataFrame.")
             return pd.DataFrame()
 
-        # Fallback mechanism if SEM was strictly zeroed out or missing due to n=1 ELM seeds
         if sem_col not in dataframe.columns:
             logging.warning(f"SEM column '{sem_col}' absent. Assuming zero structural variance.")
             dataframe[sem_col] = 0.0
@@ -169,48 +188,9 @@ class EvaluationELM:
         if dataframe.empty:
             return dataframe
 
-        # Isolate the maximum standard error to penalize NaNs (failed initializations)
         max_sem = dataframe[sem_col].max()
         fallback_penalty = max_sem if pd.notna(max_sem) else 0.0
 
-        # Compute the Lower Confidence Bound.
-        # High coefficient = Risk-averse (favors highly stable ELM architectures)
-        # Low coefficient  = Risk-seeking (favors peak accuracy regardless of stability)
         adjusted_score = dataframe[mean_col] - (punish_coefficient * dataframe[sem_col].fillna(fallback_penalty))
 
         return dataframe.assign(rank_score=adjusted_score).nlargest(top_k, columns='rank_score')
-
-    @staticmethod
-    def random_seed_metrics(data_frame):
-        """
-        Calculates variance exclusively based on the K-Fold averages.
-        This isolates the structural stability of the ELM initialization.
-        """
-        # Exclude metadata columns from the math
-        ignore_cols = ['Hidden_Nodes', 'Activation', 'Lambda_Value', 'Fold', 'ELM_Seed']
-        metric_cols = [col for col in data_frame.columns if col not in ignore_cols]
-
-        # STEP 1: Calculate the K-Fold Average for each independent ELM_Seed
-        # This collapses the fold variance and gives the expected performance of the network.
-        k_fold_averages = data_frame.groupby(['ELM_Seed'])[metric_cols].mean().reset_index()
-
-        # STEP 2: Calculate variance based ONLY on those K-Fold averages
-        n_seeds = len(k_fold_averages)
-        final_mean = k_fold_averages[metric_cols].mean()
-        final_std = k_fold_averages[metric_cols].std()
-
-        # Standard Error of the Mean (SEM)
-        final_sem = final_std / math.sqrt(n_seeds) if n_seeds > 1 else 0.0
-
-        flat_results = {}
-        for metric in metric_cols:
-            flat_results[f"avg_{metric}_Seed_Mean"] = round(final_mean[metric], 8)
-            flat_results[f"avg_{metric}_Seed_Std"] = round(final_std[metric], 8)
-            flat_results[f"avg_{metric}_Seed_SEM"] = round(final_sem[metric] if n_seeds > 1 else 0.0, 8)
-
-            # Note: Min and Max are now based on the K-fold averages,
-            # representing the "Worst Expected Initialization" and "Best Expected Initialization"
-            flat_results[f"avg_{metric}_Seed_Min"] = round(k_fold_averages[metric].min(), 8)
-            flat_results[f"avg_{metric}_Seed_Max"] = round(k_fold_averages[metric].max(), 8)
-
-        return pd.DataFrame([flat_results])
