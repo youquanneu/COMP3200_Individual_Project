@@ -11,7 +11,7 @@ class ArtificialBeeColonyElm:
                  activation_function, regularization_lambda = 0.0,
                  random_state = None, fitness_function = None,
                  solution_size = 10, trial_limit = 10, max_iteration = 100,
-                 max_change = 20.0, min_change = 3.0, initial_sigma = 0.8, final_sigma = 0.1, nmi = 3,
+                 max_change = 20.0, min_change = 3.0, initial_sigma = 0.8, final_sigma = 0.0001, nmi = 3,
                  initial_probability = 0.0, final_probability = 1.0
                  ):
 
@@ -65,7 +65,7 @@ class ArtificialBeeColonyElm:
         self.random_state = np.random.RandomState(random_state)
 
     def init_algo2(self, max_change = 20.0, min_change = 3.0,
-                   initial_sigma = 0.8, final_sigma = 0.1,
+                   initial_sigma = 0.8, final_sigma = 0.0001,
                    nmi = 3):
         self.max_change     = max_change
         self.min_change     = min_change
@@ -153,7 +153,7 @@ class ArtificialBeeColonyElm:
         fitness_idx  = self.fitness[index]
         fitness_best = np.max(self.fitness)
 
-        if fitness_best == 0:
+        if abs(fitness_best) <= 1e-12:
             change_percentage = self.max_change
         else:
             change_percentage = (((fitness_best - fitness_idx) / fitness_best)
@@ -217,6 +217,11 @@ class ArtificialBeeColonyElm:
 
 
     def neighbour_iteration(self, index, solution_v_idx, x_train, y_train):
+
+        if np.array_equal(solution_v_idx, self.population[index]):
+            self.trials[index] += 1
+            return
+
         v_idx_result = self.get_evaluation_fitness(solution_v_idx, x_train, y_train)
         if v_idx_result > self.fitness[index]:
             self.population[index] = solution_v_idx
@@ -273,10 +278,16 @@ class ArtificialBeeColonyElm:
         trigger_count = 0
         for index in range(self.solution_size):
             if self.trials[index] >= self.trial_limit:
+
+                if np.isclose(self.fitness[index], self.best_fitness, rtol=1e-10, atol=1e-12):
+                    self.trials[index] = 0
+                    continue
+
                 self.population[index] = self.generate_random_solution()
                 self.fitness[index] = self.get_evaluation_fitness(self.population[index], x_train, y_train)
                 self.trials[index]  =   0
                 trigger_count +=1
+
                 if self.fitness[index]  > self.best_fitness:
                     self.best_fitness   = self.fitness[index]
                     self.best_solution  = np.copy(self.population[index])
@@ -333,6 +344,7 @@ class ArtificialBeeColonyElm:
             self.best_fitness = (self.best_fitness * 2.0) - 1.0
             self.convergence_curve = np.array(self.convergence_curve) * 2.0 - 1.0
             self.val_fitness_curve = np.array(self.val_fitness_curve) * 2.0 - 1.0
+            self.fitness = (self.fitness * 2.0) - 1.0
 
         self.train_best_model(x_train, y_train)
 
