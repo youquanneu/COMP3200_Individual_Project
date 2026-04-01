@@ -64,7 +64,7 @@ class Plotting:
         target_dir = GlobalSetting.get_figure_dir()
         safe_filename = experiment_name.replace(" ", "_").replace(":", "").replace("/", "-")
         file_path = os.path.join(target_dir, f"{prefix}_{safe_filename}_{fitness_metric}.png")
-
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)
         plt.savefig(file_path, dpi=300, bbox_inches='tight', facecolor=fig.get_facecolor())
         print(f"[I/O Trace] Figure exported successfully: {file_path}")
 
@@ -262,17 +262,30 @@ class Plotting:
         metric_name = df_trace_history['Trace_Metric'].iloc[0] \
             if 'Trace_Metric' in df_trace_history.columns else GlobalSetting.evaluation_function
 
-        df_seed_agg = df_trace_history.groupby(['Fold_ID', 'Iteration']).agg(
-            Train_Fit_Mean_by_Seed=('Train_Fitness', 'mean'),
-            Val_Fit_Mean_by_Seed=('Val_Fitness', 'mean')
+        df_pivot = df_trace_history.pivot_table(
+            index='Iteration',
+            columns=['Fold_ID', 'Seed'],
+            values=['Train_Fitness', 'Val_Fitness']
+        ).ffill()
+        df_clean = df_pivot.stack(level=['Fold_ID', 'Seed'], future_stack=True).reset_index()
+
+        df_seed_cv = df_clean.groupby(['Seed', 'Iteration']).agg(
+            Train_Fit_Mean_by_Fold=('Train_Fitness', 'mean'),
+            Train_Fit_Std_by_Fold=('Train_Fitness', 'std'),
+            Val_Fit_Mean_by_Fold=('Val_Fitness', 'mean'),
+            Val_Fit_Std_by_Fold=('Val_Fitness', 'std')
         ).reset_index()
 
+        df_seed_cv.fillna(0, inplace=True)
 
-        df_global_eval = df_seed_agg.groupby('Iteration').agg(
-            Global_Train_Mean=('Train_Fit_Mean_by_Seed', 'mean'),
-            Global_Train_Std=('Train_Fit_Mean_by_Seed', 'std'),
-            Global_Val_Mean=('Val_Fit_Mean_by_Seed', 'mean'),
-            Global_Val_Std=('Val_Fit_Mean_by_Seed', 'std')
+        df_seed_cv['Train_LCB'] = df_seed_cv['Train_Fit_Mean_by_Fold'] - df_seed_cv['Train_Fit_Std_by_Fold']
+        df_seed_cv['Val_LCB'] = df_seed_cv['Val_Fit_Mean_by_Fold'] - df_seed_cv['Val_Fit_Std_by_Fold']
+
+        df_global_eval = df_seed_cv.groupby('Iteration').agg(
+            Global_Train_Mean=('Train_LCB', 'mean'),
+            Global_Train_Std=('Train_LCB', 'std'),
+            Global_Val_Mean=('Val_LCB', 'mean'),
+            Global_Val_Std=('Val_LCB', 'std')
         ).reset_index()
 
         iters = df_global_eval['Iteration']
@@ -286,7 +299,7 @@ class Plotting:
             fig, ax = plt.subplots(figsize=(10, 6), dpi=150)
 
             ax.plot(iters, df_global_eval['Global_Train_Mean'],
-                    label=f'Training Trace ({final_train_mean:.5f} ± {final_train_std:.5f})',
+                    label=f'Train Trace ({final_train_mean:.5f} ± {final_train_std:.5f})',
                     color='#1f77b4', linewidth=2.5)
             ax.fill_between(iters,
                             df_global_eval['Global_Train_Mean'] - df_global_eval['Global_Train_Std'],
@@ -294,7 +307,7 @@ class Plotting:
                             color='#1f77b4', alpha=0.15, linewidth=0)
 
             ax.plot(iters, df_global_eval['Global_Val_Mean'],
-                    label=f'Validation Trace ({final_val_mean:.5f} ± {final_val_std:.5f})',
+                    label=f'Val Trace ({final_val_mean:.5f} ± {final_val_std:.5f})',
                     color='#ff7f0e', linewidth=2.5)
             ax.fill_between(iters,
                             df_global_eval['Global_Val_Mean'] - df_global_eval['Global_Val_Std'],
@@ -302,17 +315,17 @@ class Plotting:
                             color='#ff7f0e', alpha=0.15, linewidth=0)
 
             ax.set_title(f'{experiment_name}', pad=15)
+
             ax.set_xlabel('Iterations')
-            ax.set_ylabel(f'Evaluation Metric: {metric_name}')
+            ax.set_ylabel(f'Evaluation Metric: {metric_name} (LCB)')
 
             ax.xaxis.set_major_locator(MaxNLocator(integer=True))
-
             ax.grid(axis='y', linestyle='--', alpha=0.4)
             ax.legend(loc='lower right', framealpha=0.9, edgecolor='gray', fontsize=11)
 
             plt.tight_layout()
 
             if is_final_record:
-                cls._save_figure(fig, "Tuning Tracing/", experiment_name, metric_name)
+                cls._save_figure(fig, "Tuning Tracing/", f"{experiment_name}_LCB", metric_name)
 
             plt.show()
