@@ -16,7 +16,7 @@ class GlobalSetting:
     config_file = os.path.join(json_dir, 'full_model_configs.json')
 
     elm_initial_state_range     = range(131, 161)
-    hidden_size_explore_range   = range(10, 101, 5)
+    hidden_size_explore_range   = range(5, 121, 5)
 
     lambda_upper_bound  = 2
     lambda_lower_bound  = -25
@@ -37,12 +37,10 @@ class GlobalSetting:
     trial_limit   = 50
     max_iteration = 150
 
-    model_test_seed = 42
-
     """ ABC Trace parameter """
     # Fix seed and elm parameter for abc trace
-    abc_trace_h_size = 35
-    abc_trace_lambda = 0.125
+    abc_trace_h_size = 30
+    abc_trace_lambda = 2 ** -2.5
 
     seed_test_range = range(101, 131)
     seed_punish_coe = 2.58
