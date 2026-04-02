@@ -3,27 +3,40 @@ import math
 
 import pandas as pd
 
-from Pipeline.Methodology.CrossValidationDataSplit import CrossValidationDataSplit
+from Pipeline.Global.GallstoneDataSet import GallstoneDataSet
 from Pipeline.Methodology.EvaluationMatrix import EvaluationMatrix
 from Pipeline.Algorithm.ExtremeLearningMachine import ExtremeLearningMachine
 from Pipeline.Global.GlobalSetting import GlobalSetting
 
 logger = logging.getLogger(__name__)
 class EvaluationELM:
-    def __init__(self, x_train, y_train,
+    def __init__(self,
                  activation_function,
+                 use_raw_data: bool = False,
+                 data_scaling: bool = False,
                  elm_init_seed_range = None,
                  k_fold = 5):
 
-        self.x_train = x_train
-        self.y_train = y_train
         self.activation_function = activation_function
 
-        self.elm_init_seed_range = GlobalSetting.seed_test_range \
+        self.elm_init_seed_range = GlobalSetting.elm_initial_state_range \
             if elm_init_seed_range is None else elm_init_seed_range
 
         self.k_fold = GlobalSetting.data_cv_fold \
             if k_fold is None else k_fold
+
+        self.use_raw_data = use_raw_data
+        self.data_scaling = data_scaling
+        self.gallstone_dataset = GallstoneDataSet()
+
+        if self.use_raw_data:
+            self.gallstone_dataset.fetch_raw_data_path()
+        else:
+            self.gallstone_dataset.fetch_cleaned_data_path()
+
+        self.gallstone_dataset.cv_test_split(self.k_fold)
+
+        self.feature_size = self.gallstone_dataset.x.shape[1]
 
 
     def ranged_seed_cross_validation(self,
@@ -31,17 +44,14 @@ class EvaluationELM:
                                      regularization_lambda = 0.0):
 
         if hidden_size is None:
-            hidden_size = self.x_train.shape[1]
+            hidden_size = self.feature_size
 
         global_results_accumulator = []
 
-        splitter = CrossValidationDataSplit(k_fold = self.k_fold)
-        folds = splitter.k_fold_data_spiting(self.x_train, self.y_train)
+        data_split = self.gallstone_dataset.val_scaled_fold_split \
+            if self.data_scaling else self.gallstone_dataset.val_fold_split
 
-        for fold_idx in range(self.k_fold):
-            fold = folds[fold_idx]
-            x_tr    , y_tr      = fold['X_train_fold']  , fold['y_train_fold']
-            x_val   , y_val     = fold['X_val_fold']    , fold['y_val_fold']
+        for fold_idx, (x_tr, y_tr, x_val, y_val) in enumerate(data_split):
             fold_result = self.single_fold_elm_result(x_tr, y_tr,
                                                       x_val, y_val,
                                                       hidden_size, regularization_lambda,
@@ -63,10 +73,9 @@ class EvaluationELM:
         fold_results = []
 
         for elm_seed in self.elm_init_seed_range:
-
             try:
                 elm = ExtremeLearningMachine(
-                    feature_size= x_tr.shape[1],
+                    feature_size            = x_tr.shape[1],
                     hidden_size             = hidden_size,
                     activation_function     = self.activation_function,
                     regularization_lambda   = regularization_lambda
@@ -74,7 +83,7 @@ class EvaluationELM:
                 elm.initialize_random_weights(random_seed=elm_seed)
                 elm.fit(x_tr, y_tr)
 
-                y_pred = elm.predict(x_val.values)
+                y_pred = elm.predict(x_val.values if isinstance(x_val, pd.DataFrame) else x_val)
                 evaluation_metrics = EvaluationMatrix(y_val, y_pred).get_all_metrics()
 
                 metrics = {
@@ -104,7 +113,7 @@ class EvaluationELM:
             raw_results_list.append(raw_res)
             agg_results_list.append(agg_res)
 
-        return pd.concat(raw_results_list, ignore_index=True), pd.concat(agg_results_list, ignore_index=True)
+        return pd.concat(raw_results_list, ignore_index = True), pd.concat(agg_results_list, ignore_index = True)
 
     def grid_search_lambda(self,hidden_size,lambda_range):
         raw_results_list = []
@@ -119,7 +128,7 @@ class EvaluationELM:
             raw_results_list.append(raw_res)
             agg_results_list.append(agg_res)
 
-        return pd.concat(raw_results_list, ignore_index=True), pd.concat(agg_results_list, ignore_index=True)
+        return pd.concat(raw_results_list, ignore_index = True), pd.concat(agg_results_list, ignore_index = True)
 
     def grid_search_hidden_size_and_lambda(self,hidden_size_range,lambda_range):
         raw_results_list = []
@@ -134,6 +143,7 @@ class EvaluationELM:
             agg_results_list.append(agg_res)
 
         return pd.concat(raw_results_list, ignore_index=True), pd.concat(agg_results_list, ignore_index=True)
+
     @staticmethod
     def random_seed_metrics(data_frame):
         ignore_cols = ['Hidden_Nodes', 'Activation', 'Lambda_Value', 'Fold', 'ELM_Seed']
@@ -164,9 +174,9 @@ class EvaluationELM:
 
     @staticmethod
     def extract_top_results(dataframe: pd.DataFrame,
-                            base_metric_name: str = None,
-                            punish_coefficient: float = None,
-                            top_k: int = 5) -> pd.DataFrame:
+                            base_metric_name    : str   = None,
+                            punish_coefficient  : float = None,
+                            top_k   : int = 5) -> pd.DataFrame:
 
         if base_metric_name is None:
             base_metric_name = f"lcb_{GlobalSetting.evaluation_function}_Seed"
