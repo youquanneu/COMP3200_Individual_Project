@@ -1,4 +1,7 @@
+import math
 import time
+from pathlib import Path
+from typing import List
 
 import pandas as pd
 
@@ -277,3 +280,73 @@ def evaluate_abc_parameters(model_class,
     GlobalSetting.save_dataframe_to_record(train_val_records, f"Trace History/{expr_name}_Trace.csv")
 
     return train_val_records
+
+def lcb_trace_evaluation(folder_path: str,
+                         punish_coefficient: float = None) ->  list[pd.DataFrame]:
+    final_info: List[pd.DataFrame] = []
+    trace_dir = Path(folder_path)
+
+    if punish_coefficient is None:
+        punish_coefficient = GlobalSetting.seed_punish_coe
+
+    for file_path in trace_dir.glob("*.csv"):
+        df_trace = pd.read_csv(file_path)
+        if df_trace.empty:
+            continue
+
+        expr_name = file_path.stem
+        metric_name = df_trace['Trace_Metric'].iloc[0] \
+            if 'Trace_Metric' in df_trace.columns else GlobalSetting.evaluation_function
+
+        df_seed_agg = df_trace.groupby(['Iteration', 'Seed']).agg(
+            Train_Fit_Mean_by_Fold  = ('Train_Fitness', 'mean'),
+            Train_Fit_Std_by_Fold   = ('Train_Fitness', 'std'),
+            Val_Fit_Mean_by_Fold    = ('Val_Fitness', 'mean'),
+            Val_Fit_Std_by_Fold     = ('Val_Fitness', 'std'),
+            Scout_Triggers          = ('Scout_Triggers', 'mean')
+        ).fillna(0)
+
+        df_seed_agg['Train_LCB'] = df_seed_agg['Train_Fit_Mean_by_Fold'] - df_seed_agg['Train_Fit_Std_by_Fold']
+        df_seed_agg['Val_LCB']   = df_seed_agg['Val_Fit_Mean_by_Fold']   - df_seed_agg['Val_Fit_Std_by_Fold']
+        def aggregate_seeds(group):
+            n_seeds = len(group)
+
+            t_mean = group['Train_LCB'].mean()
+            t_std = group['Train_LCB'].std()
+            t_sem = t_std / math.sqrt(n_seeds) if n_seeds > 1 else 0.0
+
+            v_mean = group['Val_LCB'].mean()
+            v_std = group['Val_LCB'].std()
+            v_sem = v_std / math.sqrt(n_seeds) if n_seeds > 1 else 0.0
+
+            scout_mean = group['Scout_Triggers'].mean()
+            scout_std = group['Scout_Triggers'].std()
+
+            return pd.Series({
+                f'train_{metric_name}_LCB_Mean': t_mean,
+                f'train_{metric_name}_LCB_std': t_std,
+                f'train_{metric_name}_LCB_sem': t_sem,
+                f'val_{metric_name}_LCB_Mean': v_mean,
+                f'val_{metric_name}_LCB_std': v_std,
+                f'val_{metric_name}_LCB_sem': v_sem,
+                'scout_avg': scout_mean,
+                'scout_std': scout_std
+            })
+
+        df_iter_results = df_seed_agg.groupby('Iteration').apply(aggregate_seeds).reset_index()
+
+        df_iter_results[f'train_{metric_name}_trace_floor'] = (
+                df_iter_results[f'train_{metric_name}_LCB_Mean'] - (
+                    punish_coefficient * df_iter_results[f'train_{metric_name}_LCB_sem'])
+        )
+        df_iter_results[f'val_{metric_name}_trace_floor'] = (
+                df_iter_results[f'val_{metric_name}_LCB_Mean'] - (
+                    punish_coefficient * df_iter_results[f'val_{metric_name}_LCB_sem'])
+        )
+
+        df_iter_results['expr_name'] = expr_name
+        df_iter_results['metric_name'] = metric_name
+
+        final_info.append(df_iter_results)
+
+    return final_info
