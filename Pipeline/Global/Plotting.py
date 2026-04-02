@@ -61,7 +61,10 @@ class Plotting:
     def _save_figure(cls, fig, prefix: str, experiment_name: str, fitness_metric: str):
 
         target_dir = GlobalSetting.get_figure_dir()
-        safe_filename = experiment_name.replace(" ", "_").replace(":", "").replace("/", "-")
+        safe_filename = (experiment_name
+                         .replace(" ", "_")
+                         .replace(":", "")
+                         .replace("/", "-"))
 
         sub_dir_path = os.path.join(target_dir, prefix)
         os.makedirs(sub_dir_path, exist_ok=True)
@@ -180,27 +183,23 @@ class Plotting:
 
             if is_final_record:
                 cls._save_figure(
-                    fig=fig,
-                    prefix="Tuning_Tracing",
-                    experiment_name=experiment_name,
-                    fitness_metric=f"{metric_name}_DualBand"
+                    fig     = fig,
+                    prefix  = "Iteration Tracing",
+                    experiment_name = experiment_name,
+                    fitness_metric  = f"{metric_name}_DualBand"
                 )
 
             plt.show()
 
     @classmethod
     def plot_scout_dynamics(cls, df_precomputed: pd.DataFrame, is_final_record: bool = False):
-        """
-        专门用于绘制侦查蜂触发频率，观察算法的全局探索能力。
-        """
         experiment_name = df_precomputed['expr_name'].iloc[0]
         iters = df_precomputed['Iteration']
         scout_avg = df_precomputed['scout_avg']
 
         with cls._style_context():
-            fig, ax = plt.subplots(figsize=(10, 4), dpi=150)  # 窄长图更适合观察时间序列
+            fig, ax = plt.subplots(figsize=(10, 4), dpi=150)
 
-            # 使用填充面积图展示触发频率，视觉上更直观
             ax.fill_between(iters, scout_avg, color='#7f8c8d', alpha=0.3)
             ax.plot(iters, scout_avg, color='#2c3e50', linewidth=1.5, label='Avg Scout Triggers')
 
@@ -209,11 +208,15 @@ class Plotting:
                                       xlabel='Iterations',
                                       ylabel='Avg Triggers / Seed')
 
-            # 优化 Y 轴：因为触发次数通常是整数
             ax.yaxis.set_major_locator(MaxNLocator(integer=True))
 
             plt.tight_layout()
 
             if is_final_record:
-                cls._save_figure(fig, "Mechanism_Audit", experiment_name, "Scout_Triggers")
+                cls._save_figure(
+                    fig     = fig,
+                    prefix  = "Scouts Tracing",
+                    experiment_name = experiment_name,
+                    fitness_metric  = f"Scout_Triggers"
+                )
             plt.show()

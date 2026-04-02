@@ -282,8 +282,11 @@ def evaluate_abc_parameters(model_class,
     return train_val_records
 
 def lcb_trace_evaluation(folder_path: str,
-                         punish_coefficient: float = None) ->  list[pd.DataFrame]:
-    final_info: List[pd.DataFrame] = []
+                         punish_coefficient: float = None) -> tuple[list[pd.DataFrame],pd.DataFrame]:
+
+    trace_records: List[pd.DataFrame] = []
+    trace_final_results : List[pd.DataFrame] = []
+
     trace_dir = Path(folder_path)
 
     if punish_coefficient is None:
@@ -297,6 +300,9 @@ def lcb_trace_evaluation(folder_path: str,
         expr_name = file_path.stem
         metric_name = df_trace['Trace_Metric'].iloc[0] \
             if 'Trace_Metric' in df_trace.columns else GlobalSetting.evaluation_function
+        sn = df_trace['Solution_Size'].iloc[0]  if 'Solution_Size'  in df_trace.columns else None
+        tl = df_trace['Trial_Limit'].iloc[0]    if 'Trial_Limit'    in df_trace.columns else None
+        mi = df_trace['Max_Iteration'].iloc[0]  if 'Max_Iteration'  in df_trace.columns else None
 
         df_seed_agg = df_trace.groupby(['Iteration', 'Seed']).agg(
             Train_Fit_Mean_by_Fold  = ('Train_Fitness', 'mean'),
@@ -343,10 +349,21 @@ def lcb_trace_evaluation(folder_path: str,
                 df_iter_results[f'val_{metric_name}_LCB_Mean'] - (
                     punish_coefficient * df_iter_results[f'val_{metric_name}_LCB_sem'])
         )
+        metadata_df = pd.DataFrame({
+            'Solution_Size' : sn,
+            'Trial_Limit'   : tl,
+            'Max_Iteration' : mi,
+            'expr_name'     : expr_name,
+            'metric_name'   : metric_name
+        }, index=df_iter_results.index)
+        df_iter_results = pd.concat([metadata_df, df_iter_results], axis=1)
 
-        df_iter_results['expr_name'] = expr_name
-        df_iter_results['metric_name'] = metric_name
+        last_iter_result = df_iter_results.loc[[df_iter_results['Iteration'].idxmax()]]
+        last_iter_result = last_iter_result.drop(columns=['Iteration'], errors='ignore')
 
-        final_info.append(df_iter_results)
+        trace_records.append(df_iter_results)
+        trace_final_results.append(last_iter_result)
 
-    return final_info
+    summary_df = pd.concat(trace_final_results, ignore_index=True) if trace_final_results else pd.DataFrame()
+
+    return trace_records, summary_df
