@@ -1,7 +1,6 @@
 import time
 
 import pandas as pd
-from sklearn.model_selection import train_test_split
 
 from Pipeline.Global.GallstoneDataSet import GallstoneDataSet
 from Pipeline.Methodology.EvaluationMatrix import EvaluationMatrix
@@ -34,25 +33,25 @@ def cross_seed_testing(model_class,
     else:
         gallstone_dataset.fetch_cleaned_data_path()
 
-    gallstone_dataset.cross_validate_split(cv_folds)
+    gallstone_dataset.cv_test_split(cv_folds)
 
     feature_size = gallstone_dataset.x.shape[1]
 
     model_configs = GlobalSetting.get_model_configs()
     config = next((item for item in model_configs if item.get('Model_Types') == model_types), model_configs[0])
 
-    hidden_size  = force_h_size if force_h_size is not None else config.get('Hidden_Nodes',feature_size)
+    hidden_size  = force_h_size if force_h_size is not None else config.get('Hidden_Nodes', feature_size)
     lambda_value = force_lambda if force_lambda is not None else config.get('Lambda_Value', 0.0)
     activation_func = config['Activation']
 
     if force_tl is None and force_sn is not None:
         force_tl = force_sn // 2
 
-    data_split = gallstone_dataset.scaled_fold_split if data_scaling else gallstone_dataset.fold_split
+    outer_test_list = gallstone_dataset.test_scaled_fold_split if data_scaling else gallstone_dataset.test_fold_split
 
     convergence_result, scout_history, testing_results = [], [], []
 
-    for fold_idx, (x_train, y_train, x_test, y_test) in enumerate(data_split):
+    for fold_idx, (x_train, y_train, x_test, y_test) in enumerate(outer_test_list):
 
         print(f"\nTesting - Fold {fold_idx}")
         fold_start_time = time.time()
@@ -209,24 +208,16 @@ def evaluate_abc_parameters(model_class,
     else:
         gallstone_dataset.fetch_cleaned_data_path()
 
-    gallstone_dataset.cross_validate_split(cv_folds)
+    gallstone_dataset.cv_test_split(cv_folds)
+    inner_val_list = gallstone_dataset.val_fold_split
 
     history_records = []
     trace_metric = GlobalSetting.evaluation_function
 
-    for fold_idx in range(gallstone_dataset.splits):
+    for fold_idx,(x_tr, y_tr, x_val, y_val) in enumerate(inner_val_list):
 
         print(f"\nTracing - Fold {fold_idx}")
         fold_start_time = time.time()
-
-        x_train, y_train, x_test, y_test = gallstone_dataset.fold_split[fold_idx]
-
-        x_tr, x_val, y_tr, y_val = train_test_split(
-            x_train, y_train,
-            test_size   = GlobalSetting.test_set_size,
-            random_state= GlobalSetting.data_split_seed,
-            stratify    = y_train
-        )
 
         for random_seed in GlobalSetting.elm_initial_state_range:
 
