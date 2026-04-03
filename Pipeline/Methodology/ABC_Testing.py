@@ -303,6 +303,8 @@ def lcb_trace_evaluation(folder_path: str,
         sn = df_trace['Solution_Size'].iloc[0]  if 'Solution_Size'  in df_trace.columns else None
         tl = df_trace['Trial_Limit'].iloc[0]    if 'Trial_Limit'    in df_trace.columns else None
         mi = df_trace['Max_Iteration'].iloc[0]  if 'Max_Iteration'  in df_trace.columns else None
+        eb3 = df_trace['Employed_Algo3'].iloc[0] if 'Employed_Algo3'  in df_trace.columns else None
+        ob3 = df_trace['Onlooker_Algo3'].iloc[0] if 'Onlooker_Algo3'  in df_trace.columns else None
 
         df_seed_agg = df_trace.groupby(['Iteration', 'Seed']).agg(
             Train_Fit_Mean_by_Fold  = ('Train_Fitness', 'mean'),
@@ -353,6 +355,8 @@ def lcb_trace_evaluation(folder_path: str,
             'Solution_Size' : sn,
             'Trial_Limit'   : tl,
             'Max_Iteration' : mi,
+            'Employed_Algo3': eb3,
+            'Onlooker_Algo3': ob3,
             'expr_name'     : expr_name,
             'metric_name'   : metric_name
         }, index=df_iter_results.index)
