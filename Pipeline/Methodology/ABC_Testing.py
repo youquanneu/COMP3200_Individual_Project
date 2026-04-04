@@ -4,11 +4,11 @@ from pathlib import Path
 from typing import List
 
 import pandas as pd
+from joblib import Parallel, delayed
 
 from Pipeline.Global.GallstoneDataSet import GallstoneDataSet
 from Pipeline.Methodology.EvaluationMatrix import EvaluationMatrix
 from Pipeline.Global.GlobalSetting import GlobalSetting
-
 
 def cross_seed_testing(model_class,
                        expr_name    : str,
@@ -52,72 +52,20 @@ def cross_seed_testing(model_class,
 
     outer_test_list = gallstone_dataset.test_scaled_fold_split if data_scaling else gallstone_dataset.test_fold_split
 
-    convergence_result, scout_history, testing_results = [], [], []
+    params = (model_class, feature_size, hidden_size, lambda_value, is_abc_opt,
+              activation_func, mod_cv_fold, force_sn, force_tl, force_mi,
+              employed_bee_algo3, onlooker_bee_algo3, expr_name, data_scaling)
 
-    for fold_idx, (x_train, y_train, x_test, y_test) in enumerate(outer_test_list):
+    parallel_outputs = Parallel(n_jobs=min(cv_folds, 8))(
+        delayed(_fold_worker)(idx, fold_data, params)
+        for idx, fold_data in enumerate(outer_test_list)
+    )
 
-        print(f"\nTesting - Fold {fold_idx}")
-        fold_start_time = time.time()
-
-        for seed in GlobalSetting.seed_test_range:
-            model = generate_model(model_class,
-                                   feature_size,
-                                   hidden_size,
-                                   lambda_value,
-                                   is_abc_opt,
-                                   activation_func,
-                                   seed,
-                                   force_sn,
-                                   force_tl,
-                                   force_mi,
-                                   employed_bee_algo3,
-                                   onlooker_bee_algo3)
-
-            if mod_cv_fold is None:
-                model.fit(x_train, y_train)
-            else:
-                model.fit(x_train, y_train, cv_folds = mod_cv_fold )
-
-            y_pred  = model.predict(x_test)
-            evaluation = EvaluationMatrix(y_test, y_pred)
-            metrics = evaluation.get_all_metrics()
-
-            if is_abc_opt:
-                solution_size   = model.solution_size
-                trial_limit     = model.trial_limit
-                max_iteration   = model.max_iteration
-            else :
-                solution_size   = None
-                trial_limit     = None
-                max_iteration   = None
-
-            base_metadata = {
-                "Model_Type"    : expr_name,
-                "Is_ABC_Opt"    : is_abc_opt,
-                "Data_Scaled"   : data_scaling,
-                "Hidden_Nodes"  : hidden_size,
-                "Lambda_Value"  : lambda_value,
-                "Activation"    : activation_func.__name__,
-                "Solution_Size" : solution_size,
-                "Trial_Limit"   : trial_limit,
-                "Max_Iteration" : max_iteration,
-                "Emp_Algo3"     : employed_bee_algo3,
-                "Onl_Algo3"     : onlooker_bee_algo3,
-                "Fold_ID"       : fold_idx,
-                "Seed"          : seed
-            }
-
-            testing_results.append({**base_metadata, **metrics})
-
-            if is_abc_opt:
-                convergence_result.extend([{**base_metadata, "Iteration": i + 1, "Fitness": f} for i, f in
-                                           enumerate(model.convergence_curve)])
-                scout_history.extend([{**base_metadata, "Iteration": i + 1, "Scout_Triggers": s} for i, s in
-                                      enumerate(model.scout_trigger_history)])
-
-        fold_end_time = time.time()
-        fold_duration = fold_end_time - fold_start_time
-        print(f"\n\nTesting - Fold {fold_idx} Completed in {fold_duration:.4f}")
+    testing_results, convergence_result, scout_history = [], [], []
+    for f_res, f_conv, f_scout in parallel_outputs:
+        testing_results.extend(f_res)
+        convergence_result.extend(f_conv)
+        scout_history.extend(f_scout)
 
     df_testing_raw = pd.DataFrame(testing_results)
 
@@ -144,6 +92,76 @@ def cross_seed_testing(model_class,
 
     return df_testing
 
+def _fold_worker(fold_idx, fold_data, params):
+    print(f"\nTesting - Fold {fold_idx}")
+    fold_start_time = time.time()
+
+    x_train, y_train, x_test, y_test = fold_data
+
+    (model_class, feature_size, hidden_size, lambda_value, is_abc_opt,
+     activation_func, mod_cv_fold, force_sn, force_tl, force_mi,
+     employed_bee_algo3, onlooker_bee_algo3, expr_name, data_scaling) = params
+
+    convergence_result, scout_history, testing_results = [], [], []
+
+    for seed in GlobalSetting.seed_test_range:
+        model = generate_model(model_class,
+                               feature_size,
+                               hidden_size,
+                               lambda_value,
+                               is_abc_opt,
+                               activation_func,
+                               seed,
+                               force_sn,
+                               force_tl,
+                               force_mi,
+                               employed_bee_algo3,
+                               onlooker_bee_algo3)
+
+        if hasattr(model, 'n_jobs'):
+            model.n_jobs = 1
+
+        if mod_cv_fold is None:
+            model.fit(x_train, y_train)
+        else:
+            model.fit(x_train, y_train, cv_folds=mod_cv_fold)
+
+        y_pred = model.predict(x_test)
+        evaluation  = EvaluationMatrix(y_test, y_pred)
+        metrics     = evaluation.get_all_metrics()
+
+        solution_size   = getattr(model, 'solution_size', None) if is_abc_opt else None
+        trial_limit     = getattr(model, 'trial_limit', None)   if is_abc_opt else None
+        max_iteration   = getattr(model, 'max_iteration', None) if is_abc_opt else None
+
+        base_metadata = {
+            "Model_Type"    : expr_name,
+            "Is_ABC_Opt"    : is_abc_opt,
+            "Data_Scaled"   : data_scaling,
+            "Hidden_Nodes"  : hidden_size,
+            "Lambda_Value"  : lambda_value,
+            "Activation"    : activation_func.__name__,
+            "Solution_Size" : solution_size,
+            "Trial_Limit"   : trial_limit,
+            "Max_Iteration" : max_iteration,
+            "Emp_Algo3"     : employed_bee_algo3,
+            "Onl_Algo3"     : onlooker_bee_algo3,
+            "Fold_ID"       : fold_idx,
+            "Seed"          : seed
+        }
+
+        testing_results.append({**base_metadata, **metrics})
+
+        if is_abc_opt:
+            convergence_result.extend([{**base_metadata, "Iteration": i + 1, "Fitness": f} for i, f in
+                                       enumerate(model.convergence_curve)])
+            scout_history.extend([{**base_metadata, "Iteration": i + 1, "Scout_Triggers": s} for i, s in
+                                  enumerate(model.scout_trigger_history)])
+    fold_end_time = time.time()
+    fold_duration = fold_end_time - fold_start_time
+    print(f"\n\nTesting - Fold {fold_idx} Completed in {fold_duration:.4f}")
+
+    return testing_results, convergence_result, scout_history
 
 def generate_model(model_class,
                    feature_size,
