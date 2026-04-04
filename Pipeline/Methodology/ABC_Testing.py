@@ -93,8 +93,6 @@ def cross_seed_testing(model_class,
     return df_testing
 
 def _fold_worker(fold_idx, fold_data, params):
-    print(f"\nTesting - Fold {fold_idx}")
-    fold_start_time = time.time()
 
     x_train, y_train, x_test, y_test = fold_data
 
@@ -157,9 +155,6 @@ def _fold_worker(fold_idx, fold_data, params):
                                        enumerate(model.convergence_curve)])
             scout_history.extend([{**base_metadata, "Iteration": i + 1, "Scout_Triggers": s} for i, s in
                                   enumerate(model.scout_trigger_history)])
-    fold_end_time = time.time()
-    fold_duration = fold_end_time - fold_start_time
-    print(f"\n\nTesting - Fold {fold_idx} Completed in {fold_duration:.4f}")
 
     return testing_results, convergence_result, scout_history
 
@@ -217,6 +212,8 @@ def evaluate_abc_parameters(model_class,
                             max_iteration   : int,
                             use_raw_data    : bool  = False,
                             cv_folds        : int   = 5,
+                            force_h_size : int   = None,
+                            force_lambda : float = None,
                             employed_bee_algo3      = False,
                             onlooker_bee_algo3      = False) -> pd.DataFrame:
 
@@ -232,66 +229,21 @@ def evaluate_abc_parameters(model_class,
     gallstone_dataset.cv_test_split(cv_folds)
     inner_val_list = gallstone_dataset.val_fold_split
 
-    history_records = []
     trace_metric = GlobalSetting.evaluation_function
+    hidden_size  = force_h_size if force_h_size is not None else GlobalSetting.abc_trace_h_size
+    lambda_value = force_lambda if force_lambda is not None else GlobalSetting.abc_trace_lambda
 
-    for fold_idx,(x_tr, y_tr, x_val, y_val) in enumerate(inner_val_list):
+    params = (model_class, solution_size, trial_limit, max_iteration,
+              employed_bee_algo3, onlooker_bee_algo3, trace_metric,
+              hidden_size, lambda_value)
 
-        print(f"\nTracing - Fold {fold_idx}")
-        fold_start_time = time.time()
-
-        for random_seed in GlobalSetting.elm_initial_state_range:
-
-            abc_model = model_class(
-                feature_size            = x_tr.shape[1],
-                hidden_size             = GlobalSetting.abc_trace_h_size,
-                activation_function     = GlobalSetting.sigmoid,
-                regularization_lambda   = GlobalSetting.abc_trace_lambda,
-                fitness_function        = trace_metric,
-                random_state            = random_seed,
-                solution_size           = solution_size,
-                trial_limit             = trial_limit,
-                max_iteration           = max_iteration
-            )
-            if employed_bee_algo3:
-                abc_model.employed_bee_apply_algo3()
-            else:
-                abc_model.employed_bee_apply_algo2()
-
-            if onlooker_bee_algo3:
-                abc_model.onlooker_bee_apply_algo3()
-            else:
-                abc_model.onlooker_bee_apply_algo2()
-
-            abc_model.apply_validation_dataset(x_val, y_val)
-            abc_model.fit(x_tr, y_tr)
-
-            train_curve = abc_model.convergence_curve
-            val_curve   = abc_model.val_fitness_curve
-            scout_curve = abc_model.scout_trigger_history
-
-            for iter_idx in range(abc_model.max_iteration):
-                history_records.append({
-                    # Model Configs
-                    "Solution_Size" : solution_size,
-                    "Trial_Limit"   : trial_limit,
-                    "Max_Iteration" : max_iteration,
-                    "Employed_Algo3": employed_bee_algo3,
-                    "Onlooker_Algo3": onlooker_bee_algo3,
-                    # Trace Configs
-                    "Fold_ID"       : fold_idx,
-                    "Seed"          : random_seed,
-                    "Iteration"     : iter_idx + 1,
-                    # Trace Target
-                    "Train_Fitness" : train_curve[iter_idx],
-                    "Val_Fitness"   : val_curve[iter_idx] if len(val_curve) > iter_idx else None,
-                    "Trace_Metric"  : trace_metric,
-                    "Scout_Triggers": scout_curve[iter_idx]
-                })
-
-        fold_end_time = time.time()
-        fold_duration = fold_end_time - fold_start_time
-        print(f"\n\nTracing - Fold {fold_idx} Completed in {fold_duration:.4f}")
+    parallel_outputs = Parallel(n_jobs=min(cv_folds, 8))(
+        delayed(_trace_worker)(idx, fold_data, params)
+        for idx, fold_data in enumerate(inner_val_list)
+    )
+    history_records = []
+    for fold_records in parallel_outputs:
+        history_records.extend(fold_records)
 
     train_val_records = pd.DataFrame(history_records)
 
@@ -299,6 +251,67 @@ def evaluate_abc_parameters(model_class,
 
     return train_val_records
 
+def _trace_worker(fold_idx, fold_data, params):
+    x_tr, y_tr, x_val, y_val = fold_data
+
+    (model_class, solution_size, trial_limit, max_iteration,
+     employed_bee_algo3, onlooker_bee_algo3, trace_metric,
+     hidden_size, lambda_value) = params
+
+    fold_history = []
+
+    for random_seed in GlobalSetting.elm_initial_state_range:
+        abc_model = model_class(
+            feature_size        = x_tr.shape[1],
+            hidden_size         = hidden_size,
+            activation_function = GlobalSetting.sigmoid,
+            regularization_lambda= lambda_value,
+            fitness_function    = trace_metric,
+            random_state        = random_seed,
+            solution_size       = solution_size,
+            trial_limit         = trial_limit,
+            max_iteration       = max_iteration
+        )
+        if hasattr(abc_model, 'n_jobs'):
+            abc_model.n_jobs = 1
+
+        if employed_bee_algo3:
+            abc_model.employed_bee_apply_algo3()
+        else:
+            abc_model.employed_bee_apply_algo2()
+
+        if onlooker_bee_algo3:
+            abc_model.onlooker_bee_apply_algo3()
+        else:
+            abc_model.onlooker_bee_apply_algo2()
+
+        abc_model.apply_validation_dataset(x_val, y_val)
+        abc_model.fit(x_tr, y_tr)
+
+        train_curve = abc_model.convergence_curve
+        val_curve = abc_model.val_fitness_curve
+        scout_curve = abc_model.scout_trigger_history
+
+        for iter_idx in range(abc_model.max_iteration):
+            fold_history.append({
+                # Model Configs
+                "Solution_Size": solution_size,
+                "Trial_Limit": trial_limit,
+                "Max_Iteration": max_iteration,
+                "Employed_Algo3": employed_bee_algo3,
+                "Onlooker_Algo3": onlooker_bee_algo3,
+                # Trace Configs
+                "Fold_ID": fold_idx,
+                "Seed": random_seed,
+                "Iteration": iter_idx + 1,
+                # Trace Target
+                "Train_Fitness": train_curve[iter_idx],
+                "Val_Fitness": val_curve[iter_idx] if len(val_curve) > iter_idx else None,
+                "Trace_Metric": trace_metric,
+                "Scout_Triggers": scout_curve[iter_idx]
+            })
+
+    return fold_history
 def lcb_trace_evaluation(folder_path: str,
                          punish_coefficient: float = None) -> tuple[list[pd.DataFrame],pd.DataFrame]:
 
