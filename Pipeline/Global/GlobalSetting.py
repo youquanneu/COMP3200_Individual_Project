@@ -18,18 +18,20 @@ class GlobalSetting:
     elm_initial_state_range     = range(131, 161)
     hidden_size_explore_range   = range(5, 121, 5)
 
-    lambda_upper_bound  = 2
-    lambda_lower_bound  = -25
-    lambda_base_value   = 2.0
-    lambda_explore_range  = lambda_base_value ** np.arange(lambda_lower_bound, lambda_upper_bound + 1)
-    lambda_search_range   = lambda_base_value ** np.arange(lambda_lower_bound, lambda_upper_bound + 0.5, 0.5)
+    _lambda_upper_bound  = 2
+    _lambda_lower_bound  = -25
+    _lambda_base_value   = 2.0
+    lambda_explore_range  = _lambda_base_value ** np.arange(_lambda_lower_bound, _lambda_upper_bound + 1)
+    lambda_search_range   = _lambda_base_value ** np.arange(_lambda_lower_bound, _lambda_upper_bound + 0.5, 0.5)
 
     test_set_size       = 0.2
     data_split_seed     = 42
     cv_punish_coe       = 1.0
+    seed_punish_coe     = 2.58
 
-    data_cv_fold        = 5
     data_shuffle_seed   = 42
+    data_test_split     = 5
+    data_cv_fold        = 5
 
     evaluation_function = 'MCC'
 
@@ -42,9 +44,13 @@ class GlobalSetting:
     abc_trace_h_size = 30
     abc_trace_lambda = 2 ** -2.5
 
-    seed_test_range = range(101, 131)
-    seed_punish_coe = 2.58
-    data_test_split = 5
+    """ Model Testing Setting """
+    _master_test_seed = 42
+    _test_seed_count = 50
+
+    _rng = np.random.default_rng(seed = _master_test_seed)
+    _valid_pool = sorted(list(set(range(100000)) - set(elm_initial_state_range)))
+    seed_test_range = _rng.choice(_valid_pool, size = _test_seed_count, replace = False).tolist()
 
     @staticmethod
     def sigmoid(x):
