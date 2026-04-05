@@ -153,7 +153,8 @@ class EvaluationELM:
         fold_means = grouped_by_seed.mean()
         fold_stds = grouped_by_seed.std().fillna(0.0)
 
-        seed_lcb = fold_means - fold_stds
+        cv_punish_coe = getattr(GlobalSetting, 'cv_punish_coe', 1.0)
+        seed_lcb = fold_means - (cv_punish_coe * fold_stds)
 
         n_seeds = len(seed_lcb)
         final_mean = seed_lcb.mean()
