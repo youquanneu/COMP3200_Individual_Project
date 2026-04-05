@@ -130,19 +130,22 @@ class EvaluationELM:
 
         return pd.concat(raw_results_list, ignore_index = True), pd.concat(agg_results_list, ignore_index = True)
 
-    def grid_search_hidden_size_and_lambda(self,hidden_size_range,lambda_range):
+    def grid_search_hidden_size_and_lambda(self, hidden_size_range, lambda_range):
         raw_results_list = []
         agg_results_list = []
 
         for hidden_size in hidden_size_range:
-            raw_res, agg_res = self.grid_search_lambda(
-                hidden_size  = hidden_size,
-                lambda_range = lambda_range
-            )
-            raw_results_list.append(raw_res)
-            agg_results_list.append(agg_res)
+            for lambda_value in lambda_range:
 
-        return pd.concat(raw_results_list, ignore_index=True), pd.concat(agg_results_list, ignore_index=True)
+                raw_res_df, agg_res_df = self.ranged_seed_cross_validation(
+                    hidden_size             = hidden_size,
+                    regularization_lambda   = lambda_value)
+                raw_results_list.append(raw_res_df)
+                agg_results_list.append(agg_res_df)
+
+        final_raw_df = pd.concat(raw_results_list, ignore_index=True)
+        final_agg_df = pd.concat(agg_results_list, ignore_index=True)
+        return final_raw_df, final_agg_df
 
     @staticmethod
     def random_seed_metrics(data_frame):
