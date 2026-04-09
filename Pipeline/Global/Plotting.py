@@ -2,9 +2,11 @@ import os
 from contextlib import contextmanager
 
 import matplotlib.pyplot as plt
+import numpy as np
 import seaborn as sns
 import pandas as pd
 from matplotlib.ticker import MaxNLocator
+from scipy import stats
 
 from Pipeline.Global.GlobalSetting import GlobalSetting
 
@@ -624,4 +626,188 @@ class Plotting:
                     fitness_metric=f"{metric_name}_Panel"
                 )
 
+            plt.show()
+    @classmethod
+    def plot_test_results(cls,
+                          model_dict,
+                          target_order,
+                          main_model_name   = "ABC RELM CV",
+                          metric_name       = 'MCC',
+                          show_macro        = True,
+                          expr_name         = "Comparison",
+                          is_final_record   = False,
+                          global_title      = None):
+
+        with cls._style_context():
+
+            dfs_seed, dfs_fold = [], []
+            for model_name in target_order:
+                if model_name in model_dict:
+                    df = pd.read_csv(model_dict[model_name])
+                    seed_lcb = df.groupby('Seed')[metric_name].agg(['mean', 'std'])
+                    seed_lcb['lcb'] = seed_lcb['mean'] - (GlobalSetting.cv_punish_coe * seed_lcb['std'])
+                    dfs_seed.append(seed_lcb[['lcb']].reset_index()
+                                    .rename(columns={'lcb': metric_name})
+                                    .assign(Model=model_name))
+
+                    dfs_fold.append(df.groupby('Fold_ID')[metric_name].mean().reset_index().assign(Model=model_name))
+
+            if main_model_name not in target_order:
+                raise ValueError(f"Model '{main_model_name}' not found in target_order.")
+            champ_idx = target_order.index(main_model_name)
+            k_comparisons = len(target_order) - 1
+
+            n_axes = 2 if show_macro else 1
+            h_ratios = [1.8, 1] if n_axes == 2 else [1]
+            fig, axes = plt.subplots(n_axes, 1, figsize=(15, 8 * n_axes), dpi=250, sharex=True,
+                                     gridspec_kw={'height_ratios': h_ratios})
+            if n_axes == 1: axes = [axes]
+
+            def draw_staff_brackets(ax, df_all, p_values, star_color):
+                y_max = df_all[metric_name].max()
+                y_min = df_all[metric_name].min()
+                y_range = y_max - y_min
+
+                # 布局参数
+                base_h = y_max + y_range * 0.08
+                step_h = y_range * 0.045
+                tick_h = y_range * 0.012
+                highest_h = base_h
+
+                for i, m in enumerate(target_order):
+                    if m == main_model_name: continue
+                    p_adj, diff_val = p_values[m]
+
+                    if p_adj < 0.05:
+                        target_x = i if diff_val > 0 else champ_idx
+                        text_color = star_color
+                        line_color = 'gray'
+
+                        star_marks = '***' if p_adj < 0.001 else ('**' if p_adj < 0.01 else '*')
+                        sign = '+' if diff_val > 0 else '−'
+                        display_text = rf"$\mathbf{{({sign}){star_marks}}}$"
+
+                        h = base_h + i * step_h
+                        highest_h = max(highest_h, h)
+
+                        ax.plot([i, i, champ_idx, champ_idx], [h - tick_h, h, h, h - tick_h],
+                                lw=0.8, c=line_color, alpha=0.4)
+
+                        ax.text(target_x, h + tick_h * 1.5, display_text,
+                                ha='center', va='center',
+                                color=text_color,
+                                fontweight='bold', fontsize=12,
+                                bbox=dict(facecolor='white', edgecolor='none', pad=0.1, alpha=0.8))
+
+                ax.set_ylim(y_min - 0.05 * y_range, highest_h + 0.15 * y_range)
+
+            if show_macro:
+                ax_m = axes[0]
+                df_s_all = pd.concat(dfs_seed, ignore_index=True)
+                df_s_pivot = df_s_all.pivot_table(index='Seed', columns='Model', values=metric_name, aggfunc='mean')[
+                    target_order]
+                p_vals_s = {}
+                for m in target_order:
+                    if m != main_model_name:
+                        diff = df_s_pivot[main_model_name] - df_s_pivot[m]
+                        diff_mean = diff.mean()
+                        if np.all(diff == 0):
+                            p_vals_s[m] = (1.0, diff_mean)
+                        else:
+                            try:
+                                _, p_raw = stats.wilcoxon(diff)
+                                p_vals_s[m] = (min(1.0, p_raw * k_comparisons), diff_mean)
+                            except ValueError:
+                                p_vals_s[m] = (1.0, diff_mean)
+
+                sns.boxplot(x='Model', y=metric_name, data=df_s_all, order=target_order, width=0.35,
+                            showmeans=True,
+                            meanprops={"marker": "o", "markerfacecolor": "white", "markeredgecolor": "black",
+                                       "markersize": 5}, ax=ax_m)
+                sns.stripplot(x='Model', y=metric_name, data=df_s_all, order=target_order, color=".3", size=2.5,
+                              alpha=0.2, jitter=True, ax=ax_m)
+
+                draw_staff_brackets(ax_m, df_s_all, p_vals_s, star_color='darkorange')
+                cls._format_standard_axes(ax_m, title="Cross Seeds Stability Analysis", ylabel=f"{metric_name} (LCB)")
+                ax_m.set_xlabel("")
+                ax_m.tick_params(labelbottom=False)
+                sns.despine(ax=ax_m, left=True)
+
+
+            ax_e = axes[-1]
+            df_f_all = pd.concat(dfs_fold, ignore_index=True)
+            df_f_pivot = df_f_all.pivot_table(index='Fold_ID', columns='Model', values=metric_name, aggfunc='mean')[
+                target_order]
+
+            p_vals_f = {}
+            for m in target_order:
+                if m != main_model_name:
+                    diff = df_f_pivot[main_model_name] - df_f_pivot[m]
+                    diff_mean = diff.mean()
+                    if np.all(diff == 0):
+                        p_vals_f[m] = (1.0, diff_mean)
+                    else:
+                        _, p_raw = stats.ttest_rel(df_f_pivot[main_model_name], df_f_pivot[m])
+                        if np.isnan(p_raw):
+                            p_raw = 0.0 if diff_mean != 0 else 1.0
+
+                        p_vals_f[m] = (min(1.0, p_raw * k_comparisons), diff_mean)
+
+            x_coords = np.arange(len(target_order))
+            colors = sns.color_palette("husl", n_colors=len(df_f_pivot))
+            for i, (fid, row) in enumerate(df_f_pivot.iterrows()):
+                ax_e.plot(x_coords, row.values, color=colors[i], alpha=0.35, linewidth=2.5, marker='o', markersize=4,
+                          label=f'Fold {fid}')
+
+            g_mean = df_f_pivot.mean(axis=0).values
+            ax_e.plot(x_coords, g_mean, color='black', linewidth=3.5, marker='D', markersize=6.5, label='Grand Mean',
+                      zorder=10)
+
+            draw_staff_brackets(ax_e, df_f_all, p_vals_f, star_color='royalblue')
+
+            cls._format_standard_axes(ax_e, title="Cross Folds Generalization Analysis", ylabel=f"Mean {metric_name}")
+            if ax_e.get_legend():
+                ax_e.get_legend().remove()
+            ax_e.set_xticks(x_coords)
+            ax_e.set_xticklabels(target_order, rotation=15, fontweight='bold')
+            sns.despine(ax=ax_e, left=True)
+
+            sig_text = (
+                "Significance level:  * p < 0.05   |   ** p < 0.01   |   *** p < 0.001\n"
+                f"Effect Direction:    + ({main_model_name} > Baseline)   |   - ({main_model_name} < Baseline)"
+            )
+
+            bottom_margin = 0.16 if n_axes == 1 else 0.09
+
+            base_y = 0.02
+            line_height = 0.035 if n_axes == 1 else 0.018
+
+            fig.text(0.05, base_y, sig_text,
+                     color='dimgray', fontsize=9, style='italic', va='bottom', ha='left')
+
+            fig.text(0.05, base_y + line_height * 1.5, "Paired t-test",
+                     color='royalblue', fontsize=10, fontweight='bold', va='bottom', ha='left')
+
+            test_type_y = base_y + line_height * 2.2
+            if show_macro:
+                fig.text(0.05, test_type_y,
+                         f"Wilcoxon signed-rank test: Seed-wise Fold LCB (Mean - {GlobalSetting.cv_punish_coe}*STD))",
+                         color='darkorange', fontsize=10, fontweight='bold', va='bottom', ha='left')
+            else:
+                fig.text(0.05, test_type_y, "Wilcoxon signed-rank test Unapplicable",
+                         color='darkorange', fontsize=10, fontweight='bold', va='bottom', ha='left')
+
+            legend_y = bottom_margin * 0.3
+            handles, labels = ax_e.get_legend_handles_labels()
+            fig.legend(handles, labels, loc='lower right', bbox_to_anchor=(0.98, legend_y),
+                       ncol=3, frameon=True, shadow=True, fontsize=9)
+
+            if global_title:
+                fig.suptitle(global_title, fontsize=18, fontweight='bold', y=0.98)
+
+            plt.tight_layout(rect=[0, bottom_margin, 1, 0.96])
+            fig.align_ylabels(axes)
+
+            if is_final_record:
+                cls._save_figure(fig=fig, prefix="Report Figure", experiment_name=expr_name, fitness_metric=f"{metric_name}_Panel")
             plt.show()
