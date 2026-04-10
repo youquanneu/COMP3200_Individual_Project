@@ -18,7 +18,7 @@ class GlobalSetting:
     elm_initial_state_range     = range(131, 161)
     hidden_size_explore_range   = range(5, 121, 5)
 
-    _lambda_upper_bound  = 2
+    _lambda_upper_bound  = 10
     _lambda_lower_bound  = -25
     _lambda_base_value   = 2.0
     lambda_explore_range  = _lambda_base_value ** np.arange(_lambda_lower_bound, _lambda_upper_bound + 1)
