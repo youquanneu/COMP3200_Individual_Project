@@ -6,9 +6,9 @@ import numpy as np
 import seaborn as sns
 import pandas as pd
 from matplotlib.ticker import MaxNLocator
-from scipy import stats
 
 from Pipeline.Global.GlobalSetting import GlobalSetting
+from Pipeline.Methodology import ABC_Testing
 
 
 class Plotting:
@@ -484,8 +484,8 @@ class Plotting:
     @classmethod
     def plot_3x2_experiment_grid(cls,
                                  dfs: list[pd.DataFrame],
-                                 conv_y_lim: tuple = (0, 1),  # 强制统一的收敛Y轴
-                                 scout_y_lim: tuple = (0, 10),  # 强制统一的侦查蜂Y轴
+                                 conv_y_lim: tuple = (0, 1),
+                                 scout_y_lim: tuple = (0, 10),
                                  global_title: str = "Ablation Study on Solution Size and Max Iterations",
                                  is_final_record: bool = False,
                                  expr_name: str = "Trace Result"):
@@ -629,7 +629,8 @@ class Plotting:
             plt.show()
     @classmethod
     def plot_test_results(cls,
-                          model_dict,
+                          df_s_all, p_vals_s,
+                          df_f_all, df_f_pivot, p_vals_f,
                           target_order,
                           main_model_name   = "ABC RELM CV",
                           metric_name       = 'MCC',
@@ -640,22 +641,7 @@ class Plotting:
 
         with cls._style_context():
 
-            dfs_seed, dfs_fold = [], []
-            for model_name in target_order:
-                if model_name in model_dict:
-                    df = pd.read_csv(model_dict[model_name])
-                    seed_lcb = df.groupby('Seed')[metric_name].agg(['mean', 'std'])
-                    seed_lcb['lcb'] = seed_lcb['mean'] - (GlobalSetting.cv_punish_coe * seed_lcb['std'])
-                    dfs_seed.append(seed_lcb[['lcb']].reset_index()
-                                    .rename(columns={'lcb': metric_name})
-                                    .assign(Model=model_name))
-
-                    dfs_fold.append(df.groupby('Fold_ID')[metric_name].mean().reset_index().assign(Model=model_name))
-
-            if main_model_name not in target_order:
-                raise ValueError(f"Model '{main_model_name}' not found in target_order.")
             champ_idx = target_order.index(main_model_name)
-            k_comparisons = len(target_order) - 1
 
             n_axes = 2 if show_macro else 1
             h_ratios = [1.8, 1] if n_axes == 2 else [1]
@@ -703,22 +689,6 @@ class Plotting:
 
             if show_macro:
                 ax_m = axes[0]
-                df_s_all = pd.concat(dfs_seed, ignore_index=True)
-                df_s_pivot = df_s_all.pivot_table(index='Seed', columns='Model', values=metric_name, aggfunc='mean')[
-                    target_order]
-                p_vals_s = {}
-                for m in target_order:
-                    if m != main_model_name:
-                        diff = df_s_pivot[main_model_name] - df_s_pivot[m]
-                        diff_mean = diff.mean()
-                        if np.all(diff == 0):
-                            p_vals_s[m] = (1.0, diff_mean)
-                        else:
-                            try:
-                                _, p_raw = stats.wilcoxon(diff)
-                                p_vals_s[m] = (min(1.0, p_raw * k_comparisons), diff_mean)
-                            except ValueError:
-                                p_vals_s[m] = (1.0, diff_mean)
 
                 sns.boxplot(x='Model', y=metric_name, data=df_s_all, order=target_order, width=0.35,
                             showmeans=True,
@@ -735,23 +705,6 @@ class Plotting:
 
 
             ax_e = axes[-1]
-            df_f_all = pd.concat(dfs_fold, ignore_index=True)
-            df_f_pivot = df_f_all.pivot_table(index='Fold_ID', columns='Model', values=metric_name, aggfunc='mean')[
-                target_order]
-
-            p_vals_f = {}
-            for m in target_order:
-                if m != main_model_name:
-                    diff = df_f_pivot[main_model_name] - df_f_pivot[m]
-                    diff_mean = diff.mean()
-                    if np.all(diff == 0):
-                        p_vals_f[m] = (1.0, diff_mean)
-                    else:
-                        _, p_raw = stats.ttest_rel(df_f_pivot[main_model_name], df_f_pivot[m])
-                        if np.isnan(p_raw):
-                            p_raw = 0.0 if diff_mean != 0 else 1.0
-
-                        p_vals_f[m] = (min(1.0, p_raw * k_comparisons), diff_mean)
 
             x_coords = np.arange(len(target_order))
             colors = sns.color_palette("husl", n_colors=len(df_f_pivot))
