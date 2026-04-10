@@ -97,7 +97,7 @@ class BayesianAnalysis:
 
         with cls._style_context():
             fig_height = max(4.0, len(baselines) * 0.8)
-            fig, ax = plt.subplots(figsize=(10, fig_height), dpi=200)
+            fig, ax = plt.subplots(figsize=(10, fig_height), dpi=300)
 
             # 准备数据作图
             y_pos = np.arange(len(baselines))
@@ -138,7 +138,9 @@ class BayesianAnalysis:
                     va='bottom')
 
             ax.set_yticks(y_pos)
-            ax.set_yticklabels(models, fontweight='bold', fontsize=11)
+            formatted_models = [m.replace(" (", "\n(") if " (" in m else m for m in models]
+            ax.set_yticklabels(formatted_models, fontweight='bold', fontsize=10, rotation=30, ha='right')
+
             ax.set_xlim(0, 100)
             ax.set_xlabel('Posterior Probability (%)', fontweight='bold')
 
