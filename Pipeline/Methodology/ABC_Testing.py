@@ -1,10 +1,11 @@
 import math
-import time
 from pathlib import Path
 from typing import List
 
+import numpy as np
 import pandas as pd
 from joblib import Parallel, delayed
+from scipy import stats
 
 from Pipeline.Global.GallstoneDataSet import GallstoneDataSet
 from Pipeline.Methodology.EvaluationMatrix import EvaluationMatrix
@@ -402,3 +403,175 @@ def lcb_trace_evaluation(folder_path: str,
     summary_df = pd.concat(trace_final_results, ignore_index=True) if trace_final_results else pd.DataFrame()
 
     return trace_records, summary_df
+
+def get_result_stats(model_dict,
+                     target_order,
+                     main_model_name   = "ABC RELM CV",
+                     metric_name       = 'MCC',
+                     show_macro        = True):
+
+    if main_model_name not in target_order:
+        raise ValueError(f"Model '{main_model_name}' not found in target_order.")
+    k_comparisons = len(target_order) - 1
+
+    dfs_seed, dfs_fold = [], []
+    p_vals_s, p_vals_f = {}, {}
+    for model_name in target_order:
+        if model_name in model_dict:
+            df = pd.read_csv(model_dict[model_name])
+            seed_lcb = df.groupby('Seed')[metric_name].agg(['mean', 'std'])
+            seed_lcb['lcb'] = seed_lcb['mean'] - (GlobalSetting.cv_punish_coe * seed_lcb['std'])
+            dfs_seed.append(seed_lcb[['lcb']].reset_index()
+                            .rename(columns={'lcb': metric_name})
+                            .assign(Model=model_name))
+
+            dfs_fold.append(df.groupby('Fold_ID')[metric_name].mean().reset_index().assign(Model=model_name))
+
+    df_s_all = None
+
+    if show_macro:
+        df_s_all = pd.concat(dfs_seed, ignore_index=True)
+        df_s_pivot = df_s_all.pivot_table(index='Seed', columns='Model', values=metric_name, aggfunc='mean')[
+            target_order]
+
+        for m in target_order:
+            if m != main_model_name:
+                diff = df_s_pivot[main_model_name] - df_s_pivot[m]
+                diff_mean = diff.mean()
+                if np.all(diff == 0):
+                    p_vals_s[m] = (1.0, diff_mean)
+                else:
+                    try:
+                        _, p_raw = stats.wilcoxon(diff)
+                        p_vals_s[m] = (min(1.0, p_raw * k_comparisons), diff_mean)
+                    except ValueError:
+                        p_vals_s[m] = (1.0, diff_mean)
+
+    df_f_all = pd.concat(dfs_fold, ignore_index=True)
+    df_f_pivot = df_f_all.pivot_table(index='Fold_ID', columns='Model', values=metric_name, aggfunc='mean')[
+        target_order]
+
+
+    for m in target_order:
+        if m != main_model_name:
+            diff = df_f_pivot[main_model_name] - df_f_pivot[m]
+            diff_mean = diff.mean()
+            if np.all(diff == 0):
+                p_vals_f[m] = (1.0, diff_mean)
+            else:
+                _, p_raw = stats.ttest_rel(df_f_pivot[main_model_name], df_f_pivot[m])
+                if np.isnan(p_raw):
+                    p_raw = 0.0 if diff_mean != 0 else 1.0
+
+                p_vals_f[m] = (min(1.0, p_raw * k_comparisons), diff_mean)
+
+    return (df_s_all, p_vals_s), (df_f_all, df_f_pivot, p_vals_f)
+
+def get_test_result_summaries(model_dict,
+                              p_vals_s= None, p_vals_f= None,
+                              metric_name= 'MCC',
+                              alpha=0.05):
+
+    stable_list, general_list = [], []
+
+    unused_column = [
+        'Hidden_Nodes', 'Lambda_Value',
+        'Solution_Size', 'Trial_Limit', 'Max_Iteration',
+        'Precision', 'Recall', 'NPV', 'Specificity',
+        'F2-Score', 'Bal Accuracy'
+    ]
+
+    for model_name, path in model_dict.items():
+        df = pd.read_csv(path)
+        df = df.drop(columns=unused_column, errors='ignore')
+
+        numeric_df = df.select_dtypes(include=['number'])
+        calc_cols = [c for c in numeric_df.columns if c not in ['Seed', 'Fold_ID']]
+
+        grouped_s = numeric_df.groupby('Seed')
+        seed_lcb = grouped_s[calc_cols].mean() - (GlobalSetting.cv_punish_coe * grouped_s[calc_cols].std())
+
+        s_summary = seed_lcb.agg(['mean', 'std']).unstack()
+        s_flat = pd.DataFrame([s_summary.values],
+                              columns=[f"{c}_{s}" for c, s in s_summary.index])
+        s_flat.insert(0, 'model_name', model_name)
+        stable_list.append(s_flat)
+
+        grouped_f = numeric_df.groupby('Fold_ID')
+        fold_avg = grouped_f[calc_cols].mean()
+
+        f_summary = fold_avg.agg(['mean', 'std']).unstack()
+        f_flat = pd.DataFrame([f_summary.values],
+                              columns=[f"{c}_{s}" for c, s in f_summary.index])
+        f_flat.insert(0, 'model_name', model_name)
+        general_list.append(f_flat)
+
+    df_stable = pd.concat(stable_list, ignore_index=True) if stable_list else pd.DataFrame()
+    df_general = pd.concat(general_list, ignore_index=True) if general_list else pd.DataFrame()
+
+    def get_numeric_direction(p_val, diff):
+        if pd.isna(p_val) or pd.isna(diff): return None
+        if p_val > alpha: return 0
+        return 1 if diff > 0 else -1
+    def apply_stats_to_df(target_df, p_vals_dict, test_prefix):
+        if p_vals_dict is not None and not target_df.empty:
+            target_df[f'{test_prefix}_p_{metric_name}'] = target_df['model_name'].map(
+                lambda m: p_vals_dict[m][0] if m in p_vals_dict else None
+            )
+            target_df[f'{test_prefix}_dir_{metric_name}'] = target_df['model_name'].map(
+                lambda m: get_numeric_direction(p_vals_dict[m][0], p_vals_dict[m][1]) if m in p_vals_dict else None
+            )
+
+    apply_stats_to_df(df_stable, p_vals_s, "Wilcoxon")
+    apply_stats_to_df(df_general, p_vals_f, "T_test")
+
+    return df_stable, df_general
+
+def format_summaries_for_academic_report(df: pd.DataFrame, decimal_places: int = 4):
+    report_df = df.copy()
+    mean_cols = [c for c in report_df.columns if c.endswith('_mean')]
+
+    for m_col in mean_cols:
+        base_name = m_col.replace('_mean', '')
+        s_col = f"{base_name}_std"
+
+        if s_col in report_df.columns:
+            loc = report_df.columns.get_loc(m_col)
+
+            formatted_series = report_df.apply(
+                lambda row: f"{row[m_col]:.{decimal_places}f} ± {row[s_col]:.{decimal_places}f}"
+                if pd.notna(row[m_col]) and pd.notna(row[s_col]) else "N/A",
+                axis=1
+            )
+
+            report_df = report_df.drop(columns=[m_col, s_col])
+            report_df.insert(loc, base_name, formatted_series)
+
+    dir_cols = [c for c in report_df.columns if '_dir_' in c]
+    sig_map = {1.0: "+1", -1.0: "-1", 0.0: "0"}
+
+    for d_col in dir_cols:
+        report_df[d_col] = report_df[d_col].map(sig_map).fillna("N/A")
+
+    return report_df
+
+def overall_result_summaries(model_dict, unused_column):
+    final_list = []
+
+    for model_name, path in model_dict.items():
+        df = pd.read_csv(path)
+        df = df.drop(columns=unused_column, errors='ignore')
+
+        numeric_df = df.select_dtypes(include=['number'])
+        calc_cols = [c for c in numeric_df.columns if c not in ['Seed', 'Fold_ID']]
+
+        fold_level_performance = numeric_df.groupby('Fold_ID')[calc_cols].mean()
+
+        res_mean = fold_level_performance.mean().add_suffix('_mean')
+        res_std = fold_level_performance.std().add_suffix('_std')
+
+        row_df = pd.DataFrame([pd.concat([res_mean, res_std])])
+        row_df.insert(0, 'model_name', model_name)
+        final_list.append(row_df)
+
+    return pd.concat(final_list, ignore_index=True)
