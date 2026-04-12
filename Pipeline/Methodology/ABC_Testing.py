@@ -6,6 +6,7 @@ import numpy as np
 import pandas as pd
 from joblib import Parallel, delayed
 from scipy import stats
+from statsmodels.stats.multitest import multipletests
 
 from Pipeline.Global.GallstoneDataSet import GallstoneDataSet
 from Pipeline.Methodology.EvaluationMatrix import EvaluationMatrix
@@ -412,13 +413,16 @@ def get_result_stats(model_dict,
 
     if main_model_name not in target_order:
         raise ValueError(f"Model '{main_model_name}' not found in target_order.")
-    k_comparisons = len(target_order) - 1
+
+    model_names_to_test = [m for m in target_order if m != main_model_name]
 
     dfs_seed, dfs_fold = [], []
     p_vals_s, p_vals_f = {}, {}
+
     for model_name in target_order:
         if model_name in model_dict:
             df = pd.read_csv(model_dict[model_name])
+
             seed_lcb = df.groupby('Seed')[metric_name].agg(['mean', 'std'])
             seed_lcb['lcb'] = seed_lcb['mean'] - (GlobalSetting.cv_punish_coe * seed_lcb['std'])
             dfs_seed.append(seed_lcb[['lcb']].reset_index()
@@ -434,36 +438,59 @@ def get_result_stats(model_dict,
         df_s_pivot = df_s_all.pivot_table(index='Seed', columns='Model', values=metric_name, aggfunc='mean')[
             target_order]
 
-        for m in target_order:
-            if m != main_model_name:
-                diff = df_s_pivot[main_model_name] - df_s_pivot[m]
-                diff_mean = diff.mean()
-                if np.all(diff == 0):
-                    p_vals_s[m] = (1.0, diff_mean)
-                else:
-                    try:
-                        _, p_raw = stats.wilcoxon(diff)
-                        p_vals_s[m] = (min(1.0, p_raw * k_comparisons), diff_mean)
-                    except ValueError:
-                        p_vals_s[m] = (1.0, diff_mean)
+        raw_p_values_s = []
+        diff_means_s = []
+
+        for m in model_names_to_test:
+            diff = df_s_pivot[main_model_name] - df_s_pivot[m]
+            diff_mean = diff.mean()
+            diff_means_s.append(diff_mean)
+
+            if np.all(diff == 0):
+                raw_p_values_s.append(1.0)
+            else:
+                try:
+                    _, p_raw = stats.wilcoxon(diff)
+                    raw_p_values_s.append(p_raw)
+                except ValueError:
+                    raw_p_values_s.append(1.0)
+
+        if raw_p_values_s:
+            # Core: Applies the Holm step-down method to dynamically correct P-values, replacing the overly strict Bonferroni.
+            # Goal: Maximizes statistical power to detect true model advantages while strictly controlling the Family-Wise Error Rate (FWER).
+            _, pvals_corrected_s, _, _ = multipletests(raw_p_values_s, alpha=0.05, method='holm')
+
+            for i, m in enumerate(model_names_to_test):
+                p_vals_s[m] = (pvals_corrected_s[i], diff_means_s[i])
 
     df_f_all = pd.concat(dfs_fold, ignore_index=True)
     df_f_pivot = df_f_all.pivot_table(index='Fold_ID', columns='Model', values=metric_name, aggfunc='mean')[
         target_order]
 
+    raw_p_values_f = []
+    diff_means_f = []
 
-    for m in target_order:
-        if m != main_model_name:
-            diff = df_f_pivot[main_model_name] - df_f_pivot[m]
-            diff_mean = diff.mean()
-            if np.all(diff == 0):
-                p_vals_f[m] = (1.0, diff_mean)
-            else:
-                _, p_raw = stats.ttest_rel(df_f_pivot[main_model_name], df_f_pivot[m])
-                if np.isnan(p_raw):
-                    p_raw = 0.0 if diff_mean != 0 else 1.0
+    for m in model_names_to_test:
+        diff = df_f_pivot[main_model_name] - df_f_pivot[m]
+        diff_mean = diff.mean()
+        diff_means_f.append(diff_mean)
 
-                p_vals_f[m] = (min(1.0, p_raw * k_comparisons), diff_mean)
+        if np.all(diff == 0):
+            raw_p_values_f.append(1.0)
+        else:
+            _, p_raw = stats.ttest_rel(df_f_pivot[main_model_name], df_f_pivot[m])
+            if np.isnan(p_raw):
+                p_raw = 0.0 if diff_mean != 0 else 1.0
+
+            raw_p_values_f.append(p_raw)
+
+    if raw_p_values_f:
+        # Core: Applies the Holm step-down method to dynamically correct P-values, replacing the overly strict Bonferroni.
+        # Goal: Maximizes statistical power to detect true model advantages while strictly controlling the Family-Wise Error Rate (FWER).
+        _, pvals_corrected_f, _, _ = multipletests(raw_p_values_f, alpha=0.05, method='holm')
+
+        for i, m in enumerate(model_names_to_test):
+            p_vals_f[m] = (pvals_corrected_f[i], diff_means_f[i])
 
     return (df_s_all, p_vals_s), (df_f_all, df_f_pivot, p_vals_f)
 

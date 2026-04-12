@@ -637,7 +637,8 @@ class Plotting:
                           show_macro        = True,
                           expr_name         = "Comparison",
                           is_final_record   = False,
-                          global_title      = None):
+                          global_title      = None,
+                          deterministic_models = ("LRC", "SVC")):
 
         with cls._style_context():
 
@@ -649,10 +650,18 @@ class Plotting:
                                      gridspec_kw={'height_ratios': h_ratios})
             if n_axes == 1: axes = [axes]
 
-            def draw_staff_brackets(ax, df_all, p_values, star_color):
-                y_max = df_all[metric_name].max()
-                y_min = df_all[metric_name].min()
-                y_range = y_max - y_min
+            def draw_staff_brackets(ax, df_all, p_values, star_color,skip_models=None):
+                if skip_models is None:
+                    skip_models = []
+
+                valid_df = df_all[~df_all['Model'].isin(skip_models)] if 'Model' in df_all.columns else df_all
+                y_max = valid_df[metric_name].max()
+                y_min = valid_df[metric_name].min()
+
+                if pd.isna(y_max) or pd.isna(y_min):
+                    y_max, y_min = 1.0, 0.0
+
+                y_range = y_max - y_min if y_max != y_min else 0.1
 
                 # 布局参数
                 base_h = y_max + y_range * 0.08
@@ -661,7 +670,10 @@ class Plotting:
                 highest_h = base_h
 
                 for i, m in enumerate(target_order):
-                    if m == main_model_name: continue
+                    if m == main_model_name or m in skip_models:
+                        continue
+                    if m not in p_values:
+                        continue
                     p_adj, diff_val = p_values[m]
 
                     if p_adj < 0.05:
@@ -690,14 +702,30 @@ class Plotting:
             if show_macro:
                 ax_m = axes[0]
 
-                sns.boxplot(x='Model', y=metric_name, data=df_s_all, order=target_order, width=0.35,
+                df_s_plot = df_s_all.copy()
+                mask = df_s_plot['Model'].isin(deterministic_models)
+                df_s_plot.loc[mask, metric_name] = np.nan
+
+                sns.boxplot(x='Model', y=metric_name, data=df_s_plot, order=target_order, width=0.35,
                             showmeans=True,
                             meanprops={"marker": "o", "markerfacecolor": "white", "markeredgecolor": "black",
                                        "markersize": 5}, ax=ax_m)
-                sns.stripplot(x='Model', y=metric_name, data=df_s_all, order=target_order, color=".3", size=2.5,
+                sns.stripplot(x='Model', y=metric_name, data=df_s_plot, order=target_order, color=".3", size=2.5,
                               alpha=0.2, jitter=True, ax=ax_m)
 
-                draw_staff_brackets(ax_m, df_s_all, p_vals_s, star_color='darkorange')
+                draw_staff_brackets(ax_m, df_s_plot, p_vals_s, star_color='darkorange',
+                                    skip_models=deterministic_models)
+
+                valid_data = df_s_plot[metric_name].dropna()
+                text_y_pos = valid_data.median() if not valid_data.empty else 0.5
+
+                for i, m in enumerate(target_order):
+                    if m in deterministic_models:
+                        ax_m.text(i, text_y_pos, "N/A\n(Deterministic)", ha='center', va='center',
+                                  color='dimgray', style='italic', fontsize=10, fontweight='bold',
+                                  bbox=dict(facecolor='whitesmoke', edgecolor='lightgray', boxstyle='round,pad=0.5',
+                                            alpha=0.8))
+
                 cls._format_standard_axes(ax_m, title="Cross Seeds Stability Analysis", ylabel=f"{metric_name} (LCB)")
                 ax_m.set_xlabel("")
                 ax_m.tick_params(labelbottom=False)
