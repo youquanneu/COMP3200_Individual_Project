@@ -63,6 +63,7 @@ class BayesianAnalysis:
                                 rope_radius: float = 0.02,
                                 cv_folds: int = 5,
                                 certainty_threshold: float = 0.95,
+                                title:str = None,
                                 expr_name: str = "Bayesian_Summary",
                                 is_final_record: bool = False):
 
@@ -97,7 +98,7 @@ class BayesianAnalysis:
 
         with cls._style_context():
             fig_height = max(4.0, len(baselines) * 0.8)
-            fig, ax = plt.subplots(figsize=(10, fig_height), dpi=300)
+            fig, ax = plt.subplots(figsize=(10, fig_height), dpi=450)
 
             # 准备数据作图
             y_pos = np.arange(len(baselines))
@@ -132,24 +133,32 @@ class BayesianAnalysis:
             threshold_pct = certainty_threshold * 100
             ax.axvline(threshold_pct, color='black', linestyle='--', linewidth=1.5, alpha=0.7, zorder=5)
 
-            top_y_coord = len(baselines) - 0.4
-            ax.text(threshold_pct + 1, top_y_coord, f'{certainty_threshold:.0%} Certainty', color='black', fontsize=10,
-                    style='italic',
-                    va='bottom')
+            ax.text(threshold_pct+1, len(baselines)-0.2,
+                    f'P > {certainty_threshold:.0%}',
+                    color='black', fontsize= 8, fontweight='bold',style='italic',
+                    ha='center', va='bottom')
 
             ax.set_yticks(y_pos)
             formatted_models = [m.replace(" (", "\n(") if " (" in m else m for m in models]
-            ax.set_yticklabels(formatted_models, fontweight='bold', fontsize=10, rotation=30, ha='right')
+            ax.set_yticklabels(formatted_models, fontweight='bold', fontsize=8, rotation=45, ha='right')
 
             ax.set_xlim(0, 100)
             ax.set_xlabel('Posterior Probability (%)', fontweight='bold')
 
-            ax.set_title(
-                f"Bayesian Evaluation Summary: {champion_model} vs Baselines\nROPE = ±{rope_radius}",
-                pad=20)
+            main_title = title
+            sub_title = f"Metric: {metric_name} | ROPE: ±{rope_radius} "
 
-            # 图例移到最下方
-            ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.15), ncol=3, frameon=False, fontsize=11)
+            ax.set_title(f"{main_title}\n", fontsize=13, fontweight='bold', pad=10)
+            ax.text(0.5, 1.02, sub_title, transform=ax.transAxes,
+                    ha='center', va='bottom', fontsize=10, style='italic', color='#555555')
+
+            ax.legend(loc='upper center',
+                      bbox_to_anchor=(0.5, -0.08),
+                      ncol=3,
+                      frameon=False,
+                      fontsize=9,
+                      handletextpad=0.5,
+                      columnspacing=1.0)
 
             # 去除冗余的边框
             sns.despine(left=True, bottom=True)
