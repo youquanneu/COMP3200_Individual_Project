@@ -635,7 +635,6 @@ class Plotting:
                           main_model_name   = "ABC RELM CV",
                           metric_name       = 'MCC',
                           show_macro        = True,
-                          expr_name         = "Comparison",
                           is_final_record   = False,
                           global_title      = None,
                           deterministic_models = ("LRC", "SVC")):
@@ -645,8 +644,8 @@ class Plotting:
             champ_idx = target_order.index(main_model_name)
 
             n_axes = 2 if show_macro else 1
-            h_ratios = [1.8, 1] if n_axes == 2 else [1]
-            fig, axes = plt.subplots(n_axes, 1, figsize=(15, 8 * n_axes), dpi=250, sharex=True,
+            h_ratios = [1.5, 1] if n_axes == 2 else [1]
+            fig, axes = plt.subplots(n_axes, 1, figsize=(15, 6 * n_axes), dpi=450, sharex=True,
                                      gridspec_kw={'height_ratios': h_ratios})
             if n_axes == 1: axes = [axes]
 
@@ -663,7 +662,6 @@ class Plotting:
 
                 y_range = y_max - y_min if y_max != y_min else 0.1
 
-                # 布局参数
                 base_h = y_max + y_range * 0.08
                 step_h = y_range * 0.045
                 tick_h = y_range * 0.012
@@ -726,7 +724,9 @@ class Plotting:
                                   bbox=dict(facecolor='whitesmoke', edgecolor='lightgray', boxstyle='round,pad=0.5',
                                             alpha=0.8))
 
-                cls._format_standard_axes(ax_m, title="Cross Seeds Stability Analysis", ylabel=f"{metric_name} (LCB)")
+                cls._format_standard_axes(ax_m, ylabel=f"{metric_name} (LCB)")
+                ax_m.set_title("  (a) Cross Seeds Stability Analysis", loc='left',
+                               fontstyle='italic', fontweight='normal', fontsize=13, color='#444444')
                 ax_m.set_xlabel("")
                 ax_m.tick_params(labelbottom=False)
                 sns.despine(ax=ax_m, left=True)
@@ -746,7 +746,9 @@ class Plotting:
 
             draw_staff_brackets(ax_e, df_f_all, p_vals_f, star_color='royalblue')
 
-            cls._format_standard_axes(ax_e, title="Cross Folds Generalization Analysis", ylabel=f"Mean {metric_name}")
+            cls._format_standard_axes(ax_e, ylabel=f"Mean {metric_name}")
+            ax_e.set_title("  (b) Cross Folds Generalization Analysis", loc='left',
+                           fontstyle='italic', fontweight='normal', fontsize=13, color='#444444')
             if ax_e.get_legend():
                 ax_e.get_legend().remove()
             ax_e.set_xticks(x_coords)
@@ -784,11 +786,15 @@ class Plotting:
                        ncol=3, frameon=True, shadow=True, fontsize=9)
 
             if global_title:
-                fig.suptitle(global_title, fontsize=18, fontweight='bold', y=0.98)
+                fig.suptitle(global_title, fontsize=18, fontweight='bold', y=0.95)
 
-            plt.tight_layout(rect=[0, bottom_margin, 1, 0.96])
+            plt.tight_layout(rect=[0, bottom_margin, 1, 0.95])
             fig.align_ylabels(axes)
 
             if is_final_record:
-                cls._save_figure(fig=fig, prefix="Report Figure", experiment_name=expr_name, fitness_metric=f"{metric_name}_Panel")
+                cls._save_figure(
+                    fig=fig,
+                    prefix="Report Figure",
+                    experiment_name=global_title,
+                    fitness_metric=f"{metric_name}_Panel")
             plt.show()
