@@ -4,10 +4,78 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Change ensemble to CE">
+    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Trace Trial Limit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Methodology/BayesianAnalysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Methodology/BayesianAnalysis.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/Final Testing.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/Final Testing.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report Preparation/Hyperparameter/Algo Comparison/cleaned_Algo_2_2_80SN_40TL_120MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report Preparation/Hyperparameter/Algo Comparison/cleaned_Algo_2_3_80SN_40TL_120MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report Preparation/Hyperparameter/Algo Comparison/cleaned_Algo_3_2_80SN_40TL_120MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report Preparation/Hyperparameter/Algo Comparison/cleaned_Algo_3_3_80SN_40TL_120MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report Preparation/Hyperparameter/Parameter Comparison/cleaned_ABC_Convergence_Trace_100SN_50TL_120MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report Preparation/Hyperparameter/Parameter Comparison/cleaned_ABC_Convergence_Trace_100SN_50TL_250MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report Preparation/Hyperparameter/Parameter Comparison/cleaned_ABC_Convergence_Trace_10SN_5TL_1000MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report Preparation/Hyperparameter/Parameter Comparison/cleaned_ABC_Convergence_Trace_10SN_5TL_120MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report Preparation/Hyperparameter/Parameter Comparison/cleaned_ABC_Convergence_Trace_10SN_5TL_50MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report Preparation/Hyperparameter/Parameter Comparison/cleaned_ABC_Convergence_Trace_20SN_10TL_1000MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report Preparation/Hyperparameter/Parameter Comparison/cleaned_ABC_Convergence_Trace_20SN_10TL_120MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report Preparation/Hyperparameter/Parameter Comparison/cleaned_ABC_Convergence_Trace_50SN_25TL_120MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report Preparation/Hyperparameter/Parameter Comparison/cleaned_ABC_Convergence_Trace_80SN_40TL_100MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report Preparation/Hyperparameter/Parameter Comparison/cleaned_ABC_Convergence_Trace_80SN_40TL_120MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report Preparation/Hyperparameter/Parameter Comparison/cleaned_ABC_Convergence_Trace_80SN_40TL_150MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report Preparation/Hyperparameter/Parameter Comparison/cleaned_ABC_Convergence_Trace_80SN_40TL_250MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Algo History/Algo History Evaluation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Record/Algo History/Algo History Evaluation.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Limit History/Limit History Evaluation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Record/Limit History/Limit History Evaluation.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Test Convergence History/cleaned_ABC_ELM_Algo_3_2_80SN_120MI_Convergence.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Test Convergence History/cleaned_ABC_RELM_Algo_3_2_80SN_120MI_Convergence.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Test Convergence History/cleaned_ABC_RELM_CV_Algo_3_2_80SN_120MI_Convergence.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Test Convergence History/cleaned_ABC_RELM_CV_Ensemble_Algo_3_2_80SN_120MI_Convergence.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Test History/cleaned_ABC_ELM_Algo_3_2_80SN_120MI_Results.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Test History/cleaned_ABC_RELM_Algo_3_2_80SN_120MI_Results.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Test History/cleaned_ABC_RELM_CV_Algo_3_2_80SN_120MI_Results.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Test History/cleaned_ABC_RELM_CV_Ensemble_Algo_3_2_80SN_120MI_Results.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Test Scout History/cleaned_ABC_ELM_Algo_3_2_80SN_120MI_Scout_History.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Test Scout History/cleaned_ABC_RELM_Algo_3_2_80SN_120MI_Scout_History.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Test Scout History/cleaned_ABC_RELM_CV_Algo_3_2_80SN_120MI_Scout_History.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Test Scout History/cleaned_ABC_RELM_CV_Ensemble_Algo_3_2_80SN_120MI_Scout_History.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/Trace History Evaluation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Record/Trace History/Trace History Evaluation.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_100SN_50TL_100MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_100SN_50TL_120MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_100SN_50TL_150MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_100SN_50TL_250MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_10SN_5TL_1000MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_10SN_5TL_100MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_10SN_5TL_120MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_10SN_5TL_150MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_10SN_5TL_250MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_10SN_5TL_500MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_10SN_5TL_50MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_10SN_5TL_750MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_20SN_10TL_1000MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_20SN_10TL_100MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_20SN_10TL_120MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_20SN_10TL_150MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_20SN_10TL_250MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_20SN_10TL_500MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_20SN_10TL_50MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_20SN_10TL_750MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_50SN_25TL_100MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_50SN_25TL_120MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_50SN_25TL_150MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_50SN_25TL_250MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_80SN_40TL_100MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_80SN_40TL_120MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_80SN_40TL_150MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/cleaned_ABC_Convergence_Trace_80SN_40TL_250MI_Trace.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Algorithms)/100_100_Algo_2_2.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Algorithms)/50_120_Algo_2_2.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Algorithms)/100_100_Algo_2_3.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Algorithms)/50_120_Algo_2_3.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Algorithms)/100_100_Algo_3_2.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Algorithms)/50_120_Algo_3_2.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Algorithms)/100_100_Algo_3_3.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Algorithms)/50_120_Algo_3_3.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Trial Limits)/100_120_Algo_3_2.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Trial Limits)/100_L_120_Algo_3_2.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Trial Limits)/100_250_Algo_3_2.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Trial Limits)/100_L_250_Algo_3_2.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Trial Limits)/10_1000_Algo_3_2.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Trial Limits)/10_L_1000_Algo_3_2.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Trial Limits)/10_120_Algo_3_2.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Trial Limits)/10_L_120_Algo_3_2.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Trial Limits)/20_250_Algo_3_2.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Trial Limits)/20_L_250_Algo_3_2.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Trial Limits)/50_150_Algo_3_2.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Trial Limits)/50_L_150_Algo_3_2.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Trial Limits)/80_120_Algo_3_2.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Trace/ABC Convergence Trace (Trial Limits)/80_L_120_Algo_3_2.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +122,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/youquanneu/COMP3200_Individual_Project.git&quot;,
-    &quot;accountId&quot;: &quot;6a4bc477-d024-4efe-80e7-8463830734d8&quot;
+    &quot;accountId&quot;: &quot;27ee367d-47c5-4ae9-8519-73f86fa139cf&quot;
   }
 }</component>
   <component name="ProblemsViewState">
@@ -71,60 +139,60 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Python.ABC_ELM.executor&quot;: &quot;Run&quot;,
-    &quot;Python.ABC_ELM2.executor&quot;: &quot;Run&quot;,
-    &quot;Python.ABC_Testing.executor&quot;: &quot;Run&quot;,
-    &quot;Python.ArtificialBeeColonyElm.executor&quot;: &quot;Run&quot;,
-    &quot;Python.ArtificialBeeColonyElmCV.executor&quot;: &quot;Run&quot;,
-    &quot;Python.ArtificialBeeColonyElmCVEnsemble.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.ArtificialBeeColonyElmCVEnsembleRectifyVersion.executor&quot;: &quot;Run&quot;,
-    &quot;Python.BayesianAnalysis.executor&quot;: &quot;Run&quot;,
-    &quot;Python.CrossValidationDataSplit.executor&quot;: &quot;Run&quot;,
-    &quot;Python.DataSplit.executor&quot;: &quot;Run&quot;,
-    &quot;Python.EvaluationABCELM.executor&quot;: &quot;Run&quot;,
-    &quot;Python.EvaluationELM.executor&quot;: &quot;Run&quot;,
-    &quot;Python.EvaluationMatrix.executor&quot;: &quot;Run&quot;,
-    &quot;Python.ExtremeLearningMachine.executor&quot;: &quot;Run&quot;,
-    &quot;Python.ExtremeLearningMachineCVEnsemble.executor&quot;: &quot;Run&quot;,
-    &quot;Python.GallstoneDataSet.executor&quot;: &quot;Run&quot;,
-    &quot;Python.GlobalSetting.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Plotting.executor&quot;: &quot;Run&quot;,
-    &quot;Python.sdf.executor&quot;: &quot;Run&quot;,
-    &quot;Python.teest.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;ai.playground.ignore.import.keys.banner.in.settings&quot;: &quot;true&quot;,
-    &quot;database.data.extractors.current.export.id&quot;: &quot;Excel (xlsx)&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/yqn1e23/PycharmProjects/COMP3200_Individual_Project/Report Preparation/Result and Discussion/Final Testing&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;jupyter.general.settings&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.ABC_ELM.executor": "Run",
+    "Python.ABC_ELM2.executor": "Run",
+    "Python.ABC_Testing.executor": "Run",
+    "Python.ArtificialBeeColonyElm.executor": "Run",
+    "Python.ArtificialBeeColonyElmCV.executor": "Run",
+    "Python.ArtificialBeeColonyElmCVEnsemble.executor": "Debug",
+    "Python.ArtificialBeeColonyElmCVEnsembleRectifyVersion.executor": "Run",
+    "Python.BayesianAnalysis.executor": "Run",
+    "Python.CrossValidationDataSplit.executor": "Run",
+    "Python.DataSplit.executor": "Run",
+    "Python.EvaluationABCELM.executor": "Run",
+    "Python.EvaluationELM.executor": "Run",
+    "Python.EvaluationMatrix.executor": "Run",
+    "Python.ExtremeLearningMachine.executor": "Run",
+    "Python.ExtremeLearningMachineCVEnsemble.executor": "Run",
+    "Python.GallstoneDataSet.executor": "Run",
+    "Python.GlobalSetting.executor": "Run",
+    "Python.Plotting.executor": "Run",
+    "Python.sdf.executor": "Run",
+    "Python.teest.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "ai.playground.ignore.import.keys.banner.in.settings": "true",
+    "database.data.extractors.current.export.id": "Excel (xlsx)",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/yqn1e23/PycharmProjects/COMP3200_Individual_Project/Trace/ABC Convergence Trace (Parameter)",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "jupyter.general.settings",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Trace\ABC Convergence Trace (Parameter)" />
+      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Trace\ABC Convergence Trace (Trial Limits)" />
+      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Trace\ABC Convergence Trace (Algorithms)" />
+      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Storage\Record\Limit History" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Report Preparation\Result and Discussion\Final Testing" />
-      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Report Preparation\Result and Discussion\Outer_Model_Comparison" />
-      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Report Preparation\Result and Discussion\ABC_Inner_Comparison" />
-      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Report Preparation\Result and Discussion\ELM_Inner_Comparison" />
-      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Storage\Record\Parameter Comparison" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Storage\Record\Trace History" />
+      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Storage\Record\Algo History" />
+      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Storage\Record\Limit History" />
+      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Storage\Record" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Report Preparation\Result and Discussion\Final Testing" />
-      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Report Preparation\Result and Discussion\Inner_Model_Comparison" />
-      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Report Preparation\Result and Discussion\ELM_Inner_Comparison" />
-      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Report Preparation\Parameter" />
-      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Report Preparation\Parameter Part" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -244,14 +312,9 @@
       <workItem from="1775696990986" duration="38900000" />
       <workItem from="1775992091089" duration="7033000" />
       <workItem from="1775999644260" duration="4694000" />
-    </task>
-    <task id="LOCAL-00054" summary="Add evaluation of ABC iter parameter&#10; &#10;- Things to be done : &#10;1. Rerun the whole process after the restructure&#10;2. Hyperparameter tuning : Solution size, trial limit, max iter&#10;3. Write report&#10;4. Hyperparameter deep tuning : algo_2 , algo_3 parameter&#10;&#10;- Things can be explored : &#10;1. Make ABC-RELM with lambda inside solution">
-      <option name="closed" value="true" />
-      <created>1773624725791</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1773624725791</updated>
+      <workItem from="1776152102569" duration="8287000" />
+      <workItem from="1776213111706" duration="14752000" />
+      <workItem from="1776299003161" duration="22334000" />
     </task>
     <task id="LOCAL-00055" summary="Add evaluation of ABC iter parameter&#10; &#10;- Things to be done : &#10;1. Rerun the whole process after the restructure&#10;2. Hyperparameter tuning : Solution size, trial limit, max iter&#10;3. Write report&#10;4. Hyperparameter deep tuning : algo_2 , algo_3 parameter&#10;&#10;- Things can be explored : &#10;1. Make ABC-RELM with lambda inside solution">
       <option name="closed" value="true" />
@@ -637,7 +700,15 @@
       <option name="project" value="LOCAL" />
       <updated>1776000356826</updated>
     </task>
-    <option name="localTasksCounter" value="103" />
+    <task id="LOCAL-00103" summary="Trace Trial Limit">
+      <option name="closed" value="true" />
+      <created>1776251333827</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1776251333827</updated>
+    </task>
+    <option name="localTasksCounter" value="104" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -655,7 +726,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="modifying" />
     <MESSAGE value="still need of modifying" />
     <MESSAGE value="Some file crash by browser, need to rebuilt" />
     <MESSAGE value="Things to be done: &#10;Simulation Annealing?&#10;Data processing again" />
@@ -680,7 +750,8 @@
     <MESSAGE value="Applies the Holm step-down method to dynamically correct P-values" />
     <MESSAGE value="Modify plotting style" />
     <MESSAGE value="Change ensemble to CE" />
-    <option name="LAST_COMMIT_MESSAGE" value="Change ensemble to CE" />
+    <MESSAGE value="Trace Trial Limit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Trace Trial Limit" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$ArtificialBeeColonyElmCVEnsemble.coverage" NAME="ArtificialBeeColonyElmCVEnsemble Coverage Results" MODIFIED="1773795158205" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Algorithm" />
