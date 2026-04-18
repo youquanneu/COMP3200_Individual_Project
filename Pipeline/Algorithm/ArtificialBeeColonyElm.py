@@ -56,6 +56,7 @@ class ArtificialBeeColonyElm:
         self.convergence_curve = []
         self.val_fitness_curve = []
         self.scout_trigger_history = []
+        self.best_solution_list =[]
 
         self.x_val = None
         self.y_val = None
@@ -309,6 +310,7 @@ class ArtificialBeeColonyElm:
         self.convergence_curve      = []
         self.scout_trigger_history  = []
         self.val_fitness_curve      = []
+        self.best_solution_list     = []
 
         self.initialize_bee_colony(x_train, y_train)
 
@@ -319,6 +321,11 @@ class ArtificialBeeColonyElm:
             self.onlooker_bee(current_iteration, x_train, y_train)
 
             scout_count = self.scout_bee(x_train, y_train)
+
+            if self.best_solution is not None:
+                if (len(self.best_solution_list) == 0 or
+                        not np.array_equal(self.best_solution, self.best_solution_list[-1][1])):
+                    self.best_solution_list.append((current_iteration,self.best_solution.copy()))
 
             self.convergence_curve.append(self.best_fitness)
             self.scout_trigger_history.append(scout_count)
