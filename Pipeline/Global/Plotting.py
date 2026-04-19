@@ -346,7 +346,7 @@ class Plotting:
                                  dfs: list[pd.DataFrame],
                                  conv_y_lim: tuple = (0, 1),
                                  scout_y_lim: tuple = (0, 10),
-                                 global_title: str = "Algorithmic Performance Comparison across Configurations",
+                                 global_title: str = "ABC Performance Comparison across Configurations",
                                  is_final_record: bool = False,
                                  expr_name: str = "Trace Result"):
         """
@@ -362,7 +362,7 @@ class Plotting:
             fig = plt.figure(figsize=(16, 12), dpi=250)
 
             # [2] 定义外部 2x2 网格 (控制四个实验之间的间距)
-            outer_grid = fig.add_gridspec(2, 2, wspace=0.15, hspace=0.35)
+            outer_grid = fig.add_gridspec(2, 2, wspace=0.05, hspace=0.15)
 
             global_handles, global_labels = [], []
 
@@ -441,6 +441,8 @@ class Plotting:
                     ax_scout.set_ylabel('Scout Triggers', fontweight='bold')
                     left_axes.extend([ax_metric, ax_scout])
                 else:
+                    ax_metric.tick_params(labelleft=False)
+                    ax_scout.tick_params(labelleft=False)
                     ax_metric.set_ylabel('')
                     ax_scout.set_ylabel('')
 
@@ -502,7 +504,7 @@ class Plotting:
             fig = plt.figure(figsize=(16, 18), dpi=150)
 
             # [2] 定义外部 3x2 网格 (3行，2列)
-            outer_grid = fig.add_gridspec(3, 2, wspace=0.15, hspace=0.35)
+            outer_grid = fig.add_gridspec(3, 2, wspace=0.05, hspace=0.15)
 
             global_handles, global_labels = [], []
             left_axes = []  # 收集最左侧的坐标轴用于对齐
@@ -587,6 +589,8 @@ class Plotting:
                     ax_scout.set_ylabel('Scout Triggers', fontweight='bold')
                     left_axes.extend([ax_metric, ax_scout])
                 else:
+                    ax_metric.tick_params(labelleft=False)
+                    ax_scout.tick_params(labelleft=False)
                     ax_metric.set_ylabel('')
                     ax_scout.set_ylabel('')
 
@@ -1011,7 +1015,7 @@ class Plotting:
                     experiment_name=expr_name,
                     fitness_metric="1x2_Empirical_vs_Smoothed"
                 )
-            plt.subplots_adjust(top=0.85, bottom=0.15)
+            plt.subplots_adjust(top=1, bottom=0.15)
             plt.show()
 
     @classmethod
