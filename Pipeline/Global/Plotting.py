@@ -226,8 +226,8 @@ class Plotting:
     @classmethod
     def plot_combined_dynamics(cls,
                                df_precomputed: pd.DataFrame,
-                               conv_y_lim: tuple = (0.3, 0.8),  # 固定上图（收敛指标）的Y轴范围
-                               scout_y_lim: tuple = (0, 5),  # 固定下图（侦查蜂）的Y轴范围
+                               conv_y_lim: tuple = (0.3, 0.8),
+                               scout_y_lim: tuple = (0, 5),
                                is_final_record: bool = False):
 
         experiment_name = df_precomputed['expr_name'].iloc[0]
@@ -344,8 +344,8 @@ class Plotting:
     @classmethod
     def plot_2x2_experiment_grid(cls,
                                  dfs: list[pd.DataFrame],
-                                 conv_y_lim: tuple = (0, 1),  # 强制统一的收敛Y轴
-                                 scout_y_lim: tuple = (0, 10),  # 强制统一的侦查蜂Y轴
+                                 conv_y_lim: tuple = (0, 1),
+                                 scout_y_lim: tuple = (0, 10),
                                  global_title: str = "Algorithmic Performance Comparison across Configurations",
                                  is_final_record: bool = False,
                                  expr_name: str = "Trace Result"):
@@ -797,4 +797,124 @@ class Plotting:
                     prefix="Report Figure",
                     experiment_name=global_title,
                     fitness_metric=f"{metric_name}_Panel")
+            plt.show()
+
+    @classmethod
+    def plot_ABC_algo_tracing(cls,
+                              df: pd.DataFrame,
+                              title: str = "ABC Algorithms Convergence Results : Train and Validation Floor",
+                              is_final_record: bool = False):
+
+        plot_df = df.copy()
+        plot_df['Strategy'] = plot_df.apply(
+            lambda row: (
+                f"Employed bee: {'Algo 3' if row['Employed_Algo3'] else 'Algo 2'}\n"
+                f"Onlooker bee: {'Algo 3' if row['Onlooker_Algo3'] else 'Algo 2'}"
+            ), axis=1)
+
+        algo_order = [
+            "Employed bee: Algo 2\nOnlooker bee: Algo 2",
+            "Employed bee: Algo 2\nOnlooker bee: Algo 3",
+            "Employed bee: Algo 3\nOnlooker bee: Algo 2",
+            "Employed bee: Algo 3\nOnlooker bee: Algo 3"
+        ]
+
+        with cls._style_context():
+            fig, (ax_train, ax_val) = plt.subplots(nrows=2, ncols=1, figsize=(12, 9.6), dpi=450, sharex=True)
+
+            sns.boxplot(data=plot_df, x='Strategy', y='train_MCC_trace_floor', ax=ax_train,
+                        color='#1f77b4', boxprops=dict(alpha=0.5), order=algo_order)
+            sns.swarmplot(data=plot_df, x='Strategy', y='train_MCC_trace_floor', ax=ax_train,
+                          color=".25", size=5, alpha=0.7, order=algo_order)
+
+            cls._format_standard_axes(ax_train, xlabel='', ylabel='MCC Floor (Train)')
+            ax_train.set_title("  (a) Training Convergence", loc='left',
+                               fontstyle='italic', fontweight='normal', fontsize=13, color='#444444')
+            ax_train.set_xlim(-0.5, len(algo_order) - 0.5)
+            sns.despine(ax=ax_train, left=False)
+
+            sns.boxplot(data=plot_df, x='Strategy', y='val_MCC_trace_floor', ax=ax_val,
+                        color='#ff7f0e', boxprops=dict(alpha=0.5), order=algo_order)
+            sns.swarmplot(data=plot_df, x='Strategy', y='val_MCC_trace_floor', ax=ax_val,
+                          color=".25", size=5, alpha=0.7, order=algo_order)
+
+            cls._format_standard_axes(ax_val, xlabel='ABC Algorithm Configurations',
+                                      ylabel='MCC Floor (Validation)')
+            ax_val.set_title("  (b) Validation Convergence", loc='left',
+                             fontstyle='italic', fontweight='normal', fontsize=13, color='#444444')
+            ax_val.set_xlim(-0.5, len(algo_order) - 0.5)
+            ax_val.set_xticks(range(len(algo_order)))
+            sns.despine(ax=ax_val, left=False)
+
+            # --- Layout Engine ---
+            if title:
+                fig.suptitle(title, fontsize=18, fontweight='bold', y=0.95)
+
+            plt.tight_layout(rect=[0, 0, 1, 0.95])
+            fig.subplots_adjust(hspace=0.15)
+            fig.align_ylabels((ax_train, ax_val))
+
+            if is_final_record:
+                cls._save_figure(
+                    fig=fig,
+                    prefix="Tracing Figure",
+                    experiment_name=title,
+                    fitness_metric="Dual_Subplot"
+                )
+            plt.show()
+
+    @classmethod
+    def plot_ABC_limit_ratio_tracing(cls,
+                                     df: pd.DataFrame,
+                                     title: str = "ABC Limit Ratio Convergence Results : Train and Validation Floor",
+                                     is_final_record: bool = False):
+
+        plot_df = df.copy()
+        plot_df['Strategy'] = plot_df['L/SN'].apply(lambda x: f"L/SN Ratio: {x:.1f}")
+
+        sorted_ratios = sorted(plot_df['L/SN'].unique())
+        category_order = [f"L/SN Ratio: {r:.1f}" for r in sorted_ratios]
+
+        with cls._style_context():
+            fig, (ax_train, ax_val) = plt.subplots(nrows=2, ncols=1, figsize=(12, 9.6), dpi=450, sharex=True)
+
+            sns.boxplot(data=plot_df, x='Strategy', y='train_MCC_trace_floor', ax=ax_train,
+                        color='#1f77b4', boxprops=dict(alpha=0.5), order=category_order)
+            sns.swarmplot(data=plot_df, x='Strategy', y='train_MCC_trace_floor', ax=ax_train,
+                          color=".25", size=5, alpha=0.7, order=category_order)
+
+            cls._format_standard_axes(ax_train, xlabel='', ylabel='MCC Floor (Train)')
+            ax_train.set_title("  (a) Training Convergence", loc='left',
+                               fontstyle='italic', fontweight='normal', fontsize=13, color='#444444')
+            ax_train.set_xlim(-0.5, len(category_order) - 0.5)
+            sns.despine(ax=ax_train, left=False)
+
+            sns.boxplot(data=plot_df, x='Strategy', y='val_MCC_trace_floor', ax=ax_val,
+                        color='#ff7f0e', boxprops=dict(alpha=0.5), order=category_order)
+            sns.swarmplot(data=plot_df, x='Strategy', y='val_MCC_trace_floor', ax=ax_val,
+                          color=".25", size=5, alpha=0.7, order=category_order)
+
+            cls._format_standard_axes(ax_val, xlabel='Trial Limit / Solution Size Ratio',
+                                      ylabel='MCC Floor (Validation)')
+            ax_val.set_title("  (b) Validation Convergence", loc='left',
+                             fontstyle='italic', fontweight='normal', fontsize=13, color='#444444')
+            ax_val.set_xlim(-0.5, len(category_order) - 0.5)
+            ax_val.set_xticks(range(len(category_order)))
+            sns.despine(ax=ax_val, left=False)
+
+            # --- Layout Engine ---
+            if title:
+                fig.suptitle(title, fontsize=18, fontweight='bold', y=0.95)
+
+            plt.tight_layout(rect=[0, 0, 1, 0.95])
+            fig.subplots_adjust(hspace=0.15)
+            fig.align_ylabels((ax_train, ax_val))
+
+            if is_final_record:
+                cls._save_figure(
+                    fig=fig,
+                    prefix="Tracing Figure",
+                    experiment_name=title,
+                    fitness_metric="Dual_Subplot"
+                )
             plt.show()
