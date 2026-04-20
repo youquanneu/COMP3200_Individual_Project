@@ -776,7 +776,7 @@ class Plotting:
             test_type_y = base_y + line_height * 2.2
             if show_macro:
                 fig.text(0.05, test_type_y,
-                         f"Wilcoxon signed-rank test: Seed-wise Fold LCB (Mean - {GlobalSetting.cv_punish_coe}*STD))",
+                         f"Wilcoxon signed-rank test: Seed-wise Fold LCB (Mean - {GlobalSetting.cv_punish_coe}*STD)",
                          color='darkorange', fontsize=10, fontweight='bold', va='bottom', ha='left')
             else:
                 fig.text(0.05, test_type_y, "Wilcoxon signed-rank test Unapplicable",
@@ -795,10 +795,10 @@ class Plotting:
 
             if is_final_record:
                 cls._save_figure(
-                    fig=fig,
-                    prefix="Report Figure",
-                    experiment_name=global_title,
-                    fitness_metric=f"")
+                    fig     = fig,
+                    prefix  = "Report Figure",
+                    experiment_name = global_title,
+                    fitness_metric  = f"")
             plt.show()
 
     @classmethod

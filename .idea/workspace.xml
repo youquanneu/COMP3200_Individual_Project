@@ -4,61 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Test ABC RELM CV">
+    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Trace Plotting">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pipeline/Global/Plotting.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Global/Plotting.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report Preparation/Hyperparameter/Algo Comparison/Algo Comparison.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Report Preparation/Hyperparameter/Algo Comparison/Algo Comparison.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report Preparation/Hyperparameter/Limit Ratio Comparison/Limit Ratio Comparison.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Report Preparation/Hyperparameter/Limit Ratio Comparison/Limit Ratio Comparison.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report Preparation/Hyperparameter/Limit Ratio Comparison/cleaned_Algo_3_2_80SN_120TL_120MI_Trace.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Report Preparation/Hyperparameter/Limit Ratio Comparison/Algo_3_2_80SN_120TL_120MI.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report Preparation/Hyperparameter/Limit Ratio Comparison/cleaned_Algo_3_2_80SN_160TL_120MI_Trace.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Report Preparation/Hyperparameter/Limit Ratio Comparison/Algo_3_2_80SN_160TL_120MI.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report Preparation/Hyperparameter/Limit Ratio Comparison/cleaned_Algo_3_2_80SN_40TL_120MI_Trace.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Report Preparation/Hyperparameter/Limit Ratio Comparison/Algo_3_2_80SN_40TL_120MI.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report Preparation/Hyperparameter/Limit Ratio Comparison/cleaned_Algo_3_2_80SN_80TL_120MI_Trace.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Report Preparation/Hyperparameter/Limit Ratio Comparison/Algo_3_2_80SN_80TL_120MI.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report Preparation/Hyperparameter/Parameter Comparison/Parameter Comparison.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Report Preparation/Hyperparameter/Parameter Comparison/Parameter Comparison.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Iteration Tracing/cleaned_ABC_Convergence_Trace_100SN_50TL_100MI_Trace_MCC_DualBand.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Iteration Tracing/cleaned_ABC_Convergence_Trace_100SN_50TL_120MI_Trace_MCC_DualBand.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Iteration Tracing/cleaned_ABC_Convergence_Trace_100SN_50TL_150MI_Trace_MCC_DualBand.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Iteration Tracing/cleaned_ABC_Convergence_Trace_100SN_50TL_250MI_Trace_MCC_DualBand.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Iteration Tracing/cleaned_ABC_Convergence_Trace_10SN_5TL_1000MI_Trace_MCC_DualBand.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Iteration Tracing/cleaned_ABC_Convergence_Trace_10SN_5TL_100MI_Trace_MCC_DualBand.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Iteration Tracing/cleaned_ABC_Convergence_Trace_10SN_5TL_150MI_Trace_MCC_DualBand.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Iteration Tracing/cleaned_ABC_Convergence_Trace_10SN_5TL_250MI_Trace_MCC_DualBand.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Iteration Tracing/cleaned_ABC_Convergence_Trace_10SN_5TL_500MI_Trace_MCC_DualBand.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Iteration Tracing/cleaned_ABC_Convergence_Trace_10SN_5TL_50MI_Trace_MCC_DualBand.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Iteration Tracing/cleaned_ABC_Convergence_Trace_20SN_10TL_100MI_Trace_MCC_DualBand.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Iteration Tracing/cleaned_ABC_Convergence_Trace_20SN_10TL_150MI_Trace_MCC_DualBand.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Iteration Tracing/cleaned_ABC_Convergence_Trace_20SN_10TL_250MI_Trace_MCC_DualBand.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Iteration Tracing/cleaned_ABC_Convergence_Trace_20SN_10TL_500MI_Trace_MCC_DualBand.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Iteration Tracing/cleaned_ABC_Convergence_Trace_50SN_25TL_100MI_Trace_MCC_DualBand.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Iteration Tracing/cleaned_ABC_Convergence_Trace_50SN_25TL_150MI_Trace_MCC_DualBand.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Iteration Tracing/cleaned_ABC_Convergence_Trace_50SN_25TL_250MI_Trace_MCC_DualBand.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Iteration Tracing/cleaned_ABC_Convergence_Trace_80SN_40TL_100MI_Trace_MCC_DualBand.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Iteration Tracing/cleaned_ABC_Convergence_Trace_80SN_40TL_150MI_Trace_MCC_DualBand.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Iteration Tracing/cleaned_ABC_Convergence_Trace_80SN_40TL_250MI_Trace_MCC_DualBand.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Scouts Tracing/cleaned_ABC_Convergence_Trace_100SN_50TL_100MI_Trace_Scout_Triggers.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Scouts Tracing/cleaned_ABC_Convergence_Trace_100SN_50TL_120MI_Trace_Scout_Triggers.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Scouts Tracing/cleaned_ABC_Convergence_Trace_100SN_50TL_150MI_Trace_Scout_Triggers.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Scouts Tracing/cleaned_ABC_Convergence_Trace_100SN_50TL_250MI_Trace_Scout_Triggers.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Scouts Tracing/cleaned_ABC_Convergence_Trace_10SN_5TL_1000MI_Trace_Scout_Triggers.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Scouts Tracing/cleaned_ABC_Convergence_Trace_10SN_5TL_100MI_Trace_Scout_Triggers.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Scouts Tracing/cleaned_ABC_Convergence_Trace_10SN_5TL_150MI_Trace_Scout_Triggers.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Scouts Tracing/cleaned_ABC_Convergence_Trace_10SN_5TL_250MI_Trace_Scout_Triggers.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Scouts Tracing/cleaned_ABC_Convergence_Trace_10SN_5TL_500MI_Trace_Scout_Triggers.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Scouts Tracing/cleaned_ABC_Convergence_Trace_10SN_5TL_50MI_Trace_Scout_Triggers.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Scouts Tracing/cleaned_ABC_Convergence_Trace_20SN_10TL_100MI_Trace_Scout_Triggers.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Scouts Tracing/cleaned_ABC_Convergence_Trace_20SN_10TL_150MI_Trace_Scout_Triggers.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Scouts Tracing/cleaned_ABC_Convergence_Trace_20SN_10TL_250MI_Trace_Scout_Triggers.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Scouts Tracing/cleaned_ABC_Convergence_Trace_20SN_10TL_500MI_Trace_Scout_Triggers.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Scouts Tracing/cleaned_ABC_Convergence_Trace_50SN_25TL_100MI_Trace_Scout_Triggers.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Scouts Tracing/cleaned_ABC_Convergence_Trace_50SN_25TL_150MI_Trace_Scout_Triggers.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Scouts Tracing/cleaned_ABC_Convergence_Trace_50SN_25TL_250MI_Trace_Scout_Triggers.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Scouts Tracing/cleaned_ABC_Convergence_Trace_80SN_40TL_100MI_Trace_Scout_Triggers.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Scouts Tracing/cleaned_ABC_Convergence_Trace_80SN_40TL_150MI_Trace_Scout_Triggers.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Scouts Tracing/cleaned_ABC_Convergence_Trace_80SN_40TL_250MI_Trace_Scout_Triggers.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Tracing Figure/ABC_Algorithms_Convergence_Results__Train_and_Validation_Floor_Dual_Subplot.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Tracing Figure/ABC_Limit_Ratio_Convergence_Results__Train_and_Validation_Floor_Dual_Subplot.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Record/Algo History/Algo History Evaluation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Record/Algo History/Algo History Evaluation.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Record/Limit History/Limit History Evaluation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Record/Limit History/Limit History Evaluation.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/Trace History Evaluation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Record/Trace History/Trace History Evaluation.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/Final Testing.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/Final Testing.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/Inner Model Comparison.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/Inner Model Comparison.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/Outer Model Comparison.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/Outer Model Comparison.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,7 +103,7 @@
     "ai.playground.ignore.import.keys.banner.in.settings": "true",
     "database.data.extractors.current.export.id": "Excel (xlsx)",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/yqn1e23/PycharmProjects/COMP3200_Individual_Project/Report Preparation/Hyperparameter/Parameter Comparison",
+    "last_opened_file_path": "C:/Users/yqn1e23/PycharmProjects/COMP3200_Individual_Project/Report Preparation/Result and Discussion/Final Testing",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -164,18 +115,18 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Report Preparation\Result and Discussion\Final Testing" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Report Preparation\Hyperparameter\Parameter Comparison" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Test\ABC_Model" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Pipeline\Data" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Trace\ABC Convergence Trace (Parameter)" />
-      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Trace\ABC Convergence Trace (Trial Limits)" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Report Preparation\Result and Discussion\Final Testing" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Pipeline\Data" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Storage\Record\Trace History" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Storage\Record\Algo History" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Storage\Record\Limit History" />
-      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Storage\Record" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -299,15 +250,7 @@
       <workItem from="1776213111706" duration="14752000" />
       <workItem from="1776299003161" duration="22334000" />
       <workItem from="1776678767335" duration="1312000" />
-      <workItem from="1776680108857" duration="8091000" />
-    </task>
-    <task id="LOCAL-00062" summary="ABC_RELM_TEST_RESULT">
-      <option name="closed" value="true" />
-      <created>1773813327993</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1773813327993</updated>
+      <workItem from="1776680108857" duration="8564000" />
     </task>
     <task id="LOCAL-00063" summary="ABC_RELM_TEST_RESULT">
       <option name="closed" value="true" />
@@ -693,7 +636,15 @@
       <option name="project" value="LOCAL" />
       <updated>1776686807140</updated>
     </task>
-    <option name="localTasksCounter" value="111" />
+    <task id="LOCAL-00111" summary="Trace Plotting">
+      <option name="closed" value="true" />
+      <created>1776690423604</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1776690423604</updated>
+    </task>
+    <option name="localTasksCounter" value="112" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -711,7 +662,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="...Modifying Trace" />
     <MESSAGE value="Need to run trace" />
     <MESSAGE value="Need to run trace (Modify code)" />
     <MESSAGE value="run trace" />
@@ -736,7 +686,8 @@
     <MESSAGE value="ELM and Scaled Testing" />
     <MESSAGE value="Test ABC ELM" />
     <MESSAGE value="Test ABC RELM CV" />
-    <option name="LAST_COMMIT_MESSAGE" value="Test ABC RELM CV" />
+    <MESSAGE value="Trace Plotting" />
+    <option name="LAST_COMMIT_MESSAGE" value="Trace Plotting" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$ArtificialBeeColonyElmCVEnsemble.coverage" NAME="ArtificialBeeColonyElmCVEnsemble Coverage Results" MODIFIED="1773795158205" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Algorithm" />
