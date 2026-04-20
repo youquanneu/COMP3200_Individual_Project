@@ -72,7 +72,7 @@ class Plotting:
         os.makedirs(sub_dir_path, exist_ok=True)
 
         file_path = os.path.join(sub_dir_path, f"{safe_filename}_{fitness_metric}.png")
-        plt.savefig(file_path, dpi=300, bbox_inches='tight', facecolor=fig.get_facecolor())
+        plt.savefig(file_path, dpi=450, bbox_inches='tight', facecolor=fig.get_facecolor())
         print(f"[I/O Trace] Figure exported successfully: {file_path}")
 
     @classmethod
@@ -347,8 +347,7 @@ class Plotting:
                                  conv_y_lim: tuple = (0, 1),
                                  scout_y_lim: tuple = (0, 10),
                                  global_title: str = "ABC Performance Comparison across Configurations",
-                                 is_final_record: bool = False,
-                                 expr_name: str = "Trace Result"):
+                                 is_final_record: bool = False):
         """
         Takes exactly 4 DataFrames and plots them in a 2x2 grid using Nested GridSpec.
         """
@@ -359,7 +358,7 @@ class Plotting:
 
         with cls._style_context():
             # [1] 创建主画布
-            fig = plt.figure(figsize=(16, 12), dpi=250)
+            fig = plt.figure(figsize=(16, 12), dpi=450)
 
             # [2] 定义外部 2x2 网格 (控制四个实验之间的间距)
             outer_grid = fig.add_gridspec(2, 2, wspace=0.05, hspace=0.15)
@@ -476,10 +475,10 @@ class Plotting:
 
             if is_final_record:
                 cls._save_figure(
-                    fig=fig,
-                    prefix="Report Figure",
-                    experiment_name=expr_name,
-                    fitness_metric=f"{metric_name}_GridPanel"
+                    fig     = fig,
+                    prefix  = "Report Figure",
+                    experiment_name = global_title,
+                    fitness_metric  = f""
                 )
 
             plt.show()
@@ -489,8 +488,7 @@ class Plotting:
                                  conv_y_lim: tuple = (0, 1),
                                  scout_y_lim: tuple = (0, 10),
                                  global_title: str = "Ablation Study on Solution Size and Max Iterations",
-                                 is_final_record: bool = False,
-                                 expr_name: str = "Trace Result"):
+                                 is_final_record: bool = False):
         """
         Takes exactly 6 DataFrames and plots them in a 3x2 grid using Nested GridSpec.
         """
@@ -501,7 +499,7 @@ class Plotting:
 
         with cls._style_context():
             # [1] 创建主画布 (高度增加到18，以容纳3行)
-            fig = plt.figure(figsize=(16, 18), dpi=150)
+            fig = plt.figure(figsize=(16, 18), dpi=450)
 
             # [2] 定义外部 3x2 网格 (3行，2列)
             outer_grid = fig.add_gridspec(3, 2, wspace=0.05, hspace=0.15)
@@ -626,8 +624,8 @@ class Plotting:
                 cls._save_figure(
                     fig=fig,
                     prefix="Report Figure",
-                    experiment_name= expr_name,
-                    fitness_metric=f"{metric_name}_Panel"
+                    experiment_name= global_title,
+                    fitness_metric=f""
                 )
 
             plt.show()
@@ -800,7 +798,7 @@ class Plotting:
                     fig=fig,
                     prefix="Report Figure",
                     experiment_name=global_title,
-                    fitness_metric=f"{metric_name}_Panel")
+                    fitness_metric=f"")
             plt.show()
 
     @classmethod
@@ -861,9 +859,9 @@ class Plotting:
             if is_final_record:
                 cls._save_figure(
                     fig=fig,
-                    prefix="Tracing Figure",
+                    prefix="Report Figure",
                     experiment_name=title,
-                    fitness_metric="Dual_Subplot"
+                    fitness_metric=""
                 )
             plt.show()
 
@@ -916,10 +914,10 @@ class Plotting:
 
             if is_final_record:
                 cls._save_figure(
-                    fig=fig,
-                    prefix="Tracing Figure",
-                    experiment_name=title,
-                    fitness_metric="Dual_Subplot"
+                    fig             = fig,
+                    prefix          = "Report Figure",
+                    experiment_name = title,
+                    fitness_metric  = ""
                 )
             plt.show()
     @classmethod
@@ -928,9 +926,8 @@ class Plotting:
                                        sn_range     : tuple = (10, 250),
                                        mi_range     : tuple = (50, 1000),
                                        gf_sigma     : float = 0.6,
-                                       global_title : str   = "Ablation Diagnostic Panel: Empirical vs. Topological Manifold",
-                                       is_final_record: bool = False,
-                                       expr_name    : str   = "SN_MI_Diagnostic_1x2_Panel"):
+                                       global_title : str   = "Diagnostic Panel: Raw Value vs. Gaussian Smooth",
+                                       is_final_record: bool = False):
         plot_df = df.copy()
 
         # [1] ROI Constraint
@@ -964,7 +961,7 @@ class Plotting:
         with cls._style_context():
             # [5] 1x3 Grid Architecture: Left (1) : Right (1) : Colorbar (0.04)
             # 引入独立的色阶坐标轴，彻底解决 square=True 导致的大小不一致问题
-            fig, axes = plt.subplots(1, 3, figsize=(15, 8), dpi=250,
+            fig, axes = plt.subplots(1, 3, figsize=(15, 8), dpi=450,
                                      gridspec_kw={'width_ratios': [1, 1, 0.04], 'wspace': 0.05})
 
             val_min = raw_df.min().min()
@@ -1011,9 +1008,9 @@ class Plotting:
             if is_final_record:
                 cls._save_figure(
                     fig=fig,
-                    prefix="Diagnostic_Panel",
-                    experiment_name=expr_name,
-                    fitness_metric="1x2_Empirical_vs_Smoothed"
+                    prefix="Report Figure",
+                    experiment_name=global_title,
+                    fitness_metric=""
                 )
             plt.subplots_adjust(top=1, bottom=0.15)
             plt.show()
@@ -1024,9 +1021,8 @@ class Plotting:
                                          sn_range: tuple = (10, 250),
                                          mi_range: tuple = (50, 1000),
                                          gf_sigma: float = 0.6,
-                                         title: str = "Residual Diagnostic Heatmap: Deviation from Gaussian Manifold",
-                                         is_final_record: bool = False,
-                                         expr_name: str = "SN_MI_Residual_Analysis"):
+                                         title: str = "Residual Diagnostic Heatmap: Difference of Gaussian",
+                                         is_final_record: bool = False):
         """
         Calculates and plots the residual matrix (Raw - Smoothed) to isolate
         stochastic noise from the underlying deterministic manifold.
@@ -1062,7 +1058,7 @@ class Plotting:
         residual_df = residual_df.sort_index(ascending=False)
 
         with cls._style_context():
-            fig, ax = plt.subplots(figsize=(10, 8), dpi=200)
+            fig, ax = plt.subplots(figsize=(10, 8), dpi=450)
 
             # [4] Rendering: Diverging Colormap centered at zero
             # 核心修复：使用 np.nanmin 和 np.nanmax 绕过 NaN 值，防止色阶 limit 计算崩溃
@@ -1085,6 +1081,7 @@ class Plotting:
             plt.tight_layout()
 
             if is_final_record:
-                cls._save_figure(fig=fig, prefix="Ablation Heatmap",
-                                 experiment_name=expr_name, fitness_metric="Residual_Matrix_CoolWarm")
+                cls._save_figure(fig=fig, prefix="Report Figure",
+                                 experiment_name=title,
+                                 fitness_metric="")
             plt.show()
