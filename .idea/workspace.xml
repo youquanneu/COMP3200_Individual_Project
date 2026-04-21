@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Correct SVC to linear SVC">
-      <change beforePath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/Final Testing.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/Final Testing.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Report Figure/Bayesian_Summary_Bayesian_Summary_MCC.png" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Figure/Report Figure/Bayesian_Summary_Bayesian_Summary_MCC.png" afterDir="false" />
-    </list>
+    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Correct SVC to linear SVC" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -70,46 +67,46 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Python.ABC_ELM.executor&quot;: &quot;Run&quot;,
-    &quot;Python.ABC_ELM2.executor&quot;: &quot;Run&quot;,
-    &quot;Python.ABC_Testing.executor&quot;: &quot;Run&quot;,
-    &quot;Python.ArtificialBeeColonyElm.executor&quot;: &quot;Run&quot;,
-    &quot;Python.ArtificialBeeColonyElmCV.executor&quot;: &quot;Run&quot;,
-    &quot;Python.ArtificialBeeColonyElmCVEnsemble.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.ArtificialBeeColonyElmCVEnsembleRectifyVersion.executor&quot;: &quot;Run&quot;,
-    &quot;Python.BayesianAnalysis.executor&quot;: &quot;Run&quot;,
-    &quot;Python.CrossValidationDataSplit.executor&quot;: &quot;Run&quot;,
-    &quot;Python.DataSplit.executor&quot;: &quot;Run&quot;,
-    &quot;Python.EvaluationABCELM.executor&quot;: &quot;Run&quot;,
-    &quot;Python.EvaluationELM.executor&quot;: &quot;Run&quot;,
-    &quot;Python.EvaluationMatrix.executor&quot;: &quot;Run&quot;,
-    &quot;Python.ExtremeLearningMachine.executor&quot;: &quot;Run&quot;,
-    &quot;Python.ExtremeLearningMachineCVEnsemble.executor&quot;: &quot;Run&quot;,
-    &quot;Python.GallstoneDataSet.executor&quot;: &quot;Run&quot;,
-    &quot;Python.GlobalSetting.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Plotting.executor&quot;: &quot;Run&quot;,
-    &quot;Python.sdf.executor&quot;: &quot;Run&quot;,
-    &quot;Python.teest.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;ai.playground.ignore.import.keys.banner.in.settings&quot;: &quot;true&quot;,
-    &quot;database.data.extractors.current.export.id&quot;: &quot;Excel (xlsx)&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/yqn1e23/PycharmProjects/COMP3200_Individual_Project/Report Preparation/Result and Discussion/Final Testing&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;jupyter.general.settings&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.ABC_ELM.executor": "Run",
+    "Python.ABC_ELM2.executor": "Run",
+    "Python.ABC_Testing.executor": "Run",
+    "Python.ArtificialBeeColonyElm.executor": "Run",
+    "Python.ArtificialBeeColonyElmCV.executor": "Run",
+    "Python.ArtificialBeeColonyElmCVEnsemble.executor": "Debug",
+    "Python.ArtificialBeeColonyElmCVEnsembleRectifyVersion.executor": "Run",
+    "Python.BayesianAnalysis.executor": "Run",
+    "Python.CrossValidationDataSplit.executor": "Run",
+    "Python.DataSplit.executor": "Run",
+    "Python.EvaluationABCELM.executor": "Run",
+    "Python.EvaluationELM.executor": "Run",
+    "Python.EvaluationMatrix.executor": "Run",
+    "Python.ExtremeLearningMachine.executor": "Run",
+    "Python.ExtremeLearningMachineCVEnsemble.executor": "Run",
+    "Python.GallstoneDataSet.executor": "Run",
+    "Python.GlobalSetting.executor": "Run",
+    "Python.Plotting.executor": "Run",
+    "Python.sdf.executor": "Run",
+    "Python.teest.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "ai.playground.ignore.import.keys.banner.in.settings": "true",
+    "database.data.extractors.current.export.id": "Excel (xlsx)",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/yqn1e23/PycharmProjects/COMP3200_Individual_Project/Documentation/Final Report/SubDraft",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "jupyter.general.settings",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Report Preparation\Result and Discussion\Final Testing" />
@@ -252,6 +249,7 @@
       <workItem from="1776733417077" duration="161000" />
       <workItem from="1776733828248" duration="11106000" />
       <workItem from="1776770584441" duration="347000" />
+      <workItem from="1776780514387" duration="1325000" />
     </task>
     <task id="LOCAL-00065" summary="modifying">
       <option name="closed" value="true" />
