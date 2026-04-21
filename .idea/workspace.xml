@@ -5,18 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Correct SVC to linear SVC">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Global/Plotting.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Global/Plotting.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/Final Testing.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/Final Testing.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/Inner Model Comparison.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/Inner Model Comparison.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/Outer Model Comparison.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/Outer Model Comparison.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Storage/Figure/Report Figure/Bayesian_Summary_Bayesian_Summary_MCC.png" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Figure/Report Figure/Bayesian_Summary_Bayesian_Summary_MCC.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Report Figure/Diagnostic_Panel_Raw_Value_vs._Gaussian_Smooth_.png" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Figure/Report Figure/Diagnostic_Panel_Raw_Value_vs._Gaussian_Smooth_.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Report Figure/Performance_Analysis_against_Standard_Baselines_.png" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Figure/Report Figure/Performance_Analysis_against_Standard_Baselines_.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Report Figure/Performance_Analysis_within_the_ELM_and_ABC_Algorithmic_Family_.png" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Figure/Report Figure/Performance_Analysis_within_the_ELM_and_ABC_Algorithmic_Family_.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Record/Algo History/Algo History Evaluation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Record/Algo History/Algo History Evaluation.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Record/Limit History/Limit History Evaluation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Record/Limit History/Limit History Evaluation.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/Trace History Evaluation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Record/Trace History/Trace History Evaluation.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -261,6 +251,7 @@
       <workItem from="1776693279588" duration="1551000" />
       <workItem from="1776733417077" duration="161000" />
       <workItem from="1776733828248" duration="11106000" />
+      <workItem from="1776770584441" duration="347000" />
     </task>
     <task id="LOCAL-00065" summary="modifying">
       <option name="closed" value="true" />
