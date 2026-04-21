@@ -961,7 +961,7 @@ class Plotting:
         with cls._style_context():
             # [5] 1x3 Grid Architecture: Left (1) : Right (1) : Colorbar (0.04)
             # 引入独立的色阶坐标轴，彻底解决 square=True 导致的大小不一致问题
-            fig, axes = plt.subplots(1, 3, figsize=(15, 8), dpi=450,
+            fig, axes = plt.subplots(1, 3, figsize=(15, 7), dpi=450,
                                      gridspec_kw={'width_ratios': [1, 1, 0.04], 'wspace': 0.05})
 
             val_min = raw_df.min().min()

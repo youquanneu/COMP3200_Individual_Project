@@ -4,9 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Plotting Results">
+    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Correct SVC to linear SVC">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipeline/Global/Plotting.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Global/Plotting.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/Final Testing.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/Final Testing.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/Inner Model Comparison.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/Inner Model Comparison.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/Outer Model Comparison.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/Outer Model Comparison.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Figure/Report Figure/Bayesian_Summary_Bayesian_Summary_MCC.png" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Figure/Report Figure/Bayesian_Summary_Bayesian_Summary_MCC.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Figure/Report Figure/Diagnostic_Panel_Raw_Value_vs._Gaussian_Smooth_.png" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Figure/Report Figure/Diagnostic_Panel_Raw_Value_vs._Gaussian_Smooth_.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Figure/Report Figure/Performance_Analysis_against_Standard_Baselines_.png" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Figure/Report Figure/Performance_Analysis_against_Standard_Baselines_.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Figure/Report Figure/Performance_Analysis_within_the_ELM_and_ABC_Algorithmic_Family_.png" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Figure/Report Figure/Performance_Analysis_within_the_ELM_and_ABC_Algorithmic_Family_.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Algo History/Algo History Evaluation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Record/Algo History/Algo History Evaluation.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Limit History/Limit History Evaluation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Record/Limit History/Limit History Evaluation.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/Trace History/Trace History Evaluation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Record/Trace History/Trace History Evaluation.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -248,15 +258,9 @@
       <workItem from="1776299003161" duration="22334000" />
       <workItem from="1776678767335" duration="1312000" />
       <workItem from="1776680108857" duration="8564000" />
-      <workItem from="1776693279588" duration="623000" />
-    </task>
-    <task id="LOCAL-00064" summary="ABC_RELM_TEST_RESULT">
-      <option name="closed" value="true" />
-      <created>1773813365650</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1773813365650</updated>
+      <workItem from="1776693279588" duration="1551000" />
+      <workItem from="1776733417077" duration="161000" />
+      <workItem from="1776733828248" duration="11106000" />
     </task>
     <task id="LOCAL-00065" summary="modifying">
       <option name="closed" value="true" />
@@ -642,7 +646,15 @@
       <option name="project" value="LOCAL" />
       <updated>1776693514553</updated>
     </task>
-    <option name="localTasksCounter" value="113" />
+    <task id="LOCAL-00113" summary="Correct SVC to linear SVC">
+      <option name="closed" value="true" />
+      <created>1776693999763</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1776693999763</updated>
+    </task>
+    <option name="localTasksCounter" value="114" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -660,7 +672,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Need to run trace (Modify code)" />
     <MESSAGE value="run trace" />
     <MESSAGE value="modify trace method" />
     <MESSAGE value="modify trace method rectify parameter" />
@@ -685,7 +696,8 @@
     <MESSAGE value="Test ABC RELM CV" />
     <MESSAGE value="Trace Plotting" />
     <MESSAGE value="Plotting Results" />
-    <option name="LAST_COMMIT_MESSAGE" value="Plotting Results" />
+    <MESSAGE value="Correct SVC to linear SVC" />
+    <option name="LAST_COMMIT_MESSAGE" value="Correct SVC to linear SVC" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$ArtificialBeeColonyElmCVEnsemble.coverage" NAME="ArtificialBeeColonyElmCVEnsemble Coverage Results" MODIFIED="1773795158205" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Algorithm" />
