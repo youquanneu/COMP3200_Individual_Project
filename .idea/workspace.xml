@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Correct SVC to linear SVC">
+    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Add ABC RELM to bayesian">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/Final Testing.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/Final Testing.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Report Figure/Bayesian_Summary_Bayesian_Summary_MCC.png" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Figure/Report Figure/Bayesian_Summary_Bayesian_Summary_MCC.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -255,15 +253,7 @@
       <workItem from="1776770584441" duration="347000" />
       <workItem from="1776780514387" duration="1325000" />
       <workItem from="1776855047219" duration="218000" />
-      <workItem from="1776855284500" duration="3773000" />
-    </task>
-    <task id="LOCAL-00065" summary="modifying">
-      <option name="closed" value="true" />
-      <created>1773900617651</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1773900617652</updated>
+      <workItem from="1776855284500" duration="5143000" />
     </task>
     <task id="LOCAL-00066" summary="modifying">
       <option name="closed" value="true" />
@@ -649,7 +639,15 @@
       <option name="project" value="LOCAL" />
       <updated>1776693999763</updated>
     </task>
-    <option name="localTasksCounter" value="114" />
+    <task id="LOCAL-00114" summary="Add ABC RELM to bayesian">
+      <option name="closed" value="true" />
+      <created>1776863428017</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1776863428017</updated>
+    </task>
+    <option name="localTasksCounter" value="115" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -667,7 +665,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="run trace" />
     <MESSAGE value="modify trace method" />
     <MESSAGE value="modify trace method rectify parameter" />
     <MESSAGE value="Prevent 0 in probability" />
@@ -692,7 +689,8 @@
     <MESSAGE value="Trace Plotting" />
     <MESSAGE value="Plotting Results" />
     <MESSAGE value="Correct SVC to linear SVC" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correct SVC to linear SVC" />
+    <MESSAGE value="Add ABC RELM to bayesian" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add ABC RELM to bayesian" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$ArtificialBeeColonyElmCVEnsemble.coverage" NAME="ArtificialBeeColonyElmCVEnsemble Coverage Results" MODIFIED="1773795158205" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Algorithm" />
