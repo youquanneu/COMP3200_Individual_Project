@@ -27,7 +27,7 @@ class GallstoneDataSet:
         self.y = df[self.target_col]
     def fetch_cleaned_data_path(self):
         self.__init__()
-        self.file_path = '../../Storage/Dataset/Cleaned_Gallstone_Dataset_FE.csv'
+        self.file_path = '../../Storage/Dataset/Cleaned_Gallstone_Dataset.csv'
         self.target_col = ['Gallstone Status']
         self.apply_data()
 
