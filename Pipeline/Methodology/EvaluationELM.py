@@ -1,6 +1,7 @@
 import logging
 import math
 
+import numpy as np
 import pandas as pd
 
 from Pipeline.Global.GallstoneDataSet import GallstoneDataSet
@@ -208,3 +209,41 @@ class EvaluationELM:
         adjusted_score = dataframe[mean_col] - (punish_coefficient * dataframe[sem_col].fillna(fallback_penalty))
 
         return dataframe.assign(rank_score=adjusted_score).nlargest(top_k, columns='rank_score')
+    @staticmethod
+    def evaluate_configurations_lcb(df: pd.DataFrame,
+                                    metric_name: str = GlobalSetting.evaluation_function) -> pd.DataFrame:
+
+        punish_coefficient = GlobalSetting.seed_punish_coe
+
+        df_fold_agg = df.groupby(['Hidden_Nodes', 'Lambda_Value', 'ELM_Seed'], as_index=False).agg(
+            Fold_Mean=(metric_name, 'mean'),
+            Fold_Std=(metric_name, 'std')
+        ).fillna(0)
+
+        df_fold_agg['Fold_LCB'] = df_fold_agg['Fold_Mean'] - GlobalSetting.cv_punish_coe * df_fold_agg['Fold_Std']
+
+        df_seed_agg = df_fold_agg.groupby(['Hidden_Nodes', 'Lambda_Value'], as_index=False).agg(
+            n_seeds=('Fold_LCB', 'count'),
+            LCB_Mean=('Fold_LCB', 'mean'),
+            LCB_Std=('Fold_LCB', 'std')
+        ).fillna(0)
+
+        df_seed_agg['LCB_SEM'] = np.where(
+            df_seed_agg['n_seeds'] > 1,
+            df_seed_agg['LCB_Std'] / np.sqrt(df_seed_agg['n_seeds']),
+            0.0
+        )
+
+        df_seed_agg[f'{metric_name}_Final_LCB'] = (
+                df_seed_agg['LCB_Mean'] - (punish_coefficient * df_seed_agg['LCB_SEM'])
+        )
+
+        result_df = df_seed_agg[[
+            'Hidden_Nodes', 'Lambda_Value', 'n_seeds', 'LCB_Mean', 'LCB_Std', 'LCB_SEM', f'{metric_name}_Final_LCB'
+        ]].rename(columns={
+            'LCB_Mean': f'{metric_name}_Fold_LCB_Mean',
+            'LCB_Std': f'{metric_name}_Fold_LCB_Std',
+            'LCB_SEM': f'{metric_name}_Fold_LCB_SEM'
+        })
+
+        return result_df
