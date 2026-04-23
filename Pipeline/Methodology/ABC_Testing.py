@@ -347,8 +347,10 @@ def lcb_trace_evaluation(folder_path: str,
             Scout_Triggers          = ('Scout_Triggers', 'mean')
         ).fillna(0)
 
-        df_seed_agg['Train_LCB'] = df_seed_agg['Train_Fit_Mean_by_Fold'] - df_seed_agg['Train_Fit_Std_by_Fold']
-        df_seed_agg['Val_LCB']   = df_seed_agg['Val_Fit_Mean_by_Fold']   - df_seed_agg['Val_Fit_Std_by_Fold']
+        fold_coe = GlobalSetting.cv_punish_coe
+
+        df_seed_agg['Train_LCB'] = df_seed_agg['Train_Fit_Mean_by_Fold'] - fold_coe * df_seed_agg['Train_Fit_Std_by_Fold']
+        df_seed_agg['Val_LCB']   = df_seed_agg['Val_Fit_Mean_by_Fold']   - fold_coe * df_seed_agg['Val_Fit_Std_by_Fold']
         def aggregate_seeds(group):
             n_seeds = len(group)
 
