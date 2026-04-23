@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
 import pandas as pd
-from matplotlib.ticker import MaxNLocator
+from matplotlib.ticker import MaxNLocator, MultipleLocator, FuncFormatter
 from scipy.ndimage import gaussian_filter
 
 from Pipeline.Global.GlobalSetting import GlobalSetting
@@ -1084,4 +1084,153 @@ class Plotting:
                 cls._save_figure(fig=fig, prefix="Report Figure",
                                  experiment_name=title,
                                  fitness_metric="")
+            plt.show()
+
+    @classmethod
+    def plot_RELM_hyperparam(cls, df: pd.DataFrame,
+                             metric_name: str = 'MCC_Final_LCB',
+                             title:       str = "RELM Hyperparameter Trend",
+                             is_final_record: bool = False):
+
+        agg_df = df.groupby(['Lambda_Value', 'Hidden_Nodes'], as_index=False)[metric_name].mean()
+
+        zero_anchor = -50
+
+        agg_df['Lambda_Log'] = agg_df['Lambda_Value'].apply(
+            lambda x: zero_anchor if x <= 0 else np.log(x) / np.log(np.sqrt(2))
+        )
+
+        agg_df['Hidden_Nodes'] = agg_df['Hidden_Nodes'].astype(int)
+        agg_df = agg_df.sort_values(by=['Hidden_Nodes', 'Lambda_Log'])
+        agg_df['Hidden_Nodes_Str'] = agg_df['Hidden_Nodes'].astype(str) + " Nodes"
+
+        nodes_order = agg_df[['Hidden_Nodes', 'Hidden_Nodes_Str']].drop_duplicates()['Hidden_Nodes_Str'].tolist()
+
+        best_idx = agg_df[metric_name].idxmax()
+        best_row = agg_df.loc[best_idx]
+        best_nodes_str = best_row['Hidden_Nodes_Str']
+        best_lambda_log = best_row['Lambda_Log']
+        best_score = best_row[metric_name]
+
+        best_lambda_tex = r"$\sqrt{2}^{%g}$" % best_lambda_log
+
+        with cls._style_context():
+            fig, ax = plt.subplots(figsize=(10, 7), dpi=450)
+
+            sns.lineplot(
+                data=agg_df,
+                x='Lambda_Log',
+                y=metric_name,
+                hue='Hidden_Nodes_Str',
+                hue_order=nodes_order,
+                palette='viridis',
+                linewidth=2.0,
+                alpha=0.9,
+                ax=ax
+            )
+
+            ax.scatter([best_lambda_log], [best_score], color='#CC0000', s=20, zorder=10)
+
+            if 0 in df['Lambda_Value'].values:
+                ax.axvline(x=zero_anchor, color='#CCCCCC', linestyle='--', zorder=0)
+
+            ax.set_title(title, fontweight='bold', fontsize=15, pad=15)
+            ax.set_xlabel(r"Regularization Penalty ($\lambda$)", fontweight='bold', fontsize=12)
+            ax.set_ylabel(f"MCC (LCB)", fontweight='bold', fontsize=12)
+
+            x_min_limit = -50
+            x_max_limit = agg_df['Lambda_Log'].max()
+            ax.set_xlim(x_min_limit, x_max_limit)
+
+            def lambda_tick_formatter(x,pos):
+                return r"$\sqrt{2}^{%g}$" % x
+
+            ax.xaxis.set_major_locator(MultipleLocator(10))
+            ax.xaxis.set_major_formatter(FuncFormatter(lambda_tick_formatter))
+
+            ax.legend(title="", loc='upper left', bbox_to_anchor=(0.08, -0.15),
+                      ncol=3, frameon=False, fontsize=11)
+
+            opt_text = (f"Optimal Configurations\n"
+                        f"Nodes ($\lambda$): {best_nodes_str}({best_lambda_tex})\n"
+                        f"Score: {best_score:.4f}")
+
+            props = dict(boxstyle='square,pad=1', facecolor='white', edgecolor='#AAAAAA', alpha=0.3)
+
+            ax.text(0.95, -0.15, opt_text, transform=ax.transAxes,
+                    fontsize=9, color='#333333',
+                    ha='right', va='top',
+                    multialignment='left',
+                    bbox=props)
+
+            plt.subplots_adjust(bottom=0.32, right=0.95)
+
+            if is_final_record:
+                cls._save_figure(fig=fig, prefix="Report Figure",
+                                 experiment_name=title,
+                                 fitness_metric="")
+            plt.show()
+
+    @classmethod
+    def plot_elm_hidden_nodes(cls, df: pd.DataFrame,
+                              metric_name: str = 'MCC_Final_LCB',
+                              title: str ="ELM Hyperparameter Trend",
+                              is_final_record: bool = False):
+
+        main_title = title if title else f"Model Sensitivity: {metric_name}"
+
+        agg_df = df.groupby('Hidden_Nodes', as_index=False)[metric_name].mean()
+        agg_df['Hidden_Nodes'] = agg_df['Hidden_Nodes'].astype(int)
+        agg_df = agg_df.sort_values(by='Hidden_Nodes')
+
+        best_idx = agg_df[metric_name].idxmax()
+        best_nodes = agg_df.loc[best_idx, 'Hidden_Nodes']
+        best_score = agg_df.loc[best_idx, metric_name]
+
+        with cls._style_context():
+            fig, ax = plt.subplots(figsize=(10, 6), dpi=450)
+
+            # [3] 渲染引擎
+            sns.lineplot(
+                data=agg_df,
+                x='Hidden_Nodes',
+                y=metric_name,
+                color='#2b83ba',
+                linewidth=2.0,
+                marker='o',
+                markersize=5,
+                ax=ax
+            )
+
+            x_max = agg_df['Hidden_Nodes'].max()
+            ax.set_xlim(0, x_max * 1.02)
+
+            _, current_y_max = ax.get_ylim()
+            ax.set_ylim(0, current_y_max * 1.05)
+
+            ax.plot([best_nodes, best_nodes], [0, best_score],
+                    color='#CC0000', linestyle='--', linewidth=1.2, alpha=0.7, zorder=1)
+
+            ax.set_title(main_title, fontweight='bold', fontsize=14, pad=10)
+            ax.set_xlabel("Number of Hidden Nodes", fontweight='bold', fontsize=11)
+            ax.set_ylabel("MCC (LCB)", fontweight='bold', fontsize=11)
+
+            ax.xaxis.set_major_locator(MultipleLocator(10))
+
+            opt_text = (f"Optimal Configurations\n"
+                        f"Nodes: {best_nodes}\n"
+                        f"Score: {best_score:.4f}")
+            props = dict(boxstyle='square,pad = 0.5', facecolor='white', edgecolor='#AAAAAA', alpha=0.3)
+
+            ax.text(0.98, -0.15, opt_text, transform=ax.transAxes,
+                    fontsize=9, color='#333333', ha='right', va='top',
+                    multialignment='left', bbox=props)
+
+            plt.subplots_adjust(bottom=0.25, right=0.95)
+
+            if is_final_record:
+                cls._save_figure(fig=fig, prefix="Report Figure",
+                                 experiment_name=title,
+                                 fitness_metric="")
+
             plt.show()

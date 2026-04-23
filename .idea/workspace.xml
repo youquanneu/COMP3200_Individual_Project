@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Add ABC RELM to bayesian">
+    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="ABC ELM testing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipeline/Global/Plotting.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Global/Plotting.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Record/ELM Trace/Plot ELM Tracing.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Record/ELM Trace/Plot ELM Tracing.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,18 +113,18 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Documentation\Final Report\SubDraft" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Report Preparation\Result and Discussion\Final Testing" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Report Preparation\Hyperparameter\Parameter Comparison" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Test\ABC_Model" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Pipeline\Data" />
-      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Trace\ABC Convergence Trace (Parameter)" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Storage\Record\ELM_Trace" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Report Preparation\Result and Discussion\Final Testing" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Pipeline\Data" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Storage\Record\Trace History" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Storage\Record\Algo History" />
-      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Storage\Record\Limit History" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -253,79 +255,8 @@
       <workItem from="1776770584441" duration="347000" />
       <workItem from="1776780514387" duration="1325000" />
       <workItem from="1776855047219" duration="218000" />
-      <workItem from="1776855284500" duration="5143000" />
-    </task>
-    <task id="LOCAL-00066" summary="modifying">
-      <option name="closed" value="true" />
-      <created>1773915506495</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1773915506496</updated>
-    </task>
-    <task id="LOCAL-00067" summary="still need of modifying">
-      <option name="closed" value="true" />
-      <created>1773974471361</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1773974471361</updated>
-    </task>
-    <task id="LOCAL-00068" summary="Some file crash by browser, need to rebuilt">
-      <option name="closed" value="true" />
-      <created>1774012435599</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1774012435599</updated>
-    </task>
-    <task id="LOCAL-00069" summary="...">
-      <option name="closed" value="true" />
-      <created>1774254674081</created>
-      <option name="number" value="00069" />
-      <option name="presentableId" value="LOCAL-00069" />
-      <option name="project" value="LOCAL" />
-      <updated>1774254674081</updated>
-    </task>
-    <task id="LOCAL-00070" summary="...">
-      <option name="closed" value="true" />
-      <created>1774270483340</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1774270483340</updated>
-    </task>
-    <task id="LOCAL-00071" summary="Things to be done: &#10;Simulation Annealing?&#10;Data processing again">
-      <option name="closed" value="true" />
-      <created>1774275300069</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1774275300069</updated>
-    </task>
-    <task id="LOCAL-00072" summary="Data processing again">
-      <option name="closed" value="true" />
-      <created>1774363507679</created>
-      <option name="number" value="00072" />
-      <option name="presentableId" value="LOCAL-00072" />
-      <option name="project" value="LOCAL" />
-      <updated>1774363507679</updated>
-    </task>
-    <task id="LOCAL-00073" summary="Testing Result">
-      <option name="closed" value="true" />
-      <created>1774435379598</created>
-      <option name="number" value="00073" />
-      <option name="presentableId" value="LOCAL-00073" />
-      <option name="project" value="LOCAL" />
-      <updated>1774435379598</updated>
-    </task>
-    <task id="LOCAL-00074" summary="...">
-      <option name="closed" value="true" />
-      <created>1774438089001</created>
-      <option name="number" value="00074" />
-      <option name="presentableId" value="LOCAL-00074" />
-      <option name="project" value="LOCAL" />
-      <updated>1774438089013</updated>
+      <workItem from="1776855284500" duration="5228000" />
+      <workItem from="1776905755050" duration="12980000" />
     </task>
     <task id="LOCAL-00075" summary="...">
       <option name="closed" value="true" />
@@ -647,7 +578,79 @@
       <option name="project" value="LOCAL" />
       <updated>1776863428017</updated>
     </task>
-    <option name="localTasksCounter" value="115" />
+    <task id="LOCAL-00115" summary="Update docx">
+      <option name="closed" value="true" />
+      <created>1776867401384</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1776867401384</updated>
+    </task>
+    <task id="LOCAL-00116" summary="......">
+      <option name="closed" value="true" />
+      <created>1776907325468</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1776907325468</updated>
+    </task>
+    <task id="LOCAL-00117" summary="Data for testing maybe wrong, rerun testing">
+      <option name="closed" value="true" />
+      <created>1776907434596</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1776907434596</updated>
+    </task>
+    <task id="LOCAL-00118" summary="Trace plotting of ELM and RELm">
+      <option name="closed" value="true" />
+      <created>1776909794118</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1776909794118</updated>
+    </task>
+    <task id="LOCAL-00119" summary="Rerun ELM family">
+      <option name="closed" value="true" />
+      <created>1776909973245</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1776909973245</updated>
+    </task>
+    <task id="LOCAL-00120" summary="Baseline scaled">
+      <option name="closed" value="true" />
+      <created>1776910822048</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1776910822048</updated>
+    </task>
+    <task id="LOCAL-00121" summary="Baseline unscaled">
+      <option name="closed" value="true" />
+      <created>1776913502999</created>
+      <option name="number" value="00121" />
+      <option name="presentableId" value="LOCAL-00121" />
+      <option name="project" value="LOCAL" />
+      <updated>1776913502999</updated>
+    </task>
+    <task id="LOCAL-00122" summary="ELM parameter tracing">
+      <option name="closed" value="true" />
+      <created>1776913570467</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
+      <option name="project" value="LOCAL" />
+      <updated>1776913570467</updated>
+    </task>
+    <task id="LOCAL-00123" summary="ABC ELM testing">
+      <option name="closed" value="true" />
+      <created>1776918945610</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
+      <option name="project" value="LOCAL" />
+      <updated>1776918945610</updated>
+    </task>
+    <option name="localTasksCounter" value="124" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -665,15 +668,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="modify trace method" />
-    <MESSAGE value="modify trace method rectify parameter" />
-    <MESSAGE value="Prevent 0 in probability" />
-    <MESSAGE value="Reruning" />
-    <MESSAGE value="Run trace" />
-    <MESSAGE value="Run trace." />
-    <MESSAGE value="Run trace.50SN" />
-    <MESSAGE value="Modify record" />
-    <MESSAGE value="record" />
     <MESSAGE value="restructure" />
     <MESSAGE value="Adjust plotting of trace history" />
     <MESSAGE value="Applies the Holm step-down method to dynamically correct P-values" />
@@ -690,7 +684,16 @@
     <MESSAGE value="Plotting Results" />
     <MESSAGE value="Correct SVC to linear SVC" />
     <MESSAGE value="Add ABC RELM to bayesian" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add ABC RELM to bayesian" />
+    <MESSAGE value="Update docx" />
+    <MESSAGE value="......" />
+    <MESSAGE value="Data for testing maybe wrong, rerun testing" />
+    <MESSAGE value="Trace plotting of ELM and RELm" />
+    <MESSAGE value="Rerun ELM family" />
+    <MESSAGE value="Baseline scaled" />
+    <MESSAGE value="Baseline unscaled" />
+    <MESSAGE value="ELM parameter tracing" />
+    <MESSAGE value="ABC ELM testing" />
+    <option name="LAST_COMMIT_MESSAGE" value="ABC ELM testing" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$ArtificialBeeColonyElmCVEnsemble.coverage" NAME="ArtificialBeeColonyElmCVEnsemble Coverage Results" MODIFIED="1773795158205" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Algorithm" />
@@ -714,7 +717,7 @@
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$ABC_Testing.coverage" NAME="ABC_Testing Coverage Results" MODIFIED="1775994075177" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Methodology" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$GlobalSetting.coverage" NAME="GlobalSetting Coverage Results" MODIFIED="1775053292381" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Global" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project_Restore$Plotting.coverage" NAME="Plotting Coverage Results" MODIFIED="1773843873262" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Global" />
-    <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$Plotting.coverage" NAME="Plotting Coverage Results" MODIFIED="1776689053875" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Global" />
+    <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$Plotting.coverage" NAME="Plotting Coverage Results" MODIFIED="1776914281931" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Global" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$sdf.coverage" NAME="sdf Coverage Results" MODIFIED="1770799329042" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Model" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project_Restore$ArtificialBeeColonyElmCV.coverage" NAME="ArtificialBeeColonyElmCV Coverage Results" MODIFIED="1773919955865" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Algorithm" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$ExtremeLearningMachine.coverage" NAME="ExtremeLearningMachine Coverage Results" MODIFIED="1775014112202" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Algorithm" />
