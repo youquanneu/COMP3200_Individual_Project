@@ -510,6 +510,9 @@ def get_test_result_summaries(model_dict,
         'F2-Score', 'Bal Accuracy'
     ]
 
+    def q25(x): return x.quantile(0.25)
+    def q75(x): return x.quantile(0.75)
+
     for model_name, path in model_dict.items():
         df = pd.read_csv(path)
         df = df.drop(columns=unused_column, errors='ignore')
@@ -520,7 +523,9 @@ def get_test_result_summaries(model_dict,
         grouped_s = numeric_df.groupby('Seed')
         seed_lcb = grouped_s[calc_cols].mean() - (GlobalSetting.cv_punish_coe * grouped_s[calc_cols].std())
 
-        s_summary = seed_lcb.agg(['mean', 'std']).unstack()
+        s_summary = seed_lcb.agg(['median', q25, q75]).unstack()
+        s_summary.index = s_summary.index.set_levels(['median', 'q25', 'q75'], level=1)
+
         s_flat = pd.DataFrame([s_summary.values],
                               columns=[f"{c}_{s}" for c, s in s_summary.index])
         s_flat.insert(0, 'model_name', model_name)
@@ -556,7 +561,7 @@ def get_test_result_summaries(model_dict,
 
     return df_stable, df_general
 
-def format_summaries_for_academic_report(df: pd.DataFrame, decimal_places: int = 4):
+def format_mean_summaries_for_academic_report(df: pd.DataFrame, decimal_places: int = 4):
     report_df = df.copy()
     mean_cols = [c for c in report_df.columns if c.endswith('_mean')]
 
@@ -574,6 +579,34 @@ def format_summaries_for_academic_report(df: pd.DataFrame, decimal_places: int =
             )
 
             report_df = report_df.drop(columns=[m_col, s_col])
+            report_df.insert(loc, base_name, formatted_series)
+
+    dir_cols = [c for c in report_df.columns if '_dir_' in c]
+    sig_map = {1.0: "+1", -1.0: "-1", 0.0: "0"}
+
+    for d_col in dir_cols:
+        report_df[d_col] = report_df[d_col].map(sig_map).fillna("N/A")
+
+    return report_df
+
+def format_median_summaries_for_academic_report(df: pd.DataFrame, decimal_places: int = 4):
+    report_df = df.copy()
+    median_cols = [c for c in report_df.columns if c.endswith('_median')]
+
+    for m_col in median_cols:
+        base_name = m_col.replace('_median', '')
+        q25_col = f"{base_name}_q25"
+        q75_col = f"{base_name}_q75"
+
+        if q25_col in report_df.columns and q75_col in report_df.columns:
+            loc = report_df.columns.get_loc(m_col)
+
+            formatted_series = report_df.apply(
+                lambda row: f"{row[m_col]:.{decimal_places}f} ({row[q75_col] - row[q25_col]:.{decimal_places}f})"
+                if pd.notna(row[m_col]) and pd.notna(row[q25_col]) and pd.notna(row[q75_col]) else "N/A",
+                axis=1
+            )
+            report_df = report_df.drop(columns=[m_col, q25_col, q75_col])
             report_df.insert(loc, base_name, formatted_series)
 
     dir_cols = [c for c in report_df.columns if '_dir_' in c]
