@@ -369,7 +369,7 @@ class Plotting:
             left_axes = []
 
             lcb_seed = rf"$\mathit{{LCB}}_r^{{(1)}}$"
-            lcb_model = rf"$\mathit{{LCB}}_{{Architecture}}^{{(2)}}$"
+            lcb_arch = rf"$\mathit{{LCB}}_{{Architecture}}^{{(2)}}$"
 
             for idx, df in enumerate(dfs):
                 experiment_name = df['expr_name'].iloc[0]
@@ -398,7 +398,7 @@ class Plotting:
                                        linewidth=1, linestyle='--', edgecolor='#1f77b4', zorder=2, label=f'Train {lcb_seed} SEM')
                 ax_metric.plot(iters, df[fold_train_lcb_mean], label=f'Train {lcb_seed} Mean', color='#1f77b4', linewidth=2.5,
                                zorder=3)
-                ax_metric.plot(iters, df[seed_train_lcb], label=f'Train {lcb_model}', color='#1f77b4', linewidth=1.5,
+                ax_metric.plot(iters, df[seed_train_lcb], label=f'Train {lcb_arch}', color='#1f77b4', linewidth=1.5,
                                linestyle=':', zorder=4)
 
                 ax_metric.fill_between(iters, df[fold_val_lcb_mean] - df[fold_val_lcb_std],
@@ -408,7 +408,7 @@ class Plotting:
                                        df[fold_val_lcb_mean] + df[fold_val_lcb_sem], color='#ff7f0e', alpha=0.25,
                                        linewidth=1, linestyle='--', edgecolor='#ff7f0e', zorder=2, label=f'Val {lcb_seed} SEM')
                 ax_metric.plot(iters, df[fold_val_lcb_mean], label=f'Val {lcb_seed} Mean', color='#ff7f0e', linewidth=2.5, zorder=3)
-                ax_metric.plot(iters, df[seed_val_lcb], label=f'Val {lcb_model}', color='#ff7f0e', linewidth=1.5,
+                ax_metric.plot(iters, df[seed_val_lcb], label=f'Val {lcb_arch}', color='#ff7f0e', linewidth=1.5,
                                linestyle=':', zorder=4)
 
                 # ==========================================
@@ -514,7 +514,7 @@ class Plotting:
             left_axes = []  # 收集最左侧的坐标轴用于对齐
 
             lcb_seed = rf"$\mathit{{LCB}}_r^{{(1)}}$"
-            lcb_model = rf"$\mathit{{LCB}}_{{Architecture}}^{{(2)}}$"
+            lcb_arch = rf"$\mathit{{LCB}}_{{Architecture}}^{{(2)}}$"
 
             for idx, df in enumerate(dfs):
                 experiment_name = df['expr_name'].iloc[0]
@@ -549,7 +549,7 @@ class Plotting:
                 ax_metric.plot(iters, df[fold_train_lcb_mean], label=f'Train {lcb_seed} Mean', color='#1f77b4',
                                linewidth=2.5,
                                zorder=3)
-                ax_metric.plot(iters, df[seed_train_lcb], label=f'Train {lcb_model}', color='#1f77b4', linewidth=1.5,
+                ax_metric.plot(iters, df[seed_train_lcb], label=f'Train {lcb_arch}', color='#1f77b4', linewidth=1.5,
                                linestyle=':', zorder=4)
 
                 ax_metric.fill_between(iters, df[fold_val_lcb_mean] - df[fold_val_lcb_std],
@@ -561,7 +561,7 @@ class Plotting:
                                        label=f'Val {lcb_seed} SEM')
                 ax_metric.plot(iters, df[fold_val_lcb_mean], label=f'Val {lcb_seed} Mean', color='#ff7f0e',
                                linewidth=2.5, zorder=3)
-                ax_metric.plot(iters, df[seed_val_lcb], label=f'Val {lcb_model}', color='#ff7f0e', linewidth=1.5,
+                ax_metric.plot(iters, df[seed_val_lcb], label=f'Val {lcb_arch}', color='#ff7f0e', linewidth=1.5,
                                linestyle=':', zorder=4)
 
                 # ==========================================
@@ -821,7 +821,8 @@ class Plotting:
     def plot_ABC_algo_tracing(cls,
                               df: pd.DataFrame,
                               title: str = "ABC Algorithms Convergence Results : Train and Validation Floor",
-                              is_final_record: bool = False):
+                              is_final_record: bool = False,
+                              title_on = True):
 
         plot_df = df.copy()
         plot_df['Strategy'] = plot_df.apply(
@@ -836,7 +837,7 @@ class Plotting:
             "Employed bee: Algo 3\nOnlooker bee: Algo 2",
             "Employed bee: Algo 3\nOnlooker bee: Algo 3"
         ]
-
+        lcb_arch = rf"$\mathit{{LCB}}_{{Architecture}}^{{(2)}}$"
         with cls._style_context():
             fig, (ax_train, ax_val) = plt.subplots(nrows=2, ncols=1, figsize=(12, 9.6), dpi=450, sharex=True)
 
@@ -845,7 +846,7 @@ class Plotting:
             sns.swarmplot(data=plot_df, x='Strategy', y='train_MCC_trace_floor', ax=ax_train,
                           color=".25", size=5, alpha=0.7, order=algo_order)
 
-            cls._format_standard_axes(ax_train, xlabel='', ylabel='MCC Floor (Train)')
+            cls._format_standard_axes(ax_train, xlabel='', ylabel=rf"MCC ({lcb_arch})")
             ax_train.set_title("  (a) Training Convergence", loc='left',
                                fontstyle='italic', fontweight='normal', fontsize=13, color='#444444')
             ax_train.set_xlim(-0.5, len(algo_order) - 0.5)
@@ -857,7 +858,7 @@ class Plotting:
                           color=".25", size=5, alpha=0.7, order=algo_order)
 
             cls._format_standard_axes(ax_val, xlabel='ABC Algorithm Configurations',
-                                      ylabel='MCC Floor (Validation)')
+                                      ylabel=rf"MCC ({lcb_arch})")
             ax_val.set_title("  (b) Validation Convergence", loc='left',
                              fontstyle='italic', fontweight='normal', fontsize=13, color='#444444')
             ax_val.set_xlim(-0.5, len(algo_order) - 0.5)
@@ -865,7 +866,7 @@ class Plotting:
             sns.despine(ax=ax_val, left=False)
 
             # --- Layout Engine ---
-            if title:
+            if title and title_on:
                 fig.suptitle(title, fontsize=18, fontweight='bold', y=0.95)
 
             plt.tight_layout(rect=[0, 0, 1, 0.95])
@@ -885,7 +886,8 @@ class Plotting:
     def plot_ABC_limit_ratio_tracing(cls,
                                      df: pd.DataFrame,
                                      title: str = "ABC Limit Ratio Convergence Results : Train and Validation Floor",
-                                     is_final_record: bool = False):
+                                     is_final_record: bool = False,
+                                     title_on = True):
 
         plot_df = df.copy()
         plot_df['Strategy'] = plot_df['L/SN'].apply(lambda x: f"L/SN Ratio: {x:.1f}")
@@ -893,6 +895,7 @@ class Plotting:
         sorted_ratios = sorted(plot_df['L/SN'].unique())
         category_order = [f"L/SN Ratio: {r:.1f}" for r in sorted_ratios]
 
+        lcb_arch = rf"$\mathit{{LCB}}_{{Architecture}}^{{(2)}}$"
         with cls._style_context():
             fig, (ax_train, ax_val) = plt.subplots(nrows=2, ncols=1, figsize=(12, 9.6), dpi=450, sharex=True)
 
@@ -901,7 +904,7 @@ class Plotting:
             sns.swarmplot(data=plot_df, x='Strategy', y='train_MCC_trace_floor', ax=ax_train,
                           color=".25", size=5, alpha=0.7, order=category_order)
 
-            cls._format_standard_axes(ax_train, xlabel='', ylabel='MCC Floor (Train)')
+            cls._format_standard_axes(ax_train, xlabel='', ylabel=rf"MCC ({lcb_arch})")
             ax_train.set_title("  (a) Training Convergence", loc='left',
                                fontstyle='italic', fontweight='normal', fontsize=13, color='#444444')
             ax_train.set_xlim(-0.5, len(category_order) - 0.5)
@@ -913,7 +916,7 @@ class Plotting:
                           color=".25", size=5, alpha=0.7, order=category_order)
 
             cls._format_standard_axes(ax_val, xlabel='Trial Limit / Solution Size Ratio',
-                                      ylabel='MCC Floor (Validation)')
+                                      ylabel=rf"MCC ({lcb_arch})")
             ax_val.set_title("  (b) Validation Convergence", loc='left',
                              fontstyle='italic', fontweight='normal', fontsize=13, color='#444444')
             ax_val.set_xlim(-0.5, len(category_order) - 0.5)
@@ -921,7 +924,7 @@ class Plotting:
             sns.despine(ax=ax_val, left=False)
 
             # --- Layout Engine ---
-            if title:
+            if title and title_on:
                 fig.suptitle(title, fontsize=18, fontweight='bold', y=0.95)
 
             plt.tight_layout(rect=[0, 0, 1, 0.95])
