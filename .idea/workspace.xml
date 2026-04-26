@@ -4,25 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Plot ELM / RELM parameter">
+    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Upgrade graph plotting, ability of removing title">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/Best_Seed_Extraction.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/Best_Seed_Extraction.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/Final Testing.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/Final Testing.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipeline/Global/Plotting.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Global/Plotting.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/Inner Model Comparison.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/Inner Model Comparison.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/Monte_Carlo_MCC_impact.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/Monte_Carlo_MCC_impact.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/Outer Model Comparison.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/Outer Model Comparison.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/cleaned_ABC_ELM_Algo_3_2_80SN_120MI_Results.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/cleaned_ABC_ELM_Algo_3_2_80SN_120MI_Results.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/cleaned_ABC_RELM_Algo_3_2_80SN_120MI_Results.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/cleaned_ABC_RELM_Algo_3_2_80SN_120MI_Results.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/cleaned_ABC_RELM_CV_Algo_3_2_80SN_120MI_Results.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/cleaned_ABC_RELM_CV_Algo_3_2_80SN_120MI_Results.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/cleaned_ABC_RELM_CV_Ensemble_Algo_3_2_80SN_120MI_Results.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/cleaned_ABC_RELM_CV_Ensemble_Algo_3_2_80SN_120MI_Results.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/cleaned_ABC_RELM_Iter_Ensemble_Algo_3_2_80SN_120MI_Results.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/cleaned_ABC_RELM_Iter_Ensemble_Algo_3_2_80SN_120MI_Results.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/cleaned_Bagging_LRC_Results.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/cleaned_Bagging_LRC_Results.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/cleaned_Best_Hidden_Nodes_Results.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/cleaned_Best_Hidden_Nodes_Results.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/cleaned_Grid_Optimization_Results.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/cleaned_Grid_Optimization_Results.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/cleaned_LogReg_Classifier_Results.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/cleaned_LogReg_Classifier_Results.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/cleaned_MLP_Results.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/cleaned_MLP_Results.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/cleaned_RF_Results.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Report Preparation/Result and Discussion/Final Testing/cleaned_RF_Results.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Report Figure/Bayesian_Summary_Bayesian_Summary_MCC.png" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Figure/Report Figure/Bayesian_Summary_Bayesian_Summary_MCC.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Storage/Figure/Report Figure/Performance_Analysis_against_Standard_Baselines_.png" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Figure/Report Figure/Performance_Analysis_against_Standard_Baselines_.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Storage/Figure/Report Figure/Performance_Analysis_within_the_ELM_and_ABC_Algorithmic_Family_.png" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Figure/Report Figure/Performance_Analysis_within_the_ELM_and_ABC_Algorithmic_Family_.png" afterDir="false" />
     </list>
@@ -88,50 +75,50 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.ABC_ELM.executor": "Run",
-    "Python.ABC_ELM2.executor": "Run",
-    "Python.ABC_Testing.executor": "Run",
-    "Python.ArtificialBeeColonyElm.executor": "Run",
-    "Python.ArtificialBeeColonyElmCV.executor": "Run",
-    "Python.ArtificialBeeColonyElmCVEnsemble.executor": "Debug",
-    "Python.ArtificialBeeColonyElmCVEnsembleRectifyVersion.executor": "Run",
-    "Python.BayesianAnalysis.executor": "Run",
-    "Python.CrossValidationDataSplit.executor": "Run",
-    "Python.DataSplit.executor": "Run",
-    "Python.EvaluationABCELM.executor": "Run",
-    "Python.EvaluationELM.executor": "Run",
-    "Python.EvaluationMatrix.executor": "Run",
-    "Python.ExtremeLearningMachine.executor": "Run",
-    "Python.ExtremeLearningMachineCVEnsemble.executor": "Run",
-    "Python.GallstoneDataSet.executor": "Run",
-    "Python.GlobalSetting.executor": "Run",
-    "Python.Plotting.executor": "Run",
-    "Python.sdf.executor": "Run",
-    "Python.teest.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "ai.playground.ignore.import.keys.banner.in.settings": "true",
-    "database.data.extractors.current.export.id": "Excel (xlsx)",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/yqn1e23/PycharmProjects/COMP3200_Individual_Project/Report Preparation/Result and Discussion/Final Testing",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "jupyter.general.settings",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.ABC_ELM.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ABC_ELM2.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ABC_Testing.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ArtificialBeeColonyElm.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ArtificialBeeColonyElmCV.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ArtificialBeeColonyElmCVEnsemble.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.ArtificialBeeColonyElmCVEnsembleRectifyVersion.executor&quot;: &quot;Run&quot;,
+    &quot;Python.BayesianAnalysis.executor&quot;: &quot;Run&quot;,
+    &quot;Python.CrossValidationDataSplit.executor&quot;: &quot;Run&quot;,
+    &quot;Python.DataSplit.executor&quot;: &quot;Run&quot;,
+    &quot;Python.EvaluationABCELM.executor&quot;: &quot;Run&quot;,
+    &quot;Python.EvaluationELM.executor&quot;: &quot;Run&quot;,
+    &quot;Python.EvaluationMatrix.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ExtremeLearningMachine.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ExtremeLearningMachineCVEnsemble.executor&quot;: &quot;Run&quot;,
+    &quot;Python.GallstoneDataSet.executor&quot;: &quot;Run&quot;,
+    &quot;Python.GlobalSetting.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Plotting.executor&quot;: &quot;Run&quot;,
+    &quot;Python.sdf.executor&quot;: &quot;Run&quot;,
+    &quot;Python.teest.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;ai.playground.ignore.import.keys.banner.in.settings&quot;: &quot;true&quot;,
+    &quot;database.data.extractors.current.export.id&quot;: &quot;Excel (xlsx)&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/yqn1e23/PycharmProjects/COMP3200_Individual_Project/Documentation/Final Report/SubDraft&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;jupyter.general.settings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Report Preparation\Result and Discussion\Final Testing" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Documentation\Final Report\SubDraft" />
+      <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Report Preparation\Result and Discussion\Final Testing" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Report Preparation\Hyperparameter\Parameter Comparison" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Test\ABC_Model" />
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Pipeline\Data" />
@@ -273,55 +260,15 @@
       <workItem from="1776780514387" duration="1325000" />
       <workItem from="1776855047219" duration="218000" />
       <workItem from="1776855284500" duration="5228000" />
-      <workItem from="1776905755050" duration="14083000" />
-    </task>
-    <task id="LOCAL-00076" summary="...Modifying Trace">
-      <option name="closed" value="true" />
-      <created>1774510105690</created>
-      <option name="number" value="00076" />
-      <option name="presentableId" value="LOCAL-00076" />
-      <option name="project" value="LOCAL" />
-      <updated>1774510105690</updated>
-    </task>
-    <task id="LOCAL-00077" summary="Need to run trace">
-      <option name="closed" value="true" />
-      <created>1774526390523</created>
-      <option name="number" value="00077" />
-      <option name="presentableId" value="LOCAL-00077" />
-      <option name="project" value="LOCAL" />
-      <updated>1774526390523</updated>
-    </task>
-    <task id="LOCAL-00078" summary="Need to run trace (Modify code)">
-      <option name="closed" value="true" />
-      <created>1774526551850</created>
-      <option name="number" value="00078" />
-      <option name="presentableId" value="LOCAL-00078" />
-      <option name="project" value="LOCAL" />
-      <updated>1774526551850</updated>
-    </task>
-    <task id="LOCAL-00079" summary="run trace">
-      <option name="closed" value="true" />
-      <created>1774529029860</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
-      <option name="project" value="LOCAL" />
-      <updated>1774529029860</updated>
-    </task>
-    <task id="LOCAL-00080" summary="run trace">
-      <option name="closed" value="true" />
-      <created>1774529058240</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1774529058240</updated>
-    </task>
-    <task id="LOCAL-00081" summary="run trace">
-      <option name="closed" value="true" />
-      <created>1774529061296</created>
-      <option name="number" value="00081" />
-      <option name="presentableId" value="LOCAL-00081" />
-      <option name="project" value="LOCAL" />
-      <updated>1774529061296</updated>
+      <workItem from="1776905755050" duration="14220000" />
+      <workItem from="1776921678682" duration="12977000" />
+      <workItem from="1777038514537" duration="52000" />
+      <workItem from="1777094670350" duration="70000" />
+      <workItem from="1777102926147" duration="124000" />
+      <workItem from="1777116317285" duration="1970000" />
+      <workItem from="1777126394689" duration="584000" />
+      <workItem from="1777188014814" duration="2358000" />
+      <workItem from="1777190423339" duration="1014000" />
     </task>
     <task id="LOCAL-00082" summary="run trace">
       <option name="closed" value="true" />
@@ -667,7 +614,55 @@
       <option name="project" value="LOCAL" />
       <updated>1776919957806</updated>
     </task>
-    <option name="localTasksCounter" value="125" />
+    <task id="LOCAL-00125" summary="Refresh to new testing result">
+      <option name="closed" value="true" />
+      <created>1776920979506</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
+      <option name="project" value="LOCAL" />
+      <updated>1776920979506</updated>
+    </task>
+    <task id="LOCAL-00126" summary="Update report progress">
+      <option name="closed" value="true" />
+      <created>1777094714779</created>
+      <option name="number" value="00126" />
+      <option name="presentableId" value="LOCAL-00126" />
+      <option name="project" value="LOCAL" />
+      <updated>1777094714779</updated>
+    </task>
+    <task id="LOCAL-00127" summary="Update report progress">
+      <option name="closed" value="true" />
+      <created>1777102956891</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
+      <option name="project" value="LOCAL" />
+      <updated>1777102956891</updated>
+    </task>
+    <task id="LOCAL-00128" summary="Fix wrong data formatting">
+      <option name="closed" value="true" />
+      <created>1777118044455</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1777118044455</updated>
+    </task>
+    <task id="LOCAL-00129" summary="Update docx">
+      <option name="closed" value="true" />
+      <created>1777126891529</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1777126891530</updated>
+    </task>
+    <task id="LOCAL-00130" summary="Upgrade graph plotting, ability of removing title">
+      <option name="closed" value="true" />
+      <created>1777188860045</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
+      <option name="project" value="LOCAL" />
+      <updated>1777188860045</updated>
+    </task>
+    <option name="localTasksCounter" value="131" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -685,10 +680,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Adjust plotting of trace history" />
-    <MESSAGE value="Applies the Holm step-down method to dynamically correct P-values" />
-    <MESSAGE value="Modify plotting style" />
-    <MESSAGE value="Change ensemble to CE" />
     <MESSAGE value="Trace Trial Limit" />
     <MESSAGE value="Restructure data recovery before training and testing" />
     <MESSAGE value="Allocated back the false edition data used for model tracing and tuning (for reproduction purpose)" />
@@ -700,7 +691,6 @@
     <MESSAGE value="Plotting Results" />
     <MESSAGE value="Correct SVC to linear SVC" />
     <MESSAGE value="Add ABC RELM to bayesian" />
-    <MESSAGE value="Update docx" />
     <MESSAGE value="......" />
     <MESSAGE value="Data for testing maybe wrong, rerun testing" />
     <MESSAGE value="Trace plotting of ELM and RELm" />
@@ -710,7 +700,12 @@
     <MESSAGE value="ELM parameter tracing" />
     <MESSAGE value="ABC ELM testing" />
     <MESSAGE value="Plot ELM / RELM parameter" />
-    <option name="LAST_COMMIT_MESSAGE" value="Plot ELM / RELM parameter" />
+    <MESSAGE value="Refresh to new testing result" />
+    <MESSAGE value="Update report progress" />
+    <MESSAGE value="Fix wrong data formatting" />
+    <MESSAGE value="Update docx" />
+    <MESSAGE value="Upgrade graph plotting, ability of removing title" />
+    <option name="LAST_COMMIT_MESSAGE" value="Upgrade graph plotting, ability of removing title" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$ArtificialBeeColonyElmCVEnsemble.coverage" NAME="ArtificialBeeColonyElmCVEnsemble Coverage Results" MODIFIED="1773795158205" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Algorithm" />
@@ -734,7 +729,7 @@
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$ABC_Testing.coverage" NAME="ABC_Testing Coverage Results" MODIFIED="1775994075177" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Methodology" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$GlobalSetting.coverage" NAME="GlobalSetting Coverage Results" MODIFIED="1775053292381" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Global" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project_Restore$Plotting.coverage" NAME="Plotting Coverage Results" MODIFIED="1773843873262" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Global" />
-    <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$Plotting.coverage" NAME="Plotting Coverage Results" MODIFIED="1776914281931" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Global" />
+    <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$Plotting.coverage" NAME="Plotting Coverage Results" MODIFIED="1777190518431" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Global" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$sdf.coverage" NAME="sdf Coverage Results" MODIFIED="1770799329042" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Model" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project_Restore$ArtificialBeeColonyElmCV.coverage" NAME="ArtificialBeeColonyElmCV Coverage Results" MODIFIED="1773919955865" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Algorithm" />
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$ExtremeLearningMachine.coverage" NAME="ExtremeLearningMachine Coverage Results" MODIFIED="1775014112202" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Algorithm" />

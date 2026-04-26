@@ -639,6 +639,7 @@ class Plotting:
                           show_macro        = True,
                           is_final_record   = False,
                           global_title      = None,
+                          title_on          = True,
                           deterministic_models = ("LRC", "SVC")):
 
         with cls._style_context():
@@ -726,7 +727,7 @@ class Plotting:
                                   bbox=dict(facecolor='whitesmoke', edgecolor='lightgray', boxstyle='round,pad=0.5',
                                             alpha=0.8))
 
-                cls._format_standard_axes(ax_m, ylabel=f"{metric_name} (LCB)")
+                cls._format_standard_axes(ax_m, ylabel=rf"{metric_name} ($\mathit{{LCB}}_r^{{(1)}}$)")
                 ax_m.set_title("  (a) Cross Seeds Stability Analysis", loc='left',
                                fontstyle='italic', fontweight='normal', fontsize=13, color='#444444')
                 ax_m.set_xlabel("")
@@ -748,7 +749,7 @@ class Plotting:
 
             draw_staff_brackets(ax_e, df_f_all, p_vals_f, star_color='royalblue')
 
-            cls._format_standard_axes(ax_e, ylabel=f"Mean {metric_name}")
+            cls._format_standard_axes(ax_e, ylabel=f"{metric_name} (Mean)")
             ax_e.set_title("  (b) Cross Folds Generalization Analysis", loc='left',
                            fontstyle='italic', fontweight='normal', fontsize=13, color='#444444')
             if ax_e.get_legend():
@@ -766,28 +767,29 @@ class Plotting:
 
             base_y = 0.02
             line_height = 0.035 if n_axes == 1 else 0.018
-
-            fig.text(0.05, base_y, sig_text,
-                     color='dimgray', fontsize=9, style='italic', va='bottom', ha='left')
-
-            fig.text(0.05, base_y + line_height * 1.5, "Paired t-test",
-                     color='royalblue', fontsize=10, fontweight='bold', va='bottom', ha='left')
-
             test_type_y = base_y + line_height * 2.2
-            if show_macro:
-                fig.text(0.05, test_type_y,
-                         f"Wilcoxon signed-rank test: Seed-wise Fold LCB (Mean - {GlobalSetting.cv_punish_coe}*STD)",
-                         color='darkorange', fontsize=10, fontweight='bold', va='bottom', ha='left')
-            else:
-                fig.text(0.05, test_type_y, "Wilcoxon signed-rank test Unapplicable",
-                         color='darkorange', fontsize=10, fontweight='bold', va='bottom', ha='left')
+            if title_on:
+                fig.text(0.05, base_y, sig_text,
+                         color='dimgray', fontsize=9, style='italic', va='bottom', ha='left')
+
+                fig.text(0.05, base_y + line_height * 1.5, "Paired t-test",
+                         color='royalblue', fontsize=10, fontweight='bold', va='bottom', ha='left')
+
+                if show_macro:
+                    fig.text(0.05, test_type_y,
+                             f"Wilcoxon signed-rank test: Seed-wise Fold LCB (Mean - {GlobalSetting.cv_punish_coe}*STD)",
+                             color='darkorange', fontsize=10, fontweight='bold', va='bottom', ha='left')
+                else:
+                    fig.text(0.05, test_type_y, "Wilcoxon signed-rank test Unapplicable",
+                             color='darkorange', fontsize=10, fontweight='bold', va='bottom', ha='left')
 
             legend_y = bottom_margin * 0.3
             handles, labels = ax_e.get_legend_handles_labels()
+
             fig.legend(handles, labels, loc='lower right', bbox_to_anchor=(0.98, legend_y),
                        ncol=3, frameon=True, shadow=True, fontsize=9)
 
-            if global_title:
+            if global_title and title_on:
                 fig.suptitle(global_title, fontsize=18, fontweight='bold', y=0.95)
 
             plt.tight_layout(rect=[0, bottom_margin, 1, 0.95])
