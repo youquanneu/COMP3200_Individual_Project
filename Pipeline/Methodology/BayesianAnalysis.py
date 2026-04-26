@@ -65,7 +65,8 @@ class BayesianAnalysis:
                                 certainty_threshold: float = 0.95,
                                 title:str = None,
                                 expr_name: str = "Bayesian_Summary",
-                                is_final_record: bool = False):
+                                is_final_record: bool = False,
+                                title_on = True):
 
         champ_df = pd.read_csv(model_dict[champion_model])
         champ_scores = champ_df[metric_name].values
@@ -145,12 +146,12 @@ class BayesianAnalysis:
             ax.set_xlim(0, 100)
             ax.set_xlabel('Posterior Probability (%)', fontweight='bold')
 
-            main_title = title
-            sub_title = f"Metric: {metric_name} | ROPE: ±{rope_radius} "
-
-            ax.set_title(f"{main_title}\n", fontsize=13, fontweight='bold', pad=10)
-            ax.text(0.5, 1.02, sub_title, transform=ax.transAxes,
-                    ha='center', va='bottom', fontsize=10, style='italic', color='#555555')
+            if title_on:
+                main_title = title
+                sub_title = f"Metric: {metric_name} | ROPE: ±{rope_radius} "
+                ax.set_title(f"{main_title}\n", fontsize=13, fontweight='bold', pad=10)
+                ax.text(0.5, 1.02, sub_title, transform=ax.transAxes,
+                        ha='center', va='bottom', fontsize=10, style='italic', color='#555555')
 
             ax.legend(loc='upper center',
                       bbox_to_anchor=(0.5, -0.08),
