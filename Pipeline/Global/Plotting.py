@@ -347,7 +347,8 @@ class Plotting:
                                  conv_y_lim: tuple = (0, 1),
                                  scout_y_lim: tuple = (0, 10),
                                  global_title: str = "ABC Performance Comparison across Configurations",
-                                 is_final_record: bool = False):
+                                 is_final_record: bool = False,
+                                 title_on: bool = True):
         """
         Takes exactly 4 DataFrames and plots them in a 2x2 grid using Nested GridSpec.
         """
@@ -366,6 +367,9 @@ class Plotting:
             global_handles, global_labels = [], []
 
             left_axes = []
+
+            lcb_seed = rf"$\mathit{{LCB}}_r^{{(1)}}$"
+            lcb_model = rf"$\mathit{{LCB}}_{{Architecture}}^{{(2)}}$"
 
             for idx, df in enumerate(dfs):
                 experiment_name = df['expr_name'].iloc[0]
@@ -388,23 +392,23 @@ class Plotting:
                 # ==========================================
                 ax_metric.fill_between(iters, df[fold_train_lcb_mean] - df[fold_train_lcb_std],
                                        df[fold_train_lcb_mean] + df[fold_train_lcb_std], color='#1f77b4', alpha=0.08,
-                                       linewidth=0, zorder=1, label='Train STD')
+                                       linewidth=0, zorder=1, label=f'Train {lcb_seed} STD')
                 ax_metric.fill_between(iters, df[fold_train_lcb_mean] - df[fold_train_lcb_sem],
                                        df[fold_train_lcb_mean] + df[fold_train_lcb_sem], color='#1f77b4', alpha=0.25,
-                                       linewidth=1, linestyle='--', edgecolor='#1f77b4', zorder=2, label='Train SEM')
-                ax_metric.plot(iters, df[fold_train_lcb_mean], label='Train Mean', color='#1f77b4', linewidth=2.5,
+                                       linewidth=1, linestyle='--', edgecolor='#1f77b4', zorder=2, label=f'Train {lcb_seed} SEM')
+                ax_metric.plot(iters, df[fold_train_lcb_mean], label=f'Train {lcb_seed} Mean', color='#1f77b4', linewidth=2.5,
                                zorder=3)
-                ax_metric.plot(iters, df[seed_train_lcb], label='Train Lower Bound', color='#1f77b4', linewidth=1.5,
+                ax_metric.plot(iters, df[seed_train_lcb], label=f'Train {lcb_model}', color='#1f77b4', linewidth=1.5,
                                linestyle=':', zorder=4)
 
                 ax_metric.fill_between(iters, df[fold_val_lcb_mean] - df[fold_val_lcb_std],
                                        df[fold_val_lcb_mean] + df[fold_val_lcb_std], color='#ff7f0e', alpha=0.08,
-                                       linewidth=0, zorder=1, label='Val STD')
+                                       linewidth=0, zorder=1, label=f'Val {lcb_seed} STD')
                 ax_metric.fill_between(iters, df[fold_val_lcb_mean] - df[fold_val_lcb_sem],
                                        df[fold_val_lcb_mean] + df[fold_val_lcb_sem], color='#ff7f0e', alpha=0.25,
-                                       linewidth=1, linestyle='--', edgecolor='#ff7f0e', zorder=2, label='Val SEM')
-                ax_metric.plot(iters, df[fold_val_lcb_mean], label='Val Mean', color='#ff7f0e', linewidth=2.5, zorder=3)
-                ax_metric.plot(iters, df[seed_val_lcb], label='Val Lower Bound', color='#ff7f0e', linewidth=1.5,
+                                       linewidth=1, linestyle='--', edgecolor='#ff7f0e', zorder=2, label=f'Val {lcb_seed} SEM')
+                ax_metric.plot(iters, df[fold_val_lcb_mean], label=f'Val {lcb_seed} Mean', color='#ff7f0e', linewidth=2.5, zorder=3)
+                ax_metric.plot(iters, df[seed_val_lcb], label=f'Val {lcb_model}', color='#ff7f0e', linewidth=1.5,
                                linestyle=':', zorder=4)
 
                 # ==========================================
@@ -436,7 +440,7 @@ class Plotting:
 
                 # 只有左侧的两张图保留 Y 轴标题
                 if idx % 2 == 0:
-                    ax_metric.set_ylabel(f'Metric: {metric_name}', fontweight='bold')
+                    ax_metric.set_ylabel(rf"{metric_name} ({lcb_seed})", fontweight='bold')
                     ax_scout.set_ylabel('Scout Triggers', fontweight='bold')
                     left_axes.extend([ax_metric, ax_scout])
                 else:
@@ -468,7 +472,8 @@ class Plotting:
                        fontsize=10,
                        columnspacing=1.5)
 
-            fig.suptitle(global_title, fontsize=16, fontweight='bold', y=0.95)
+            if title_on:
+                fig.suptitle(global_title, fontsize=16, fontweight='bold', y=0.95)
 
             # 调整画布底部边距，为全局图例留出充足物理空间，避免重叠
             fig.subplots_adjust(bottom=0.12, top=0.90)
@@ -488,7 +493,8 @@ class Plotting:
                                  conv_y_lim: tuple = (0, 1),
                                  scout_y_lim: tuple = (0, 10),
                                  global_title: str = "Ablation Study on Solution Size and Max Iterations",
-                                 is_final_record: bool = False):
+                                 is_final_record: bool = False,
+                                 title_on: bool = True):
         """
         Takes exactly 6 DataFrames and plots them in a 3x2 grid using Nested GridSpec.
         """
@@ -506,6 +512,9 @@ class Plotting:
 
             global_handles, global_labels = [], []
             left_axes = []  # 收集最左侧的坐标轴用于对齐
+
+            lcb_seed = rf"$\mathit{{LCB}}_r^{{(1)}}$"
+            lcb_model = rf"$\mathit{{LCB}}_{{Architecture}}^{{(2)}}$"
 
             for idx, df in enumerate(dfs):
                 experiment_name = df['expr_name'].iloc[0]
@@ -532,23 +541,27 @@ class Plotting:
                 # ==========================================
                 ax_metric.fill_between(iters, df[fold_train_lcb_mean] - df[fold_train_lcb_std],
                                        df[fold_train_lcb_mean] + df[fold_train_lcb_std], color='#1f77b4', alpha=0.08,
-                                       linewidth=0, zorder=1, label='Train STD')
+                                       linewidth=0, zorder=1, label=f'Train {lcb_seed} STD')
                 ax_metric.fill_between(iters, df[fold_train_lcb_mean] - df[fold_train_lcb_sem],
                                        df[fold_train_lcb_mean] + df[fold_train_lcb_sem], color='#1f77b4', alpha=0.25,
-                                       linewidth=1, linestyle='--', edgecolor='#1f77b4', zorder=2, label='Train SEM')
-                ax_metric.plot(iters, df[fold_train_lcb_mean], label='Train Mean', color='#1f77b4', linewidth=2.5,
+                                       linewidth=1, linestyle='--', edgecolor='#1f77b4', zorder=2,
+                                       label=f'Train {lcb_seed} SEM')
+                ax_metric.plot(iters, df[fold_train_lcb_mean], label=f'Train {lcb_seed} Mean', color='#1f77b4',
+                               linewidth=2.5,
                                zorder=3)
-                ax_metric.plot(iters, df[seed_train_lcb], label='Train Lower Bound', color='#1f77b4', linewidth=1.5,
+                ax_metric.plot(iters, df[seed_train_lcb], label=f'Train {lcb_model}', color='#1f77b4', linewidth=1.5,
                                linestyle=':', zorder=4)
 
                 ax_metric.fill_between(iters, df[fold_val_lcb_mean] - df[fold_val_lcb_std],
                                        df[fold_val_lcb_mean] + df[fold_val_lcb_std], color='#ff7f0e', alpha=0.08,
-                                       linewidth=0, zorder=1, label='Val STD')
+                                       linewidth=0, zorder=1, label=f'Val {lcb_seed} STD')
                 ax_metric.fill_between(iters, df[fold_val_lcb_mean] - df[fold_val_lcb_sem],
                                        df[fold_val_lcb_mean] + df[fold_val_lcb_sem], color='#ff7f0e', alpha=0.25,
-                                       linewidth=1, linestyle='--', edgecolor='#ff7f0e', zorder=2, label='Val SEM')
-                ax_metric.plot(iters, df[fold_val_lcb_mean], label='Val Mean', color='#ff7f0e', linewidth=2.5, zorder=3)
-                ax_metric.plot(iters, df[seed_val_lcb], label='Val Lower Bound', color='#ff7f0e', linewidth=1.5,
+                                       linewidth=1, linestyle='--', edgecolor='#ff7f0e', zorder=2,
+                                       label=f'Val {lcb_seed} SEM')
+                ax_metric.plot(iters, df[fold_val_lcb_mean], label=f'Val {lcb_seed} Mean', color='#ff7f0e',
+                               linewidth=2.5, zorder=3)
+                ax_metric.plot(iters, df[seed_val_lcb], label=f'Val {lcb_model}', color='#ff7f0e', linewidth=1.5,
                                linestyle=':', zorder=4)
 
                 # ==========================================
@@ -583,7 +596,7 @@ class Plotting:
 
                 # 只有左侧的三张图（第1列，col == 0）保留 Y 轴标题
                 if col == 0:
-                    ax_metric.set_ylabel(f'Metric: {metric_name}', fontweight='bold')
+                    ax_metric.set_ylabel(rf"{metric_name} ({lcb_seed})", fontweight='bold')
                     ax_scout.set_ylabel('Scout Triggers', fontweight='bold')
                     left_axes.extend([ax_metric, ax_scout])
                 else:
@@ -609,16 +622,17 @@ class Plotting:
             # [6] 绘制全局统一图例
             fig.legend(global_handles, global_labels,
                        loc='lower center',
-                       bbox_to_anchor=(0.5, 0.015),  # 微调以适应18的高度
+                       bbox_to_anchor=(0.5, 0.01),  # 微调以适应18的高度
                        ncol=5,
                        frameon=False,
                        fontsize=11,
                        columnspacing=1.5)
 
-            fig.suptitle(global_title, fontsize=18, fontweight='bold', y=0.96)
+            if title_on:
+                fig.suptitle(global_title, fontsize=18, fontweight='bold', y=0.96)
 
             # 调整物理留白：高度从12变成18，对应的百分比也要缩小
-            fig.subplots_adjust(bottom=0.07, top=0.93)
+            fig.subplots_adjust(bottom=0.1, top=0.93)
 
             if is_final_record:
                 cls._save_figure(
