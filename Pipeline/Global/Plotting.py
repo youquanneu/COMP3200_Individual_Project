@@ -1092,7 +1092,8 @@ class Plotting:
     def plot_RELM_hyperparam(cls, df: pd.DataFrame,
                              metric_name: str = 'MCC_Final_LCB',
                              title:       str = "RELM Hyperparameter Trend",
-                             is_final_record: bool = False):
+                             is_final_record: bool = False,
+                             title_on = True):
 
         agg_df = df.groupby(['Lambda_Value', 'Hidden_Nodes'], as_index=False)[metric_name].mean()
 
@@ -1136,9 +1137,10 @@ class Plotting:
             if 0 in df['Lambda_Value'].values:
                 ax.axvline(x=zero_anchor, color='#CCCCCC', linestyle='--', zorder=0)
 
-            ax.set_title(title, fontweight='bold', fontsize=15, pad=15)
+            if title_on:
+                ax.set_title(title, fontweight='bold', fontsize=15, pad=15)
             ax.set_xlabel(r"Regularization Penalty ($\lambda$)", fontweight='bold', fontsize=12)
-            ax.set_ylabel(f"MCC (LCB)", fontweight='bold', fontsize=12)
+            ax.set_ylabel(rf"MCC ($\mathit{{LCB}}_{{Architecture}}^{{(2)}}$)", fontweight='bold', fontsize=12)
 
             x_min_limit = -50
             x_max_limit = agg_df['Lambda_Log'].max()
@@ -1177,7 +1179,8 @@ class Plotting:
     def plot_elm_hidden_nodes(cls, df: pd.DataFrame,
                               metric_name: str = 'MCC_Final_LCB',
                               title: str ="ELM Hyperparameter Trend",
-                              is_final_record: bool = False):
+                              is_final_record: bool = False,
+                              title_on = True):
 
         main_title = title if title else f"Model Sensitivity: {metric_name}"
 
@@ -1213,9 +1216,10 @@ class Plotting:
             ax.plot([best_nodes, best_nodes], [0, best_score],
                     color='#CC0000', linestyle='--', linewidth=1.2, alpha=0.7, zorder=1)
 
-            ax.set_title(main_title, fontweight='bold', fontsize=14, pad=10)
+            if title_on:
+                ax.set_title(main_title, fontweight='bold', fontsize=14, pad=10)
             ax.set_xlabel("Number of Hidden Nodes", fontweight='bold', fontsize=11)
-            ax.set_ylabel("MCC (LCB)", fontweight='bold', fontsize=11)
+            ax.set_ylabel(rf"MCC ($\mathit{{LCB}}_{{Architecture}}^{{(2)}}$)", fontweight='bold', fontsize=11)
 
             ax.xaxis.set_major_locator(MultipleLocator(10))
 
