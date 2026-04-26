@@ -946,9 +946,12 @@ class Plotting:
                                        mi_range     : tuple = (50, 1000),
                                        gf_sigma     : float = 0.6,
                                        global_title : str   = "Diagnostic Panel: Raw Value vs. Gaussian Smooth",
-                                       is_final_record: bool = False):
-        plot_df = df.copy()
+                                       is_final_record: bool = False,
+                                       title_on = True):
 
+        lcb_sym = "$\\mathit{LCB}_{Architecture}^{(2)}$"
+
+        plot_df = df.copy()
         # [1] ROI Constraint
         mask = (plot_df['Solution_Size'] >= sn_range[0]) & (plot_df['Solution_Size'] <= sn_range[1]) & \
                (plot_df['Max_Iteration'] >= mi_range[0]) & (plot_df['Max_Iteration'] <= mi_range[1])
@@ -994,10 +997,10 @@ class Plotting:
                         linewidths=1.0, linecolor='white', square=True,
                         cbar=False, ax=axes[0])
 
-            axes[0].set_title("(a) Empirical Observation\n[ Metric: Validation MCC Floor ]",
+            axes[0].set_title(f"(a) Empirical Observation",
                               loc='left', fontstyle='italic', fontsize=13, color='#444444', pad=15)
-            axes[0].set_ylabel("Solution Size (Exploration)", fontweight='bold', fontsize=12)
-            axes[0].set_xlabel("Max Iteration (Exploitation)", fontweight='bold', fontsize=12)
+            axes[0].set_ylabel("Solution Size", fontweight='bold', fontsize=12)
+            axes[0].set_xlabel("Max Iteration", fontweight='bold', fontsize=12)
             axes[0].tick_params(axis='y', rotation=0)
 
             # ==========================================
@@ -1009,20 +1012,21 @@ class Plotting:
                         yticklabels=False,
                         cbar=True,
                         cbar_ax=axes[2],
-                        cbar_kws={'label': 'MCC Score (Unified Scale)'},
+                        cbar_kws={'label': f"Performance ({lcb_sym})"},
                         ax=axes[1])
 
-            axes[1].set_title("(b) Gaussian-Smoothed Manifold\n[ Metric: Expected MCC Floor ]",
+            axes[1].set_title(f"(b) Expected Performance Manifold",
                               loc='left', fontstyle='italic', fontsize=13, color='#444444', pad=15)
             axes[1].set_ylabel("")
             axes[1].tick_params(axis='y', left=False, labelleft=False)
-            axes[1].set_xlabel("Max Iteration (Exploitation)", fontweight='bold', fontsize=12)
+            axes[1].set_xlabel("Max Iteration", fontweight='bold', fontsize=12)
 
             # [6] Global Typographic Cleanup
             axes[0].tick_params(axis='x', rotation=0)
             axes[1].tick_params(axis='x', rotation=0)
 
-            fig.suptitle(global_title, fontsize=17, fontweight='bold', y=1.05)
+            if title_on:
+                fig.suptitle(global_title, fontsize=17, fontweight='bold', y=1.05)
 
             if is_final_record:
                 cls._save_figure(
@@ -1040,69 +1044,53 @@ class Plotting:
                                          sn_range: tuple = (10, 250),
                                          mi_range: tuple = (50, 1000),
                                          gf_sigma: float = 0.6,
-                                         title: str = "Residual Diagnostic Heatmap: Difference of Gaussian",
-                                         is_final_record: bool = False):
-        """
-        Calculates and plots the residual matrix (Raw - Smoothed) to isolate
-        stochastic noise from the underlying deterministic manifold.
-        Incorporates NaN-defense for discontinuous grid search spaces.
-        """
-        plot_df = df.copy()
+                                         title: str = "Residual Diagnostic Heatmap Difference of Gaussian",
+                                         is_final_record: bool = False,
+                                         title_on=True):
+        lcb_sym = rf"$\mathit{{LCB}}_{{Architecture}}^{{(2)}}$"
 
-        # [1] ROI Constraint
+        plot_df = df.copy()
         mask = (plot_df['Solution_Size'] >= sn_range[0]) & (plot_df['Solution_Size'] <= sn_range[1]) & \
                (plot_df['Max_Iteration'] >= mi_range[0]) & (plot_df['Max_Iteration'] <= mi_range[1])
         roi_df = plot_df[mask]
 
-        # [2] Pivot & Math Sorting
         pivot_df = roi_df.pivot_table(index='Solution_Size', columns='Max_Iteration',
                                       values='val_MCC_trace_floor', aggfunc='mean')
         pivot_df = pivot_df.sort_index(ascending=True).sort_index(axis=1, ascending=True)
 
-        # [3] NaN Poisoning Defense & Calculate Residuals
         raw_matrix = pivot_df.to_numpy()
         nan_mask = np.isnan(raw_matrix)
-
-        # 应用拓扑填充以计算无损的高斯流形
         filled_df = pivot_df.ffill(axis=1).bfill(axis=1).ffill(axis=0).bfill(axis=0)
         smoothed_matrix = gaussian_filter(filled_df.to_numpy(), sigma=gf_sigma, mode='nearest')
 
-        # 剥离噪声：原始观测 - 平滑流形
         residual_matrix = raw_matrix - smoothed_matrix
-
-        # 将无实验数据的区域重新设为空白，保证严谨性
         residual_matrix[nan_mask] = np.nan
 
-        residual_df = pd.DataFrame(residual_matrix, index=pivot_df.index, columns=pivot_df.columns)
-        residual_df = residual_df.sort_index(ascending=False)
+        residual_df = pd.DataFrame(residual_matrix, index=pivot_df.index, columns=pivot_df.columns).sort_index(
+            ascending=False)
 
         with cls._style_context():
             fig, ax = plt.subplots(figsize=(10, 8), dpi=450)
-
-            # [4] Rendering: Diverging Colormap centered at zero
-            # 核心修复：使用 np.nanmin 和 np.nanmax 绕过 NaN 值，防止色阶 limit 计算崩溃
             limit = max(abs(np.nanmin(residual_matrix)), abs(np.nanmax(residual_matrix)))
 
-            sns.heatmap(residual_df,
-                        annot=True, fmt=".4f",
-                        cmap="coolwarm", center=0, vmin=-limit, vmax=limit,
-                        linewidths=1.0, linecolor='white', square=True,
-                        cbar_kws={'label': 'Residual Error (Raw - Smoothed)'},
+            sns.heatmap(residual_df, annot=True, fmt=".4f", cmap="coolwarm", center=0,
+                        vmin=-limit, vmax=limit, linewidths=1.0, linecolor='white', square=True,
+                        cbar_kws={'label': rf'Residual Intensity $\epsilon$ ({lcb_sym})'},
                         ax=ax)
 
-            # [5] Typographic Engine (统一排版隐喻)
-            ax.set_title(title, fontweight='bold', fontsize=16, pad=20, color='#444444')
-            ax.set_xlabel("Max Iteration (Exploitation)", fontweight='bold', fontsize=12)
-            ax.set_ylabel("Solution Size (Exploration)", fontweight='bold', fontsize=12)
+            if title_on:
+                ax.set_title(f"{title}\n[ $\epsilon$ = Observed {lcb_sym} - Expected {lcb_sym} ]",
+                             fontweight='bold', fontsize=15, pad=20, color='#444444')
+
+            ax.set_xlabel("Max Iteration", fontweight='bold', fontsize=12)
+            ax.set_ylabel("Solution Size", fontweight='bold', fontsize=12)
 
             plt.xticks(rotation=0)
             plt.yticks(rotation=0)
             plt.tight_layout()
 
             if is_final_record:
-                cls._save_figure(fig=fig, prefix="Report Figure",
-                                 experiment_name=title,
-                                 fitness_metric="")
+                cls._save_figure(fig=fig, prefix="Report Figure", experiment_name=title, fitness_metric="")
             plt.show()
 
     @classmethod
