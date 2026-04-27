@@ -875,7 +875,7 @@ class PlottingData(Plotting):
                            s=50, lw=1.2, alpha=0.6, zorder=5)
 
             ax_fix.set_title("(b) After Repair", **SUBPLOT_TITLE_KWS)
-            ax_fix.set_xlabel(r"$\varepsilon_{TBW} \text{ (Track A)}$", fontweight='bold', fontsize=14, labelpad=10)
+            ax_fix.set_xlabel(r"$\varepsilon_{TBW} \text{ (Track A)}$", fontweight='bold', fontsize=14)
             ax_fix.tick_params(left=False)
 
             sns.despine(ax=ax_raw)
@@ -972,7 +972,7 @@ class PlottingData(Plotting):
                            s=50, lw=1.2, alpha=0.6, zorder=5)
 
             ax_fix.set_title("(b) Corrected", **SUBPLOT_TITLE_KWS)
-            ax_fix.set_xlabel(r"$\varepsilon_{TFC} \text{ (Track E)}$", fontweight='bold', fontsize=14,labelpad=10)
+            ax_fix.set_xlabel(r"$\varepsilon_{TFC} \text{ (Track E)}$", fontweight='bold', fontsize=14)
             ax_fix.tick_params(left=False)
 
             # --- Formatting ---
@@ -1342,7 +1342,7 @@ class PlottingData(Plotting):
                     alpha=BASE_ALPHA, lw=2, zorder=1)
 
         with cls._style_context():
-            fig, axes = plt.subplots(2, 2, figsize=(20, 16), dpi=450, constrained_layout=True)
+            fig, axes = plt.subplots(2, 2, figsize=(20, 15), dpi=450, constrained_layout=True)
             x_vals = np.linspace(x_min, x_max, 300)
 
             # ==========================================
