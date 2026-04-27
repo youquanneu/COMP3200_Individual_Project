@@ -643,21 +643,21 @@ class PlottingData(Plotting):
     @classmethod
     def plot_bmi_repair_bland_altman(
             cls,
-            df_raw  : pd.DataFrame,
+            df_raw: pd.DataFrame,
             df_fixed: pd.DataFrame,
-            main_title : str = None,
+            main_title: str = None,
             is_final_record: bool = False,
             title_on: bool = True
     ):
         """
-        Specialized Bland-Altman plot for BMI Repair Analysis.
+        Specialized Bland-Altman plot for BMI Repair Analysis (Publication Ready).
         Ultimate Optimization: Zero-interference layout, edge-aligned metadata,
-        and distinct hollow markers for raw vs repaired states.
+        and giant hollow markers for raw vs corrected states.
         """
-
         df_raw = df_raw.reset_index(drop=True)
         df_fixed = df_fixed.reset_index(drop=True)
 
+        # Calculated values based on fundamental physical traits
         calc_raw = df_raw['Weight'] / ((df_raw['Height'] / 100) ** 2)
         calc_fixed = df_fixed['Weight'] / ((df_fixed['Height'] / 100) ** 2)
 
@@ -678,7 +678,7 @@ class PlottingData(Plotting):
         # --- 统一视觉词汇表 ---
         C_VALID = '#08306B'  # Deep Navy (合法数据)
         C_OUTLIER = '#D55E00'  # Vermilion (原始异常值)
-        C_REPAIRED = '#27AE60'  # Green (修复后数据)
+        C_CORRECTED = '#27AE60'  # Green (修正后数据)
 
         def add_background_kde(ax, mean_series, diff_series, color):
             diff_array = diff_series.values.astype(float)
@@ -693,12 +693,8 @@ class PlottingData(Plotting):
             ax.plot(scaled_density, y_vals, color=color, alpha=0.3, zorder=0, lw=1)
 
         SUBPLOT_TITLE_KWS = {
-            'loc': 'left',
-            'fontstyle': 'italic',
-            'fontweight': 'normal',
-            'fontsize': 13,
-            'color': '#444444',
-            'pad': 15
+            'loc': 'left', 'fontstyle': 'italic', 'fontweight': 'normal',
+            'fontsize': 13, 'color': '#444444', 'pad': 15
         }
 
         with cls._style_context():
@@ -706,41 +702,41 @@ class PlottingData(Plotting):
             ax_raw, ax_fix = axes[0], axes[1]
 
             # ==========================================
-            # A. Before Repair (Raw)
+            # A. Raw (Before Correction)
             # ==========================================
             add_background_kde(ax_raw, plot_df['Mean_Raw'], plot_df['Diff_Raw'], color=C_OUTLIER)
 
             # 健康数据 (深蓝实心)
             ax_raw.scatter(plot_df.loc[mask_valid, 'Mean_Raw'], plot_df.loc[mask_valid, 'Diff_Raw'],
-                           c=C_VALID, alpha=0.4, edgecolors='white', lw=0.5, s=60, zorder=3)
-            # 异常数据 (橙红空心)
+                           c=C_VALID, alpha=0.5, edgecolors='white', lw=0.5, s=60, zorder=3)
+            # 异常数据 (橙红巨型空心圈)
             ax_raw.scatter(plot_df.loc[mask_repaired, 'Mean_Raw'], plot_df.loc[mask_repaired, 'Diff_Raw'],
-                           facecolors='none', edgecolors=C_OUTLIER, lw=1.5, s=60, zorder=4)
+                           facecolors='none', edgecolors=C_OUTLIER, lw=2.5, s=200, alpha=0.8, zorder=4)
 
             m_r, sd_r = plot_df['Diff_Raw'].mean(), plot_df['Diff_Raw'].std()
             ax_raw.axhline(m_r, color='black', ls='-', lw=2, zorder=2)
             ax_raw.axhline(m_r + 1.96 * sd_r, color='gray', ls='--', lw=1.5, zorder=2)
             ax_raw.axhline(m_r - 1.96 * sd_r, color='gray', ls='--', lw=1.5, zorder=2)
 
-            # [终极优化] LoA 极简文本放在右下角内部 (相对坐标 x=0.98, y=0.03)
             ax_raw.text(0.98, 0.03, f'LoA: {sd_r:.2f}', transform=ax_raw.transAxes,
                         color=C_OUTLIER, ha='right', va='bottom', fontweight='bold', fontsize=12, zorder=5)
 
             ax_raw.set_title("(a) Raw (BMI Consistency)", **SUBPLOT_TITLE_KWS)
-            ax_raw.set_xlabel("Mean BMI (Original)", fontweight='bold')
-            ax_raw.set_ylabel("Difference (Reported - Calculated)", fontweight='bold')
+            # 学术术语对齐: Observed vs Calculated
+            ax_raw.set_xlabel("Mean BMI (Observed & Calculated)", fontweight='bold')
+            ax_raw.set_ylabel("Difference (Observed - Calculated)", fontweight='bold')
 
             # ==========================================
-            # B. After Repair (Fixed)
+            # B. Corrected Data
             # ==========================================
-            add_background_kde(ax_fix, plot_df['Mean_Fixed'], plot_df['Diff_Fixed'], color=C_REPAIRED)
+            add_background_kde(ax_fix, plot_df['Mean_Fixed'], plot_df['Diff_Fixed'], color=C_CORRECTED)
 
             # 健康数据 (深蓝实心)
             ax_fix.scatter(plot_df.loc[mask_valid, 'Mean_Fixed'], plot_df.loc[mask_valid, 'Diff_Fixed'],
-                           c=C_VALID, alpha=0.4, edgecolors='white', lw=0.5, s=60, zorder=3)
-            # 修复后数据 (绿色空心)
+                           c=C_VALID, alpha=0.5, edgecolors='white', lw=0.5, s=60, zorder=3)
+            # 修正后数据 (翠绿巨型空心圈)
             ax_fix.scatter(plot_df.loc[mask_repaired, 'Mean_Fixed'], plot_df.loc[mask_repaired, 'Diff_Fixed'],
-                           facecolors='none', edgecolors=C_REPAIRED, lw=1.5, s=60, zorder=4)
+                           facecolors='none', edgecolors=C_CORRECTED, lw=2.5, s=200, alpha=0.8, zorder=4)
 
             m_f, sd_f = plot_df['Diff_Fixed'].mean(), plot_df['Diff_Fixed'].std() if plot_df[
                                                                                          'Diff_Fixed'].std() > 0 else 0.001
@@ -748,23 +744,24 @@ class PlottingData(Plotting):
             ax_fix.axhline(m_f + 1.96 * sd_f, color='gray', ls='--', lw=1.5, zorder=2)
             ax_fix.axhline(m_f - 1.96 * sd_f, color='gray', ls='--', lw=1.5, zorder=2)
 
-            # [终极优化] LoA 极简文本放在右下角内部
             ax_fix.text(0.98, 0.03, f'LoA: {sd_f:.2f}', transform=ax_fix.transAxes,
-                        color=C_REPAIRED, ha='right', va='bottom', fontweight='bold', fontsize=12, zorder=5)
+                        color=C_CORRECTED, ha='right', va='bottom', fontweight='bold', fontsize=12, zorder=5)
 
             ax_fix.set_title("(b) Corrected (BMI Consistency)", **SUBPLOT_TITLE_KWS)
-            ax_fix.set_xlabel("Mean BMI (Repaired)", fontweight='bold')
+            # 学术术语对齐
+            ax_fix.set_xlabel("Mean BMI (Observed & Calculated)", fontweight='bold')
             ax_fix.set_ylabel('')
             ax_fix.tick_params(left=False)
 
-
+            # --- 极简统一图例 ---
             custom_lines = [
                 Line2D([0], [0], marker='o', color='w', markerfacecolor=C_VALID, markersize=8, alpha=0.6,
                        label='Valid Data'),
-                Line2D([0], [0], marker='o', color='w', markeredgecolor=C_OUTLIER, markerfacecolor='none', markersize=8,
-                       markeredgewidth=1.5, label='Outliers (Raw)'),
-                Line2D([0], [0], marker='o', color='w', markeredgecolor=C_REPAIRED, markerfacecolor='none',
-                       markersize=8, markeredgewidth=1.5, label='Corrected Data')
+                Line2D([0], [0], marker='o', color='w', markeredgecolor=C_OUTLIER, markerfacecolor='none',
+                       markersize=12,
+                       markeredgewidth=2, label='Outliers (Raw)'),
+                Line2D([0], [0], marker='o', color='w', markeredgecolor=C_CORRECTED, markerfacecolor='none',
+                       markersize=12, markeredgewidth=2, label='Corrected Data')
             ]
 
             fig.legend(handles=custom_lines,
@@ -780,15 +777,18 @@ class PlottingData(Plotting):
             sns.despine(ax=ax_fix, left=True)
 
             if title_on:
-                fig.suptitle(main_title, y=1.02, fontsize=16,
+                fig.suptitle(main_title if main_title else "BMI Consistency Analysis", y=1.02, fontsize=16,
                              fontweight='bold')
 
             plt.tight_layout(rect=[0, 0.1, 1, 0.98])
 
+            # --- 防弹保存逻辑 ---
             if is_final_record:
+                safe_name = main_title.replace(":", "").replace(" ", "_").replace("(", "").replace(")",
+                                                                                                   "") if main_title else "BMI_Bland_Altman"
                 cls._save_figure(fig=fig,
                                  prefix="Data Figure",
-                                 experiment_name=main_title,
+                                 experiment_name=safe_name,
                                  fitness_metric="")
 
             plt.show()
@@ -833,24 +833,24 @@ class PlottingData(Plotting):
         }
 
         with cls._style_context():
-            fig, axes = plt.subplots(1, 2, figsize=(12, 8), sharex=True, sharey=True, dpi=450)
+            fig, axes = plt.subplots(1, 2, figsize=(12, 7), sharex=True, sharey=True, dpi=450)
             ax_raw, ax_fix = axes[0], axes[1]
 
             def draw_geometric_tracks(ax):
                 # Track A (垂直轨道 - 橙色)
                 ax.axvline(-lim_a, color='#F39C12', ls='-', lw=2.5, alpha=0.8,
-                           label=rf'$\tau_{{TBW}} \text{{ (Track A)}} \pm{lim_a:.2f}$')
+                           label=rf'$\tau_{{TBW}} \text{{ (Track A)}}: \pm{lim_a:.2f}$')
                 ax.axvline(lim_a, color='#F39C12', ls='-', lw=2.5, alpha=0.8)
 
                 # Track B (水平轨道 - 紫色)
                 ax.axhline(-lim_b, color='#9B59B6', ls='-', lw=2.5, alpha=0.8,
-                           label=rf'$\tau_{{TBW}} \text{{ (Track B)}} \pm{lim_b:.2f}$')
+                           label=rf'$\tau_{{TBW}} \text{{ (Track B)}}: \pm{lim_b:.2f}$')
                 ax.axhline(lim_b, color='#9B59B6', ls='-', lw=2.5, alpha=0.8)
 
                 # Track D (对角线轨道 - 绿色)
                 diag_x = np.linspace(-max_val * 2, max_val * 2, 200)
                 ax.plot(diag_x, diag_x - lim_d, color='#27AE60', ls='-', lw=2.5, alpha=0.8,
-                        label=rf'$\tau_{{TBW}} \text{{ (Track D)}} \pm{lim_d:.2f}$')
+                        label=rf'$\tau_{{TBW}} \text{{ (Track D)}}: \pm{lim_d:.2f}$')
                 ax.plot(diag_x, diag_x + lim_d, color='#27AE60', ls='-', lw=2.5, alpha=0.8)
 
                 # 零位十字基准线
@@ -875,7 +875,7 @@ class PlottingData(Plotting):
                            s=50, lw=1.2, alpha=0.6, zorder=5)
 
             ax_fix.set_title("(b) After Repair", **SUBPLOT_TITLE_KWS)
-            ax_fix.set_xlabel(r"$\varepsilon_{TBW} \text{ (Track A)}$", fontweight='bold', fontsize=14)
+            ax_fix.set_xlabel(r"$\varepsilon_{TBW} \text{ (Track A)}$", fontweight='bold', fontsize=14, labelpad=10)
             ax_fix.tick_params(left=False)
 
             sns.despine(ax=ax_raw)
@@ -935,18 +935,18 @@ class PlottingData(Plotting):
         }
 
         with cls._style_context():
-            fig, axes = plt.subplots(1, 2, figsize=(12, 8), sharex=True, sharey=True, dpi=450)
+            fig, axes = plt.subplots(1, 2, figsize=(12, 7), sharex=True, sharey=True, dpi=450)
             ax_raw, ax_fix = axes[0], axes[1]
 
             def draw_orthogonal_tracks(ax):
                 # 垂直轨道 (X)
                 ax.axvline(-lim_x, color='#F39C12', ls='-', lw=2.5, alpha=0.8,
-                           label=rf"$\tau_{{TFC}} \text{{ (Track E)}} \pm{lim_x:.2f}$")
+                           label=rf"$\tau_{{TFC}} \text{{ (Track E)}}: \pm{lim_x:.2f}$")
                 ax.axvline(lim_x, color='#F39C12', ls='-', lw=2.5, alpha=0.8)
 
                 # 水平轨道 (Y)
                 ax.axhline(-lim_y, color='#9B59B6', ls='-', lw=2.5, alpha=0.8,
-                           label=rf"$\tau_{{TFC}} \text{{ (Track F)}} \pm{lim_y:.2f}$")
+                           label=rf"$\tau_{{TFC}} \text{{ (Track F)}}: \pm{lim_y:.2f}$")
                 ax.axhline(lim_y, color='#9B59B6', ls='-', lw=2.5, alpha=0.8)
 
                 ax.axhline(0, color='black', linewidth=1, alpha=0.4, zorder=1)
@@ -972,7 +972,7 @@ class PlottingData(Plotting):
                            s=50, lw=1.2, alpha=0.6, zorder=5)
 
             ax_fix.set_title("(b) Corrected", **SUBPLOT_TITLE_KWS)
-            ax_fix.set_xlabel(r"$\varepsilon_{TFC} \text{ (Track E)}$", fontweight='bold', fontsize=14)
+            ax_fix.set_xlabel(r"$\varepsilon_{TFC} \text{ (Track E)}$", fontweight='bold', fontsize=14,labelpad=10)
             ax_fix.tick_params(left=False)
 
             # --- Formatting ---
@@ -1007,6 +1007,7 @@ class PlottingData(Plotting):
         """
         Visualizes empirical statistical repairs (ratios).
         Draws a 'Confidence Cone' based on the 2.5th and 97.5th percentiles of the ratio.
+        (Publication Ready: Synced Visual Grammar & Terminology)
         """
         raw_ratio = df_raw[y_col] / df_raw[x_col]
 
@@ -1029,12 +1030,14 @@ class PlottingData(Plotting):
             'pad': 15
         }
 
+        # --- 统一视觉词汇表 ---
         C_VALID = '#08306B'  # Deep Navy
         C_OUTLIER = '#D55E00'  # Vermilion
         C_REPAIRED = '#27AE60'  # Green
 
         with cls._style_context():
-            fig, axes = plt.subplots(1, 2, figsize=(12, 8), sharex=True, sharey=True, dpi=450)
+            # 画布加宽以对齐其他 1x2 图表
+            fig, axes = plt.subplots(1, 2, figsize=(16, 8), sharex=True, sharey=True, dpi=450)
             ax_raw, ax_fix = axes[0], axes[1]
 
             def draw_confidence_cone(ax):
@@ -1059,26 +1062,33 @@ class PlottingData(Plotting):
                 p99_y = df_raw[y_col].quantile(0.99)
                 ax.set_ylim(0, max(p99_y * 1.5, (max_x * q_high) * 1.1))
 
+            # ==========================================
+            # A. Raw (Empirical Distribution)
+            # ==========================================
             draw_confidence_cone(ax_raw)
 
+            # 正常数据 (保持低调，alpha=0.5)
             ax_raw.scatter(df_raw.loc[~is_repaired, x_col], df_raw.loc[~is_repaired, y_col],
-                           c=C_VALID, alpha=0.4, edgecolors='white', lw=0.5, s=60, zorder=3)
-
+                           c=C_VALID, alpha=0.5, edgecolors='white', lw=0.5, s=60, zorder=3)
+            # 异常数据 (巨型醒目橙红空心圆)
             ax_raw.scatter(df_raw.loc[is_repaired, x_col], df_raw.loc[is_repaired, y_col],
-                           facecolors='none', edgecolors=C_OUTLIER, lw=1.5, s=60, zorder=4)
+                           facecolors='none', edgecolors=C_OUTLIER, lw=2.5, s=200, alpha=0.8, zorder=4)
 
             ax_raw.set_title("(a) Raw (Empirical Distribution)", **SUBPLOT_TITLE_KWS)
             ax_raw.set_xlabel(x_col, fontweight='bold')
             ax_raw.set_ylabel(y_col, fontweight='bold')
 
+            # ==========================================
+            # B. Corrected (Median Aligned)
+            # ==========================================
             draw_confidence_cone(ax_fix)
 
             # 正常数据
             ax_fix.scatter(df_fixed.loc[~is_repaired, x_col], df_fixed.loc[~is_repaired, y_col],
-                           c=C_VALID, alpha=0.4, edgecolors='white', lw=0.5, s=60, zorder=3)
-            # 修复数据 (被吸回锥体内部)
+                           c=C_VALID, alpha=0.5, edgecolors='white', lw=0.5, s=60, zorder=3)
+            # 修正后数据 (巨型醒目翠绿空心圆)
             ax_fix.scatter(df_fixed.loc[is_repaired, x_col], df_fixed.loc[is_repaired, y_col],
-                           facecolors='none', edgecolors=C_REPAIRED, lw=1.5, s=60, zorder=4)
+                           facecolors='none', edgecolors=C_REPAIRED, lw=2.5, s=200, alpha=0.8, zorder=4)
 
             ax_fix.set_title("(b) Corrected (Median Aligned)", **SUBPLOT_TITLE_KWS)
             ax_fix.set_xlabel(x_col, fontweight='bold')
@@ -1093,27 +1103,33 @@ class PlottingData(Plotting):
                 Line2D([0], [0], color='#34495E', ls='--', lw=2, label='Median'),
                 Line2D([0], [0], marker='o', color='w', markerfacecolor=C_VALID, markersize=8, alpha=0.6,
                        label='Valid Data'),
-                Line2D([0], [0], marker='o', color='w', markeredgecolor=C_OUTLIER, markerfacecolor='none', markersize=8,
-                       markeredgewidth=1.5, label='Outliers (Raw)'),
+                Line2D([0], [0], marker='o', color='w', markeredgecolor=C_OUTLIER, markerfacecolor='none',
+                       markersize=12,
+                       markeredgewidth=2, label='Outliers (Raw)'),
                 Line2D([0], [0], marker='o', color='w', markeredgecolor=C_REPAIRED, markerfacecolor='none',
-                       markersize=8, markeredgewidth=1.5, label='Corrected Data')
+                       markersize=12, markeredgewidth=2, label='Corrected Data')
             ]
 
             fig.legend(handles=custom_lines, loc='lower center', bbox_to_anchor=(0.5, 0.02), ncol=5, frameon=False,
-                       fontsize=10)
-            if title_on:
-                fig.suptitle(main_title, y=0.98, fontsize=16, fontweight='bold')
-            plt.tight_layout(rect=[0, 0.08, 1, 0.95])
+                       fontsize=11)
 
+            if title_on:
+                fig.suptitle(main_title, y=1.02, fontsize=16, fontweight='bold')
+            plt.tight_layout(rect=[0, 0.08, 1, 0.98])
+
+            # --- 防弹保存逻辑 ---
             if is_final_record:
+                safe_name = main_title.replace(":", "").replace(" ", "_").replace("(", "").replace(")",
+                                                                                                   "") if main_title else "Empirical_Cone"
                 cls._save_figure(fig=fig,
                                  prefix="Data Figure",
-                                 experiment_name=main_title,
+                                 experiment_name=safe_name,
                                  fitness_metric="")
 
             plt.show()
+
     @classmethod
-    def plot_4c_bmi_bland_altman(
+    def plot_4c_weight_bland_altman(
             cls,
             df_raw: pd.DataFrame,
             df_fixed: pd.DataFrame,
@@ -1123,25 +1139,22 @@ class PlottingData(Plotting):
     ):
         def get_4c_stats(df):
             temp = df.copy().reset_index(drop=True)
-            # 1. 提取 4C 组成部分
+            # 1. 提取 4C 组成部分 (绝对质量 kg)
             water = temp['Total Body Water (TBW)']
             fat = temp['Total Fat Content (TFC)']
-            # 蛋白重量 = 总体重 * 蛋白百分比
             protein = temp['Weight'] * (temp['Body Protein Content (Protein) (%)'] / 100.0)
             sum_3c = water + fat + protein
 
-            # 2. 计算该数据集对应的 Alpha (Epsilon)
-            # alpha = median(1 - (Water + Fat + Protein) / Weight)
+            # 2. 计算 Alpha (Epsilon)
             ratios = 1 - (sum_3c / temp['Weight'])
             eps_val = ratios.median()
 
-            # 3. 基于该 eps 反推 4C 理论 BMI
+            # 3. 基于物理约束反推观测值对应的理论体重 (Weight)
             calc_weight = sum_3c / (1 - eps_val)
-            calc_bmi = calc_weight / ((temp['Height'] / 100) ** 2)
 
-            # 4. Bland-Altman 坐标
-            mean_v = (temp['Body Mass Index (BMI)'] + calc_bmi) / 2.0
-            diff_v = temp['Body Mass Index (BMI)'] - calc_bmi
+            # 4. 一致性坐标 (Observed vs. 4C-Calculated)
+            mean_v = (temp['Weight'] + calc_weight) / 2.0
+            diff_v = temp['Weight'] - calc_weight
 
             return mean_v, diff_v, eps_val
 
@@ -1152,8 +1165,7 @@ class PlottingData(Plotting):
         mean_raw, diff_raw, eps_raw = get_4c_stats(df_raw)
         mean_fix, diff_fix, eps_fix = get_4c_stats(df_fixed)
 
-        # --- 2. 核心逻辑：全局修复掩码 (忽略 BMI) ---
-        # 定义参与修复流程的所有“其他”列
+        # --- 2. 核心逻辑：全局修复掩码 ---
         core_components = [
             'Total Body Water (TBW)',
             'Total Fat Content (TFC)',
@@ -1166,7 +1178,6 @@ class PlottingData(Plotting):
             'Visceral Muscle Area (VMA) (Kg)'
         ]
 
-        # 检查这些列中是否有任意一个在修复前后不一致
         is_repaired = pd.Series(False, index=df_raw.index)
         for col in core_components:
             if col in df_raw.columns and col in df_fixed.columns:
@@ -1179,7 +1190,7 @@ class PlottingData(Plotting):
         # --- 3. 视觉配置 ---
         C_VALID = '#08306B'  # 深蓝
         C_OUTLIER = '#D55E00'  # 橙红
-        C_REPAIRED = '#27AE60'  # 绿色
+        C_CORRECTED = '#27AE60'  # 翠绿
 
         SUBPLOT_TITLE_KWS = {
             'loc': 'left', 'fontstyle': 'italic', 'fontsize': 13, 'color': '#444444', 'pad': 15
@@ -1203,22 +1214,21 @@ class PlottingData(Plotting):
 
             configs = [
                 {'ax': axes[0], 'mean': mean_raw, 'diff': diff_raw, 'eps': eps_raw, 'color': C_OUTLIER,
-                 'title': "(a) Raw (4C Consistency)"},
-                {'ax': axes[1], 'mean': mean_fix, 'diff': diff_fix, 'eps': eps_fix, 'color': C_REPAIRED,
-                 'title': "(b) Corrected (4C Consistency)"}
+                 'title': "(a) Raw"},
+                {'ax': axes[1], 'mean': mean_fix, 'diff': diff_fix, 'eps': eps_fix, 'color': C_CORRECTED,
+                 'title': "(b) Corrected"}
             ]
 
             for cfg in configs:
                 ax, m, d, eps = cfg['ax'], cfg['mean'], cfg['diff'], cfg['eps']
                 add_background_kde(ax, m, d, color=cfg['color'])
 
-                # 散点：Valid 用深蓝实心，Repaired/Outlier 用彩色空心
-                ax.scatter(m[mask_valid], d[mask_valid], c=C_VALID, alpha=0.4, edgecolors='white', lw=0.5, s=60,
+                # 散点：Valid 保持低调，Raw/Corrected 使用醒目的巨型空心圈
+                ax.scatter(m[mask_valid], d[mask_valid], c=C_VALID, alpha=0.5, edgecolors='white', lw=0.5, s=60,
                            zorder=3)
-                ax.scatter(m[mask_repaired], d[mask_repaired], facecolors='none', edgecolors=cfg['color'], lw=1.5, s=60,
-                           zorder=4)
+                ax.scatter(m[mask_repaired], d[mask_repaired], facecolors='none', edgecolors=cfg['color'], lw=2.5,
+                           s=200, alpha=0.8, zorder=4)
 
-                # 统计线
                 avg_d, std_d = d.mean(), d.std()
                 loa_lower = avg_d - 1.96 * std_d
                 ax.axhline(avg_d, color='black', ls='-', lw=2, zorder=2)
@@ -1234,37 +1244,37 @@ class PlottingData(Plotting):
                         fontweight='bold', fontsize=11, zorder=5)
 
                 ax.set_title(cfg['title'], **SUBPLOT_TITLE_KWS)
-                ax.set_xlabel("Mean BMI (Reported & 4C-Calculated)", fontweight='bold')
+                # 学术级 X 轴标签
+                ax.set_xlabel("Mean Weight (Observed & 4C-Calculated) [kg]", fontweight='bold')
 
-            # 细节美化
-            axes[0].set_ylabel("Difference (Reported - 4C-Calculated)", fontweight='bold')
+            # 细节美化与 Y 轴标签
+            axes[0].set_ylabel("Difference (Observed - 4C-Calculated) [kg]", fontweight='bold')
             sns.despine(ax=axes[0])
             sns.despine(ax=axes[1], left=True)
             axes[1].tick_params(left=False)
 
-            # 图例：保持原始标签命名
+            # 极简统一条例
             legend_elements = [
                 Line2D([0], [0], marker='o', color='w', markerfacecolor=C_VALID, markersize=8, alpha=0.6,
                        label='Valid Data'),
-                Line2D([0], [0], marker='o', color='w', markeredgecolor=C_OUTLIER, markerfacecolor='none', markersize=8,
-                       markeredgewidth=1.5, label='Outliers (Raw)'),
-                Line2D([0], [0], marker='o', color='w', markeredgecolor=C_REPAIRED, markerfacecolor='none',
-                       markersize=8, markeredgewidth=1.5, label='Corrected Data')
+                Line2D([0], [0], marker='o', color='w', markeredgecolor=C_OUTLIER, markerfacecolor='none',
+                       markersize=12, markeredgewidth=2, label='Outliers (Raw)'),
+                Line2D([0], [0], marker='o', color='w', markeredgecolor=C_CORRECTED, markerfacecolor='none',
+                       markersize=12, markeredgewidth=2, label='Corrected Data')
             ]
             fig.legend(handles=legend_elements, loc='lower center', bbox_to_anchor=(0.5, 0.02), ncol=3, frameon=False,
                        fontsize=11)
 
             if title_on:
-                fig.suptitle(main_title if main_title else "4C Component Consistency Analysis", y=1.02, fontsize=16,
+                fig.suptitle(main_title if main_title else "4C Consistency Analysis", y=1.02, fontsize=16,
                              fontweight='bold')
 
             plt.tight_layout(rect=[0, 0.1, 1, 0.98])
 
             if is_final_record:
-                cls._save_figure(fig=fig,
-                                 prefix="Data Figure",
-                                 experiment_name=main_title,
-                                 fitness_metric="")
+                safe_name = main_title.replace(":", "").replace(" ", "_").replace("(", "").replace(")",
+                                                                                                   "") if main_title else "4C_Bland_Altman"
+                cls._save_figure(fig=fig, prefix="Data Figure", experiment_name=safe_name, fitness_metric="")
 
             plt.show()
 
