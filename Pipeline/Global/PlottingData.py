@@ -726,7 +726,7 @@ class PlottingData(Plotting):
             ax_raw.text(0.98, 0.03, f'LoA: {sd_r:.2f}', transform=ax_raw.transAxes,
                         color=C_OUTLIER, ha='right', va='bottom', fontweight='bold', fontsize=12, zorder=5)
 
-            ax_raw.set_title("(a) Before Repair", **SUBPLOT_TITLE_KWS)
+            ax_raw.set_title("(a) Raw (BMI Consistency)", **SUBPLOT_TITLE_KWS)
             ax_raw.set_xlabel("Mean BMI (Original)", fontweight='bold')
             ax_raw.set_ylabel("Difference (Reported - Calculated)", fontweight='bold')
 
@@ -752,7 +752,7 @@ class PlottingData(Plotting):
             ax_fix.text(0.98, 0.03, f'LoA: {sd_f:.2f}', transform=ax_fix.transAxes,
                         color=C_REPAIRED, ha='right', va='bottom', fontweight='bold', fontsize=12, zorder=5)
 
-            ax_fix.set_title("(b) After Repair", **SUBPLOT_TITLE_KWS)
+            ax_fix.set_title("(b) Corrected (BMI Consistency)", **SUBPLOT_TITLE_KWS)
             ax_fix.set_xlabel("Mean BMI (Repaired)", fontweight='bold')
             ax_fix.set_ylabel('')
             ax_fix.tick_params(left=False)
@@ -764,7 +764,7 @@ class PlottingData(Plotting):
                 Line2D([0], [0], marker='o', color='w', markeredgecolor=C_OUTLIER, markerfacecolor='none', markersize=8,
                        markeredgewidth=1.5, label='Outliers (Raw)'),
                 Line2D([0], [0], marker='o', color='w', markeredgecolor=C_REPAIRED, markerfacecolor='none',
-                       markersize=8, markeredgewidth=1.5, label='Repaired Data')
+                       markersize=8, markeredgewidth=1.5, label='Corrected Data')
             ]
 
             fig.legend(handles=custom_lines,
@@ -780,7 +780,7 @@ class PlottingData(Plotting):
             sns.despine(ax=ax_fix, left=True)
 
             if title_on:
-                fig.suptitle("Bland-Altman Agreement Analysis", y=1.02, fontsize=16,
+                fig.suptitle(main_title, y=1.02, fontsize=16,
                              fontweight='bold')
 
             plt.tight_layout(rect=[0, 0.1, 1, 0.98])
@@ -962,7 +962,7 @@ class PlottingData(Plotting):
             ax_raw.scatter(df_raw[x_col], df_raw[y_col], facecolors='none', edgecolors='#08306B',
                            s=50, lw=1.2, alpha=0.6, zorder=5)
 
-            ax_raw.set_title("(a) Before Repair", **SUBPLOT_TITLE_KWS)
+            ax_raw.set_title("(a) Raw", **SUBPLOT_TITLE_KWS)
             ax_raw.set_xlabel(r"$\varepsilon_{TFC} \text{ (Track E)}$", fontweight='bold', fontsize=14)
             ax_raw.set_ylabel(r"$\varepsilon_{TFC} \text{ (Track F)}$", fontweight='bold', fontsize=14)
 
@@ -971,7 +971,7 @@ class PlottingData(Plotting):
             ax_fix.scatter(df_fixed[x_col], df_fixed[y_col], facecolors='none', edgecolors='#08306B',
                            s=50, lw=1.2, alpha=0.6, zorder=5)
 
-            ax_fix.set_title("(b) After Repair", **SUBPLOT_TITLE_KWS)
+            ax_fix.set_title("(b) Corrected", **SUBPLOT_TITLE_KWS)
             ax_fix.set_xlabel(r"$\varepsilon_{TFC} \text{ (Track E)}$", fontweight='bold', fontsize=14)
             ax_fix.tick_params(left=False)
 
@@ -1067,7 +1067,7 @@ class PlottingData(Plotting):
             ax_raw.scatter(df_raw.loc[is_repaired, x_col], df_raw.loc[is_repaired, y_col],
                            facecolors='none', edgecolors=C_OUTLIER, lw=1.5, s=60, zorder=4)
 
-            ax_raw.set_title("(a) Before Repair", **SUBPLOT_TITLE_KWS)
+            ax_raw.set_title("(a) Raw (Empirical Distribution)", **SUBPLOT_TITLE_KWS)
             ax_raw.set_xlabel(x_col, fontweight='bold')
             ax_raw.set_ylabel(y_col, fontweight='bold')
 
@@ -1080,7 +1080,7 @@ class PlottingData(Plotting):
             ax_fix.scatter(df_fixed.loc[is_repaired, x_col], df_fixed.loc[is_repaired, y_col],
                            facecolors='none', edgecolors=C_REPAIRED, lw=1.5, s=60, zorder=4)
 
-            ax_fix.set_title("(b) After Repair", **SUBPLOT_TITLE_KWS)
+            ax_fix.set_title("(b) Corrected (Median Aligned)", **SUBPLOT_TITLE_KWS)
             ax_fix.set_xlabel(x_col, fontweight='bold')
             ax_fix.tick_params(left=False)
 
@@ -1096,7 +1096,7 @@ class PlottingData(Plotting):
                 Line2D([0], [0], marker='o', color='w', markeredgecolor=C_OUTLIER, markerfacecolor='none', markersize=8,
                        markeredgewidth=1.5, label='Outliers (Raw)'),
                 Line2D([0], [0], marker='o', color='w', markeredgecolor=C_REPAIRED, markerfacecolor='none',
-                       markersize=8, markeredgewidth=1.5, label='Repaired Data')
+                       markersize=8, markeredgewidth=1.5, label='Corrected Data')
             ]
 
             fig.legend(handles=custom_lines, loc='lower center', bbox_to_anchor=(0.5, 0.02), ncol=5, frameon=False,
@@ -1106,7 +1106,10 @@ class PlottingData(Plotting):
             plt.tight_layout(rect=[0, 0.08, 1, 0.95])
 
             if is_final_record:
-                cls._save_figure(fig=fig, prefix="Data Figure", experiment_name=main_title, fitness_metric="")
+                cls._save_figure(fig=fig,
+                                 prefix="Data Figure",
+                                 experiment_name=main_title,
+                                 fitness_metric="")
 
             plt.show()
     @classmethod
@@ -1200,9 +1203,9 @@ class PlottingData(Plotting):
 
             configs = [
                 {'ax': axes[0], 'mean': mean_raw, 'diff': diff_raw, 'eps': eps_raw, 'color': C_OUTLIER,
-                 'title': "(a) 4C Before Repair"},
+                 'title': "(a) Raw (4C Consistency)"},
                 {'ax': axes[1], 'mean': mean_fix, 'diff': diff_fix, 'eps': eps_fix, 'color': C_REPAIRED,
-                 'title': "(b) 4C After Repair"}
+                 'title': "(b) Corrected (4C Consistency)"}
             ]
 
             for cfg in configs:
@@ -1246,7 +1249,7 @@ class PlottingData(Plotting):
                 Line2D([0], [0], marker='o', color='w', markeredgecolor=C_OUTLIER, markerfacecolor='none', markersize=8,
                        markeredgewidth=1.5, label='Outliers (Raw)'),
                 Line2D([0], [0], marker='o', color='w', markeredgecolor=C_REPAIRED, markerfacecolor='none',
-                       markersize=8, markeredgewidth=1.5, label='Repaired Data')
+                       markersize=8, markeredgewidth=1.5, label='Corrected Data')
             ]
             fig.legend(handles=legend_elements, loc='lower center', bbox_to_anchor=(0.5, 0.02), ncol=3, frameon=False,
                        fontsize=11)
@@ -1258,6 +1261,189 @@ class PlottingData(Plotting):
             plt.tight_layout(rect=[0, 0.1, 1, 0.98])
 
             if is_final_record:
-                cls._save_figure(fig=fig, prefix="4C_BlandAltman", experiment_name=main_title)
+                cls._save_figure(fig=fig,
+                                 prefix="Data Figure",
+                                 experiment_name=main_title,
+                                 fitness_metric="")
+
+            plt.show()
+
+    @classmethod
+    def plot_obesity_forensic_trilogy(
+            cls,
+            df_raw: pd.DataFrame,
+            df_fixed: pd.DataFrame,
+            group_col: str = 'Forensic_Group',
+            main_title: str = "Forensic Dashboard: Decoding Multi-Standard Physics & Data Correction",
+            is_final_record: bool = False,
+            title_on: bool = True
+    ):
+        """
+        The Forensic 2x2 Dashboard (Academic/Publication Ready).
+        - Categories: Deep Blue -> Deep Purple (High Contrast Cool Tones).
+        - States: Vermilion (Outlier, Hollow) / Green (Corrected, Hollow).
+        - Layout: (a) Raw Global, (b) Population, (c) Raw Structural, (d) Corrected Structural.
+        """
+        if group_col not in df_raw.columns:
+            raise ValueError(f"Missing '{group_col}'. Please run forensic logic first.")
+
+        # --- 1. 核心学术色板 (Blue-Purple Gradient) ---
+        PALETTE = {
+            'Standard 22': '#084594',  # Deep Blue
+            'Standard 22.5': '#4292C6',  # Mid Blue
+            'Standard 23.5': '#9E9AC8',  # Light Purple Transition
+            'Standard 24.5': '#6A51A3',  # Mid Purple
+            'Standard 25.5': '#4A1486',  # Deep Purple
+            'Unclassified': '#757575',  # Dark Gray (Grounded background)
+            'Raw Outlier': '#D55E00'  # Vermilion (橙红)
+        }
+        C_CORRECTED = '#27AE60'  # Green (翠绿)
+
+        # 统一子图标题样式
+        SUBPLOT_TITLE_KWS = {
+            'loc': 'left', 'fontstyle': 'italic', 'fontweight': 'normal',
+            'fontsize': 13, 'color': '#444444', 'pad': 15
+        }
+
+        # --- 2. 统一全局视觉参数 ---
+        BASE_ALPHA = 0.6  # 背景点、线统一透明度
+        RING_ALPHA = 0.85  # 重点圆圈透明度
+        RING_SIZE = 280  # 进一步放大的空心追踪圆 (更加醒目)
+        RING_LW = 2.5  # 追踪圆线宽
+
+        # 数据层准备
+        df_normal = df_raw[df_raw[group_col] != 'Raw Outlier']
+        df_outlier = df_raw[df_raw[group_col] == 'Raw Outlier']
+        clean_df = df_raw[df_raw['Obesity (%)'] < 500]
+
+        x_min, x_max = clean_df['BMI_Final'].min() * 0.9, clean_df['BMI_Final'].max() * 1.1
+        y_zoom_max = clean_df['Obesity (%)'].max() * 1.15
+
+        def plot_theoretical_v_shapes(ax, x_range):
+            ax.plot(x_range, np.abs((x_range - 22.0) / 22.0) * 100, color=PALETTE['Standard 22'], ls='-',
+                    alpha=BASE_ALPHA, lw=2, zorder=1)
+            ax.plot(x_range, np.abs((x_range - 22.5) / 22.5) * 100, color=PALETTE['Standard 22.5'],
+                    ls=(0, (3, 1, 1, 1)), alpha=BASE_ALPHA, lw=2, zorder=1)
+            ax.plot(x_range, np.abs((x_range - 23.5) / 23.5) * 100, color=PALETTE['Standard 23.5'], ls='-.',
+                    alpha=BASE_ALPHA, lw=2, zorder=1)
+            ax.plot(x_range, np.abs((x_range - 24.5) / 24.5) * 100, color=PALETTE['Standard 24.5'], ls='--',
+                    alpha=BASE_ALPHA, lw=2, zorder=1)
+            ax.plot(x_range, np.abs((x_range - 25.5) / 25.5) * 100, color=PALETTE['Standard 25.5'], ls=':',
+                    alpha=BASE_ALPHA, lw=2, zorder=1)
+
+        with cls._style_context():
+            fig, axes = plt.subplots(2, 2, figsize=(20, 16), dpi=450, constrained_layout=True)
+            x_vals = np.linspace(x_min, x_max, 300)
+
+            # ==========================================
+            # PANEL A: RAW GLOBAL (Top-Left)
+            # ==========================================
+            ax1 = axes[0, 0]
+            sns.scatterplot(
+                data=df_normal, x='BMI_Final', y='Obesity (%)',
+                hue=group_col, palette=PALETTE, s=60, alpha=BASE_ALPHA, edgecolor='white', ax=ax1, legend=False,
+                zorder=2
+            )
+            if not df_outlier.empty:
+                err_x, err_y = df_outlier['BMI_Final'].iloc[0], df_outlier['Obesity (%)'].iloc[0]
+                ax1.scatter(err_x, err_y, facecolors='none', edgecolors=PALETTE['Raw Outlier'],
+                            marker='o', s=RING_SIZE, lw=RING_LW, alpha=RING_ALPHA, zorder=4)
+
+            ax1.set_title("(a) Raw (Global Scale)", **SUBPLOT_TITLE_KWS)
+            ax1.set_xlabel("Body Mass Index (BMI)", fontweight='bold')
+            ax1.set_ylabel("Obesity (%)", fontweight='bold')
+
+            # ==========================================
+            # PANEL B: DISTRIBUTION (Top-Right)
+            # ==========================================
+            ax2 = axes[0, 1]
+            plot_data = df_normal[group_col].value_counts()
+            bar_palette = [PALETTE.get(x, '#333333') for x in plot_data.index]
+            sns.barplot(x=plot_data.values, y=plot_data.index, palette=bar_palette, ax=ax2, hue=plot_data.index,
+                        legend=False, alpha=0.8)
+
+            for i, v in enumerate(plot_data.values):
+                ax2.text(v + 1, i, str(v), color='black', va='center', fontweight='bold', fontsize=11)
+
+            ax2.set_title("(b) Population Profile", **SUBPLOT_TITLE_KWS)
+            ax2.set_xlabel("Patient Count", fontweight='bold')
+            ax2.set_ylabel("")
+            ax2.grid(axis='x', linestyle='--', alpha=0.4)
+
+            # ==========================================
+            # PANEL C: RAW STRUCTURAL (Bottom-Left)
+            # ==========================================
+            ax3 = axes[1, 0]
+            sns.scatterplot(
+                data=clean_df, x='BMI_Final', y='Obesity (%)',
+                hue=group_col, palette=PALETTE, s=60, alpha=BASE_ALPHA, edgecolor='white', ax=ax3, legend=False,
+                zorder=3
+            )
+            plot_theoretical_v_shapes(ax3, x_vals)
+            if not df_outlier.empty:
+                err_x, err_y = df_outlier['BMI_Final'].iloc[0], df_outlier['Obesity (%)'].iloc[0]
+                ax3.scatter(err_x, err_y, facecolors='none', edgecolors=PALETTE['Raw Outlier'],
+                            marker='o', s=RING_SIZE, lw=RING_LW, alpha=RING_ALPHA, zorder=4)
+
+            ax3.set_xlim(x_min, x_max)
+            ax3.set_ylim(bottom=-2, top=y_zoom_max)
+            ax3.set_title("(c) Raw (Structural Physics)", **SUBPLOT_TITLE_KWS)
+            ax3.set_xlabel("Body Mass Index (BMI)", fontweight='bold')
+            ax3.set_ylabel("Obesity (%)", fontweight='bold')
+
+            # ==========================================
+            # PANEL D: CORRECTED STRUCTURAL (Bottom-Right)
+            # ==========================================
+            ax4 = axes[1, 1]
+            sns.scatterplot(
+                data=clean_df, x='BMI_Final', y='Obesity (%)',
+                hue=group_col, palette=PALETTE, s=60, alpha=BASE_ALPHA, edgecolor='white', ax=ax4, legend=False,
+                zorder=2
+            )
+            plot_theoretical_v_shapes(ax4, x_vals)
+
+            if not df_outlier.empty:
+                idx = df_outlier.index[0]
+                fixed_x, fixed_y = df_fixed.loc[idx, 'BMI_Final'], df_fixed.loc[idx, 'Obesity (%)']
+                # 翠绿空心大圆圈，精准展示 Corrected Data
+                ax4.scatter(fixed_x, fixed_y, facecolors='none', edgecolors=C_CORRECTED,
+                            marker='o', s=RING_SIZE, lw=RING_LW, alpha=RING_ALPHA, zorder=10)
+
+            ax4.set_xlim(x_min, x_max)
+            ax4.set_ylim(bottom=-2, top=y_zoom_max)
+            ax4.set_title("(d) Corrected (Structural Physics)", **SUBPLOT_TITLE_KWS)
+            ax4.set_xlabel("Body Mass Index (BMI)", fontweight='bold')
+            ax4.set_ylabel("")
+
+            # ==========================================
+            # 格式化与学术图例
+            # ==========================================
+            for ax in [ax1, ax3, ax4]:
+                sns.despine(ax=ax);
+                ax.grid(True, linestyle='--', alpha=0.3, zorder=0)
+            sns.despine(ax=ax2, left=True)
+
+            custom_lines = [
+                Line2D([0], [0], color=PALETTE['Standard 22'], lw=3, label='Standard 22'),
+                Line2D([0], [0], color=PALETTE['Standard 22.5'], lw=3, ls=(0, (3, 1, 1, 1)), label='Standard 22.5'),
+                Line2D([0], [0], color=PALETTE['Standard 23.5'], lw=3, ls='-.', label='Standard 23.5'),
+                Line2D([0], [0], color=PALETTE['Standard 24.5'], lw=3, ls='--', label='Standard 24.5'),
+                Line2D([0], [0], color=PALETTE['Standard 25.5'], lw=3, ls=':', label='Standard 25.5'),
+                Line2D([0], [0], marker='o', color='w', markeredgecolor=PALETTE['Raw Outlier'], markerfacecolor='none',
+                       markersize=14, markeredgewidth=2.5, label='Outliers (Raw)'),
+                Line2D([0], [0], marker='o', color='w', markeredgecolor=C_CORRECTED, markerfacecolor='none',
+                       markersize=14, markeredgewidth=2.5, label='Corrected Data')
+            ]
+            fig.legend(handles=custom_lines, loc='lower center', bbox_to_anchor=(0.5, -0.03), ncol=7, frameon=False,
+                       fontsize=12)
+            if title_on:
+                fig.suptitle(main_title, y=1.04, fontsize=18,
+                         fontweight='bold')
+
+            if is_final_record:
+                cls._save_figure(fig=fig,
+                                 prefix="Data Figure",
+                                 experiment_name=main_title,
+                                 fitness_metric="")
 
             plt.show()
