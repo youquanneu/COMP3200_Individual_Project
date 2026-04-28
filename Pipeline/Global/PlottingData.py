@@ -1133,6 +1133,7 @@ class PlottingData(Plotting):
             cls,
             df_raw: pd.DataFrame,
             df_fixed: pd.DataFrame,
+            multi_fail_mask: pd.Series = None,
             main_title: str = None,
             is_final_record: bool = False,
             title_on: bool = True
@@ -1161,6 +1162,8 @@ class PlottingData(Plotting):
         # --- 1. 数据对齐与计算 ---
         df_raw = df_raw.reset_index(drop=True)
         df_fixed = df_fixed.reset_index(drop=True)
+        if multi_fail_mask is not None:
+            multi_fail_mask = multi_fail_mask.reset_index(drop=True)
 
         mean_raw, diff_raw, eps_raw = get_4c_stats(df_raw)
         mean_fix, diff_fix, eps_fix = get_4c_stats(df_fixed)
@@ -1191,6 +1194,7 @@ class PlottingData(Plotting):
         C_VALID = '#08306B'  # 深蓝
         C_OUTLIER = '#D55E00'  # 橙红
         C_CORRECTED = '#27AE60'  # 翠绿
+        C_UNFIXED = '#FF0000'
 
         SUBPLOT_TITLE_KWS = {
             'loc': 'left', 'fontstyle': 'italic', 'fontsize': 13, 'color': '#444444', 'pad': 15
@@ -1213,41 +1217,50 @@ class PlottingData(Plotting):
             fig, axes = plt.subplots(1, 2, figsize=(16, 8), sharey=True, dpi=450)
 
             configs = [
-                {'ax': axes[0], 'mean': mean_raw, 'diff': diff_raw, 'eps': eps_raw, 'color': C_OUTLIER,
-                 'title': "(a) Raw"},
-                {'ax': axes[1], 'mean': mean_fix, 'diff': diff_fix, 'eps': eps_fix, 'color': C_CORRECTED,
-                 'title': "(b) Corrected"}
+                {'ax': axes[0], 'mean': mean_raw, 'diff': diff_raw, 'eps': eps_raw,
+                 'color': C_OUTLIER, 'fail_color': C_OUTLIER, 'title': "(a) Raw"},
+                {'ax': axes[1], 'mean': mean_fix, 'diff': diff_fix, 'eps': eps_fix,
+                 'color': C_CORRECTED, 'fail_color': C_UNFIXED, 'title': "(b) Corrected"}
             ]
 
             for cfg in configs:
                 ax, m, d, eps = cfg['ax'], cfg['mean'], cfg['diff'], cfg['eps']
                 add_background_kde(ax, m, d, color=cfg['color'])
 
-                # 散点：Valid 保持低调，Raw/Corrected 使用醒目的巨型空心圈
-                ax.scatter(m[mask_valid], d[mask_valid], c=C_VALID, alpha=0.5, edgecolors='white', lw=0.5, s=60,
-                           zorder=3)
-                ax.scatter(m[mask_repaired], d[mask_repaired], facecolors='none', edgecolors=cfg['color'], lw=2.5,
-                           s=200, alpha=0.8, zorder=4)
+                current_fail = multi_fail_mask if multi_fail_mask is not None else pd.Series(False, index=m.index)
+
+                mask_v_clean = mask_valid & ~current_fail
+                ax.scatter(m[mask_v_clean], d[mask_v_clean], c=C_VALID, alpha=0.5,
+                           edgecolors='white', lw=0.5, s=60, zorder=3)
+
+                mask_r_clean = mask_repaired & ~current_fail
+                ax.scatter(m[mask_r_clean], d[mask_r_clean], facecolors='none',
+                           edgecolors=cfg['color'], lw=2.5, s=200, alpha=0.8, zorder=4)
+
+                if multi_fail_mask is not None:
+                    ax.scatter(
+                        m[multi_fail_mask], d[multi_fail_mask],
+                        facecolors='none',
+                        edgecolors=cfg['fail_color'],
+                        lw=2.5, s=200, alpha=0.9,
+                        zorder=5,
+                        marker='o'
+                    )
 
                 avg_d, std_d = d.mean(), d.std()
-                loa_lower = avg_d - 1.96 * std_d
-                ax.axhline(avg_d, color='black', ls='-', lw=2, zorder=2)
-                ax.axhline(avg_d + 1.96 * std_d, color='gray', ls='--', lw=1.2, zorder=2)
-                ax.axhline(loa_lower, color='gray', ls='--', lw=1.2, zorder=2)
+                ax.axhline(avg_d, color='black', ls='-', lw=1.8, zorder=2)
+                ax.axhline(avg_d + 1.96 * std_d, color='#666666', ls='--', lw=1.2, zorder=2)
+                ax.axhline(avg_d - 1.96 * std_d, color='#666666', ls='--', lw=1.2, zorder=2)
 
-                ax.text(0.98, 0.08, f'$\\alpha_{{4C}}$: {eps:.4f}', transform=ax.transAxes,
-                        color=cfg['color'], ha='right', va='bottom',
-                        fontweight='bold', fontsize=11, zorder=5)
+                TEXT_KWS = {'transform': ax.transAxes, 'ha': 'right', 'va': 'bottom', 'fontweight': 'bold',
+                            'fontsize': 11, 'zorder': 6}
 
-                ax.text(0.98, 0.03, f'LoA SD: {std_d:.2f}', transform=ax.transAxes,
-                        color=cfg['color'], ha='right', va='bottom',
-                        fontweight='bold', fontsize=11, zorder=5)
+                ax.text(0.98, 0.08, f'$\\alpha_{{4C}}$: {eps:.4f}', color='#333333', **TEXT_KWS)
+                ax.text(0.98, 0.03, f'LoA SD: {std_d:.2f}', color='#333333', **TEXT_KWS)
 
                 ax.set_title(cfg['title'], **SUBPLOT_TITLE_KWS)
-                # 学术级 X 轴标签
                 ax.set_xlabel("Mean Weight (Observed & 4C-Calculated) [kg]", fontweight='bold')
 
-            # 细节美化与 Y 轴标签
             axes[0].set_ylabel("Difference (Observed - 4C-Calculated) [kg]", fontweight='bold')
             sns.despine(ax=axes[0])
             sns.despine(ax=axes[1], left=True)
@@ -1262,9 +1275,18 @@ class PlottingData(Plotting):
                 Line2D([0], [0], marker='o', color='w', markeredgecolor=C_CORRECTED, markerfacecolor='none',
                        markersize=12, markeredgewidth=2, label='Corrected Data')
             ]
-            fig.legend(handles=legend_elements, loc='lower center', bbox_to_anchor=(0.5, 0.02), ncol=3, frameon=False,
-                       fontsize=11)
 
+            if multi_fail_mask is not None:
+                legend_elements.append(
+                    Line2D([0], [0], marker='o', color='w', markeredgecolor=C_UNFIXED, markerfacecolor='none',
+                           markersize=12, markeredgewidth=2, label='Uncorrectable data')
+                )
+                ncol_count = 4
+            else:
+                ncol_count = 3
+
+            fig.legend(handles=legend_elements, loc='lower center', bbox_to_anchor=(0.5, 0.02), ncol=ncol_count,
+                       frameon=False, fontsize=11)
             if title_on:
                 fig.suptitle(main_title if main_title else "4C Consistency Analysis", y=1.02, fontsize=16,
                              fontweight='bold')
