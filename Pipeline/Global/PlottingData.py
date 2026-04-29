@@ -605,7 +605,7 @@ class PlottingData(Plotting):
             abs_corr = target_corr.abs()
             max_abs = abs_corr.max() if abs_corr.max() != 0 else 1.0  # 防止除零
 
-            alphas = 0.6 + (abs_corr / max_abs) * 0.4
+            alphas = 0.5 + (abs_corr / max_abs) * 0.5
 
             from matplotlib.colors import to_rgba
             bar_colors = [
