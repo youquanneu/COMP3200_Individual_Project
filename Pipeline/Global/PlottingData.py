@@ -601,9 +601,20 @@ class PlottingData(Plotting):
 
             C_POS = '#D55E00'
             C_NEG = '#08306B'
-            colors = [C_POS if x > 0 else C_NEG for x in target_corr.values]
 
-            ax.barh(target_corr.index, target_corr.values, color=colors, edgecolor='black', linewidth=0.8, height=0.55)
+            abs_corr = target_corr.abs()
+            max_abs = abs_corr.max() if abs_corr.max() != 0 else 1.0  # 防止除零
+
+            alphas = 0.6 + (abs_corr / max_abs) * 0.4
+
+            from matplotlib.colors import to_rgba
+            bar_colors = [
+                to_rgba(C_POS, alpha=a) if v > 0 else to_rgba(C_NEG, alpha=a)
+                for v, a in zip(target_corr.values, alphas)
+            ]
+
+            ax.barh(target_corr.index, target_corr.values, color=bar_colors,
+                    edgecolor='black', linewidth=0.6, height=0.65)
 
             # 4. Axes Formatting
             if title_on:
