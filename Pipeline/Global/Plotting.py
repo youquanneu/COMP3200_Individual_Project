@@ -662,7 +662,7 @@ class Plotting:
 
             n_axes = 2 if show_macro else 1
             h_ratios = [1.5, 1] if n_axes == 2 else [1]
-            fig, axes = plt.subplots(n_axes, 1, figsize=(15, 6 * n_axes), dpi=450, sharex=True,
+            fig, axes = plt.subplots(n_axes, 1, figsize=(15, 10 * n_axes), dpi=450, sharex=True,
                                      gridspec_kw={'height_ratios': h_ratios})
             if n_axes == 1: axes = [axes]
 

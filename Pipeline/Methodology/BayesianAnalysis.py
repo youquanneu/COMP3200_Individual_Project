@@ -98,7 +98,7 @@ class BayesianAnalysis:
             })
 
         with cls._style_context():
-            fig_height = max(4.0, len(baselines) * 0.8)
+            fig_height = max(4.0, len(baselines) * 1.2)
             fig, ax = plt.subplots(figsize=(10, fig_height), dpi=450)
 
             # 准备数据作图
@@ -116,7 +116,7 @@ class BayesianAnalysis:
             bars_win = ax.barh(y_pos, p_wins, color=color_win, edgecolor='white', height=0.6,
                                label=f'{champion_model} Wins')
             bars_rope = ax.barh(y_pos, p_ropes, left=p_wins, color=color_rope, edgecolor='white', height=0.6,
-                                label='Practically Equivalent (ROPE)')
+                                label=f'Practically Equivalent (ROPE: ±{rope_radius})')
             bars_lose = ax.barh(y_pos, p_loses, left=p_wins + p_ropes, color=color_lose, edgecolor='white', height=0.6,
                                 label=f'{champion_model} Loses')
 
@@ -128,7 +128,7 @@ class BayesianAnalysis:
                     if width > 5.0:
                         x_center = bar.get_x() + width / 2
                         y_center = bar.get_y() + bar.get_height() / 2
-                        ax.text(x_center, y_center, f'{width:.1f}%', ha='center', va='center',
+                        ax.text(x_center, y_center, f'{width/100:.4f}', ha='center', va='center',
                                 color=text_color, fontweight='bold', fontsize=10)
 
             threshold_pct = certainty_threshold * 100
@@ -144,7 +144,7 @@ class BayesianAnalysis:
             ax.set_yticklabels(formatted_models, fontweight='bold', fontsize=8, rotation=45, ha='right')
 
             ax.set_xlim(0, 100)
-            ax.set_xlabel('Posterior Probability (%)', fontweight='bold')
+            ax.set_xlabel('Posterior Probability', fontweight='bold')
 
             if title_on:
                 main_title = title
