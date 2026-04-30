@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Update final report draft">
+    <list default="true" id="32e322f1-a2b6-41aa-a837-ac174ab0e713" name="Changes" comment="Update Plotting">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pipeline/Data/DataAnalysis.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Data/DataAnalysis.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipeline/Data/DataAnalysis_2.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Data/DataAnalysis_2.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pipeline/Global/PlottingData.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipeline/Global/PlottingData.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Storage/Figure/Data Figure/Anthropometric_Distribution_.png" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Figure/Data Figure/Anthropometric_Distribution_.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Storage/Figure/Data Figure/Global_Feature_Correlation_.png" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Figure/Data Figure/Global_Feature_Correlation_.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Figure/Data Figure/Distribution_of_Comorbidity_Scores_.png" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Figure/Data Figure/Distribution_of_Comorbidity_Scores_.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Figure/Data Figure/Hepatic_Fat_Accumulation_HFA_Severity_.png" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Figure/Data Figure/Hepatic_Fat_Accumulation_HFA_Severity_.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Storage/Figure/Data Figure/Prevalence_of_Clinical_Conditions_Cohort_Profile_.png" beforeDir="false" afterPath="$PROJECT_DIR$/Storage/Figure/Data Figure/Prevalence_of_Clinical_Conditions_Cohort_Profile_.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,47 +75,47 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.ABC_ELM.executor": "Run",
-    "Python.ABC_ELM2.executor": "Run",
-    "Python.ABC_Testing.executor": "Run",
-    "Python.ArtificialBeeColonyElm.executor": "Run",
-    "Python.ArtificialBeeColonyElmCV.executor": "Run",
-    "Python.ArtificialBeeColonyElmCVEnsemble.executor": "Debug",
-    "Python.ArtificialBeeColonyElmCVEnsembleRectifyVersion.executor": "Run",
-    "Python.BayesianAnalysis.executor": "Run",
-    "Python.CrossValidationDataSplit.executor": "Run",
-    "Python.DataSplit.executor": "Run",
-    "Python.EvaluationABCELM.executor": "Run",
-    "Python.EvaluationELM.executor": "Run",
-    "Python.EvaluationMatrix.executor": "Run",
-    "Python.ExtremeLearningMachine.executor": "Run",
-    "Python.ExtremeLearningMachineCVEnsemble.executor": "Run",
-    "Python.GallstoneDataSet.executor": "Run",
-    "Python.GlobalSetting.executor": "Run",
-    "Python.Plotting.executor": "Run",
-    "Python.PlottingData.executor": "Run",
-    "Python.sdf.executor": "Run",
-    "Python.teest.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "ai.playground.ignore.import.keys.banner.in.settings": "true",
-    "database.data.extractors.current.export.id": "Excel (xlsx)",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/yqn1e23/PycharmProjects/COMP3200_Individual_Project/Pipeline/Data",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "jupyter.general.settings",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.ABC_ELM.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ABC_ELM2.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ABC_Testing.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ArtificialBeeColonyElm.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ArtificialBeeColonyElmCV.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ArtificialBeeColonyElmCVEnsemble.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.ArtificialBeeColonyElmCVEnsembleRectifyVersion.executor&quot;: &quot;Run&quot;,
+    &quot;Python.BayesianAnalysis.executor&quot;: &quot;Run&quot;,
+    &quot;Python.CrossValidationDataSplit.executor&quot;: &quot;Run&quot;,
+    &quot;Python.DataSplit.executor&quot;: &quot;Run&quot;,
+    &quot;Python.EvaluationABCELM.executor&quot;: &quot;Run&quot;,
+    &quot;Python.EvaluationELM.executor&quot;: &quot;Run&quot;,
+    &quot;Python.EvaluationMatrix.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ExtremeLearningMachine.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ExtremeLearningMachineCVEnsemble.executor&quot;: &quot;Run&quot;,
+    &quot;Python.GallstoneDataSet.executor&quot;: &quot;Run&quot;,
+    &quot;Python.GlobalSetting.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Plotting.executor&quot;: &quot;Run&quot;,
+    &quot;Python.PlottingData.executor&quot;: &quot;Run&quot;,
+    &quot;Python.sdf.executor&quot;: &quot;Run&quot;,
+    &quot;Python.teest.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;ai.playground.ignore.import.keys.banner.in.settings&quot;: &quot;true&quot;,
+    &quot;database.data.extractors.current.export.id&quot;: &quot;Excel (xlsx)&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/yqn1e23/PycharmProjects/COMP3200_Individual_Project/Pipeline/Data&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;jupyter.general.settings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\yqn1e23\PycharmProjects\COMP3200_Individual_Project\Pipeline\Data" />
@@ -284,30 +285,10 @@
       <workItem from="1777389534944" duration="55000" />
       <workItem from="1777431963485" duration="280000" />
       <workItem from="1777434769459" duration="9000" />
-    </task>
-    <task id="LOCAL-00097" summary="record">
-      <option name="closed" value="true" />
-      <created>1774921306252</created>
-      <option name="number" value="00097" />
-      <option name="presentableId" value="LOCAL-00097" />
-      <option name="project" value="LOCAL" />
-      <updated>1774921306252</updated>
-    </task>
-    <task id="LOCAL-00098" summary="restructure">
-      <option name="closed" value="true" />
-      <created>1775016647260</created>
-      <option name="number" value="00098" />
-      <option name="presentableId" value="LOCAL-00098" />
-      <option name="project" value="LOCAL" />
-      <updated>1775016647264</updated>
-    </task>
-    <task id="LOCAL-00099" summary="Adjust plotting of trace history">
-      <option name="closed" value="true" />
-      <created>1775712973397</created>
-      <option name="number" value="00099" />
-      <option name="presentableId" value="LOCAL-00099" />
-      <option name="project" value="LOCAL" />
-      <updated>1775712973397</updated>
+      <workItem from="1777461040493" duration="1801000" />
+      <workItem from="1777522529405" duration="1190000" />
+      <workItem from="1777543835592" duration="992000" />
+      <workItem from="1777546083987" duration="2273000" />
     </task>
     <task id="LOCAL-00100" summary="Applies the Holm step-down method to dynamically correct P-values">
       <option name="closed" value="true" />
@@ -677,7 +658,31 @@
       <option name="project" value="LOCAL" />
       <updated>1777389578156</updated>
     </task>
-    <option name="localTasksCounter" value="146" />
+    <task id="LOCAL-00146" summary="Update Plotting">
+      <option name="closed" value="true" />
+      <created>1777435983693</created>
+      <option name="number" value="00146" />
+      <option name="presentableId" value="LOCAL-00146" />
+      <option name="project" value="LOCAL" />
+      <updated>1777435983693</updated>
+    </task>
+    <task id="LOCAL-00147" summary="Update Plotting">
+      <option name="closed" value="true" />
+      <created>1777437967997</created>
+      <option name="number" value="00147" />
+      <option name="presentableId" value="LOCAL-00147" />
+      <option name="project" value="LOCAL" />
+      <updated>1777437967997</updated>
+    </task>
+    <task id="LOCAL-00148" summary="Update Plotting">
+      <option name="closed" value="true" />
+      <created>1777547777694</created>
+      <option name="number" value="00148" />
+      <option name="presentableId" value="LOCAL-00148" />
+      <option name="project" value="LOCAL" />
+      <updated>1777547777694</updated>
+    </task>
+    <option name="localTasksCounter" value="149" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -695,7 +700,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Plotting Results" />
     <MESSAGE value="Correct SVC to linear SVC" />
     <MESSAGE value="Add ABC RELM to bayesian" />
     <MESSAGE value="......" />
@@ -720,7 +724,8 @@
     <MESSAGE value="Update Report" />
     <MESSAGE value="Update data preprocessing plotting" />
     <MESSAGE value="Update final report draft" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update final report draft" />
+    <MESSAGE value="Update Plotting" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update Plotting" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/COMP3200_Individual_Project$PlottingData.coverage" NAME="PlottingData Coverage Results" MODIFIED="1777296364867" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Pipeline/Global" />

@@ -54,8 +54,8 @@ class PlottingData(Plotting):
                 palette={'Male': 'tab:blue', 'Female': 'tab:red'} if 'Gender_Label' in df_viz.columns else None,
                 plot_kws={'scatter_kws': {'alpha': 0.4, 's': 15, 'edgecolor': 'none'}, 'line_kws': {'linewidth': 2}},
                 diag_kws={'fill': True, 'alpha': 0.3},
-                height=2.5,
-                aspect=1.6,
+                height=3,
+                aspect=1.3,
                 corner=True
             )
 
@@ -115,7 +115,7 @@ class PlottingData(Plotting):
 
         # 3. Invoke unified styling context
         with cls._style_context():
-            fig, ax = plt.subplots(figsize=(10, 4.2), dpi=450)
+            fig, ax = plt.subplots(figsize=(10, 6), dpi=450)
 
             # 4. Rendering Engine
             sns.barplot(
@@ -194,7 +194,7 @@ class PlottingData(Plotting):
 
         # 2. Invoke unified styling context
         with cls._style_context():
-            fig, ax = plt.subplots(figsize=(10, 4.2), dpi=450)
+            fig, ax = plt.subplots(figsize=(10, 6), dpi=450)
 
             # 3. Rendering Engine (Vertical Bar Chart with Palette)
             sns.barplot(
@@ -287,7 +287,7 @@ class PlottingData(Plotting):
 
         # 2. Invoke unified styling context
         with cls._style_context():
-            fig, ax = plt.subplots(figsize=(10, 4.2), dpi=450)
+            fig, ax = plt.subplots(figsize=(10, 6), dpi=450)
 
             # 3. Rendering Engine (Severity Gradient)
             sns.barplot(
