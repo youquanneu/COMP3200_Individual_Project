@@ -32,6 +32,14 @@ class Plotting:
         'axes.axisbelow'    : True
     }
 
+    SUBPLOT_TITLE_KWS = {
+        'loc': 'left',
+        'fontweight': 'bold',
+        'fontsize': 16,
+        'color': '#000000',
+        'pad': 8
+    }
+
     @classmethod
     @contextmanager
     def _style_context(cls):
@@ -426,7 +434,7 @@ class Plotting:
 
                 # 学术命名规范：(a), (b), (c), (d)
                 panel_label = chr(97 + idx)
-                ax_metric.set_title(f"({panel_label}) {experiment_name}", loc='left', fontweight='bold', fontsize=11)
+                ax_metric.set_title(f"({panel_label})", **cls.SUBPLOT_TITLE_KWS)
 
                 # 隐藏 Metric 图的 X 轴 Label 和 Ticks
                 ax_metric.tick_params(labelbottom=False)
@@ -742,8 +750,7 @@ class Plotting:
                                             alpha=0.8))
 
                 cls._format_standard_axes(ax_m, ylabel=rf"{metric_name} ($\mathit{{LCB}}_r^{{(1)}}$)")
-                ax_m.set_title("  (a) Cross Seeds Stability Analysis", loc='left',
-                               fontstyle='italic', fontweight='normal', fontsize=13, color='#444444')
+                ax_m.set_title("(a)",**cls.SUBPLOT_TITLE_KWS)
                 ax_m.set_xlabel("")
                 ax_m.tick_params(labelbottom=False)
                 sns.despine(ax=ax_m, left=True)
@@ -764,8 +771,7 @@ class Plotting:
             draw_staff_brackets(ax_e, df_f_all, p_vals_f, star_color='royalblue')
 
             cls._format_standard_axes(ax_e, ylabel=f"{metric_name} (Mean)")
-            ax_e.set_title("  (b) Cross Folds Generalization Analysis", loc='left',
-                           fontstyle='italic', fontweight='normal', fontsize=13, color='#444444')
+            ax_e.set_title("(b)", **cls.SUBPLOT_TITLE_KWS)
             if ax_e.get_legend():
                 ax_e.get_legend().remove()
             ax_e.set_xticks(x_coords)
@@ -827,15 +833,15 @@ class Plotting:
         plot_df = df.copy()
         plot_df['Strategy'] = plot_df.apply(
             lambda row: (
-                f"Employed bee: {'Algo 3' if row['Employed_Algo3'] else 'Algo 2'}\n"
-                f"Onlooker bee: {'Algo 3' if row['Onlooker_Algo3'] else 'Algo 2'}"
+                f"Employed bee: {'Algorithm 3' if row['Employed_Algo3'] else 'Algorithm 2'}\n"
+                f"Onlooker  bee: {'Algorithm 3' if row['Onlooker_Algo3'] else 'Algorithm 2'}"
             ), axis=1)
 
         algo_order = [
-            "Employed bee: Algo 2\nOnlooker bee: Algo 2",
-            "Employed bee: Algo 2\nOnlooker bee: Algo 3",
-            "Employed bee: Algo 3\nOnlooker bee: Algo 2",
-            "Employed bee: Algo 3\nOnlooker bee: Algo 3"
+            "Employed bee: Algorithm 2\nOnlooker  bee: Algorithm 2",
+            "Employed bee: Algorithm 2\nOnlooker  bee: Algorithm 3",
+            "Employed bee: Algorithm 3\nOnlooker  bee: Algorithm 2",
+            "Employed bee: Algorithm 3\nOnlooker  bee: Algorithm 3"
         ]
         lcb_arch = rf"$\mathit{{LCB}}_{{Architecture}}^{{(2)}}$"
         with cls._style_context():
@@ -847,8 +853,7 @@ class Plotting:
                           color=".25", size=5, alpha=0.7, order=algo_order)
 
             cls._format_standard_axes(ax_train, xlabel='', ylabel=rf"MCC ({lcb_arch})")
-            ax_train.set_title("  (a) Training Convergence", loc='left',
-                               fontstyle='italic', fontweight='normal', fontsize=13, color='#444444')
+            ax_train.set_title("(a)",**cls.SUBPLOT_TITLE_KWS)
             ax_train.set_xlim(-0.5, len(algo_order) - 0.5)
             sns.despine(ax=ax_train, left=False)
 
@@ -859,8 +864,7 @@ class Plotting:
 
             cls._format_standard_axes(ax_val, xlabel='ABC Algorithm Configurations',
                                       ylabel=rf"MCC ({lcb_arch})")
-            ax_val.set_title("  (b) Validation Convergence", loc='left',
-                             fontstyle='italic', fontweight='normal', fontsize=13, color='#444444')
+            ax_val.set_title("(b)", **cls.SUBPLOT_TITLE_KWS)
             ax_val.set_xlim(-0.5, len(algo_order) - 0.5)
             ax_val.set_xticks(range(len(algo_order)))
             sns.despine(ax=ax_val, left=False)
@@ -905,8 +909,7 @@ class Plotting:
                           color=".25", size=5, alpha=0.7, order=category_order)
 
             cls._format_standard_axes(ax_train, xlabel='', ylabel=rf"MCC ({lcb_arch})")
-            ax_train.set_title("  (a) Training Convergence", loc='left',
-                               fontstyle='italic', fontweight='normal', fontsize=13, color='#444444')
+            ax_train.set_title("(a)", **cls.SUBPLOT_TITLE_KWS)
             ax_train.set_xlim(-0.5, len(category_order) - 0.5)
             sns.despine(ax=ax_train, left=False)
 
@@ -917,8 +920,7 @@ class Plotting:
 
             cls._format_standard_axes(ax_val, xlabel='Trial Limit / Solution Size Ratio',
                                       ylabel=rf"MCC ({lcb_arch})")
-            ax_val.set_title("  (b) Validation Convergence", loc='left',
-                             fontstyle='italic', fontweight='normal', fontsize=13, color='#444444')
+            ax_val.set_title("(b)", **cls.SUBPLOT_TITLE_KWS)
             ax_val.set_xlim(-0.5, len(category_order) - 0.5)
             ax_val.set_xticks(range(len(category_order)))
             sns.despine(ax=ax_val, left=False)
@@ -997,8 +999,7 @@ class Plotting:
                         linewidths=1.0, linecolor='white', square=True,
                         cbar=False, ax=axes[0])
 
-            axes[0].set_title(f"(a) Empirical Observation",
-                              loc='left', fontstyle='italic', fontsize=13, color='#444444', pad=15)
+            axes[0].set_title(f"(a)",**cls.SUBPLOT_TITLE_KWS)
             axes[0].set_ylabel("Solution Size", fontweight='bold', fontsize=12)
             axes[0].set_xlabel("Max Iteration", fontweight='bold', fontsize=12)
             axes[0].tick_params(axis='y', rotation=0)
@@ -1015,8 +1016,7 @@ class Plotting:
                         cbar_kws={'label': f"Performance ({lcb_sym})"},
                         ax=axes[1])
 
-            axes[1].set_title(f"(b) Expected Performance Manifold",
-                              loc='left', fontstyle='italic', fontsize=13, color='#444444', pad=15)
+            axes[1].set_title(f"(b)",**cls.SUBPLOT_TITLE_KWS)
             axes[1].set_ylabel("")
             axes[1].tick_params(axis='y', left=False, labelleft=False)
             axes[1].set_xlabel("Max Iteration", fontweight='bold', fontsize=12)
