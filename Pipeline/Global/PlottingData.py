@@ -72,7 +72,7 @@ class PlottingData(Plotting):
                     frameon=False  # Academic standard: no distracting borders
                 )
                 # Adjust bottom margin to prevent the legend from being cut off
-                g.figure.subplots_adjust(bottom=0.15)
+                g.figure.subplots_adjust(bottom=0.10)
 
             # 4. Title control logic
             if title_on:
@@ -313,11 +313,11 @@ class PlottingData(Plotting):
             ax.set_ylabel('Patient Count', fontweight='bold', fontsize=11)
 
             grade_map = {
-                0: "0\n(Normal)",
-                1: "1\n(Mild)",
-                2: "2\n(Moderate)",
-                3: "3\n(Severe)",
-                4: "4\n(Very Severe)"
+                0: "No Fat Accumulation",
+                1: "Mild",
+                2: "Moderate",
+                3: "Severe",
+                4: "Very Severe"
             }
 
             ax.set_xticks(range(len(plot_data.index)))
