@@ -704,8 +704,11 @@ class PlottingData(Plotting):
             ax.plot(scaled_density, y_vals, color=color, alpha=0.3, zorder=0, lw=1)
 
         SUBPLOT_TITLE_KWS = {
-            'loc': 'left', 'fontstyle': 'italic', 'fontweight': 'normal',
-            'fontsize': 13, 'color': '#444444', 'pad': 15
+            'loc': 'left',
+            'fontweight': 'bold',
+            'fontsize': 16,
+            'color': '#000000',
+            'pad': 8
         }
 
         with cls._style_context():
@@ -732,7 +735,7 @@ class PlottingData(Plotting):
             ax_raw.text(0.98, 0.03, f'LoA: {sd_r:.2f}', transform=ax_raw.transAxes,
                         color=C_OUTLIER, ha='right', va='bottom', fontweight='bold', fontsize=12, zorder=5)
 
-            ax_raw.set_title("(a) Raw (BMI Consistency)", **SUBPLOT_TITLE_KWS)
+            ax_raw.set_title("(a)", **SUBPLOT_TITLE_KWS)
             # 学术术语对齐: Observed vs Calculated
             ax_raw.set_xlabel("Mean BMI (Observed & Calculated)", fontweight='bold')
             ax_raw.set_ylabel("Difference (Observed - Calculated)", fontweight='bold')
@@ -758,7 +761,7 @@ class PlottingData(Plotting):
             ax_fix.text(0.98, 0.03, f'LoA: {sd_f:.2f}', transform=ax_fix.transAxes,
                         color=C_CORRECTED, ha='right', va='bottom', fontweight='bold', fontsize=12, zorder=5)
 
-            ax_fix.set_title("(b) Corrected (BMI Consistency)", **SUBPLOT_TITLE_KWS)
+            ax_fix.set_title("(b)", **SUBPLOT_TITLE_KWS)
             # 学术术语对齐
             ax_fix.set_xlabel("Mean BMI (Observed & Calculated)", fontweight='bold')
             ax_fix.set_ylabel('')
@@ -791,7 +794,7 @@ class PlottingData(Plotting):
                 fig.suptitle(main_title if main_title else "BMI Consistency Analysis", y=1.02, fontsize=16,
                              fontweight='bold')
 
-            plt.tight_layout(rect=[0, 0.1, 1, 0.98])
+            plt.tight_layout(rect=[0, 0.05, 1, 0.98])
 
             # --- 防弹保存逻辑 ---
             if is_final_record:
@@ -836,11 +839,10 @@ class PlottingData(Plotting):
 
         SUBPLOT_TITLE_KWS = {
             'loc': 'left',
-            'fontstyle': 'italic',
-            'fontweight': 'normal',
-            'fontsize': 13,
-            'color': '#444444',
-            'pad': 15
+            'fontweight': 'bold',
+            'fontsize': 16,
+            'color': '#000000',
+            'pad': 8
         }
 
         with cls._style_context():
@@ -877,7 +879,7 @@ class PlottingData(Plotting):
             ax_raw.scatter(df_raw[x_col], df_raw[y_col], facecolors='none', edgecolors='#08306B',
                            s=50, lw=1.2, alpha=0.6, zorder=5)
 
-            ax_raw.set_title("(a) Before Repair", **SUBPLOT_TITLE_KWS)
+            ax_raw.set_title("(a)", **SUBPLOT_TITLE_KWS)
             ax_raw.set_xlabel(r"$\varepsilon_{TBW} \text{ (Track A)}$", fontweight='bold', fontsize=14)
             ax_raw.set_ylabel(r"$\varepsilon_{TBW} \text{ (Track B)}$", fontweight='bold', fontsize=14)
 
@@ -885,7 +887,7 @@ class PlottingData(Plotting):
             ax_fix.scatter(df_fixed[x_col], df_fixed[y_col], facecolors='none', edgecolors='#08306B',
                            s=50, lw=1.2, alpha=0.6, zorder=5)
 
-            ax_fix.set_title("(b) After Repair", **SUBPLOT_TITLE_KWS)
+            ax_fix.set_title("(b)", **SUBPLOT_TITLE_KWS)
             ax_fix.set_xlabel(r"$\varepsilon_{TBW} \text{ (Track A)}$", fontweight='bold', fontsize=14)
             ax_fix.tick_params(left=False)
 
@@ -938,11 +940,10 @@ class PlottingData(Plotting):
 
         SUBPLOT_TITLE_KWS = {
             'loc': 'left',
-            'fontstyle': 'italic',
-            'fontweight': 'normal',
-            'fontsize': 13,
-            'color': '#444444',
-            'pad': 15
+            'fontweight': 'bold',
+            'fontsize': 16,
+            'color': '#000000',
+            'pad': 8
         }
 
         with cls._style_context():
@@ -973,7 +974,7 @@ class PlottingData(Plotting):
             ax_raw.scatter(df_raw[x_col], df_raw[y_col], facecolors='none', edgecolors='#08306B',
                            s=50, lw=1.2, alpha=0.6, zorder=5)
 
-            ax_raw.set_title("(a) Raw", **SUBPLOT_TITLE_KWS)
+            ax_raw.set_title("(a)", **SUBPLOT_TITLE_KWS)
             ax_raw.set_xlabel(r"$\varepsilon_{TFC} \text{ (Track E)}$", fontweight='bold', fontsize=14)
             ax_raw.set_ylabel(r"$\varepsilon_{TFC} \text{ (Track F)}$", fontweight='bold', fontsize=14)
 
@@ -982,7 +983,7 @@ class PlottingData(Plotting):
             ax_fix.scatter(df_fixed[x_col], df_fixed[y_col], facecolors='none', edgecolors='#08306B',
                            s=50, lw=1.2, alpha=0.6, zorder=5)
 
-            ax_fix.set_title("(b) Corrected", **SUBPLOT_TITLE_KWS)
+            ax_fix.set_title("(b)", **SUBPLOT_TITLE_KWS)
             ax_fix.set_xlabel(r"$\varepsilon_{TFC} \text{ (Track E)}$", fontweight='bold', fontsize=14)
             ax_fix.tick_params(left=False)
 
@@ -1003,6 +1004,7 @@ class PlottingData(Plotting):
                 cls._save_figure(fig=fig, prefix="Data Figure", experiment_name=main_title, fitness_metric="")
 
             plt.show()
+            plt.close()
 
     @classmethod
     def plot_empirical_cone_repair(
@@ -1034,11 +1036,10 @@ class PlottingData(Plotting):
 
         SUBPLOT_TITLE_KWS = {
             'loc': 'left',
-            'fontstyle': 'italic',
-            'fontweight': 'normal',
-            'fontsize': 13,
-            'color': '#444444',
-            'pad': 15
+            'fontweight': 'bold',
+            'fontsize': 16,
+            'color': '#000000',
+            'pad': 8
         }
 
         # --- 统一视觉词汇表 ---
@@ -1085,7 +1086,7 @@ class PlottingData(Plotting):
             ax_raw.scatter(df_raw.loc[is_repaired, x_col], df_raw.loc[is_repaired, y_col],
                            facecolors='none', edgecolors=C_OUTLIER, lw=2.5, s=200, alpha=0.8, zorder=4)
 
-            ax_raw.set_title("(a) Raw (Empirical Distribution)", **SUBPLOT_TITLE_KWS)
+            ax_raw.set_title("(a)", **SUBPLOT_TITLE_KWS)
             ax_raw.set_xlabel(x_col, fontweight='bold')
             ax_raw.set_ylabel(y_col, fontweight='bold')
 
@@ -1101,7 +1102,7 @@ class PlottingData(Plotting):
             ax_fix.scatter(df_fixed.loc[is_repaired, x_col], df_fixed.loc[is_repaired, y_col],
                            facecolors='none', edgecolors=C_REPAIRED, lw=2.5, s=200, alpha=0.8, zorder=4)
 
-            ax_fix.set_title("(b) Corrected (Median Aligned)", **SUBPLOT_TITLE_KWS)
+            ax_fix.set_title("(b)", **SUBPLOT_TITLE_KWS)
             ax_fix.set_xlabel(x_col, fontweight='bold')
             ax_fix.tick_params(left=False)
 
@@ -1138,6 +1139,7 @@ class PlottingData(Plotting):
                                  fitness_metric="")
 
             plt.show()
+            plt.close()
 
     @classmethod
     def plot_4c_weight_bland_altman(
@@ -1208,7 +1210,11 @@ class PlottingData(Plotting):
         C_UNFIXED = '#FF0000'
 
         SUBPLOT_TITLE_KWS = {
-            'loc': 'left', 'fontstyle': 'italic', 'fontsize': 13, 'color': '#444444', 'pad': 15
+            'loc': 'left',
+            'fontweight': 'bold',
+            'fontsize': 16,
+            'color': '#000000',
+            'pad': 8
         }
 
         def add_background_kde(ax, mean_series, diff_series, color):
@@ -1229,9 +1235,9 @@ class PlottingData(Plotting):
 
             configs = [
                 {'ax': axes[0], 'mean': mean_raw, 'diff': diff_raw, 'eps': eps_raw,
-                 'color': C_OUTLIER, 'fail_color': C_OUTLIER, 'title': "(a) Raw"},
+                 'color': C_OUTLIER, 'fail_color': C_OUTLIER, 'title': "(a)"},
                 {'ax': axes[1], 'mean': mean_fix, 'diff': diff_fix, 'eps': eps_fix,
-                 'color': C_CORRECTED, 'fail_color': C_UNFIXED, 'title': "(b) Corrected"}
+                 'color': C_CORRECTED, 'fail_color': C_UNFIXED, 'title': "(b)"}
             ]
 
             for cfg in configs:
@@ -1302,7 +1308,7 @@ class PlottingData(Plotting):
                 fig.suptitle(main_title if main_title else "4C Consistency Analysis", y=1.02, fontsize=16,
                              fontweight='bold')
 
-            plt.tight_layout(rect=[0, 0.1, 1, 0.98])
+            plt.tight_layout(rect=[0, 0.05, 1, 0.98])
 
             if is_final_record:
                 safe_name = main_title.replace(":", "").replace(" ", "_").replace("(", "").replace(")",
@@ -1310,6 +1316,7 @@ class PlottingData(Plotting):
                 cls._save_figure(fig=fig, prefix="Data Figure", experiment_name=safe_name, fitness_metric="")
 
             plt.show()
+            plt.close()
 
     @classmethod
     def plot_obesity_forensic_trilogy(
@@ -1344,8 +1351,11 @@ class PlottingData(Plotting):
 
         # 统一子图标题样式
         SUBPLOT_TITLE_KWS = {
-            'loc': 'left', 'fontstyle': 'italic', 'fontweight': 'normal',
-            'fontsize': 13, 'color': '#444444', 'pad': 15
+            'loc': 'left',
+            'fontweight': 'bold',
+            'fontsize': 16,
+            'color': '#000000',
+            'pad': 8
         }
 
         # --- 2. 统一全局视觉参数 ---
@@ -1392,7 +1402,7 @@ class PlottingData(Plotting):
                 ax1.scatter(err_x, err_y, facecolors='none', edgecolors=PALETTE['Raw Outlier'],
                             marker='o', s=RING_SIZE, lw=RING_LW, alpha=RING_ALPHA, zorder=4)
 
-            ax1.set_title("(a) Raw (Global Scale)", **SUBPLOT_TITLE_KWS)
+            ax1.set_title("(a)", **SUBPLOT_TITLE_KWS)
             ax1.set_xlabel("Body Mass Index (BMI)", fontweight='bold')
             ax1.set_ylabel("Obesity (%)", fontweight='bold')
 
@@ -1408,7 +1418,7 @@ class PlottingData(Plotting):
             for i, v in enumerate(plot_data.values):
                 ax2.text(v + 1, i, str(v), color='black', va='center', fontweight='bold', fontsize=11)
 
-            ax2.set_title("(b) Population Profile", **SUBPLOT_TITLE_KWS)
+            ax2.set_title("(b)", **SUBPLOT_TITLE_KWS)
             ax2.set_xlabel("Patient Count", fontweight='bold')
             ax2.set_ylabel("")
             ax2.grid(axis='x', linestyle='--', alpha=0.4)
@@ -1430,7 +1440,7 @@ class PlottingData(Plotting):
 
             ax3.set_xlim(x_min, x_max)
             ax3.set_ylim(bottom=-2, top=y_zoom_max)
-            ax3.set_title("(c) Raw (Structural Physics)", **SUBPLOT_TITLE_KWS)
+            ax3.set_title("(c)", **SUBPLOT_TITLE_KWS)
             ax3.set_xlabel("Body Mass Index (BMI)", fontweight='bold')
             ax3.set_ylabel("Obesity (%)", fontweight='bold')
 
@@ -1454,7 +1464,7 @@ class PlottingData(Plotting):
 
             ax4.set_xlim(x_min, x_max)
             ax4.set_ylim(bottom=-2, top=y_zoom_max)
-            ax4.set_title("(d) Corrected (Structural Physics)", **SUBPLOT_TITLE_KWS)
+            ax4.set_title("(d)", **SUBPLOT_TITLE_KWS)
             ax4.set_xlabel("Body Mass Index (BMI)", fontweight='bold')
             ax4.set_ylabel("")
 
