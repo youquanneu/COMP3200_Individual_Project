@@ -376,8 +376,8 @@ class Plotting:
 
             left_axes = []
 
-            lcb_seed = rf"$\mathit{{LCB}}_r^{{(1)}}$"
-            lcb_arch = rf"$\mathit{{LCB}}_{{Architecture}}^{{(2)}}$"
+            lcb_seed = rf"$\mathrm{{LCB}}_r^{{(1)}}$"
+            lcb_arch = rf"$\mathrm{{LCB}}_{{\mathit{{Architecture}}}}^{{(2)}}$"
 
             for idx, df in enumerate(dfs):
                 experiment_name = df['expr_name'].iloc[0]
@@ -521,8 +521,8 @@ class Plotting:
             global_handles, global_labels = [], []
             left_axes = []  # 收集最左侧的坐标轴用于对齐
 
-            lcb_seed = rf"$\mathit{{LCB}}_r^{{(1)}}$"
-            lcb_arch = rf"$\mathit{{LCB}}_{{Architecture}}^{{(2)}}$"
+            lcb_seed = rf"$\mathrm{{LCB}}_r^{{(1)}}$"
+            lcb_arch = rf"$\mathrm{{LCB}}_{{\mathit{{Architecture}}}}^{{(2)}}$"
 
             for idx, df in enumerate(dfs):
                 experiment_name = df['expr_name'].iloc[0]
@@ -749,7 +749,7 @@ class Plotting:
                                   bbox=dict(facecolor='whitesmoke', edgecolor='lightgray', boxstyle='round,pad=0.5',
                                             alpha=0.8))
 
-                cls._format_standard_axes(ax_m, ylabel=rf"{metric_name} ($\mathit{{LCB}}_r^{{(1)}}$)")
+                cls._format_standard_axes(ax_m, ylabel=rf"{metric_name} ($\mathrm{{LCB}}_r^{{(1)}}$)")
                 ax_m.set_title("(a)",**cls.SUBPLOT_TITLE_KWS)
                 ax_m.set_xlabel("")
                 ax_m.tick_params(labelbottom=False)
@@ -833,17 +833,17 @@ class Plotting:
         plot_df = df.copy()
         plot_df['Strategy'] = plot_df.apply(
             lambda row: (
-                f"Employed bee: {'Algorithm 3' if row['Employed_Algo3'] else 'Algorithm 2'}\n"
-                f"Onlooker  bee: {'Algorithm 3' if row['Onlooker_Algo3'] else 'Algorithm 2'}"
+                f"Employed bee: {'Algorithm 2' if row['Employed_Algo3'] else 'Algorithm 1'}\n"
+                f"Onlooker  bee: {'Algorithm 2' if row['Onlooker_Algo3'] else 'Algorithm 1'}"
             ), axis=1)
 
         algo_order = [
-            "Employed bee: Algorithm 2\nOnlooker  bee: Algorithm 2",
-            "Employed bee: Algorithm 2\nOnlooker  bee: Algorithm 3",
-            "Employed bee: Algorithm 3\nOnlooker  bee: Algorithm 2",
-            "Employed bee: Algorithm 3\nOnlooker  bee: Algorithm 3"
+            "Employed bee: Algorithm 1\nOnlooker  bee: Algorithm 1",
+            "Employed bee: Algorithm 1\nOnlooker  bee: Algorithm 2",
+            "Employed bee: Algorithm 2\nOnlooker  bee: Algorithm 1",
+            "Employed bee: Algorithm 2\nOnlooker  bee: Algorithm 2"
         ]
-        lcb_arch = rf"$\mathit{{LCB}}_{{Architecture}}^{{(2)}}$"
+        lcb_arch = rf"$\mathrm{{LCB}}_{{\mathit{{Architecture}}}}^{{(2)}}$"
         with cls._style_context():
             fig, (ax_train, ax_val) = plt.subplots(nrows=2, ncols=1, figsize=(12, 9.6), dpi=450, sharex=True)
 
@@ -899,7 +899,7 @@ class Plotting:
         sorted_ratios = sorted(plot_df['L/SN'].unique())
         category_order = [f"L/SN Ratio: {r:.1f}" for r in sorted_ratios]
 
-        lcb_arch = rf"$\mathit{{LCB}}_{{Architecture}}^{{(2)}}$"
+        lcb_arch = rf"$\mathrm{{LCB}}_{{\mathit{{Architecture}}}}^{{(2)}}$"
         with cls._style_context():
             fig, (ax_train, ax_val) = plt.subplots(nrows=2, ncols=1, figsize=(12, 9.6), dpi=450, sharex=True)
 
@@ -951,7 +951,7 @@ class Plotting:
                                        is_final_record: bool = False,
                                        title_on = True):
 
-        lcb_sym = "$\\mathit{LCB}_{Architecture}^{(2)}$"
+        lcb_sym = "$\\mathrm{LCB}_{\\mathit{Architecture}}^{(2)}$"
 
         plot_df = df.copy()
         # [1] ROI Constraint
@@ -1047,7 +1047,7 @@ class Plotting:
                                          title: str = "Residual Diagnostic Heatmap Difference of Gaussian",
                                          is_final_record: bool = False,
                                          title_on=True):
-        lcb_sym = rf"$\mathit{{LCB}}_{{Architecture}}^{{(2)}}$"
+        lcb_sym = "$\\mathrm{LCB}_{\\mathit{Architecture}}^{(2)}$"
 
         plot_df = df.copy()
         mask = (plot_df['Solution_Size'] >= sn_range[0]) & (plot_df['Solution_Size'] <= sn_range[1]) & \
@@ -1145,7 +1145,7 @@ class Plotting:
             if title_on:
                 ax.set_title(title, fontweight='bold', fontsize=15, pad=15)
             ax.set_xlabel(r"Regularization Penalty ($\lambda$)", fontweight='bold', fontsize=12)
-            ax.set_ylabel(rf"MCC ($\mathit{{LCB}}_{{Architecture}}^{{(2)}}$)", fontweight='bold', fontsize=12)
+            ax.set_ylabel(rf"MCC ($\mathrm{{LCB}}_{{\mathit{{Architecture}}}}^{{(2)}}$)", fontweight='bold', fontsize=12)
 
             x_min_limit = -50
             x_max_limit = agg_df['Lambda_Log'].max()
@@ -1224,7 +1224,7 @@ class Plotting:
             if title_on:
                 ax.set_title(main_title, fontweight='bold', fontsize=14, pad=10)
             ax.set_xlabel("Number of Hidden Nodes", fontweight='bold', fontsize=11)
-            ax.set_ylabel(rf"MCC ($\mathit{{LCB}}_{{Architecture}}^{{(2)}}$)", fontweight='bold', fontsize=11)
+            ax.set_ylabel(rf"MCC ($\mathrm{{LCB}}_{{\mathit{{Architecture}}}}^{{(2)}}$)", fontweight='bold', fontsize=11)
 
             ax.xaxis.set_major_locator(MultipleLocator(10))
 
